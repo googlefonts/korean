@@ -14,17 +14,11 @@ First, clone the project and `cd` into the directory. Then run:
 npm install
 npm start
 
-# Now serving at http://localhost:3000
+# Now serving at http://localhost:8080
 ```
 
 To compile down to HTML, CSS, and JavaScript:
 
 ```sh
 npm run build
-```
-
-To deploy to the staging domain:
-
-```sh
-npm run stage
 ```
