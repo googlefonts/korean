@@ -1,0 +1,108 @@
+@import 'reset';
+@import 'fonts';
+
+$base_font_size       : 16px; // px;
+$base_line_height     : 20px; // px
+$background_color: #000;
+$white_color: #FFF;
+
+body {
+  font-size: $base_font_size;
+  line-height: $base_line_height;
+  background-color: $background_color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+@mixin regular_type {
+  font-family: "FF Mark Pro", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height:1.3;
+  font-style:   normal;
+  font-weight: 400;
+}
+::selection {
+  background-color: #0049EC;
+  color: #fff;
+}
+
+@mixin phone {
+  @media (max-width: 413px) {
+    @content;
+  }
+}
+
+@mixin ipad_portrait {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+
+@mixin ipad_landscape {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+
+@mixin desktop {
+  @media (max-width: 1280px) {
+    @content;
+  }
+}
+
+
+@mixin s_desktop {
+  @media (max-height: 1000px) {
+    @content;
+  }
+}
+
+
+body, div, p, span, text {
+  @include regular_type;
+  color: $white_color;
+}
+
+.l-apple-box {
+  height:20px;
+}
+
+
+.l-apple-box--half {
+  height:15px;
+}
+
+.l-apple-box--double {
+  height:40px;
+}
+
+.fl {
+  float:left;
+}
+
+.fr {
+  float:right;
+}
+
+a {
+  color:white;
+  text-decoration: none;
+  transition: 0.5s all;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+
+br.clearing {
+  clear:both !important
+}
+
+sup {
+  position: relative;
+  font-size:0.7em;
+  top: -0.5em;
+}
