@@ -1,6 +1,16 @@
+import { FONTS } from "../constants/defaults";
+
 let initialState = {
   screenWidth: 1024,
-  screenHeight: 768
+  screenHeight: 768,
+  headerMode: "full",
+  interactionIdx: 0,
+  currentViewFont: null,
+  currentDescFont: null, 
+  currentCategory: "고딕체",
+  newsFeeds: [],
+  background: "#000",
+  locale: "ko"
 };
 
 var reducer = (state = initialState, action) => {

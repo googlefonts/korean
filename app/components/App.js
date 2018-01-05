@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { windowResize } from '../actions';
+import { Header, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader } from './';
+
+const Fragment = React.Fragment;
 
 class App extends Component {
   constructor(props){
@@ -23,9 +26,14 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        Google Fonts + Korean Early Access
-      </div>
+      <Fragment>
+        <NewsfeedLoader />
+        <Header />
+        <FontsList />
+        <Description />
+        <Footer />
+        <FontCSSLoader />
+      </Fragment>
     );
   }
 }
