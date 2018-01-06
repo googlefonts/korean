@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { windowResize } from '../actions';
+import {windowResize, changeBackgroundMode} from '../actions';
 import { Header, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader } from './';
 
 const Fragment = React.Fragment;
@@ -15,6 +15,41 @@ class App extends Component {
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
   }
+  
+  componentDidMount(){
+    // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
+  }
+
+  handleBodyClick(e){
+    this.props.dispatch(changeBackgroundMode(this.props.backgroundMode == "black" ? "white" : "black"));
+  }
+
+  componentWillReceiveProps(newProps){
+    this.updateBackground(newProps);
+  }
+
+  updateBackground(newProps){
+    let { backgroundMode } = newProps;
+
+    if (backgroundMode == "black"){
+      
+      document.body.style.backgroundColor = "#000"; 
+
+      _.each(document.querySelectorAll("body, div, p, span, text, a"), elem => {
+        elem.style.color = "#FFF";
+      });
+
+    } else {
+      
+      document.body.style.backgroundColor = "#FFF";
+
+      _.each(document.querySelectorAll("body, div, p, span, text, a"), elem => {
+        elem.style.color = "#000";
+      });
+
+
+    }
+  }
 
   componentWillUnmount(){
     window.removeEventListener('resize', this.handleResize);
@@ -26,14 +61,14 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
+      <section onClick={this.updateBackground.bind(this)}>
         <NewsfeedLoader />
         <Header />
         <FontsList />
         <Description />
         <Footer />
         <FontCSSLoader />
-      </Fragment>
+      </section>
     );
   }
 }
@@ -41,7 +76,9 @@ class App extends Component {
 let mapStateToProps = state => {
   return {
     windowWidth: state.windowWidth,
-    windowHeight: state.windowHeight
+    windowHeight: state.windowHeight,
+    locale: state.locale,
+    backgroundMode: state.backgroundMode
   }
 }
 

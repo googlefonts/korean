@@ -9,6 +9,7 @@ $white_color: #FFF;
 body {
   font-size: $base_font_size;
   line-height: $base_line_height;
+  transition: 0.4s background-color;
   background-color: $background_color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

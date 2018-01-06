@@ -7,3 +7,12 @@ export const windowResize = (width, height) => {
     }
   }
 };
+
+export const changeBackgroundMode = (mode) => {
+  return {
+    type: 'CHANGE_BACKGROUND_MODE',
+    payload: {
+      backgroundMode: mode
+    }
+  }
+};

@@ -9,7 +9,7 @@ let initialState = {
   currentDescFont: null, 
   currentCategory: "고딕체",
   newsFeeds: [],
-  background: "#000",
+  backgroundMode: "black",
   locale: "ko"
 };
 
@@ -21,6 +21,11 @@ var reducer = (state = initialState, action) => {
         screenWidth: action.payload.screenWidth,
         screenHeight: action.payload.screenHeight
       };
+    case 'CHANGE_BACKGROUND_MODE':
+      return {
+        ...state,
+        backgroundMode: action.payload.backgroundMode
+      }
     default:
       return state;
   }

@@ -5,6 +5,7 @@ import Footer from './Footer';
 import FontViewer from './FontViewer';
 import NewsfeedLoader from './NewsfeedLoader';
 import FontCSSLoader from './FontCSSLoader';
+import InteractionStatusViewer from './InteractionStatusViewer';
 
 export {
   Header,
@@ -13,5 +14,6 @@ export {
   FontViewer,
   Footer,
   NewsfeedLoader,
-  FontCSSLoader
+  FontCSSLoader,
+  InteractionStatusViewer
 };
