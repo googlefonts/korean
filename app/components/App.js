@@ -61,9 +61,10 @@ class App extends Component {
 
   render() {
     return (
-      <section onClick={this.updateBackground.bind(this)}>
+      <section onClick={this.handleBodyClick.bind(this)}>
         <NewsfeedLoader />
         <Header />
+        <div className="header-gutter"></div>
         <FontsList />
         <Description />
         <Footer />

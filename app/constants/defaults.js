@@ -1,11 +1,11 @@
 export const FONTS = [
   {
     id: 1,
-    nameKo: "검은고딕",
-    nameEn: "Black Han Sans",
-    fontName: "Black Han Sans",
+    nameKo: "노토 산스 CJK KR",
+    nameEn: "Noto Sans CJK KR",
+    fontName: "Noto Sans CJK KR",
     fontWeight: 400,
-    fontUrl: "",
+    fontUrl : "./public/NotoSansCJKkr-Regular-2350.woff",
     cssUrl : "https://fonts.googleapis.com/earlyaccess/sawarabigothic.css",
     category: 1
   }

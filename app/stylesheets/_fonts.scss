@@ -1,5 +1,11 @@
 @font-face {
-    font-family: 'FF Mark Pro';
-    src: url('./assets/ff-mark-pro-web-black.woff') format('woff');
-    font-weight:800;
+    font-family: 'Noto Sans CJK KR';
+    src: url('./assets/fonts/NotoSansCJKkr-Regular-2350.woff') format('woff');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Noto Sans CJK KR';
+    src: url('./assets/fonts/NotoSansCJKkr-Medium-2350.woff') format('woff');
+    font-weight: 500;
 }

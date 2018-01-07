@@ -1,7 +1,7 @@
 @import 'reset';
 @import 'fonts';
 
-$base_font_size       : 16px; // px;
+$base_font_size       : 14px; // px;
 $base_line_height     : 20px; // px
 $background_color: #000;
 $white_color: #FFF;
@@ -17,12 +17,22 @@ body {
 
 
 @mixin regular_type {
-  font-family: "FF Mark Pro", Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
   font-size: 1em;
   line-height:1.3;
   font-style:   normal;
   font-weight: 400;
 }
+
+@mixin black_type {
+
+  font-family: "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height:1.3;
+  font-style:   normal;
+  font-weight: 400;
+}
+
 ::selection {
   background-color: #0049EC;
   color: #fff;
@@ -107,3 +117,107 @@ sup {
   font-size:0.7em;
   top: -0.5em;
 }
+
+.header {
+  display:flex;
+  justify-content: space-between;
+  align-content: flex-start;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: calc(100% - 48px);
+  padding: 26px 24px;
+
+  h1 {
+    @include black_type;
+  }
+
+  &__categories {
+    min-width: 240px;
+  }
+
+    &__category {
+      display:flex;
+    }
+
+      &__label-ko {
+        min-width: 125px;
+        margin-right: 10px;
+      }
+
+      &__label-en {
+        
+      }
+
+  &__description-area {
+    width:380px;
+  }
+
+    &__description {
+      margin-bottom: 20px;
+      &--ko {
+        @extend .header__description;
+      }
+
+      &--en {
+        @extend .header__description;
+      }
+    }
+  &__menu {
+    display:flex;
+    justify-content: space-between;
+    &--ko {
+      @extend .header__menu;
+    }
+
+    &--en {
+      @extend .header__menu;
+
+    }
+  }
+}
+
+.header-gutter {
+  height: 150px;
+}
+
+.fonts-list {
+  padding: 26px 24px;
+}
+
+.description {
+  padding: 26px 24px;
+}
+
+.footer {
+  margin: 0;
+  padding: 26px 24px;
+  display: flex;
+
+  &--black {
+    @extend .footer;
+    border-top: 1px solid white;
+  }
+
+  &--white {
+    @extend .footer;
+    border-top: 1px solid black;
+  }
+
+  &__google-fonts {
+    width: 250px;
+  }
+
+  &__short-desc {
+    width: 420px;
+  }
+
+  &__short-desc-column {
+    width: 270px;
+  }
+
+  &__team {
+    width: 310px;
+  }
+}
+
