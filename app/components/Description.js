@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-
+import { DescriptionFontSelector } from './';
 class Description extends Component {
   render() {
     return (
       <section className="description">
+        <DescriptionFontSelector />
+
         <h3>
           구글폰트 + 한국어 얼리억세스
         </h3>
