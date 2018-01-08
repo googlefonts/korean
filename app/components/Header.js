@@ -2,15 +2,19 @@ import React, { Component } from 'react'
 import { CATEGORIES } from '../constants/defaults';
 import { InteractionStatusViewer } from './';
 import { connect } from 'react-redux';
+import { changeLocale, changeCurrentCategory } from '../actions';
 
 class Header extends Component {
   handleToggleLocale(e) {
-    console.log("event fired");
-    // e.stopPropagation();
+    this.props.dispatch(changeLocale(this.props.locale === "ko" ? "en" : "ko"));
+  }
+
+  handleCurrentCategory(categoryData){
+    this.props.dispatch(changeCurrentCategory(categoryData.id));
   }
 
   render() {
-    let { locale } = this.props;
+    let { locale, currentCategory } = this.props;
 
     return (
       <header className="header">
@@ -23,7 +27,7 @@ class Header extends Component {
           {
             _.map(CATEGORIES, categoryData => {
               return (
-                <a className="header__category" key={categoryData.id} href="javascript:void(0);">
+                <a className={`header__category${ categoryData.id === currentCategory ? "--selected" : ""}`} onClick={this.handleCurrentCategory.bind(this, categoryData)} key={categoryData.id} href="javascript:void(0);">
                   <div className="header__label-ko">
                     {
                       categoryData.nameKo
@@ -65,7 +69,7 @@ class Header extends Component {
               <a href="javascript:void(0)" className="">
                 Introduction
               </a>
-              <a href="javascript:void(0)" className="">
+              <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
                 한국어
               </a> 
               <InteractionStatusViewer/>
@@ -80,7 +84,8 @@ class Header extends Component {
 
 let mapStateToProps = state => {
   return {
-    locale: state.locale
+    locale: state.locale,
+    currentCategory: state.currentCategory
   }
 };
 

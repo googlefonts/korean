@@ -138,6 +138,10 @@ sup {
 
     &__category {
       display:flex;
+
+      &--selected {
+        @extend .header__category;
+      }
     }
 
       &__label-ko {

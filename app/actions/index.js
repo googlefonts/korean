@@ -16,3 +16,30 @@ export const changeBackgroundMode = (mode) => {
     }
   }
 };
+
+export const changeLocale = (locale) => {
+  return {
+    type: 'CHANGE_LOCALE',
+    payload: {
+      locale: locale
+    }
+  }
+};
+
+export const changeCurrentCategory = (currentCategory) => {
+  return {
+    type: 'CHANGE_CURRENT_CATEGORY',
+    payload: {
+      currentCategory: currentCategory
+    }
+  }
+}
+
+export const changeCurrentDescFont = (currentDescFont) => {
+  return {
+    type: 'CHANGE_CURRENT_DESC_FONT',
+    payload: {
+      currentDescFont: currentDescFont
+    }
+  }
+}

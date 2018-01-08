@@ -1,12 +1,12 @@
 export const FONTS = [
   {
     id: 1,
-    nameKo: "노토 산스 CJK KR",
-    nameEn: "Noto Sans CJK KR",
-    fontName: "Noto Sans CJK KR",
+    nameKo: "노토 산스 KR",
+    nameEn: "Noto Sans KR",
+    fontName: "Noto Sans KR",
     fontWeight: 400,
     fontUrl : "./public/NotoSansCJKkr-Regular-2350.woff",
-    cssUrl : "https://fonts.googleapis.com/earlyaccess/sawarabigothic.css",
+    cssUrl : "./notosans.css",
     category: 1
   }
 ];

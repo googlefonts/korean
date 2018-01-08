@@ -6,8 +6,8 @@ let initialState = {
   headerMode: "full",
   interactionIdx: 0,
   currentViewFont: null,
-  currentDescFont: "Noto Sans CJK KR", 
-  currentCategory: "고딕체",
+  currentDescFont: "Noto Sans KR", 
+  currentCategory: null,
   newsFeeds: [],
   backgroundMode: "black",
   locale: "ko"
@@ -25,6 +25,21 @@ var reducer = (state = initialState, action) => {
       return {
         ...state,
         backgroundMode: action.payload.backgroundMode
+      }
+    case 'CHANGE_LOCALE':
+      return {
+        ...state,
+        locale: action.payload.locale
+      }
+    case 'CHANGE_CURRENT_CATEGORY':
+      return {
+        ...state,
+        currentCategory: action.payload.currentCategory
+      }
+    case 'CHANGE_CURRENT_DESC_FONT': 
+      return {
+        ...state,
+        currentDescFont: action.payload.currentDescFont
       }
     default:
       return state;
