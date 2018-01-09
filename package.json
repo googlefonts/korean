@@ -25,6 +25,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.19.4",
     "opentype.js": "^0.7.3",
+    "paper": "^0.11.5",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

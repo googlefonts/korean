@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {windowResize, changeBackgroundMode} from '../actions';
+import { windowResize, changeBackgroundMode} from '../actions';
 import { Header, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader } from './';
 
 const Fragment = React.Fragment;

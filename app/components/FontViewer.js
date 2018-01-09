@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import * as opentype from 'opentype.js'
+import { FontOutlineViewer } from './';
 
 class FontViewer extends Component {
   constructor(props){
     super(props);
     
     this.state = {
-      loaded: false
+      loaded: false,
+      font: null
     }
   }
 
@@ -21,13 +23,9 @@ class FontViewer extends Component {
       } else {
 
         this.setState({
-          loaded: true
+          loaded: true,
+          font: font
         });
-
-        let path = font.getPath('배현진', 0, 150, 72);
-
-        // // If you just want to draw the text you can also use font.draw(ctx, text, x, y, fontSize).
-        // path.draw(ctx);
       
       }
 
@@ -45,7 +43,7 @@ class FontViewer extends Component {
 
         {
           this.state.loaded ? 
-          null : 
+          <FontOutlineViewer font={ this.state.font } /> : 
           <div>
             loading...
           </div>

@@ -4,13 +4,13 @@ import axios from 'axios';
 
 class NewsfeedLoader extends Component {
   componentDidMount(){
-    axios.get("https://trends.google.com/trends/hottrends/atom/feed?pn=p23")
-      .then(function (response) {
-        debugger;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // axios.get("https://fonts.gstatic.com/ea/kokoro/v1/Kokoro-Regular.woff")
+    //   .then(function (response) {
+    //     debugger;
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   }
 
   render() {

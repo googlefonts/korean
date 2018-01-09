@@ -7,6 +7,8 @@ import NewsfeedLoader from './NewsfeedLoader';
 import FontCSSLoader from './FontCSSLoader';
 import InteractionStatusViewer from './InteractionStatusViewer';
 import DescriptionFontSelector from './DescriptionFontSelector';
+import FontOutlineViewer from './FontOutlineViewer';
+import Glyph from './Glyph';
 
 export {
   Header,
@@ -17,5 +19,7 @@ export {
   NewsfeedLoader,
   FontCSSLoader,
   InteractionStatusViewer,
-  DescriptionFontSelector
+  DescriptionFontSelector,
+  FontOutlineViewer,
+  Glyph
 };
