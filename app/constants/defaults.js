@@ -5,7 +5,7 @@ export const FONTS = [
     nameEn: "Noto Sans KR",
     fontName: "Noto Sans KR",
     fontWeight: 400,
-    fontUrl : "./public/NotoSansCJKkr-Regular-2350.woff",
+    fontUrl : "./public/assets/fonts/NotoSansCJKkr-Regular-2350.woff",
     cssUrl : "./notosans.css",
     category: 1
   }
