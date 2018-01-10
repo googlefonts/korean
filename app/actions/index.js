@@ -43,3 +43,12 @@ export const changeCurrentDescFont = (currentDescFont) => {
     }
   }
 }
+
+export const changeCurrentViewFont = (currentViewFont) => {
+  return {
+    type: 'CHANGE_CURRENT_VIEW_FONT',
+    payload: {
+      currentViewFont: currentViewFont
+    }
+  }
+}

@@ -41,6 +41,11 @@ var reducer = (state = initialState, action) => {
         ...state,
         currentDescFont: action.payload.currentDescFont
       }
+    case 'CHANGE_CURRENT_VIEW_FONT':
+      return {
+        ...state, 
+        currentViewFont: action.payload.currentViewFont
+      }
     default:
       return state;
   }

@@ -5,9 +5,39 @@ export const FONTS = [
     nameEn: "Noto Sans KR",
     fontName: "Noto Sans KR",
     fontWeight: 400,
-    fontUrl : "./public/assets/fonts/NotoSansCJKkr-Regular-2350.woff",
-    cssUrl : "./notosans.css",
+    fontUrl : "./public/fonts/NotoSansCJKkr-Regular-2350.woff",
+    cssUrl : "./public/fonts/notosans.css",
     category: 1
+  },
+  {
+    id: 2,
+    nameKo: "노토 세리프 KR",
+    nameEn: "Noto Serif KR",
+    fontName: "Noto Serif KR",
+    fontWeight: 400,
+    fontUrl : "./public/fonts/NotoSerifCJKKr-SemiBold.otf",
+    cssUrl : "./public/fonts/NotoSerifCJKKr-SemiBold.css",
+    category: 2
+  },
+  {
+    id: 3,
+    nameKo: "독도",
+    nameEn: "Dokdo",
+    fontName: "Dokdo",
+    fontWeight: 400,
+    fontUrl : "./public/fonts/Dokdo.woff",
+    cssUrl : "./public/fonts/Dokdo.css",
+    category: 3
+  },
+  {
+    id: 4,
+    nameKo: "큐트폰트",
+    nameEn: "Cutefont R",
+    fontName: "Cutefont R",
+    fontWeight: 400,
+    fontUrl : "./public/fonts/CutefontR.woff",
+    cssUrl : "./public/fonts/CutefontR.css",
+    category: 3
   }
 ];
 

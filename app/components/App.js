@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { windowResize, changeBackgroundMode} from '../actions';
+import { windowResize, changeBackgroundMode, changeCurrentViewFont } from '../actions';
 import { Header, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader } from './';
+import scrollama from 'scrollama';
 
 const Fragment = React.Fragment;
 
@@ -18,6 +19,33 @@ class App extends Component {
   
   componentDidMount(){
     // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
+
+    this.initScroll();
+  }
+
+  initScroll(){
+
+    var scroller = scrollama();
+
+    scroller.setup({
+        step: '.font-viewer',
+        debug: true,
+      })
+        .onStepEnter(this.handleStepEnter.bind(this))
+        .onStepExit(this.handleStepExit.bind(this));
+
+  }
+
+  handleStepEnter(e){
+    this.props.dispatch(changeCurrentViewFont(e.element.dataset.id));
+
+    console.log("enter", e.element.dataset.id);
+  }
+
+  handleStepExit(e){
+    this.props.dispatch(changeCurrentViewFont(null));
+    // debugger;
+    console.log("exit", e.element.dataset.id);
   }
 
   handleBodyClick(e){

@@ -1,0 +1,7 @@
+
+@font-face {
+    font-family:"Dokdo";
+    src:url("Dokdo.woff2") format("woff2"),url("Dokdo.woff") format("woff"),url("Dokdo.otf") format("opentype");
+    font-style:normal;font-weight:400;
+}
+        

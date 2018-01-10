@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as opentype from 'opentype.js'
 import { FontOutlineViewer } from './';
+import { connect } from 'react-redux';
 
 class FontViewer extends Component {
   constructor(props){
@@ -34,8 +35,11 @@ class FontViewer extends Component {
   }
 
   render() {
+    let { currentViewFont } = this.props;
+    let selected = currentViewFont == this.props.id;
+
     return (
-      <div className="font-viewer">
+      <div className={`font-viewer${ selected ? "--selected" : "" }`} data-id={this.props.id}>
         <h3>
           { this.props.nameKo }<br/>
           { this.props.nameEn }
@@ -53,4 +57,10 @@ class FontViewer extends Component {
   }
 }
 
-export default FontViewer;
+let mapStateToProps = state => {
+  return {
+    currentViewFont: state.currentViewFont
+  }
+};
+
+export default connect(mapStateToProps)(FontViewer);
