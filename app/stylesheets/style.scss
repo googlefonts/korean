@@ -193,12 +193,22 @@ sup {
 .font-viewer {
   background-color: transparent;
   transition: 0.2s background-color;
+  display: flex;
+  align-content: flex-start;
+  margin-bottom: 40px;
+
   &--selected {
     @extend .font-viewer;
-    background-color: rgba(255, 255, 255, 0.1);
+    // background-color: rgba(255, 255, 255, 0.1);
   }
 
+  h3 {
+    width: 200px;
+  }
+
+
 }
+
 
 .description {
   padding: 26px 24px;

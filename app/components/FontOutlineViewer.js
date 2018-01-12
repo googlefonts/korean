@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import paper from 'paper';
 import { Glyph } from './';
+import { connect } from 'react-redux';
 
 class FontOutlineViewer extends Component {
   constructor(props){
@@ -10,15 +11,16 @@ class FontOutlineViewer extends Component {
   }
 
   componentDidMount(){
-    paper.setup(this.refCanvas);
+    this.paperScope = new paper.PaperScope();
+    this.paperScope.setup(this.refCanvas);
 
     var { font } = this.props;
     var fontGlyphs = font.stringToGlyphs('배현진');
     var kerning = true;
     var kerningValue = 0;
 
-    var fontSize = 200;
-    var x = 80;
+    var fontSize = 300;
+    var x = 160;
     var fontScale = 1 / font.unitsPerEm * fontSize;
 
     _.each(fontGlyphs, (glyphData, i) => {
@@ -43,15 +45,37 @@ class FontOutlineViewer extends Component {
 
     });
 
-    paper.view.draw();
+    this.paperScope.view.draw();
+  }
+
+  componentWillReceiveProps(newProps){
+
+    // paper.view.update();
+  }
+
+  componentDidUpdate(){
+
+    let { screenWidth } = this.props;
+
+    this.paperScope.view.viewSize = new paper.Size( screenWidth - 200, 400 );
+
   }
 
   render() {
+    let { screenWidth } = this.props;
+
     return (
-      <canvas ref={ ref => { this.refCanvas = ref;} } style={{ width: 800, height: 400}}>
+      <canvas ref={ ref => { this.refCanvas = ref;} } width={(screenWidth - 200) * 2} height="400" style={{ width: screenWidth - 200, height: 400}}>
       </canvas>
     );
   }
 }
 
-export default FontOutlineViewer;
+
+let mapStateToProps = state => {
+  return {
+    screenWidth: state.screenWidth
+  }
+}
+
+export default connect(mapStateToProps)(FontOutlineViewer);

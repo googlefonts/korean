@@ -1,3 +1,7 @@
+export const MESSAGES = [
+  "평창", "배현진", "등급컷"
+];
+
 export const FONTS = [
   {
     id: 1,
