@@ -9,7 +9,7 @@ const Fragment = React.Fragment;
 class Header extends Component {
   componentWillReceiveProps(newProps){
     if (this.props.screenWidth != newProps.screenWidth) {
-      this.props.dispatch(changeHeaderHeight(document.querySelector('header').offsetHeight));
+      this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));
     }
   }
 
@@ -25,7 +25,7 @@ class Header extends Component {
     let { locale, currentCategory, screenWidth } = this.props;
 
     return (
-      <header className="header">
+      <header className="header" ref={ ref => { this.refHeader = ref; }}>
         <div className="header__title">
           <h1>
             구글폰트 + 한국어 얼리억세스<br/>
@@ -44,13 +44,13 @@ class Header extends Component {
           {
             _.map(CATEGORIES, categoryData => {
               return (
-                <a className={`header__category${ categoryData.id === currentCategory ? "--selected" : ""}`} onClick={this.handleCurrentCategory.bind(this, categoryData)} key={categoryData.id} href="javascript:void(0);">
-                  <div className="header__label-ko">
+                <a className={`category-selector${ categoryData.id === currentCategory ? "--selected" : ""}`} onClick={this.handleCurrentCategory.bind(this, categoryData)} key={categoryData.id} href="javascript:void(0);">
+                  <div className="category-selector__label-ko">
                     {
                       categoryData.nameKo
                     }
                   </div>
-                  <div className="header__label-en">
+                  <div className="category-selector__label-en">
                     {
                       categoryData.nameEn
                     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { windowResize, changeBackgroundMode, changeCurrentViewFont } from '../actions';
-import { Header, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter } from './';
+import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode } from '../actions';
+import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter } from './';
 import scrollama from 'scrollama';
 
 const Fragment = React.Fragment;
@@ -10,10 +10,13 @@ class App extends Component {
   constructor(props){
     super(props);
     this.handleResize = this.handleResize.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
+
 
   componentWillMount(){
     window.addEventListener('resize', this.handleResize);
+    window.addEventListener('scroll', this.handleScroll);
     this.handleResize();
   }
   
@@ -21,6 +24,16 @@ class App extends Component {
     // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
 
     this.initScroll();
+  }
+
+  handleScroll(e){
+    // console.log(window.scrollTop);
+
+    if (window.scrollY > 0) {
+      this.props.dispatch(changeHeaderMode("collapsed"));
+    } else {
+      this.props.dispatch(changeHeaderMode("expanded"));
+    }
   }
 
   initScroll(){
@@ -39,13 +52,13 @@ class App extends Component {
   handleStepEnter(e){
     this.props.dispatch(changeCurrentViewFont(e.element.dataset.id));
 
-    console.log("enter", e.element.dataset.id);
+    // console.log("enter", e.element.dataset.id);
   }
 
   handleStepExit(e){
     this.props.dispatch(changeCurrentViewFont(null));
     // debugger;
-    console.log("exit", e.element.dataset.id);
+    // console.log("exit", e.element.dataset.id);
   }
 
   handleBodyClick(e){
@@ -53,7 +66,7 @@ class App extends Component {
   }
 
   componentWillReceiveProps(newProps){
-    this.updateBackground(newProps);
+    // this.updateBackground(newProps);
   }
 
   updateBackground(newProps){
@@ -81,6 +94,7 @@ class App extends Component {
 
   componentWillUnmount(){
     window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handleResize(e){
@@ -88,10 +102,15 @@ class App extends Component {
   }
 
   render() {
+    let { headerMode } = this.props;
+
     return (
       <section onClick={this.handleBodyClick.bind(this)}>
         <NewsfeedLoader />
-        <Header />
+        {
+          headerMode == "expanded" ? 
+          <Header /> : <HeaderCollapsed />  
+        }        
         <HeaderGutter />
         <FontsList />
         <Description />
@@ -104,8 +123,9 @@ class App extends Component {
 
 let mapStateToProps = state => {
   return {
-    windowWidth: state.windowWidth,
-    windowHeight: state.windowHeight,
+    headerMode: state.headerMode,
+    screenWidth: state.screenWidth,
+    screenHeight: state.screenHeight,
     locale: state.locale,
     backgroundMode: state.backgroundMode
   }

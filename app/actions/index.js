@@ -61,3 +61,12 @@ export const changeCurrentViewFont = (currentViewFont) => {
     }
   }
 }
+
+export const changeHeaderMode = (headerMode) => {
+  return {
+    type: 'CHANGE_HEADER_MODE',
+    payload: {
+      headerMode: headerMode
+    }
+  }
+}

@@ -3,11 +3,11 @@ import { FONTS } from "../constants/defaults";
 let initialState = {
   screenWidth: 1024,
   screenHeight: 768,
-  headerMode: "full",
+  headerMode: "expanded",
   interactionIdx: 0,
   currentViewFont: null,
   currentDescFont: "Noto Sans KR", 
-  currentCategory: null,
+  currentCategory: 1,
   newsFeeds: [],
   backgroundMode: "black",
   locale: "ko",
@@ -51,6 +51,11 @@ var reducer = (state = initialState, action) => {
       return {
         ...state,
         headerHeight: action.payload.headerHeight
+      }
+    case 'CHANGE_HEADER_MODE': 
+      return {
+        ...state,
+        headerMode: action.payload.headerMode
       }
     default:
       return state;

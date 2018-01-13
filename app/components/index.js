@@ -1,4 +1,5 @@
 import Header from './Header';
+import HeaderCollapsed from './HeaderCollapsed';
 import FontsList from './FontsList';
 import Description from './Description';
 import Footer from './Footer';
@@ -13,6 +14,7 @@ import HeaderGutter from './HeaderGutter';
 
 export {
   Header,
+  HeaderCollapsed,
   FontsList,
   Description,
   FontViewer,

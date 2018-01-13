@@ -14,7 +14,7 @@ class DescriptionFontSelector extends Component {
     let { changeCurrentDescFont } = this.props;
 
     return (
-      <div className="font-selector">
+      <div className="font-selector-area">
         {
           _.map(FONTS, fontData => {
             return (

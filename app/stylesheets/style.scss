@@ -95,7 +95,7 @@ body, div, p, span, text {
 a {
   color:$text_color;
   text-decoration: none;
-  transition: 0.5s all;
+  transition: 0.5s opacity;
 }
 
 a:hover {
@@ -110,6 +110,71 @@ sup {
   position: relative;
   font-size:0.7em;
   top: -0.5em;
+}
+
+.header-collapsed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: calc(100% - 48px);
+  padding: 17px 24px;
+  background-color: white;
+  border-bottom: 1px solid $text_color;
+
+  &__flexwrap {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;  
+  }
+
+  &__categories {
+    @include body_960 {
+      margin-top: 10px;  
+    }
+  }
+  
+  h1 {
+    @include black_type;
+  }
+
+  &__hamburger {
+    display: none;
+
+    @include body_960 {
+      display: block;
+    }
+
+    @include body_600 {
+     
+    }
+
+  }
+}
+
+.category-selector {
+  display:flex;
+  margin-bottom: 6px;
+
+  &--selected {
+    @extend .category-selector;
+  }
+  
+
+  &__label-ko {
+    @include black_type;
+    min-width: 125px;
+    margin-right: 10px;
+  }
+
+
+  &__label-ko-collapsed {
+    @extend .category-selector__label-ko;
+    min-width: auto;
+  }
+
+  &__label-en {
+    
+  }
 }
 
 .header {
@@ -160,24 +225,7 @@ sup {
 
   }
 
-    &__category {
-      display:flex;
-      margin-bottom: 6px;
-
-      &--selected {
-        @extend .header__category;
-      }
-    }
-
-      &__label-ko {
-        @include black_type;
-        min-width: 125px;
-        margin-right: 10px;
-      }
-
-      &__label-en {
-        
-      }
+   
 
   &__description-area {
     width:300px;
@@ -199,6 +247,8 @@ sup {
 
       &--en {
         @extend .header__description;
+        @include black_type;
+        font-size:0.8em;
       }
     }
 
@@ -213,7 +263,7 @@ sup {
       display: block;
     }
 
-    &--ko {
+    &--ko, &--en {
       @extend .header__menu;
 
       a { 
@@ -223,11 +273,6 @@ sup {
         padding-bottom: 2px;
         border-bottom: 1px dotted $text_color;
       }
-    }
-
-    &--en {
-      @extend .header__menu;
-
     }
   }
 }
@@ -263,6 +308,27 @@ sup {
 .interaction-status-viewer {
   @include body_480 {
     margin-top: 10px;
+  }
+}
+
+.font-selector-area {
+  border-bottom: 1px solid $background_color;
+  // margin: 0 2 0 0;
+  padding-bottom: 20px;
+}
+
+.font-selector {
+  padding: 8px;
+  margin-right: 5px;
+  width: 17px;
+  text-align: center;
+  display: inline-block;
+
+  &--selected { 
+    @extend .font-selector;
+    background-color: $background_color;
+    color: $text_color !important;
+    border-radius: 3px;
   }
 }
 
