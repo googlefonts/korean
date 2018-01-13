@@ -10,7 +10,8 @@ let initialState = {
   currentCategory: null,
   newsFeeds: [],
   backgroundMode: "black",
-  locale: "ko"
+  locale: "ko",
+  headerHeight: 140
 };
 
 var reducer = (state = initialState, action) => {
@@ -45,6 +46,11 @@ var reducer = (state = initialState, action) => {
       return {
         ...state, 
         currentViewFont: action.payload.currentViewFont
+      }
+    case 'CHANGE_HEADER_HEIGHT':
+      return {
+        ...state,
+        headerHeight: action.payload.headerHeight
       }
     default:
       return state;

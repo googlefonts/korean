@@ -9,6 +9,7 @@ import InteractionStatusViewer from './InteractionStatusViewer';
 import DescriptionFontSelector from './DescriptionFontSelector';
 import FontOutlineViewer from './FontOutlineViewer';
 import Glyph from './Glyph';
+import HeaderGutter from './HeaderGutter';
 
 export {
   Header,
@@ -21,5 +22,6 @@ export {
   InteractionStatusViewer,
   DescriptionFontSelector,
   FontOutlineViewer,
-  Glyph
+  Glyph,
+  HeaderGutter      
 };

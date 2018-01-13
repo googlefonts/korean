@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { windowResize, changeBackgroundMode, changeCurrentViewFont } from '../actions';
-import { Header, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader } from './';
+import { Header, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter } from './';
 import scrollama from 'scrollama';
 
 const Fragment = React.Fragment;
@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   handleBodyClick(e){
-    this.props.dispatch(changeBackgroundMode(this.props.backgroundMode == "black" ? "white" : "black"));
+    // this.props.dispatch(changeBackgroundMode(this.props.backgroundMode == "black" ? "white" : "black"));
   }
 
   componentWillReceiveProps(newProps){
@@ -92,7 +92,7 @@ class App extends Component {
       <section onClick={this.handleBodyClick.bind(this)}>
         <NewsfeedLoader />
         <Header />
-        <div className="header-gutter"></div>
+        <HeaderGutter />
         <FontsList />
         <Description />
         <Footer />

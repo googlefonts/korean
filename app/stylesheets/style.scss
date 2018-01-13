@@ -2,9 +2,9 @@
 @import 'fonts';
 
 $base_font_size       : 14px; // px;
-$base_line_height     : 20px; // px
-$background_color: #000;
-$white_color: #FFF;
+$base_line_height     : 22px; // px
+$background_color: #FFF;
+$text_color: #000;
 
 body {
   font-size: $base_font_size;
@@ -30,7 +30,7 @@ body {
   font-size: 1em;
   line-height:1.3;
   font-style:   normal;
-  font-weight: 400;
+  font-weight: 800;
 }
 
 ::selection {
@@ -38,43 +38,37 @@ body {
   color: #fff;
 }
 
-@mixin phone {
-  @media (max-width: 413px) {
-    @content;
-  }
-}
 
-@mixin ipad_portrait {
-  @media (max-width: 767px) {
-    @content;
-  }
-}
-
-
-@mixin ipad_landscape {
-  @media (max-width: 1024px) {
-    @content;
-  }
-}
-
-
-@mixin desktop {
+@mixin body_1280 {
   @media (max-width: 1280px) {
     @content;
   }
 }
 
 
-@mixin s_desktop {
-  @media (max-height: 1000px) {
+@mixin body_960 {
+  @media (max-width: 960px) {
+    @content;
+  }
+}
+
+@mixin body_600 {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin body_480 {
+  @media (max-width: 480px) {
     @content;
   }
 }
 
 
+
 body, div, p, span, text {
   @include regular_type;
-  color: $white_color;
+  color: $text_color;
 }
 
 .l-apple-box {
@@ -99,7 +93,7 @@ body, div, p, span, text {
 }
 
 a {
-  color:white;
+  color:$text_color;
   text-decoration: none;
   transition: 0.5s all;
 }
@@ -127,17 +121,48 @@ sup {
   top: 0;
   width: calc(100% - 48px);
   padding: 26px 24px;
+  background-color: white;
+
+
+  @include body_600 {
+    display: block;
+  }
 
   h1 {
     @include black_type;
+
+    @include body_600 {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__hamburger {
+    display: none;
+
+    @include body_960 {
+      display: block;
+    }
+
+    @include body_600 {
+      position: fixed;
+      right: 24px;
+      top: 26px;
+    }
+
   }
 
   &__categories {
     min-width: 240px;
+
+    @include body_960 {
+      display: none;
+    }
+
   }
 
     &__category {
       display:flex;
+      margin-bottom: 6px;
 
       &--selected {
         @extend .header__category;
@@ -145,6 +170,7 @@ sup {
     }
 
       &__label-ko {
+        @include black_type;
         min-width: 125px;
         margin-right: 10px;
       }
@@ -154,24 +180,49 @@ sup {
       }
 
   &__description-area {
-    width:380px;
+    width:300px;
+  
+
+    @include body_600 {
+      width: auto;
+    }
+
   }
 
     &__description {
       margin-bottom: 20px;
       &--ko {
         @extend .header__description;
+        @include black_type;
+        font-size:0.8em;
       }
 
       &--en {
         @extend .header__description;
       }
     }
+
   &__menu {
     display:flex;
-    justify-content: space-between;
+    
+    @include body_600 {
+      justify-content: space-between;
+    }
+
+    @include body_480 {
+      display: block;
+    }
+
     &--ko {
       @extend .header__menu;
+
+      a { 
+        @include black_type;
+        font-size:0.8em;
+        margin-right: 10px;
+        padding-bottom: 2px;
+        border-bottom: 1px dotted $text_color;
+      }
     }
 
     &--en {
@@ -209,40 +260,104 @@ sup {
 
 }
 
+.interaction-status-viewer {
+  @include body_480 {
+    margin-top: 10px;
+  }
+}
+
 
 .description {
   padding: 26px 24px;
+  background-color: $text_color;
+
+  div, a, p, h1, h2, h3 {
+    color: $background_color;
+  }
+  
 }
 
 .footer {
   margin: 0;
   padding: 26px 24px;
-  display: flex;
+  border-top: 1px solid $background_color;
+  background-color: $text_color;
 
-  &--black {
-    @extend .footer;
-    border-top: 1px solid white;
+  div, a, p{
+    color: $background_color;
   }
 
-  &--white {
-    @extend .footer;
-    border-top: 1px solid black;
+  h4 {
+    @include black_type;
+    font-size:0.8em;
+  }
+
+  p {
+    font-size:0.8em;
+  }
+
+  &__flexwrap {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &__google-fonts {
     width: 250px;
+    
+    @include body_1280 {
+      width: 17.3%;
+    }
+
   }
 
   &__short-desc {
     width: 420px;
+
+    @include body_1280 {
+      width: calc(29.1% - 20px);
+      margin-right: 20px;
+    }
+
+    @include body_960 {
+      width: calc(50% - 20px);
+      margin-right: 40px;
+    }
+
+
   }
 
   &__short-desc-column {
     width: 270px;
+
+    @include body_960 { 
+      width: auto;
+    }
+
   }
 
   &__team {
     width: 310px;
+    
+    @include body_1280 {
+      width: calc(21.5% - 20px);
+      margin-right: 20px;
+    }
+  
+    @include body_960 {
+      width: calc(50% - 20px);
+      margin-right:0;
+    }
+  }
+
+  &__social {
+    width: 150px;
+    @include body_1280 {
+      width: 21.5%;
+    }
+
+    @include body_960 {
+      margin-top: 20px;
+    }
   }
 }
 

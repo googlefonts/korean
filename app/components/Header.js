@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
-import { CATEGORIES } from '../constants/defaults';
-import { InteractionStatusViewer } from './';
+import { CATEGORIES, BODY_600 } from '../constants/defaults';
 import { connect } from 'react-redux';
-import { changeLocale, changeCurrentCategory } from '../actions';
+import { InteractionStatusViewer } from './';
+import { changeLocale, changeCurrentCategory, changeHeaderHeight } from '../actions';
+
+const Fragment = React.Fragment;
 
 class Header extends Component {
+  componentWillReceiveProps(newProps){
+    if (this.props.screenWidth != newProps.screenWidth) {
+      this.props.dispatch(changeHeaderHeight(document.querySelector('header').offsetHeight));
+    }
+  }
+
   handleToggleLocale(e) {
     this.props.dispatch(changeLocale(this.props.locale === "ko" ? "en" : "ko"));
   }
@@ -14,14 +22,23 @@ class Header extends Component {
   }
 
   render() {
-    let { locale, currentCategory } = this.props;
+    let { locale, currentCategory, screenWidth } = this.props;
 
     return (
       <header className="header">
-        <h1>
-          구글폰트 + 한국어 얼리 억세스<br/>
-          Google Fonts + Korean Early Access
-        </h1>
+        <div className="header__title">
+          <h1>
+            구글폰트 + 한국어 얼리억세스<br/>
+            Google Fonts + Korean Early Access
+          </h1>
+          { 
+            screenWidth > BODY_600 ? 
+            <Fragment>
+              <div className="l-apple-box--half"></div>
+              <InteractionStatusViewer />
+            </Fragment> : null
+          }
+        </div>
 
         <div className="header__categories">
           {
@@ -48,7 +65,7 @@ class Header extends Component {
           {
             locale == "ko" ?
             <div className={`header__description--${locale}`}>
-              구글폰트 + 한국어 얼리억세스는 아직 구글폰트에서 지원하지는 않지만 누구나 손쉽게 라이선스의 제약없이 사용할 수 있는 오픈소스 폰트의 목록입니다.
+              구글폰트 + 한국어 얼리억세스는 다양한 한글폰트를 온라인에서 보다 가볍고 손쉽게 사용할 수 있도록 실험적으로 마련된 한국어 오픈소스 웹폰트의 목록입니다.
             </div> :
             <div className={`header__description--${locale}`}>
               Google Fonts + Korean Early Access is an experimental showcase for Korean fonts that aren’t yet fully supported.
@@ -57,26 +74,42 @@ class Header extends Component {
           {
             locale == "ko" ? 
             <div className={`header__menu--${locale}`}>
-              <a href="javascript:void(0)" className="">
-                한국어 얼리억세스 소개 
-              </a>
-              <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
-                English
-              </a>
-              <InteractionStatusViewer />
+              <div>
+                <a href="javascript:void(0)" className="">
+                  한국어 얼리억세스 소개 
+                </a>
+                <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
+                  English
+                </a>
+              </div>
+              { 
+                screenWidth <= BODY_600 ? 
+                <InteractionStatusViewer />
+                : null
+              }
             </div> : 
             <div className={`header__menu--${locale}`}>
-              <a href="javascript:void(0)" className="">
-                Introduction
-              </a>
-              <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
-                한국어
-              </a> 
-              <InteractionStatusViewer/>
+              <div>
+                <a href="javascript:void(0)" className="">
+                  Introduction
+                </a>
+                <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
+                  한국어
+                </a> 
+              </div>
+              { 
+                screenWidth <= BODY_600 ? 
+                <InteractionStatusViewer />
+                : null
+              }
             </div>
           }
         </div>
 
+        
+        <a href="javascript:void(0);" className="header__hamburger">
+          <img src="./public/assets/hamburger.svg" alt="menu" />
+        </a>
       </header>
     )
   }
@@ -85,7 +118,8 @@ class Header extends Component {
 let mapStateToProps = state => {
   return {
     locale: state.locale,
-    currentCategory: state.currentCategory
+    currentCategory: state.currentCategory,
+    screenWidth: state.screenWidth
   }
 };
 

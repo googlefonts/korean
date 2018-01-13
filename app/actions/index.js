@@ -8,6 +8,15 @@ export const windowResize = (width, height) => {
   }
 };
 
+export const changeHeaderHeight = (headerHeight) => {
+  return {
+    type: 'CHANGE_HEADER_HEIGHT',
+    payload: {
+      headerHeight: headerHeight
+    }
+  }
+}
+
 export const changeBackgroundMode = (mode) => {
   return {
     type: 'CHANGE_BACKGROUND_MODE',

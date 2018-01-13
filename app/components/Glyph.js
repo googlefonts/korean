@@ -7,8 +7,8 @@ class Glyph extends paper.CompoundPath{
     this.fontGlyph = params.glyph;
     // this.position = {x: params.x};
     // this.advanceWidthX = params.x;
-    this.strokeColor = 'white';
-    this.fillColor = "none";
+    this.strokeColor = 'black';
+    this.fillColor = "white";
     // debugger;
     this.x = params.x;
     this.glyphFontSize = params.fontSize;

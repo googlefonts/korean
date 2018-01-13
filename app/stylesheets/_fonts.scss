@@ -1,3 +1,13 @@
+
+@font-face {
+    font-family:"Noto Sans CJK KR";
+    src: url("./assets/fonts/NotoSansCJKkr-Black-2350.woff2") format("woff2"),
+         url("./assets/fonts/NotoSansCJKkr-Black-2350.woff") format("woff"),
+         url("./assets/fonts/NotoSansCJKkr-Black-2350.otf") format("opentype");
+    font-style:normal;font-weight:800;
+}
+        
+
 @font-face {
     font-family: 'Noto Sans CJK KR';
     src: url('./assets/fonts/NotoSansCJKkr-Regular-2350.woff') format('woff');
