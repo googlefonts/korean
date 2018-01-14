@@ -6,7 +6,7 @@ let initialState = {
   headerMode: "expanded",
   interactionIdx: 0,
   currentViewFont: null,
-  currentDescFont: "Noto Sans KR", 
+  currentDescFont: 1, 
   currentCategory: 1,
   newsFeeds: [],
   backgroundMode: "black",

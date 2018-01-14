@@ -11,6 +11,7 @@ import DescriptionFontSelector from './DescriptionFontSelector';
 import FontOutlineViewer from './FontOutlineViewer';
 import Glyph from './Glyph';
 import HeaderGutter from './HeaderGutter';
+import DropdownFontSelector from './DropdownFontSelector';
 
 export {
   Header,
@@ -25,5 +26,6 @@ export {
   DescriptionFontSelector,
   FontOutlineViewer,
   Glyph,
-  HeaderGutter      
+  HeaderGutter,
+  DropdownFontSelector
 };
