@@ -7,6 +7,10 @@ import { changeLocale, changeCurrentCategory, changeHeaderHeight } from '../acti
 const Fragment = React.Fragment;
 
 class Header extends Component {
+  componentDidMount(){
+    this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));
+  }
+  
   componentWillReceiveProps(newProps){
     if (this.props.screenWidth != newProps.screenWidth) {
       this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));

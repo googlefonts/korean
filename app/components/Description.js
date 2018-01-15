@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { DescriptionFontSelector } from './';
+import { BODY_960, BODY_600 } from '../constants/defaults';
 import { connect } from 'react-redux';
 import RetinaImage from 'react-retina-image';
 import { FONTS } from '../constants/defaults';
@@ -69,7 +70,32 @@ class Description extends Component {
           </h4>
 
           <div className="description__column-container">
+            {
+              screenWidth <= BODY_960 ? 
+              <div className="description__column-right">
+                <div className="description__stat-wrap">
+                  <h5 className="description__big-numeric" style={fontStyle}>
+                    65,535
+                  </h5>
+                  <p className="right" style={fontStyle}>
+                    총 글리프 개수 (한글)<br/>
+                    Noto Sans CJK KR
+                  </p>
+                </div>
 
+                <div className="description__stat-wrap">
+
+                  <h5 className="description__big-numeric" style={fontStyle}>
+                    2,416
+                  </h5>
+                  <p className="right" style={fontStyle}>
+                    총 글리프 개수 <br/>(라틴 + 그리스 + 키릴자모)<br/>
+                    Noto Sans
+                  </p>
+
+                </div>
+              </div> : null
+            }
             <div className="description__column-left" style={{ marginRight: marginRightScale(screenWidth) }}>
               <p style={fontStyle}>
                 Since 2015, the Google Fonts API has been available in mainland China, but Chinese users face a problem using webfonts in their own language: While Latin webfonts are typically 100–400KB and other writing systems usually range between 200–600KB, the Noto Sans SC (Simplified Chinese) font file is much larger (around 19MB) because it includes 44,683 characters.
@@ -88,22 +114,32 @@ class Description extends Component {
               </p>
             </div>
 
-            <div className="description__column-right">
-              <h5 className="description__big-numeric" style={fontStyle}>
-                65,535
-              </h5>
-              <p className="right" style={fontStyle}>
-                총 글리프 개수 (한글)<br/>
-                Noto Sans CJK KR
-              </p>
-              <h5 className="description__big-numeric" style={fontStyle}>
-                2,416
-              </h5>
-              <p className="right" style={fontStyle}>
-                총 글리프 개수 (라틴 + 그리스 + 키릴자모)<br/>
-                Noto Sans
-              </p>
-            </div>
+            {
+              screenWidth > BODY_960 ? 
+              <div className="description__column-right">
+                <div className="description__stat-wrap">
+                  <h5 className="description__big-numeric" style={fontStyle}>
+                    65,535
+                  </h5>
+                  <p className="right" style={fontStyle}>
+                    총 글리프 개수 (한글)<br/>
+                    Noto Sans CJK KR
+                  </p>
+                </div>
+
+                <div className="description__stat-wrap">
+
+                  <h5 className="description__big-numeric" style={fontStyle}>
+                    2,416
+                  </h5>
+                  <p className="right" style={fontStyle}>
+                    총 글리프 개수 <br/>(라틴 + 그리스 + 키릴자모)<br/>
+                    Noto Sans
+                  </p>
+
+                </div>
+              </div> : null
+            }
 
           </div>
 

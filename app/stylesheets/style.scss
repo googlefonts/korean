@@ -33,6 +33,16 @@ body {
   font-weight: 800;
 }
 
+textarea, input {
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
 ::selection {
   background-color: #0049EC;
   color: #fff;
@@ -110,6 +120,10 @@ sup {
   position: relative;
   font-size:0.7em;
   top: -0.5em;
+}
+
+.bold {
+  font-weight: 800;
 }
 
 .header-collapsed {
@@ -289,9 +303,12 @@ sup {
 .font-viewer {
   background-color: transparent;
   transition: 0.2s background-color;
-  display: flex;
-  align-content: flex-start;
   margin-bottom: 40px;
+
+  &__flex-wrapper {
+    display: flex;
+    align-content: flex-start;
+  }
 
   &--selected {
     @extend .font-viewer;
@@ -300,8 +317,44 @@ sup {
 
   h3 {
     width: 200px;
+    font-size:0.8em;
+
+    .ko {
+      @include black_type;
+    }
   }
 
+  &__weight-area {
+    margin-top: 10px;
+  }
+
+  &__weights {
+    li {
+      a {
+        font-size:0.8em;
+      }
+    }
+  }
+
+  &__detail-left {
+    width: 200px;
+    padding-top: 20px;
+  }
+
+  &__detail-right {
+    border-top: 2px solid $text_color;
+    padding-top: 10px;
+    
+    display: flex;
+    justify-content: space-between;
+  }
+
+    &__column {
+      width: calc(50% - 20px);
+      p {
+        font-size: 0.8em;
+      }
+    }
 
 }
 
@@ -362,6 +415,11 @@ sup {
     @include body_1280 {
       margin-left: 100px;
     }
+
+    @include body_960 {
+      margin-left: auto;
+    }
+
   }
 
   p.description__big {
@@ -375,6 +433,11 @@ sup {
       width: 80%; 
     }
 
+    @include body_960 {
+      margin-left: 0;
+      width: calc(100% - 40px);
+    }
+
   }
 
   h4 {
@@ -385,6 +448,14 @@ sup {
     width: 590px;
     margin-bottom: 40px;
     line-height: 1.6;
+
+    @include body_960 {
+      width: 80%;
+    }
+
+    @include body_600 {
+      width: 100%;
+    }
   }
 
   p.right {
@@ -396,23 +467,44 @@ sup {
     display:flex;
     width: 100%;
 
-    @include body_600 {
+    @include body_960 {
       display: block;
     }
   }
 
     &__column-left {
       width:590px;
-      margin-right: 150px;
+      // margin-right: 150px;
+
+      @include body_960 {
+        width: 100%;
+      }
     }
 
     &__column-right {
       width: calc(100% - 790px);
       min-width: 200px;
+      display: block;
+
       @include body_1280 {
         width: auto;
       }
+
+      @include body_960 {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+      }
     }
+
+    &__stat-wrap {
+      @include body_960 {
+        margin-right: 20px;
+      }
+    }
+
+
+
 
     &__big-numeric {
       font-size:2.5em;
@@ -503,5 +595,3 @@ sup {
     }
   }
 }
-
-
