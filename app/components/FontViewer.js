@@ -65,10 +65,10 @@ class FontViewer extends Component {
     return (
       <div className={`font-viewer${ selected ? "--selected" : "" }`} data-id={this.props.id}>
         <div className="font-viewer__flex-wrapper">
-          <div>
+          <div className="font-viewer__left">
             <h3>
               <span className="ko">{ this.props.nameKo }</span><br/>
-              { this.props.nameEn }
+              <span className="en-black">{ this.props.nameEn }</span>
             </h3>
 
             <div className="font-viewer__weight-area">

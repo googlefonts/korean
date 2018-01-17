@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode } from '../actions';
 import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter } from './';
 import scrollama from 'scrollama';
+import gfBadge from '@googlefonts/badge';
 
 const Fragment = React.Fragment;
 
@@ -22,7 +23,7 @@ class App extends Component {
   
   componentDidMount(){
     // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
-
+    gfBadge();
     this.initScroll();
   }
 

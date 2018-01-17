@@ -8,12 +8,14 @@ import NewsfeedLoader from './NewsfeedLoader';
 import FontCSSLoader from './FontCSSLoader';
 import InteractionStatusViewer from './InteractionStatusViewer';
 import DescriptionFontSelector from './DescriptionFontSelector';
+import DropdownFontSelector from './DropdownFontSelector';
+import DropdownFontSelectorMenu from './DropdownFontSelectorMenu';
 import FontOutlineViewer from './FontOutlineViewer';
 import Glyph from './Glyph';
 import HeaderGutter from './HeaderGutter';
-import DropdownFontSelector from './DropdownFontSelector';
 import FontPreviewTyper from './FontPreviewTyper';
 import FontDetailViewer from './FontDetailViewer';
+import DropDownCategorySelector from './DropDownCategorySelector';
 
 export {
   Header,
@@ -26,10 +28,12 @@ export {
   FontCSSLoader,
   InteractionStatusViewer,
   DescriptionFontSelector,
+  DropdownFontSelector,
+  DropdownFontSelectorMenu,
   FontOutlineViewer,
   Glyph,
   HeaderGutter,
-  DropdownFontSelector,
   FontPreviewTyper,
-  FontDetailViewer
+  FontDetailViewer,
+  DropDownCategorySelector
 };

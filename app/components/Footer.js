@@ -13,9 +13,8 @@ class Footer extends Component {
         <div className="footer__flexwrap">
           {
             screenWidth > BODY_960 ? 
-            <a className="footer__google-fonts" href="https://fonts.google.com" target="_blank">
-              <img src="./public/assets/made_by_google_fonts.svg" alt="Made by Friends of Google Fonts" />
-            </a> : 
+            <div className="footer__left">
+            </div> : 
             null
           }
 
@@ -61,15 +60,8 @@ class Footer extends Component {
           <Fragment>
             <div className="l-apple-box--double"></div>
             <div className="l-apple-box--double"></div>
-
-            <a className="footer__google-fonts" href="https://fonts.google.com" target="_blank">
-              <img src="./public/assets/made_by_google_fonts.svg" alt="Made by Friends of Google Fonts" />
-            </a>
-          </Fragment>
-           : 
-          null
+          </Fragment> : null
         }
-       
       </footer>
     )
   }

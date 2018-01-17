@@ -5,6 +5,8 @@ let initialState = {
   screenHeight: 768,
   headerMode: "expanded",
   interactionIdx: 0,
+  categoryDropdownOpened: false,
+  descFontDropdownOpened: false,
   currentViewFont: null,
   currentDescFont: 1, 
   currentCategory: 1,
@@ -21,6 +23,16 @@ var reducer = (state = initialState, action) => {
         ...state,
         screenWidth: action.payload.screenWidth,
         screenHeight: action.payload.screenHeight
+      };
+    case 'CHANGE_DESC_FONT_DROPDOWN_OPENED':
+      return {
+        ...state,
+        descFontDropdownOpened: action.payload.descFontDropdownOpened
+      };
+    case 'CHANGE_CATEGORY_DROPDOWN_OPENED':
+      return {
+        ...state,
+        categoryDropdownOpened: action.payload.categoryDropdownOpened
       };
     case 'CHANGE_BACKGROUND_MODE':
       return {

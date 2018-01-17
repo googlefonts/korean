@@ -8,6 +8,25 @@ export const windowResize = (width, height) => {
   }
 };
 
+export const changeCategoryDropdownOpened = (categoryDropdownOpened) => {
+  return {
+    type: 'CHANGE_CATEGORY_DROPDOWN_OPENED',
+    payload: {
+      categoryDropdownOpened: categoryDropdownOpened
+    }
+  }
+}
+
+export const changeDescFontDropdownOpened = (descFontDropdownOpened) => {
+  return {
+    type: 'CHANGE_DESC_FONT_DROPDOWN_OPENED',
+    payload: {
+      descFontDropdownOpened: descFontDropdownOpened
+    }
+  }
+}
+
+
 export const changeHeaderHeight = (headerHeight) => {
   return {
     type: 'CHANGE_HEADER_HEIGHT',
