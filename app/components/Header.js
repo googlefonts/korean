@@ -73,7 +73,7 @@ class Header extends Component {
             <div className={`header__description--${locale}`}>
               구글폰트 + 한국어 얼리억세스는 다양한 한글폰트를 온라인에서 보다 가볍고 손쉽게 사용할 수 있도록 실험적으로 마련된 한국어 오픈소스 웹폰트의 목록입니다.
             </div> :
-            <div className={`header__description--${locale} en-black`}>
+            <div className={`header__description--${locale}`}>
               Google Fonts + Korean Early Access is an experimental showcase for Korean fonts that aren’t yet fully supported.
             </div>
           }

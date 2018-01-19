@@ -8,6 +8,7 @@ class FontPreviewTyper extends Component {
       fontWeight: this.props.fontWeightSelected,
       border: 'none',
       marginTop: -40,
+      marginLeft: -27,
       height: 400
     };
 

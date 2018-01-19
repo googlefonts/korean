@@ -57,15 +57,15 @@ class FontOutlineViewer extends Component {
 
     let { screenWidth } = this.props;
 
-    this.paperScope.view.viewSize = new paper.Size( screenWidth - 200, 400 );
+    this.paperScope.view.viewSize = new paper.Size( screenWidth - (210 + 24 * 2), 400 );
 
   }
 
   render() {
     let { screenWidth } = this.props;
-
+    let width = screenWidth - (210 + 24 * 2);
     return (
-      <canvas ref={ ref => { this.refCanvas = ref;} } width={(screenWidth - 200) * 2} height="400" style={{ width: screenWidth - 200, height: 400}}>
+      <canvas ref={ ref => { this.refCanvas = ref;} } width={width * 2} height="400" style={{ width: width, height: 400}}>
       </canvas>
     );
   }
