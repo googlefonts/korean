@@ -9,13 +9,19 @@ const Fragment = React.Fragment;
 class DescriptionFontSelector extends Component {
   handleChangeCurrentDescFont(fontData){
 
-    this.props.dispatch(changeCurrentDescFont(fontData.id));
-  
+    let { currentDescFontSelected } = this.props;
+    let newCurrentDescFont = {
+      ...this.props.currentDescFont
+    };
+
+    newCurrentDescFont[currentDescFontSelected] = fontData.id;
+    this.props.dispatch(changeCurrentDescFont(newCurrentDescFont));
+
   }
 
   render() {
-    let { screenWidth, headerMode } = this.props;
-    let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont == fontData.id });
+    let { screenWidth, headerMode, currentDescFontSelected } = this.props;
+    let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont[currentDescFontSelected] == fontData.id });
 
     return (
       <div className={`font-selector-header ${headerMode == "black" ? "black" : ""}`}>
@@ -55,7 +61,8 @@ let mapStateToProps = state => {
   return {
     currentDescFont: state.currentDescFont,
     screenWidth: state.screenWidth,
-    headerMode: state.headerMode
+    headerMode: state.headerMode,
+    currentDescFontSelected: state.currentDescFontSelected
   }
 };
 

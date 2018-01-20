@@ -3,12 +3,18 @@ import { FONTS } from "../constants/defaults";
 let initialState = {
   screenWidth: 1024,
   screenHeight: 768,
+  headerCollapsedTop: 0,
   headerMode: "expanded", // expanded, collapsed, black
   interactionIdx: 0,
   categoryDropdownOpened: false,
   descFontDropdownOpened: false,
   currentViewFont: null,
-  currentDescFont: 1, 
+  currentDescFontSelected: "paragraph", // title, big, paragraph
+  currentDescFont: {
+    title: 1,
+    big: 1,
+    paragraph: 1
+  }, 
   currentCategory: 1,
   newsFeeds: [],
   backgroundMode: "black",
@@ -23,6 +29,16 @@ var reducer = (state = initialState, action) => {
         ...state,
         screenWidth: action.payload.screenWidth,
         screenHeight: action.payload.screenHeight
+      };
+    case 'CHANGE_CURRENT_DESC_FONT_SELECTED':
+      return {
+        ...state,
+        currentDescFontSelected: action.payload.currentDescFontSelected
+      };
+    case 'CHANGE_HEADER_COLLAPSED_TOP':
+      return {
+        ...state,
+        headerCollapsedTop: action.payload.headerCollapsedTop
       };
     case 'CHANGE_DESC_FONT_DROPDOWN_OPENED':
       return {

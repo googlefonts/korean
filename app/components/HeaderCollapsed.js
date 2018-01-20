@@ -46,12 +46,12 @@ class HeaderCollapsed extends Component {
   }
 
   render() {
-    let { categoryDropdownOpened, locale, screenWidth } = this.props;
+    let { categoryDropdownOpened, locale, screenWidth, headerCollapsedTop } = this.props;
     let currentCategory = _.find(CATEGORIES, categoryData => { return categoryData.id == this.props.currentCategory; });
 
     return (
       <Fragment>
-        <header className="header-collapsed" ref={ ref => { this.refHeader = ref; }}>
+        <header className="header-collapsed" style={{ top: headerCollapsedTop }} ref={ ref => { this.refHeader = ref; }}>
           <div className="header-collapsed__flexwrap">
             <div className="header-collapsed__left">
               {
@@ -181,6 +181,7 @@ let mapStateToProps = state => {
     currentCategory: state.currentCategory,
     categoryDropdownOpened: state.categoryDropdownOpened,
     screenWidth: state.screenWidth,
+    headerCollapsedTop: state.headerCollapsedTop
   }
 }
 

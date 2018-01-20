@@ -13,8 +13,9 @@ class DropdownFontSelector extends Component {
   }
 
   render() {
-    let { descFontDropdownOpened } = this.props;
-    let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont == fontData.id });
+    let { descFontDropdownOpened, currentDescFontSelected } = this.props;
+
+    let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont[currentDescFontSelected] == fontData.id });
 
     return (
       <div className="dropdown-font-selector">
@@ -35,7 +36,8 @@ class DropdownFontSelector extends Component {
 let mapStateToProps = state => {
   return {
     currentDescFont: state.currentDescFont,
-    descFontDropdownOpened: state.descFontDropdownOpened
+    descFontDropdownOpened: state.descFontDropdownOpened,
+    currentDescFontSelected: state.currentDescFontSelected
   }
 }
 

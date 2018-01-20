@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode } from '../actions';
+import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode, changeHeaderCollapsedTop } from '../actions';
 import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter } from './';
 import scrollama from 'scrollama';
 import gfBadge from '@googlefonts/badge';
+import { scaleLinear } from 'd3';
 
 const Fragment = React.Fragment;
 
@@ -12,6 +13,8 @@ class App extends Component {
     super(props);
     this.handleResize = this.handleResize.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+
+    this.headerTopScale = scaleLinear().domain([62, 0]).clamp(true).range([0, -62]);
   }
 
 
@@ -33,19 +36,29 @@ class App extends Component {
     // console.log(window.scrollTop);
     var descTop = document.querySelector('.description').getBoundingClientRect().top;
     var scrollY = window.scrollY;
+    
+    // console.log("descTop: ", descTop);
+    if (descTop < 62 && descTop >= 0) {
+      
+      this.props.dispatch(changeHeaderCollapsedTop(this.headerTopScale(descTop)));
+    
+    } else {
 
-   
+      this.props.dispatch(changeHeaderCollapsedTop(0));
+      
+    }
+
     if (descTop < 0) {
 
       this.props.dispatch(changeHeaderMode("black"));
 
     } else {
 
-      if (scrollY == 0) {
+      if (scrollY < 10) {
         
         this.props.dispatch(changeHeaderMode("expanded"));
 
-      } else if (scrollY > 0) {
+      } else if (scrollY >= 10) {
       
         this.props.dispatch(changeHeaderMode("collapsed"));
       

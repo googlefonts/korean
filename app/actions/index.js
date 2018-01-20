@@ -8,6 +8,26 @@ export const windowResize = (width, height) => {
   }
 };
 
+export const changeCurrentDescFontSelected = (currentDescFontSelected) => {
+  return {
+    type: 'CHANGE_CURRENT_DESC_FONT_SELECTED',
+    payload: {
+      currentDescFontSelected: currentDescFontSelected
+    }
+  }
+}
+
+
+export const changeHeaderCollapsedTop = (headerCollapsedTop) => {
+  return {
+    type: 'CHANGE_HEADER_COLLAPSED_TOP',
+    payload: {
+      headerCollapsedTop: headerCollapsedTop
+    }
+  }
+}
+
+
 export const changeCategoryDropdownOpened = (categoryDropdownOpened) => {
   return {
     type: 'CHANGE_CATEGORY_DROPDOWN_OPENED',

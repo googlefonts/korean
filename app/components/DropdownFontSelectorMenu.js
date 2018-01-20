@@ -7,7 +7,13 @@ import _ from 'lodash';
 
 class DropDownFontSelectorMenu extends Component {
   handleCurrentDescFont(fontData){
-    this.props.dispatch(changeCurrentDescFont(fontData.id));
+    let { currentDescFontSelected } = this.props;
+    let newCurrentDescFont = {
+      ...this.props.currentDescFont
+    };
+
+    newCurrentDescFont[currentDescFontSelected] = fontData.id;
+    this.props.dispatch(changeCurrentDescFont(newCurrentDescFont));
     this.props.dispatch(changeDescFontDropdownOpened(false));
   }
 
@@ -20,7 +26,8 @@ class DropDownFontSelectorMenu extends Component {
   }
 
   render() {
-    let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont == fontData.id });
+    let { currentDescFontSelected } = this.props;
+    let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont[currentDescFontSelected] == fontData.id });
 
     return (
       <div className="dropdown-font-selector__menu">
@@ -49,7 +56,8 @@ class DropDownFontSelectorMenu extends Component {
 
 let mapStateToProps = state => {
   return {
-    currentDescFont: state.currentDescFont
+    currentDescFont: state.currentDescFont,
+    currentDescFontSelected: state.currentDescFontSelected
   }
 }
 export default connect(mapStateToProps)(onClickOutside(DropDownFontSelectorMenu));
