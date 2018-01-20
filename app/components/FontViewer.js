@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import * as opentype from 'opentype.js'
+import { BODY_480 } from '../constants/defaults';
 import { FontOutlineViewer, FontPreviewTyper, FontDetailViewer } from './';
 import { connect } from 'react-redux';
+import { scaleLinear } from 'd3';
 import _ from 'lodash';
+
+const Fragment = React.Fragment;
 
 class FontViewer extends Component {
   constructor(props){
@@ -58,16 +62,29 @@ class FontViewer extends Component {
   }
 
   render() {
-    let { currentViewFont } = this.props;
+    let { currentViewFont, screenWidth } = this.props;
     let selected = currentViewFont == this.props.id;
     let { detailSelected } = this.state;
 
+    let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
+
+
     return (
       <div className={`font-viewer${ selected ? "--selected" : "" }`} data-id={this.props.id}>
-        <div className="font-viewer__flex-wrapper">
-          <div className="font-viewer__left">
+        <div className="font-viewer__flex-wrapper--top">
+          <div className="font-viewer__left" style={{ minWidth: leftWidthScale(screenWidth) }}>
             <h3>
-              <span className="ko">{ this.props.nameKo }</span><br/>
+              <span className="ko">{ this.props.nameKo }</span>
+
+              {
+                screenWidth > BODY_480 ?
+                <br/> : 
+                <Fragment>
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                </Fragment>
+              }
               <span className="en-black">{ this.props.nameEn }</span>
             </h3>
 
@@ -83,8 +100,8 @@ class FontViewer extends Component {
                     _.map(this.props.weights, weightData => {
                       return (
                         <li key={weightData.fontWeight}>
-                          <a href="javascript:void(0);" onClick={this.handleWeightSelectedClick.bind(this, weightData)}>
-                            { weightData.fontWeight == this.state.fontWeightSelected ?  "— " : "" }{ weightData.weightName }
+                          <a href="javascript:void(0);" className={`${ weightData.fontWeight == this.state.fontWeightSelected ?  "selected" : "" }`} onClick={this.handleWeightSelectedClick.bind(this, weightData)}>
+                            { weightData.weightName }
                           </a>
                         </li>
                       );
@@ -112,7 +129,7 @@ class FontViewer extends Component {
 
         {
           detailSelected ? 
-          <div className="font-viewer__flex-wrapper">
+          <div className="font-viewer__flex-wrapper--bt">
             <FontDetailViewer {...this.props} handleClosed={this.handleClosed.bind(this)} />
           </div> : null
         }
@@ -123,7 +140,8 @@ class FontViewer extends Component {
 
 let mapStateToProps = state => {
   return {
-    currentViewFont: state.currentViewFont
+    currentViewFont: state.currentViewFont,
+    screenWidth: state.screenWidth
   }
 };
 

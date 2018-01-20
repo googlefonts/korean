@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
+import { scaleLinear } from 'd3';
 const Fragment = React.Fragment;
+import { connect } from 'react-redux';
 
 class FontDetailViewer extends Component {
   constructor(props){
@@ -53,12 +54,14 @@ class FontDetailViewer extends Component {
   }
 
   render() {
+    let { screenWidth } = this.props;
     let { weightSelected } = this.state;
     let weights = _.map(weightSelected, w => { return w.fontWeight; }).sort();
+    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 210]);
 
     return (
       <Fragment>
-        <div className="font-viewer__detail-left">
+        <div className="font-viewer__detail-left" style={{ minWidth: leftWidthScale(screenWidth) }}>
           <a href="javascript:void(0);" onClick={this.props.handleClosed}>
             <img src="./public/assets/arrow_close.svg" alt="arrow_close" />
           </a>
@@ -121,4 +124,10 @@ class FontDetailViewer extends Component {
   }
 }
 
-export default FontDetailViewer;
+let mapStateToProps = state => {
+  return {
+    screenWidth: state.screenWidth
+  }
+}
+
+export default connect(mapStateToProps)(FontDetailViewer);
