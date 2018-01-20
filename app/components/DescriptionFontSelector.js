@@ -14,11 +14,11 @@ class DescriptionFontSelector extends Component {
   }
 
   render() {
-    let { screenWidth } = this.props;
+    let { screenWidth, headerMode } = this.props;
     let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont == fontData.id });
 
     return (
-      <Fragment>
+      <div className={`font-selector-header ${headerMode == "black" ? "black" : ""}`}>
         {
           screenWidth > BODY_600 ? 
           <div className="font-selector-area">
@@ -46,7 +46,7 @@ class DescriptionFontSelector extends Component {
           </div>
 
         }
-      </Fragment>
+      </div>
     );
   }
 }
@@ -54,7 +54,8 @@ class DescriptionFontSelector extends Component {
 let mapStateToProps = state => {
   return {
     currentDescFont: state.currentDescFont,
-    screenWidth: state.screenWidth
+    screenWidth: state.screenWidth,
+    headerMode: state.headerMode
   }
 };
 

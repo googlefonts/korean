@@ -118,7 +118,7 @@ class HeaderCollapsed extends Component {
             </a>
           </div>
           {
-            (screenWidth > BODY_600 && this.state.isMenuOpen) ? 
+            (this.state.isMenuOpen) ? 
             <Fragment>
               <div className="header-collapsed__categories">
                 {

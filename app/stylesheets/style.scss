@@ -295,7 +295,11 @@ sup {
 
   &__description-area {
     width:300px;
-  
+    
+    @include body_960 {
+      
+      margin-right: 20px;
+    }
 
     @include body_600 {
       width: auto;
@@ -472,7 +476,7 @@ sup {
 
   &__detail-right {
     border-top: 2px solid $text_color;
-    padding-top: 10px;
+    padding-top: 20px;
     
     display: flex;
     justify-content: space-between;
@@ -554,6 +558,19 @@ sup {
     margin-top: 10px;
   }
 }
+
+.font-selector-header {
+
+  &.black {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 26px 24px;
+    background-color: $text_color;
+  }
+  
+} 
 
 .font-selector-area {
   border-bottom: 1px solid $background_color;
@@ -792,6 +809,10 @@ sup {
 
   &__left {
     width: 210px;
+
+    @include body_1280 {
+      width: 100px;
+    }
   }
 
   h4 {

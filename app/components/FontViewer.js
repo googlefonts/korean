@@ -118,7 +118,7 @@ class FontViewer extends Component {
                 detailSelected ?
                 <FontPreviewTyper {...this.props} fontWeightSelected={this.state.fontWeightSelected} />
                   : 
-                <FontOutlineViewer font={ this.state.font } />
+                <FontOutlineViewer message={this.props.message} font={ this.state.font } />
               ) :
               <div>
                 loading...

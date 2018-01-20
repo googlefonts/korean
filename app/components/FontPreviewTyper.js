@@ -14,7 +14,7 @@ class FontPreviewTyper extends Component {
 
     return (
       <div style={{ overflow: 'hidden'}}>
-        <input defaultValue="배현진" type="text" style={style} />
+        <input defaultValue={this.props.message} type="text" style={style} />
       </div>
     );
   }

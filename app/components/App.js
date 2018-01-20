@@ -19,22 +19,39 @@ class App extends Component {
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('scroll', this.handleScroll);
     this.handleResize();
+
   }
   
   componentDidMount(){
     // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
     gfBadge();
     this.initScroll();
+    this.handleScroll();
   }
 
   handleScroll(e){
     // console.log(window.scrollTop);
+    var descTop = document.querySelector('.description').getBoundingClientRect().top;
+    var scrollY = window.scrollY;
 
-    if (window.scrollY > 0) {
-      this.props.dispatch(changeHeaderMode("collapsed"));
+   
+    if (descTop < 0) {
+
+      this.props.dispatch(changeHeaderMode("black"));
+
     } else {
-      this.props.dispatch(changeHeaderMode("expanded"));
+
+      if (scrollY == 0) {
+        
+        this.props.dispatch(changeHeaderMode("expanded"));
+
+      } else if (scrollY > 0) {
+      
+        this.props.dispatch(changeHeaderMode("collapsed"));
+      
+      } 
     }
+
   }
 
   initScroll(){
@@ -44,11 +61,27 @@ class App extends Component {
     scroller.setup({
         step: '.font-viewer',
         debug: true,
-      })
-        .onStepEnter(this.handleStepEnter.bind(this))
+      }).onStepEnter(this.handleStepEnter.bind(this))
         .onStepExit(this.handleStepExit.bind(this));
 
+    // var headerChanger = scrollama();
+    // headerChanger.setup({
+    //   step: '.description',
+    //   offset: 0,
+    //   debug: true
+    // }).onStepEnter(this.handleHeaderEnter.bind(this))
+    //   .onStepExit(this.handleHeaderExit.bind(this));
+
   }
+
+  // handleHeaderEnter(e){
+  //   // debugger;
+  //   this.props.dispatch(changeHeaderMode("black"));
+  // }
+
+  // handleHeaderExit(e){
+  //   this.props.dispatch(changeHeaderMode("collapsed"));
+  // }
 
   handleStepEnter(e){
     this.props.dispatch(changeCurrentViewFont(e.element.dataset.id));
@@ -110,7 +143,7 @@ class App extends Component {
         <NewsfeedLoader />
         {
           headerMode == "expanded" ? 
-          <Header /> : <HeaderCollapsed />  
+          <Header /> : (headerMode == "collapsed" ? <HeaderCollapsed /> : null)
         }        
         <HeaderGutter />
         <FontsList />

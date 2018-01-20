@@ -1,9 +1,6 @@
 export const BODY_960 = 960;
 export const BODY_600 = 600;
 export const BODY_480 = 480;
-export const MESSAGES = [
-  "평창", "배현진", "등급컷"
-];
 
 export const FONTS = [
   {

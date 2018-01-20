@@ -3,7 +3,7 @@ import { FONTS } from "../constants/defaults";
 let initialState = {
   screenWidth: 1024,
   screenHeight: 768,
-  headerMode: "expanded",
+  headerMode: "expanded", // expanded, collapsed, black
   interactionIdx: 0,
   categoryDropdownOpened: false,
   descFontDropdownOpened: false,

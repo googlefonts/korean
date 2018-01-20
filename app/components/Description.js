@@ -5,18 +5,33 @@ import { connect } from 'react-redux';
 import RetinaImage from 'react-retina-image';
 import { FONTS } from '../constants/defaults';
 import { scaleLinear } from 'd3';
+import _ from 'lodash';
 
 class Description extends Component {
   render() {
-    let { screenWidth } = this.props;
+    let { screenWidth, headerMode } = this.props;
     let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont == fontData.id });
     let fontStyle = { fontFamily: currentDescFont.fontName };
     let marginRightScale = scaleLinear().domain([960, 1280]).clamp(true).range([20, 150]);
+    let headerHeight;
+    if (_.isNull(document.querySelector('.font-selector-header'))) {
+
+      headerHeight = 110;
+
+    } else {
+
+      headerHeight = document.querySelector('.font-selector-header').offsetHeight;
+    }
+
 
     return (
       <section className="description">
         <DescriptionFontSelector />
-
+        {
+          headerMode == "black" ?
+          <div className="description__header-gutter" style={{ height: headerHeight }}></div> : null  
+        }
+        
         <div className="description__container">
           <h4 style={fontStyle}>
             구글폰트 + 한국어 얼리억세스
@@ -165,7 +180,8 @@ class Description extends Component {
 let mapStateToProps = state => {
   return {
     currentDescFont: state.currentDescFont,
-    screenWidth: state.screenWidth
+    screenWidth: state.screenWidth,
+    headerMode: state.headerMode
   }
 }
 

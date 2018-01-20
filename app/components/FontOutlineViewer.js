@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import paper from 'paper';
 import { Glyph } from './';
 import { connect } from 'react-redux';
+import { scaleLinear } from 'd3';
 
 class FontOutlineViewer extends Component {
   constructor(props){
@@ -15,7 +16,7 @@ class FontOutlineViewer extends Component {
     this.paperScope.setup(this.refCanvas);
 
     var { font } = this.props;
-    var fontGlyphs = font.stringToGlyphs('배현진');
+    var fontGlyphs = font.stringToGlyphs(this.props.message);
     var kerning = true;
     var kerningValue = 0;
 
@@ -56,14 +57,18 @@ class FontOutlineViewer extends Component {
   componentDidUpdate(){
 
     let { screenWidth } = this.props;
+    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
 
-    this.paperScope.view.viewSize = new paper.Size( screenWidth - (210 + 24 * 2), 400 );
+    this.paperScope.view.viewSize = new paper.Size( screenWidth - (leftWidthScale(screenWidth) + 24 * 2), 400 );
 
   }
 
   render() {
     let { screenWidth } = this.props;
-    let width = screenWidth - (210 + 24 * 2);
+    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
+
+    let width = screenWidth - (leftWidthScale(screenWidth) + 24 * 2);
+
     return (
       <canvas ref={ ref => { this.refCanvas = ref;} } width={width * 2} height="400" style={{ width: width, height: 400}}>
       </canvas>
