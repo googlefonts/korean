@@ -16,8 +16,7 @@ body {
 }
 
 @mixin marching-ants-v2-init($ant-size,$ant-width,$speed,$id){
-    padding: 20px;
-    margin: 0 0 0 -20px;
+
     background-size: 
       $ant-size $ant-width, 
       $ant-size $ant-width, 
@@ -72,7 +71,7 @@ body {
 }
 
 .marching-ants {
-  @include marching-ants-v2-init(20px, 2px,1s,1);
+  @include marching-ants-v2-init(10px, 1px,1s,1);
   
   @include marching-ants-v2-color(#fff,#000);
   color: #fff;
@@ -784,6 +783,8 @@ sup {
     // margin-left:-20px;
     font-size:1.7em;
     width: 860px;
+    padding: 20px;
+    margin: 0 0 0 -20px;
 
     @include body_1280 {
       width: 80%; 
@@ -797,11 +798,24 @@ sup {
   }
 
   h4 {
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
+    padding: 20px;
+    margin: 0 0 20px -20px;
+    width: 590px;
+    
+    @include body_960 {
+      width: 80%;
+    }
+
+    @include body_600 {
+      width: 100%;
+    }
   }
 
   p {
     width: 590px;
+    padding: 20px;
+    margin: 0 0 0 -20px;
     margin-bottom: 40px;
     line-height: 1.6;
 

@@ -15,8 +15,21 @@ class FontOutlineViewer extends Component {
     this.paperScope = new paper.PaperScope();
     this.paperScope.setup(this.refCanvas);
 
-    var { font } = this.props;
-    var fontGlyphs = font.stringToGlyphs(this.props.message);
+    var { font, message } = this.props;
+    this.createGlyphPath(font, message);
+
+    this.paperScope.activate();
+    this.paperScope.view.draw();
+  }
+
+  componentWillReceiveProps(newProps){
+    if (newProps.message != this.props.message) {
+      this.resetMessage(newProps);
+    }
+  }
+
+  createGlyphPath(font, message){
+    var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
     var kerningValue = 0;
 
@@ -46,13 +59,25 @@ class FontOutlineViewer extends Component {
 
     });
 
+    // debugger;
+
+  }
+
+  resetMessage(props){
+    let { message, font } = props;
+    
+    this.paperScope.activate();
+    _.each(this.glyphs, glyph => {
+      glyph.remove();
+    });
+
+    this.glyphs = [];
+
+    this.createGlyphPath(font, message);
     this.paperScope.view.draw();
+
   }
 
-  componentWillReceiveProps(newProps){
-
-    // paper.view.update();
-  }
 
   componentDidUpdate(){
 

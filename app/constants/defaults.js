@@ -1,3 +1,4 @@
+export const BODY_1280 = 1280;
 export const BODY_960 = 960;
 export const BODY_600 = 600;
 export const BODY_480 = 480;
