@@ -1,6 +1,42 @@
 import React, { Component } from 'react';
 
 class FontPreviewTyper extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      msg: "",
+      userUpdated: false
+    };
+  }
+
+  componentDidMount(){
+    this.updateMsg(this.props);
+  }
+
+  componentWillReceiveProps(newProps){
+    this.updateMsg(newProps);
+  }
+
+  updateMsg(props){
+    let { message } = this.props;
+
+    if (!this.state.userUpdated){
+      
+      this.setState({
+        msg: message
+      });
+
+    }
+  }
+
+  handleChange(e){
+    this.setState({
+      userUpdated: true,
+      msg: e.value
+    });
+  }
+
   render() {
     let style = {
       fontFamily: this.props.fontName,
@@ -9,12 +45,12 @@ class FontPreviewTyper extends Component {
       border: 'none',
       marginTop: -40,
       marginLeft: -27,
-      height: 400
+      height: 400,
     };
 
     return (
       <div style={{ overflow: 'hidden'}}>
-        <input defaultValue={this.props.message} type="text" style={style} />
+        <input value={this.state.msg} type="text" onChange={this.handleChange.bind(this)} style={style} />
       </div>
     );
   }
