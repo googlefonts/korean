@@ -40,7 +40,12 @@ class App extends Component {
   }
 
   moveScroll(currentCategory){
-    let headerHeight = document.querySelector(".header-collapsed").offsetHeight;
+    let headerHeight;
+    if (!_.isNull(document.querySelector(".header-collapsed"))) {
+      headerHeight = document.querySelector(".header-collapsed").offsetHeight;
+    } else {
+      headerHeight = 62;
+    }
     let categoryPosTop = document.querySelector(`a[name=category-${currentCategory}]`).offsetTop;
     let offset = 20;
 
