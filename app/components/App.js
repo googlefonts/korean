@@ -5,6 +5,7 @@ import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader
 import scrollama from 'scrollama';
 import gfBadge from '@googlefonts/badge';
 import { scaleLinear } from 'd3';
+import 'gsap';
 
 const Fragment = React.Fragment;
 
@@ -30,6 +31,20 @@ class App extends Component {
     gfBadge();
     this.initScroll();
     this.handleScroll();
+  }
+
+  componentWillReceiveProps(newProps){
+    if (newProps.currentCategory != this.props.currentCategory) {
+      this.moveScroll(newProps.currentCategory);
+    }
+  }
+
+  moveScroll(currentCategory){
+    let headerHeight = document.querySelector(".header-collapsed").offsetHeight;
+    let categoryPosTop = document.querySelector(`a[name=category-${currentCategory}]`).offsetTop;
+    let offset = 20;
+
+    TweenMax.to((document.documentElement || document.body.parentNode || document.body), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - headerHeight - offset });
   }
 
   handleScroll(e){
@@ -108,13 +123,6 @@ class App extends Component {
     // console.log("exit", e.element.dataset.id);
   }
 
-  handleBodyClick(e){
-    // this.props.dispatch(changeBackgroundMode(this.props.backgroundMode == "black" ? "white" : "black"));
-  }
-
-  componentWillReceiveProps(newProps){
-    // this.updateBackground(newProps);
-  }
 
   updateBackground(newProps){
     let { backgroundMode } = newProps;
@@ -152,7 +160,7 @@ class App extends Component {
     let { headerMode } = this.props;
 
     return (
-      <section onClick={this.handleBodyClick.bind(this)}>
+      <section>
         <NewsfeedLoader />
         {
           headerMode == "expanded" ? 
@@ -173,6 +181,7 @@ let mapStateToProps = state => {
     headerMode: state.headerMode,
     screenWidth: state.screenWidth,
     screenHeight: state.screenHeight,
+    currentCategory: state.currentCategory,
     locale: state.locale,
     backgroundMode: state.backgroundMode
   }

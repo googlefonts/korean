@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { FONTS, BODY_1280, BODY_960, BODY_600 } from '../constants/defaults';
+import { FONTS, BODY_1280, BODY_960, BODY_600, CATEGORIES } from '../constants/defaults';
 import { FontViewer } from './';
 import _ from 'lodash';
 import { MESSAGES } from '../constants/messages';
 import { connect } from 'react-redux';
+
+const Fragment = React.Fragment;
 
 class FontsList extends Component {
   cutString(msg){
@@ -21,14 +23,40 @@ class FontsList extends Component {
   }
 
   render() {
+    var categoryFonts = {};
+
+    _.each(CATEGORIES, categoryData => {
+
+      var fonts = _.filter(FONTS, fontData => { return fontData.category == categoryData.id });
+      let category = {
+        ...categoryData,
+        fonts: fonts
+      };
+
+      categoryFonts[categoryData.id] = category;
+      // debugger;
+    });
+
+    var idx = -1;
+
     return (
       <section className="fonts-list">
         {
-          _.map(FONTS, (fontData, i) => {
+          _.map(categoryFonts, (categoryFont, k) => {
             return (
-              <FontViewer key={fontData.id} message={this.cutString(MESSAGES[i])} {...fontData} />
+              <Fragment key={k}>
+                <a name={`category-${k}`} data-category-id={k}></a>
+                {
+                  _.map(categoryFont.fonts, (fontData, i) => {
+                    idx++; 
+                    return (
+                      <FontViewer key={fontData.id} message={this.cutString(MESSAGES[idx])} {...fontData} />
+                    )
+                  })
+                }
+              </Fragment>
             )
-          })
+          }) 
         }
       </section>
     )

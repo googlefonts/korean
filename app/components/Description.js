@@ -231,7 +231,7 @@ class Description extends Component {
 
           </div>
 
-          <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "title3")}>
+          <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "title")}>
             <h4 style={fontNames.title} className={selectedOrNot('title')}>
               SIL 오픈 폰트 라이센스 (OFL)
             </h4>
