@@ -93,32 +93,24 @@ class App extends Component {
 
     scroller.setup({
         step: '.font-viewer',
-        debug: true,
+        // debug: true,
+        // progress: true,
+        offset: 0.21
       }).onStepEnter(this.handleStepEnter.bind(this))
+        // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));
-
-    // var headerChanger = scrollama();
-    // headerChanger.setup({
-    //   step: '.description',
-    //   offset: 0,
-    //   debug: true
-    // }).onStepEnter(this.handleHeaderEnter.bind(this))
-    //   .onStepExit(this.handleHeaderExit.bind(this));
-
   }
 
-  // handleHeaderEnter(e){
-  //   // debugger;
-  //   this.props.dispatch(changeHeaderMode("black"));
-  // }
-
-  // handleHeaderExit(e){
-  //   this.props.dispatch(changeHeaderMode("collapsed"));
-  // }
+  handleStepProgress(e){
+    console.log(e);
+  }
 
   handleStepEnter(e){
-    this.props.dispatch(changeCurrentViewFont(e.element.dataset.id));
-
+    // console.log(this.props.currentViewFont, e.element.dataset.id);
+    if (this.props.currentViewFont != Number(e.element.dataset.id)) {
+      this.props.dispatch(changeCurrentViewFont(e.element.dataset.id));
+    }
+    
     // console.log("enter", e.element.dataset.id);
   }
 
@@ -187,6 +179,7 @@ let mapStateToProps = state => {
     screenWidth: state.screenWidth,
     screenHeight: state.screenHeight,
     currentCategory: state.currentCategory,
+    currentViewFont: state.currentViewFont,
     locale: state.locale,
     backgroundMode: state.backgroundMode
   }

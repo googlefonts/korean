@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CATEGORIES, BODY_600, BODY_960 } from '../constants/defaults';
 import { connect } from 'react-redux';
-import { InteractionStatusViewer, DropDownCategorySelector } from './';
+import { AnimationSelector, DropDownCategorySelector } from './';
 import { changeLocale, changeCurrentCategory, changeHeaderHeight, changeCategoryDropdownOpened } from '../actions';
 
 const Fragment = React.Fragment;
@@ -69,24 +69,42 @@ class HeaderCollapsed extends Component {
                 screenWidth > BODY_960 ? 
                 <div className="header-collapsed__categories">
                   <a className="category-selector--selected" href="javascript:void(0);" onClick={ this.handleCategoryClick.bind(this) }>
-                    <div className="category-selector__label-ko-collapsed">
-                      {
-                        currentCategory.nameKo
-                      }
-                    </div>
-                    <div className="category-selector__label-en">
-                      {
-                        currentCategory.nameEn
-                      }
-                    </div>
-                    <img src="./public/assets/arrow_down.svg" alt="arrow_down" />
+                    {
+                      locale == "ko" ?
+                      <Fragment>
+                        <div className="category-selector__label-ko-collapsed">
+                          {
+                            currentCategory.nameKo
+                          }
+                        </div>
+                        <div className="category-selector__label-en-right">
+                          {
+                            currentCategory.nameEn
+                          }
+                        </div>
+                        <img src="./public/assets/arrow_down.svg" alt="arrow_down" />
+                      </Fragment> : 
+                      <Fragment>
+                        <div className="category-selector__label-en-collapsed">
+                          {
+                            currentCategory.nameEn
+                          }
+                        </div>
+                        <div className="category-selector__label-ko-right">
+                          {
+                            currentCategory.nameKo
+                          }
+                        </div>
+                        <img src="./public/assets/arrow_down.svg" alt="arrow_down" />
+                      </Fragment>
+                    }
                   </a>
                 </div> : null 
               }
             </div>
             {
               screenWidth > BODY_600 ? 
-              <InteractionStatusViewer /> : null
+              <AnimationSelector /> : null
             }
             
             {
@@ -125,16 +143,33 @@ class HeaderCollapsed extends Component {
                   _.map(CATEGORIES, categoryData => {
                     return (
                       <a className={`category-selector${ categoryData.id === currentCategory ? "--selected" : ""}`} onClick={this.handleCurrentCategory.bind(this, categoryData)} key={categoryData.id} href="javascript:void(0);">
-                        <div className="category-selector__label-ko">
-                          {
-                            categoryData.nameKo
-                          }
-                        </div>
-                        <div className="category-selector__label-en">
-                          {
-                            categoryData.nameEn
-                          }
-                        </div>
+                        {
+                          locale == "ko" ? 
+                          <Fragment>
+                            <div className="category-selector__label-ko-left">
+                              {
+                                categoryData.nameKo
+                              }
+                            </div>
+                            <div className="category-selector__label-en-right">
+                              {
+                                categoryData.nameEn
+                              }
+                            </div>
+                          </Fragment> :
+                          <Fragment> 
+                            <div className="category-selector__label-en-left">
+                              {
+                                categoryData.nameEn
+                              }
+                            </div>
+                            <div className="category-selector__label-ko-right">
+                              {
+                                categoryData.nameKo
+                              }
+                            </div>
+                          </Fragment>
+                        }
                       </a>
                     );
                   })

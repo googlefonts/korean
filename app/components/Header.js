@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { CATEGORIES, BODY_600 } from '../constants/defaults';
 import { connect } from 'react-redux';
-import { InteractionStatusViewer } from './';
+import { AnimationSelector } from './';
 import { changeLocale, changeCurrentCategory, changeHeaderHeight } from '../actions';
 
 const Fragment = React.Fragment;
@@ -32,15 +32,22 @@ class Header extends Component {
       <header className="header" ref={ ref => { this.refHeader = ref; }}>
         <div className="header__left">
           <div className="header__title">
-            <h1>
-              구글폰트 + 한국어 얼리억세스<br/>
-              <span className="en-black">Google Fonts + Korean Early Access</span>
-            </h1>
+            {
+              locale == "ko" ?
+              <h1>
+                구글폰트 + 한국어 얼리억세스<br/>
+                <span className="en-black">Google Fonts + Korean Early Access</span>
+              </h1> :
+              <h1>
+                <span className="en-black">Google Fonts + Korean Early Access</span><br/>
+                구글폰트 + 한국어 얼리억세스
+              </h1>
+            }
             { 
               screenWidth > BODY_600 ? 
               <Fragment>
                 <div className="l-apple-box--half"></div>
-                <InteractionStatusViewer />
+                <AnimationSelector />
               </Fragment> : null
             }
           </div>
@@ -50,16 +57,34 @@ class Header extends Component {
               _.map(CATEGORIES, categoryData => {
                 return (
                   <a className={`category-selector${ categoryData.id === currentCategory ? "--selected" : ""}`} onClick={this.handleCurrentCategory.bind(this, categoryData)} key={categoryData.id} href="javascript:void(0);">
-                    <div className="category-selector__label-ko">
-                      {
-                        categoryData.nameKo
-                      }
-                    </div>
-                    <div className="category-selector__label-en">
-                      {
-                        categoryData.nameEn
-                      }
-                    </div>
+
+                    {
+                      locale == "ko" ?
+                      <Fragment>
+                        <div className="category-selector__label-ko-left">
+                          {
+                            categoryData.nameKo
+                          }
+                        </div>
+                        <div className="category-selector__label-en-right">
+                          {
+                            categoryData.nameEn
+                          }
+                        </div>
+                      </Fragment> : 
+                      <Fragment>
+                        <div className="category-selector__label-en-left">
+                          {
+                            categoryData.nameEn
+                          }
+                        </div>                         
+                        <div className="category-selector__label-ko-right">
+                          {
+                            categoryData.nameKo
+                          }
+                        </div>
+                      </Fragment>
+                    }
                   </a>
                 );
               })
@@ -90,7 +115,7 @@ class Header extends Component {
               </div>
               { 
                 screenWidth <= BODY_600 ? 
-                <InteractionStatusViewer />
+                <AnimationSelector />
                 : null
               }
             </div> : 
@@ -105,7 +130,7 @@ class Header extends Component {
               </div>
               { 
                 screenWidth <= BODY_600 ? 
-                <InteractionStatusViewer />
+                <AnimationSelector />
                 : null
               }
             </div>

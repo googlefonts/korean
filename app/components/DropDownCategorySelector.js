@@ -5,6 +5,8 @@ import { changeCategoryDropdownOpened, changeCurrentCategory} from '../actions';
 import onClickOutside from "react-onclickoutside";
 import _ from 'lodash';
 
+const Fragment = React.Fragment;
+
 class DropDownCategorySelector extends Component {
   handleCurrentCategory(categoryData){
     this.props.dispatch(changeCurrentCategory(categoryData.id));
@@ -20,23 +22,40 @@ class DropDownCategorySelector extends Component {
   }
 
   render() {
-    let { currentCategory } = this.props;
+    let { currentCategory, locale } = this.props;
     return (
       <div className="dropdown-category-selector">
         {
           _.map(CATEGORIES, categoryData => {
             return (
               <a className={`category-selector${ categoryData.id === currentCategory ? "--selected" : ""}`} onClick={this.handleCurrentCategory.bind(this, categoryData)} key={categoryData.id} href="javascript:void(0);">
-                <div className="category-selector__label-ko">
-                  {
-                    categoryData.nameKo
-                  }
-                </div>
-                <div className="category-selector__label-en">
-                  {
-                    categoryData.nameEn
-                  }
-                </div>
+                {
+                  locale == "ko" ?
+                  <Fragment>
+                    <div className="category-selector__label-ko-left">
+                      {
+                        categoryData.nameKo
+                      }
+                    </div>
+                    <div className="category-selector__label-en-right">
+                      {
+                        categoryData.nameEn
+                      }
+                    </div>
+                  </Fragment> :
+                  <Fragment>
+                    <div className="category-selector__label-en-left">
+                      {
+                        categoryData.nameEn
+                      }
+                    </div>
+                    <div className="category-selector__label-ko-right">
+                      {
+                        categoryData.nameKo
+                      }
+                    </div>
+                  </Fragment>
+                }
               </a>
             );
           })
@@ -48,6 +67,7 @@ class DropDownCategorySelector extends Component {
 
 let mapStateToProps = state => {
   return {
+    locale: state.locale,
     currentCategory: state.currentCategory
   }
 }

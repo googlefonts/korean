@@ -54,7 +54,7 @@ class FontDetailViewer extends Component {
   }
 
   render() {
-    let { screenWidth } = this.props;
+    let { screenWidth, locale } = this.props;
     let { weightSelected } = this.state;
     let weights = _.map(weightSelected, w => { return w.fontWeight; }).sort();
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 210]);
@@ -68,15 +68,30 @@ class FontDetailViewer extends Component {
 
         </div>
         <div className="font-viewer__detail-right">
-          <div className="font-viewer__column-left">
-            <p>
-              { this.props.description }
-            </p>
-            <div className="l-apple-box"></div>
-            <p>
-              제작 <span className="bold">{ this.props.foundryKo }</span>
-            </p>
-          </div>
+          {
+            locale == "ko" ?
+
+            <div className="font-viewer__column-left">
+              <p>
+                { this.props.descriptionKo }
+              </p>
+              <div className="l-apple-box"></div>
+              <p>
+                제작 <span className="bold">{ this.props.foundryKo }</span>
+              </p>
+            </div> : 
+
+            <div className="font-viewer__column-left">
+              <p className="en-regular">
+                { this.props.descriptionEn }
+              </p>
+              <div className="l-apple-box"></div>
+              <p className="en-regular">
+                Type Foundry <span className="en-black">{ this.props.foundryEn }</span>
+              </p>
+            </div>
+          }
+
           <div className="font-viewer__column-right">
             <div className="font-viewer__input-area">
               <div className="font-viewer__detail-label">
@@ -98,7 +113,10 @@ class FontDetailViewer extends Component {
 
             <div className="font-viewer__input-area">
               <div className="font-viewer__detail-label--ko">
-                굵기추가
+                {
+                  locale == "ko" ?
+                  "굵기추가" : "Weights"
+                }
               </div>
               <div>
                 {
@@ -126,7 +144,8 @@ class FontDetailViewer extends Component {
 
 let mapStateToProps = state => {
   return {
-    screenWidth: state.screenWidth
+    screenWidth: state.screenWidth,
+    locale: state.locale
   }
 }
 

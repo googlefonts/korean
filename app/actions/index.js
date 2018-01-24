@@ -8,6 +8,17 @@ export const windowResize = (width, height) => {
   }
 };
 
+
+export const changeAnimationIdx = (animationIdx) => {
+  return {
+    type: 'CHANGE_ANIMATION_IDX',
+    payload: {
+      animationIdx: animationIdx
+    }
+  }
+}
+
+
 export const changeCurrentDescFontSelected = (currentDescFontSelected) => {
   return {
     type: 'CHANGE_CURRENT_DESC_FONT_SELECTED',

@@ -6,7 +6,7 @@ import Footer from './Footer';
 import FontViewer from './FontViewer';
 import NewsfeedLoader from './NewsfeedLoader';
 import FontCSSLoader from './FontCSSLoader';
-import InteractionStatusViewer from './InteractionStatusViewer';
+import AnimationSelector from './AnimationSelector';
 import DescriptionFontSelector from './DescriptionFontSelector';
 import DropdownFontSelector from './DropdownFontSelector';
 import DropdownFontSelectorMenu from './DropdownFontSelectorMenu';
@@ -16,6 +16,9 @@ import HeaderGutter from './HeaderGutter';
 import FontPreviewTyper from './FontPreviewTyper';
 import FontDetailViewer from './FontDetailViewer';
 import DropDownCategorySelector from './DropDownCategorySelector';
+import FontAnimViewer from './FontAnimViewer';
+import DescriptionKo from './DescriptionKo';
+import DescriptionEn from './DescriptionEn';
 
 export {
   Header,
@@ -26,7 +29,7 @@ export {
   Footer,
   NewsfeedLoader,
   FontCSSLoader,
-  InteractionStatusViewer,
+  AnimationSelector,
   DescriptionFontSelector,
   DropdownFontSelector,
   DropdownFontSelectorMenu,
@@ -35,5 +38,8 @@ export {
   HeaderGutter,
   FontPreviewTyper,
   FontDetailViewer,
-  DropDownCategorySelector
+  DropDownCategorySelector,
+  FontAnimViewer,
+  DescriptionKo,
+  DescriptionEn
 };

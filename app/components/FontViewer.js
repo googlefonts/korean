@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as opentype from 'opentype.js'
 import { BODY_480 } from '../constants/defaults';
-import { FontOutlineViewer, FontPreviewTyper, FontDetailViewer } from './';
+import { FontOutlineViewer, FontPreviewTyper, FontAnimViewer, FontDetailViewer } from './';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 import _ from 'lodash';
@@ -62,7 +62,7 @@ class FontViewer extends Component {
   }
 
   render() {
-    let { currentViewFont, screenWidth } = this.props;
+    let { currentViewFont, screenWidth, locale } = this.props;
     let selected = currentViewFont == this.props.id;
     let { detailSelected } = this.state;
 
@@ -73,20 +73,38 @@ class FontViewer extends Component {
       <div className={`font-viewer${ selected ? "--selected" : "" }`} data-id={this.props.id}>
         <div className="font-viewer__flex-wrapper--top">
           <div className="font-viewer__left" style={{ minWidth: leftWidthScale(screenWidth) }}>
-            <h3>
-              <span className="ko">{ this.props.nameKo }</span>
+            {
+              locale == "ko" ? 
+              <h3>
+                <span className="ko">{ this.props.nameKo }</span>
 
-              {
-                screenWidth > BODY_480 ?
-                <br/> : 
-                <Fragment>
-                  &nbsp;
-                  &nbsp;
-                  &nbsp;
-                </Fragment>
-              }
-              <span className="en-black">{ this.props.nameEn }</span>
-            </h3>
+                {
+                  screenWidth > BODY_480 ?
+                  <br/> : 
+                  <Fragment>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                  </Fragment>
+                }
+                <span className="en-black">{ this.props.nameEn }</span>
+              </h3> : 
+              <h3>
+                <span className="en-black">{ this.props.nameEn }</span>
+
+                {
+                  screenWidth > BODY_480 ?
+                  <br/> : 
+                  <Fragment>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                  </Fragment>
+                }
+
+                <span className="ko">{ this.props.nameKo }</span>
+              </h3>
+            }
 
             <div className="font-viewer__weight-area">
               {
@@ -117,8 +135,12 @@ class FontViewer extends Component {
               ( 
                 detailSelected ?
                 <FontPreviewTyper {...this.props} fontWeightSelected={this.state.fontWeightSelected} />
-                  : 
-                <FontOutlineViewer message={this.props.message} font={ this.state.font } />
+                : 
+                (
+                  selected ? 
+                  <FontAnimViewer message={this.props.message} font={ this.state.font } /> :
+                  <FontOutlineViewer message={this.props.message} font={ this.state.font } />
+                )
               ) :
               <div>
                 loading...
@@ -141,7 +163,8 @@ class FontViewer extends Component {
 let mapStateToProps = state => {
   return {
     currentViewFont: state.currentViewFont,
-    screenWidth: state.screenWidth
+    screenWidth: state.screenWidth,
+    locale: state.locale
   }
 };
 

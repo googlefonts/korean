@@ -6,7 +6,7 @@ const Fragment = React.Fragment;
 
 class Footer extends Component {
   render() {
-    let { backgroundMode, screenWidth } = this.props;
+    let { backgroundMode, screenWidth, locale } = this.props;
 
     return (
       <footer className="footer">
@@ -19,16 +19,29 @@ class Footer extends Component {
           }
 
           <div className="footer__short-desc">
-            <div className="footer__short-desc-column">
-              <h4>
-                구글폰트에 참여하기
-              </h4><br/>
-              <p>
-                구글폰트는 전세계의 디자이너들과 협업하며 웹에서 손쉽게 사용할 수 있는 폰트들을 개발합니다.
-              </p>
-            </div>
+            {
+              locale == "ko" ?
+              <div className="footer__short-desc-column">
+                <h4>
+                  구글폰트에 참여하기
+                </h4><br/>
+                <p>
+                  구글폰트는 전세계의 디자이너들과 협업하며 웹에서 손쉽게 사용할 수 있는 폰트들을 개발합니다.
+                </p>
+              </div> :
+
+              <div className="footer__short-desc-column">
+                <h4 className="en-regular">
+                  Contributing
+                </h4><br/>
+                <p className="en-regular">
+                  Google Fonts collaborate with designers around the world and develop fonts that are easy to use on the web.
+                </p>
+              </div> 
+            }
+
             <div className="l-apple-box"></div>
-            <p>
+            <p className="en-regular">
               <a href="javascript:void(0);">API Documentation</a><br/>
               <a href="javascript:void(0);">Github</a><br/>
               <a href="javascript:void(0);">Early Access</a>
@@ -36,7 +49,7 @@ class Footer extends Component {
           </div>
           
           <div className="footer__team">
-            <p>
+            <p className="en-regular">
 
               Made by Friends of Google Fonts<br/><br/>
 
@@ -49,9 +62,9 @@ class Footer extends Component {
           </div>
 
           <div className="footer__social">
-            <p>
-              @ googlefonts on Twitter<br/>
-              @ googlefonts on GitHub
+            <p className="en-regular">
+              @googlefonts on Twitter<br/>
+              @googlefonts on GitHub
             </p>
           </div>
         </div>
@@ -70,7 +83,8 @@ class Footer extends Component {
 let mapStateToProps = state => {
   return {
     backgroundMode: state.backgroundMode,
-    screenWidth: state.screenWidth
+    screenWidth: state.screenWidth,
+    locale: state.locale
   }
 };
 

@@ -5,7 +5,7 @@ let initialState = {
   screenHeight: 768,
   headerCollapsedTop: 0,
   headerMode: "expanded", // expanded, collapsed, black
-  interactionIdx: 0,
+  animationIdx: 0,
   categoryDropdownOpened: false,
   descFontDropdownOpened: false,
   currentViewFont: null,
@@ -29,6 +29,11 @@ var reducer = (state = initialState, action) => {
         ...state,
         screenWidth: action.payload.screenWidth,
         screenHeight: action.payload.screenHeight
+      };
+    case 'CHANGE_ANIMATION_IDX': 
+      return {
+        ...state,
+        animationIdx: action.payload.animationIdx
       };
     case 'CHANGE_CURRENT_DESC_FONT_SELECTED':
       return {
