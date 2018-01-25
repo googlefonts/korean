@@ -42,6 +42,7 @@ class FontOutlineViewer extends Component {
       let glyph = new Glyph({
         glyph: glyphData,
         x: x,
+        y: 150,
         fontSize: fontSize,
         unitsPerEm: font.unitsPerEm
       });

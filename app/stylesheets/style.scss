@@ -159,7 +159,7 @@ sup {
 
 .header-collapsed {
   position: fixed;
-  z-index: 2;
+  z-index: 5;
   left: 0;
   top: 0;
   width: calc(100% - 48px);
@@ -186,6 +186,10 @@ sup {
   h1 {
     @include black_type;
     width: 315px;
+
+    &.en-black {
+      @include en_black_type;
+    }
   }
 
   &__hamburger {
@@ -263,6 +267,7 @@ sup {
 
 .header {
   display:flex;
+  z-index:3;
   justify-content: space-between;
   align-content: flex-start;
   position: fixed;
@@ -425,6 +430,7 @@ sup {
   background-color: transparent;
   transition: 0.2s background-color;
   margin-bottom: 40px;
+  position:relative;
 
   &__flex-wrapper {
     display: flex;
@@ -459,6 +465,7 @@ sup {
 
   &__left {
     min-width: 210px;
+    z-index: 2;
   }
 
 
@@ -604,6 +611,8 @@ sup {
 }
 
 .font-selector-header {
+  z-index: 3;
+  position: relative;
 
   &.black {
     position: fixed;
@@ -991,11 +1000,9 @@ sup {
   }
 }
 
-
-
-
-.GoogleFontsBadge-inner {
-  a {
-    padding: 16px 16px 14px 24px;
-  }
+.font-anim-viewer {
+  position: absolute;
+  left: -24px; 
+  top: 0;
 }
+

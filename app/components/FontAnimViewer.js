@@ -4,19 +4,22 @@ import { Glyph } from './';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 
+const Fragment = React.Fragment;
 class FontAnimViewer extends Component {
   constructor(props){
     super(props);
 
     this.glyphs = [];
+
+    this.containerHeight = 400;
   }
 
   componentDidMount(){
     this.paperScope = new paper.PaperScope();
     this.paperScope.setup(this.refCanvas);
 
-    var { font, message } = this.props;
-    this.createGlyphPath(font, message);
+    var { font, message, screenHeight, screenWidth } = this.props;
+    this.createGlyphPath(font, message, screenWidth, screenHeight);
 
     this.paperScope.activate();
     this.paperScope.view.draw();
@@ -25,16 +28,47 @@ class FontAnimViewer extends Component {
   componentWillReceiveProps(newProps){
     if (newProps.message != this.props.message) {
       this.resetMessage(newProps);
+    } else if (newProps.screenWidth != this.props.screenWidth) {
+      this.updatePosition(newProps);
     }
   }
 
-  createGlyphPath(font, message){
+  updatePosition(props){
+
+    let { screenHeight, screenWidth, font } = this.props;
+    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([24, 391]);
+
+    var x = leftWidthScale(screenWidth);
+    var fontSize = 300;
+    var kerningValue = 0;
+    var fontScale = 1 / font.unitsPerEm * fontSize;
+
+    _.each(this.glyphs, (glyph, i) => {
+      glyph.x = x;
+      glyph.updatePosition();
+
+      if (glyph.fontGlyph.advanceWidth) {
+        x += glyph.fontGlyph.advanceWidth * fontScale;
+      }
+      if (i < this.glyphs.length - 1) {
+        kerningValue = font.getKerningValue(glyph.fontGlyph, this.glyphs[i + 1].fontGlyph);
+        x += kerningValue * fontScale;
+      }
+    });
+
+    this.paperScope.activate();
+    this.paperScope.view.draw();
+  }
+
+  createGlyphPath(font, message, screenWidth, screenHeight){
+
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
     var kerningValue = 0;
+    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([24, 391]);
 
     var fontSize = 300;
-    var x = 160;
+    var x = leftWidthScale(screenWidth);
     var fontScale = 1 / font.unitsPerEm * fontSize;
 
     _.each(fontGlyphs, (glyphData, i) => {
@@ -42,7 +76,9 @@ class FontAnimViewer extends Component {
       let glyph = new Glyph({
         glyph: glyphData,
         x: x,
+        y: this.containerHeight * 0.5 + 140,
         fontSize: fontSize,
+        fillColor: 'black',
         unitsPerEm: font.unitsPerEm
       });
       this.glyphs.push(glyph);
@@ -64,7 +100,7 @@ class FontAnimViewer extends Component {
   }
 
   resetMessage(props){
-    let { message, font } = props;
+    let { message, font, screenHeight, screenWidth } = props;
     
     this.paperScope.activate();
     _.each(this.glyphs, glyph => {
@@ -73,7 +109,7 @@ class FontAnimViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message);
+    this.createGlyphPath(font, message,  screenWidth, screenHeight);
     this.paperScope.view.draw();
 
   }
@@ -81,22 +117,25 @@ class FontAnimViewer extends Component {
 
   componentDidUpdate(){
 
-    let { screenWidth } = this.props;
-    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
-
-    this.paperScope.view.viewSize = new paper.Size( screenWidth - (leftWidthScale(screenWidth) + 24 * 2), 400 );
+    let { screenWidth, screenHeight } = this.props;
+    this.paperScope.view.viewSize = new paper.Size( screenWidth, screenHeight );
 
   }
 
   render() {
-    let { screenWidth } = this.props;
+    let { screenWidth, screenHeight } = this.props;
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
-
     let width = screenWidth - (leftWidthScale(screenWidth) + 24 * 2);
 
     return (
-      <canvas ref={ ref => { this.refCanvas = ref;} } width={width * 2} height="400" style={{ width: width, height: 400}}>
-      </canvas>
+      <Fragment>
+        <div className="font-anim-viewer" style={{ top: -screenHeight * 0.5 + this.containerHeight * 0.5 }}>
+          <canvas ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
+          </canvas>
+        </div>
+        <div style={{ width: width, height: this.containerHeight}}>
+        </div>
+      </Fragment>
     );
   }
 }
@@ -105,6 +144,7 @@ class FontAnimViewer extends Component {
 let mapStateToProps = state => {
   return {
     screenWidth: state.screenWidth,
+    screenHeight: state.screenHeight,
     animationIdx: state.animationIdx
   }
 }

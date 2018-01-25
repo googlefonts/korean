@@ -7,10 +7,11 @@ class Glyph extends paper.CompoundPath{
     this.fontGlyph = params.glyph;
     // this.position = {x: params.x};
     // this.advanceWidthX = params.x;
-    this.strokeColor = 'black';
-    this.fillColor = "white";
+    this.strokeColor = params.strokeColor || 'black';
+    this.fillColor = params.fillColor || "white";
     // debugger;
     this.x = params.x;
+    this.y = params.y || 150;
     this.glyphFontSize = params.fontSize;
     this.unitsPerEm = params.unitsPerEm;
     this.currentPath = null;
@@ -80,9 +81,15 @@ class Glyph extends paper.CompoundPath{
 
     });
     
-    this.position = new paper.Point(this.x, 150);
+    this.updatePosition();
+    // this.position = new paper.Point(this.x, this.y);
     // this.fullySelected = true;
   
+  }
+
+  updatePosition(){
+
+    this.position = new paper.Point(this.x, this.y);
   }
 }
 
