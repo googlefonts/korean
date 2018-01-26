@@ -16,6 +16,9 @@ class App extends Component {
     this.handleScroll = this.handleScroll.bind(this);
 
     this.headerTopScale = scaleLinear().domain([62, 0]).clamp(true).range([0, -62]);
+
+    this.scroller = scrollama();
+
   }
 
 
@@ -88,12 +91,9 @@ class App extends Component {
   }
 
   initScroll(){
-
-    var scroller = scrollama();
-
-    scroller.setup({
+    this.scroller.setup({
         step: '.font-viewer',
-        // debug: true,
+        debug: true,
         // progress: true,
         offset: 0.35
       }).onStepEnter(this.handleStepEnter.bind(this))
@@ -150,6 +150,7 @@ class App extends Component {
   }
 
   handleResize(e){
+    this.scroller.resize();
     this.props.dispatch(windowResize(window.innerWidth, window.innerHeight));
   }
 

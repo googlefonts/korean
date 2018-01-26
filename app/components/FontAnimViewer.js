@@ -28,7 +28,8 @@ class FontAnimViewer extends Component {
   componentWillReceiveProps(newProps){
     if (newProps.message != this.props.message) {
       this.resetMessage(newProps);
-    } else if (newProps.screenWidth != this.props.screenWidth) {
+    } else if (newProps.screenWidth != this.props.screenWidth || 
+               newProps.screenHeight != this.props.screenHeight) {
       this.updatePosition(newProps);
     }
   }
@@ -36,15 +37,25 @@ class FontAnimViewer extends Component {
   updatePosition(props){
 
     let { screenHeight, screenWidth, font } = this.props;
-    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([24, 391]);
+    let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
 
-    var x = leftWidthScale(screenWidth);
+
     var fontSize = 300;
     var kerningValue = 0;
     var fontScale = 1 / font.unitsPerEm * fontSize;
+    var x, y;
+
+    if (screenWidth > 480) {
+      x = 24 + 160 + leftWidthScale(screenWidth);
+      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
+    } else {
+      x = 24 + 160;
+      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150 + 46;
+    }
 
     _.each(this.glyphs, (glyph, i) => {
       glyph.x = x;
+      glyph.y = y,
       glyph.updatePosition();
 
       if (glyph.fontGlyph.advanceWidth) {
@@ -65,10 +76,19 @@ class FontAnimViewer extends Component {
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
     var kerningValue = 0;
-    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([24, 391]);
+    let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
 
     var fontSize = 300;
-    var x = leftWidthScale(screenWidth);
+    var x, y;
+
+    if (screenWidth > 480) {
+      x = 24 + 160 + leftWidthScale(screenWidth);
+      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
+    } else {
+      x = 24 + 160;
+      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150 + 46;
+    }
+
     var fontScale = 1 / font.unitsPerEm * fontSize;
 
     _.each(fontGlyphs, (glyphData, i) => {
@@ -76,7 +96,7 @@ class FontAnimViewer extends Component {
       let glyph = new Glyph({
         glyph: glyphData,
         x: x,
-        y: this.containerHeight * 0.5 + 140,
+        y: y,
         fontSize: fontSize,
         fillColor: 'black',
         unitsPerEm: font.unitsPerEm
@@ -129,7 +149,7 @@ class FontAnimViewer extends Component {
 
     return (
       <Fragment>
-        <div className="font-anim-viewer" style={{ top: -screenHeight * 0.5 + this.containerHeight * 0.5 }}>
+        <div className="font-anim-viewer" style={{ height: screenHeight, top: -(screenHeight * 0.5 - this.containerHeight * 0.5) }}>
           <canvas ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
           </canvas>
         </div>
