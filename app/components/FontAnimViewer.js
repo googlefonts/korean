@@ -22,6 +22,7 @@ class FontAnimViewer extends Component {
     this.createGlyphPath(font, message, screenWidth, screenHeight);
 
     this.paperScope.activate();
+    
     this.paperScope.view.draw();
   }
 
@@ -56,6 +57,7 @@ class FontAnimViewer extends Component {
     _.each(this.glyphs, (glyph, i) => {
       glyph.x = x;
       glyph.y = y,
+      glyph.fullySelected = true;
       glyph.updatePosition();
 
       if (glyph.fontGlyph.advanceWidth) {
@@ -68,6 +70,7 @@ class FontAnimViewer extends Component {
     });
 
     this.paperScope.activate();
+
     this.paperScope.view.draw();
   }
 
@@ -103,6 +106,7 @@ class FontAnimViewer extends Component {
       });
       this.glyphs.push(glyph);
       glyph.init();
+      glyph.fullySelected = true;
 
 
       if (glyphData.advanceWidth) {
@@ -116,7 +120,6 @@ class FontAnimViewer extends Component {
     });
 
     // debugger;
-
   }
 
   resetMessage(props){
