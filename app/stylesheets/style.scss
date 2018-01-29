@@ -267,7 +267,7 @@ sup {
 
 .header {
   display:flex;
-  z-index:3;
+  z-index:7;
   justify-content: space-between;
   align-content: flex-start;
   position: fixed;
@@ -430,6 +430,7 @@ sup {
   transition: 0.2s background-color;
   margin-bottom: 40px;
   position:relative;
+  z-index:4;
 
   &__flex-wrapper {
     display: flex;

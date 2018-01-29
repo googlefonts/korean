@@ -1,16 +1,28 @@
+export const wavyBaseline = {
+  attach: (_this) => {
+    // console.log(fontAn);
 
-export const wavyBaseline = (_this) => {
-  // console.log(fontAn);
+    
+    _this.project.activate();
 
-  
-  _this.paperScope.activate();
-
-  _.each(_this.glyphs, (glyph, i) => {
-    glyph.fillColor = "blue";
-  });
-
-
-  _this.paperScope.view.draw();
+    _.each(_this.glyphs, (glyph, i) => {
+      glyph.fillColor = "blue";
+    });
 
 
+    _this.view.draw();
+
+
+  },
+
+  detach: (_this) => {
+    
+    _.each(_this.glyphs, (glyph, i) => {
+      glyph.fillColor = "black";
+    });
+  },
+
+  updatePosition: (_this, x, y, fontScale, font) => {
+
+  }
 };

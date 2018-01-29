@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import paper from 'paper';
 import { Glyph } from './';
+import { wavyBaseline, bezierBubble } from './animations';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 
@@ -12,18 +13,32 @@ class FontAnimViewer extends Component {
     this.glyphs = [];
 
     this.containerHeight = 400;
+    this.animations = [
+      bezierBubble,
+      wavyBaseline
+    ];
   }
 
   componentDidMount(){
-    this.paperScope = new paper.PaperScope();
-    this.paperScope.setup(this.refCanvas);
 
-    var { font, message, screenHeight, screenWidth } = this.props;
+    paper.setup(this.refCanvas);
+    this.project = paper.View._viewsById[this.refCanvas.id]._project;
+    this.view = paper.View._viewsById[this.refCanvas.id];
+
+
+    var { font, message, screenHeight, screenWidth, animationIdx } = this.props;
     this.createGlyphPath(font, message, screenWidth, screenHeight);
 
-    this.paperScope.activate();
-    
-    this.paperScope.view.draw();
+    this.attachAnimation(this.props);
+    this.project.activate();
+
+    this.view.draw();
+  }
+
+  componentWillUnmount(){
+    this.detachAnimation(this.props);
+    this.project.remove();
+    this.view.remove();
   }
 
   componentWillReceiveProps(newProps){
@@ -32,12 +47,26 @@ class FontAnimViewer extends Component {
     } else if (newProps.screenWidth != this.props.screenWidth || 
                newProps.screenHeight != this.props.screenHeight) {
       this.updatePosition(newProps);
+    } else if (newProps.animationIdx != this.props.animationIdx) {
+      this.detachAnimation(this.props);
+      this.attachAnimation(newProps);
     }
+  }
+
+  detachAnimation(props){
+    let { animationIdx } = props;
+    this.animations[animationIdx].detach.bind(this, this)();
+  }
+
+
+  attachAnimation(props){
+    let { animationIdx } = props;
+    this.animations[animationIdx].attach.bind(this, this)();
   }
 
   updatePosition(props){
 
-    let { screenHeight, screenWidth, font } = this.props;
+    let { screenHeight, screenWidth, font, animationIdx } = props;
     let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
 
 
@@ -53,11 +82,13 @@ class FontAnimViewer extends Component {
       x = 24 + 160;
       y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150 + 46;
     }
+    
+
+    this.project.activate();    
 
     _.each(this.glyphs, (glyph, i) => {
       glyph.x = x;
-      glyph.y = y,
-      glyph.fullySelected = true;
+      glyph.y = y;
       glyph.updatePosition();
 
       if (glyph.fontGlyph.advanceWidth) {
@@ -69,9 +100,20 @@ class FontAnimViewer extends Component {
       }
     });
 
-    this.paperScope.activate();
 
-    this.paperScope.view.draw();
+    if (screenWidth > 480) {
+      x = 24 + 160 + leftWidthScale(screenWidth);
+      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
+    } else {
+      x = 24 + 160;
+      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150 + 46;
+    }
+    
+
+    this.animations[animationIdx].updatePosition.bind(this, this)(x, y, fontScale, font);
+
+    this.view.draw();
+
   }
 
   createGlyphPath(font, message, screenWidth, screenHeight){
@@ -106,7 +148,6 @@ class FontAnimViewer extends Component {
       });
       this.glyphs.push(glyph);
       glyph.init();
-      glyph.fullySelected = true;
 
 
       if (glyphData.advanceWidth) {
@@ -123,9 +164,9 @@ class FontAnimViewer extends Component {
   }
 
   resetMessage(props){
-    let { message, font, screenHeight, screenWidth } = props;
+    let { message, font, screenHeight, screenWidth, animationIdx } = props;
     
-    this.paperScope.activate();
+    this.project.activate();
     _.each(this.glyphs, glyph => {
       glyph.remove();
     });
@@ -133,7 +174,11 @@ class FontAnimViewer extends Component {
     this.glyphs = [];
 
     this.createGlyphPath(font, message,  screenWidth, screenHeight);
-    this.paperScope.view.draw();
+    
+    this.detachAnimation(props);
+    this.attachAnimation(props);
+
+    this.view.draw();
 
   }
 
@@ -141,7 +186,7 @@ class FontAnimViewer extends Component {
   componentDidUpdate(){
 
     let { screenWidth, screenHeight } = this.props;
-    this.paperScope.view.viewSize = new paper.Size( screenWidth, screenHeight );
+    this.view.viewSize = new paper.Size( screenWidth, screenHeight );
 
   }
 

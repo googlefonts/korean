@@ -12,14 +12,20 @@ class FontOutlineViewer extends Component {
   }
 
   componentDidMount(){
-    this.paperScope = new paper.PaperScope();
-    this.paperScope.setup(this.refCanvas);
+    paper.setup(this.refCanvas);
+    this.project = paper.View._viewsById[this.refCanvas.id]._project;
+    this.view = paper.View._viewsById[this.refCanvas.id];
 
     var { font, message } = this.props;
     this.createGlyphPath(font, message);
+    
+    this.project.activate();
+    this.view.draw();
+  }
 
-    this.paperScope.activate();
-    this.paperScope.view.draw();
+  componentWillUnmount(){
+    this.view.remove();
+    this.project.remove();
   }
 
   componentWillReceiveProps(newProps){
@@ -67,7 +73,7 @@ class FontOutlineViewer extends Component {
   resetMessage(props){
     let { message, font } = props;
     
-    this.paperScope.activate();
+    this.project.activate();
     _.each(this.glyphs, glyph => {
       glyph.remove();
     });
@@ -75,7 +81,7 @@ class FontOutlineViewer extends Component {
     this.glyphs = [];
 
     this.createGlyphPath(font, message);
-    this.paperScope.view.draw();
+    this.view.draw();
 
   }
 
@@ -85,18 +91,18 @@ class FontOutlineViewer extends Component {
     let { screenWidth } = this.props;
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
 
-    this.paperScope.view.viewSize = new paper.Size( screenWidth - (leftWidthScale(screenWidth) + 24 * 2), 400 );
+    this.view.viewSize = new paper.Size( screenWidth - (leftWidthScale(screenWidth) + 24 * 2), 400 );
 
   }
 
   render() {
-    let { screenWidth } = this.props;
+    let { screenWidth, id } = this.props;
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
 
     let width = screenWidth - (leftWidthScale(screenWidth) + 24 * 2);
-
+    // debugger;
     return (
-      <canvas ref={ ref => { this.refCanvas = ref;} } width={width * 2} height="400" style={{ width: width, height: 400}}>
+      <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2} height="400" style={{ width: width, height: 400}}>
       </canvas>
     );
   }

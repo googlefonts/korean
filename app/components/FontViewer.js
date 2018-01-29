@@ -139,7 +139,7 @@ class FontViewer extends Component {
                 (
                   selected ? 
                   <FontAnimViewer message={this.props.message} font={ this.state.font } /> :
-                  <FontOutlineViewer message={this.props.message} font={ this.state.font } />
+                  <FontOutlineViewer id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
                 )
               ) :
               <div>
