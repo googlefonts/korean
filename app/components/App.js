@@ -6,6 +6,7 @@ import scrollama from 'scrollama';
 import gfBadge from '@googlefonts/badge';
 import { scaleLinear } from 'd3';
 import 'gsap';
+import paper from 'paper';
 
 const Fragment = React.Fragment;
 
@@ -18,7 +19,6 @@ class App extends Component {
     this.headerTopScale = scaleLinear().domain([62, 0]).clamp(true).range([0, -62]);
 
     this.scroller = scrollama();
-
   }
 
 

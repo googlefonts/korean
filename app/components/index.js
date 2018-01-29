@@ -19,6 +19,7 @@ import DropDownCategorySelector from './DropDownCategorySelector';
 import FontAnimViewer from './FontAnimViewer';
 import DescriptionKo from './DescriptionKo';
 import DescriptionEn from './DescriptionEn';
+import CompoundGlyph from './CompoundGlyph';
 
 export {
   Header,
@@ -41,5 +42,6 @@ export {
   DropDownCategorySelector,
   FontAnimViewer,
   DescriptionKo,
-  DescriptionEn
+  DescriptionEn,
+  CompoundGlyph
 };
