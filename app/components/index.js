@@ -4,6 +4,7 @@ import FontsList from './FontsList';
 import Description from './Description';
 import Footer from './Footer';
 import FontViewer from './FontViewer';
+import FontViewerScript from './FontViewerScript';
 import NewsfeedLoader from './NewsfeedLoader';
 import FontCSSLoader from './FontCSSLoader';
 import AnimationSelector from './AnimationSelector';
@@ -19,6 +20,7 @@ import DropDownCategorySelector from './DropDownCategorySelector';
 import FontAnimViewer from './FontAnimViewer';
 import DescriptionKo from './DescriptionKo';
 import DescriptionEn from './DescriptionEn';
+import AnimationScriptSelector from './AnimationScriptSelector';
 
 export {
   Header,
@@ -41,5 +43,7 @@ export {
   DropDownCategorySelector,
   FontAnimViewer,
   DescriptionKo,
-  DescriptionEn
+  DescriptionEn,
+  FontViewerScript,
+  AnimationScriptSelector
 };

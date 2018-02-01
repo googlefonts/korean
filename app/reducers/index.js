@@ -6,6 +6,7 @@ let initialState = {
   headerCollapsedTop: 0,
   headerMode: "expanded", // expanded, collapsed, black
   animationIdx: 0,
+  animationScriptIdx: 0,
   categoryDropdownOpened: false,
   descFontDropdownOpened: false,
   currentViewFont: null,
@@ -29,6 +30,11 @@ var reducer = (state = initialState, action) => {
         ...state,
         screenWidth: action.payload.screenWidth,
         screenHeight: action.payload.screenHeight
+      };
+    case 'CHANGE_ANMIATION_SCRITP_IDX':
+      return {
+        ...state,
+        animationScriptIdx: action.payload.animationScriptIdx
       };
     case 'CHANGE_ANIMATION_IDX': 
       return {

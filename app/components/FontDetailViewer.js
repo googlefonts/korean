@@ -54,10 +54,19 @@ class FontDetailViewer extends Component {
   }
 
   render() {
-    let { screenWidth, locale } = this.props;
+    let { screenWidth, locale, category } = this.props;
     let { weightSelected } = this.state;
     let weights = _.map(weightSelected, w => { return w.fontWeight; }).sort();
-    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 210]);
+    let leftWidthScale;
+    let addClassName = "";
+
+    if (category === 3) {
+      addClassName = "--script"
+      leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
+    } else {
+      leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 210]);
+    }
+
 
     return (
       <Fragment>
@@ -67,11 +76,11 @@ class FontDetailViewer extends Component {
           </a>
 
         </div>
-        <div className="font-viewer__detail-right">
+        <div className={`font-viewer__detail-right${addClassName}`}>
           {
             locale == "ko" ?
 
-            <div className="font-viewer__column-left">
+            <div className={`font-viewer__column-left${addClassName}`}>
               <p>
                 { this.props.descriptionKo }
               </p>
@@ -81,7 +90,7 @@ class FontDetailViewer extends Component {
               </p>
             </div> : 
 
-            <div className="font-viewer__column-left">
+            <div className={`font-viewer__column-left${addClassName}`}>
               <p className="en-regular">
                 { this.props.descriptionEn }
               </p>
@@ -92,7 +101,7 @@ class FontDetailViewer extends Component {
             </div>
           }
 
-          <div className="font-viewer__column-right">
+          <div className={`font-viewer__column-right${addClassName}`}>
             <div className="font-viewer__input-area">
               <div className="font-viewer__detail-label">
                 HTML

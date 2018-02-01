@@ -8,7 +8,7 @@ import _ from 'lodash';
 
 const Fragment = React.Fragment;
 
-class FontViewer extends Component {
+class FontViewerScript extends Component {
   constructor(props){
     super(props);
     
@@ -65,14 +65,14 @@ class FontViewer extends Component {
     let { currentViewFont, screenWidth, locale } = this.props;
     let selected = currentViewFont == this.props.id;
     let { detailSelected } = this.state;
+    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
 
-    let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
 
 
     return (
-      <div className={`font-viewer${ selected ? "--selected" : "" }`} data-id={this.props.id}>
+      <div className={`font-viewer${ selected ? "--script-selected" : "--script" }`} data-id={this.props.id}>
         <div className="font-viewer__flex-wrapper--top">
-          <div className="font-viewer__left" style={{ minWidth: leftWidthScale(screenWidth) }}>
+          <div className="font-viewer__left--script" style={{ minWidth: leftWidthScale(screenWidth) }}>
             {
               locale == "ko" ? 
               <h3>
@@ -139,7 +139,7 @@ class FontViewer extends Component {
                 (
                   selected ? 
                   <FontAnimViewer message={this.props.message} font={ this.state.font } /> :
-                  <FontOutlineViewer size={300} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
+                  <FontOutlineViewer category={this.props.category} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
                 )
               ) :
               <div>
@@ -168,4 +168,4 @@ let mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps)(FontViewer);
+export default connect(mapStateToProps)(FontViewerScript);

@@ -93,7 +93,7 @@ class App extends Component {
   initScroll(){
     this.scroller.setup({
         step: '.font-viewer',
-        debug: true,
+        // debug: true,
         // progress: true,
         offset: 0.25
       }).onStepEnter(this.handleStepEnter.bind(this))

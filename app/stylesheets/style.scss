@@ -398,6 +398,14 @@ sup {
   }
 }
 
+.anim-script-selector {
+  display:flex;
+  flex-direction:row-reverse;
+  border-top: 1px solid $text_color;
+  padding-top: 10px;
+  margin-top: 10px;
+
+}
 .anim-selector {
   ul {
     li {
@@ -424,6 +432,17 @@ sup {
   padding: 26px 24px;
 }
 
+.font-script-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  z-index: 4;
+
+  @include body_600 {
+    display: block;
+  }
+}
 
 .font-viewer {
   background-color: transparent;
@@ -431,6 +450,28 @@ sup {
   margin-bottom: 40px;
   position:relative;
   z-index:4;
+
+  &--selected {
+    @extend .font-viewer;
+    // background-color: rgba(255, 255, 255, 0.1);
+  }
+
+
+  &--script {
+    @extend .font-viewer;
+    width: calc(50% - 10px);
+
+    @include body_600 {
+      width: 100%;
+    }
+  }
+
+  &--script-selected {
+    @extend .font-viewer--script;
+    // width: 50%;
+    // background-color: rgba(255, 255, 255, 0.1);
+  }
+
 
   &__flex-wrapper {
     display: flex;
@@ -458,15 +499,16 @@ sup {
     }
   }
 
-  &--selected {
-    @extend .font-viewer;
-    // background-color: rgba(255, 255, 255, 0.1);
-  }
-
+  
   &__left {
     min-width: 210px;
     z-index: 2;
     position: relative;
+  }
+
+  &__left--script {
+    @extend .font-viewer__left;
+    min-width: 105px;
   }
 
 
@@ -526,6 +568,11 @@ sup {
     }
   }
 
+  &__detail-left--script {
+    @extend .font-viewer__detail-left;
+    min-width: 105px;
+  }
+
   &__detail-right {
     border-top: 2px solid $text_color;
     padding-top: 20px;
@@ -536,6 +583,11 @@ sup {
     @include body_1280 {
       display: block;
     }
+  }
+
+  &__detail-right--script {
+    @extend .font-viewer__detail-right;
+    display: block;
   }
 
     &__column-left {
@@ -550,6 +602,14 @@ sup {
       }
     }
 
+
+    &__column-left--script {
+      @extend .font-viewer__column-left;
+      width: 100%;
+      margin-bottom: 70px;
+    }
+
+
     &__column-right {
       width: 590px;
       margin-left: 40px;
@@ -563,6 +623,12 @@ sup {
       p {
         font-size: 0.8em;
       }
+    }
+
+    &__column-right--script {
+      @extend .font-viewer__column-right;
+      width: 100%;
+      margin-left: 0;
     }
 
   &__input-area {

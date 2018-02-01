@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { BODY_480, BODY_600 } from '../constants/defaults';
 
 class FontPreviewTyper extends Component {
   constructor(props){
@@ -38,14 +40,57 @@ class FontPreviewTyper extends Component {
   }
 
   render() {
+    let { category, screenWidth } = this.props;
+    let catStyle;
+
+    if (category === 3) {
+
+      if (screenWidth > BODY_600){
+
+        catStyle = {
+          marginTop: -20,
+          marginLeft: 0,
+          fontSize: '10.0em',
+          height: 200
+        }
+
+      
+      } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
+        
+        catStyle = {
+          marginTop: -30,
+          marginLeft: -10,
+          fontSize: '15.0em',
+          height: 300
+        }
+      
+      } else {
+
+        catStyle = {
+          marginTop: -40,
+          marginLeft: -27,
+          fontSize: '20.0em',
+          height: 400
+        }
+
+      }
+
+    } else {
+      
+      catStyle = {
+        marginTop: -40,
+        marginLeft: -27,
+        fontSize: '20.0em',
+        height: 400
+      }
+    
+    }
+
     let style = {
+      ...catStyle,
       fontFamily: this.props.fontName,
-      fontSize: '20.0em',
       fontWeight: this.props.fontWeightSelected,
-      border: 'none',
-      marginTop: -40,
-      marginLeft: -27,
-      height: 400,
+      border: 'none'
     };
 
     return (
@@ -56,4 +101,10 @@ class FontPreviewTyper extends Component {
   }
 }
 
-export default FontPreviewTyper;
+let mapStateToProps = state => {
+  return {
+    screenWidth: state.screenWidth
+  }
+};
+
+export default connect(mapStateToProps)(FontPreviewTyper);

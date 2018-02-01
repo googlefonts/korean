@@ -8,6 +8,14 @@ export const windowResize = (width, height) => {
   }
 };
 
+export const changeAnimationScriptIdx = (animationScriptIdx) => {
+  return {
+    type: 'CHANGE_ANIMATION_SCRIPT_IDX',
+    payload: {
+      animationScriptIdx: animationScriptIdx
+    }
+  }
+};
 
 export const changeAnimationIdx = (animationIdx) => {
   return {
