@@ -10,6 +10,7 @@ let initialState = {
   categoryDropdownOpened: false,
   descFontDropdownOpened: false,
   currentViewFont: null,
+  currentScriptViewFont: null,
   currentDescFontSelected: "paragraph", // title, big, paragraph
   currentDescFont: {
     title: 1,
@@ -31,7 +32,12 @@ var reducer = (state = initialState, action) => {
         screenWidth: action.payload.screenWidth,
         screenHeight: action.payload.screenHeight
       };
-    case 'CHANGE_ANMIATION_SCRITP_IDX':
+    case 'CHANGE_CURRENT_SCRIPT_VIEW_FONT':
+      return {
+        ...state,
+        currentScriptViewFont: action.payload.currentScriptViewFont
+      }
+    case 'CHANGE_ANIMATION_SCRIPT_IDX':
       return {
         ...state,
         animationScriptIdx: action.payload.animationScriptIdx

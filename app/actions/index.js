@@ -8,6 +8,15 @@ export const windowResize = (width, height) => {
   }
 };
 
+export const changeCurrentScriptViewFont = (currentScriptViewFont) => {
+  return {
+    type: 'CHANGE_CURRENT_SCRIPT_VIEW_FONT',
+    payload: {
+      currentScriptViewFont: currentScriptViewFont
+    }
+  }
+}
+
 export const changeAnimationScriptIdx = (animationScriptIdx) => {
   return {
     type: 'CHANGE_ANIMATION_SCRIPT_IDX',

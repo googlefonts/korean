@@ -21,6 +21,7 @@ import FontAnimViewer from './FontAnimViewer';
 import DescriptionKo from './DescriptionKo';
 import DescriptionEn from './DescriptionEn';
 import AnimationScriptSelector from './AnimationScriptSelector';
+import FontAnimScriptViewer from './FontAnimScriptViewer';
 
 export {
   Header,
@@ -45,5 +46,6 @@ export {
   DescriptionKo,
   DescriptionEn,
   FontViewerScript,
-  AnimationScriptSelector
+  AnimationScriptSelector,
+  FontAnimScriptViewer
 };

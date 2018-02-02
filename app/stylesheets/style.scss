@@ -402,9 +402,10 @@ sup {
   display:flex;
   flex-direction:row-reverse;
   border-top: 1px solid $text_color;
-  padding-top: 10px;
-  margin-top: 10px;
-
+  padding-top: 20px;
+  margin: 20px 0;
+  position:relative;
+  z-index:4;
 }
 .anim-selector {
   ul {

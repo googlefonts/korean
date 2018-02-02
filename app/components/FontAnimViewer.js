@@ -191,14 +191,14 @@ class FontAnimViewer extends Component {
   }
 
   render() {
-    let { screenWidth, screenHeight } = this.props;
+    let { screenWidth, screenHeight, id } = this.props;
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
     let width = screenWidth - (leftWidthScale(screenWidth) + 24 * 2);
 
     return (
       <Fragment>
         <div className="font-anim-viewer" style={{ height: screenHeight, top: -(screenHeight * 0.5 - this.containerHeight * 0.5) }}>
-          <canvas ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
+          <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
           </canvas>
         </div>
         <div style={{ width: width, height: this.containerHeight}}>

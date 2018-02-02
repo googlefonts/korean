@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import * as opentype from 'opentype.js'
+import { changeCurrentScriptViewFont, changeCurrentViewFont } from '../actions';
 import { BODY_480 } from '../constants/defaults';
-import { FontOutlineViewer, FontPreviewTyper, FontAnimViewer, FontDetailViewer } from './';
+import { FontAnimScriptViewer, FontOutlineViewer, FontPreviewTyper, FontAnimViewer, FontDetailViewer } from './';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 import _ from 'lodash';
@@ -61,16 +62,24 @@ class FontViewerScript extends Component {
     }) 
   }
 
+  handleMouseEnter(e){
+    this.props.dispatch(changeCurrentViewFont(null));
+    this.props.dispatch(changeCurrentScriptViewFont(this.props.id));
+  }
+
+  handleMouseLeave(e){
+    this.props.dispatch(changeCurrentScriptViewFont(null));
+  }
+
   render() {
-    let { currentViewFont, screenWidth, locale } = this.props;
-    let selected = currentViewFont == this.props.id;
+    let { currentScriptViewFont, screenWidth, locale } = this.props;
+    let selected = currentScriptViewFont == this.props.id;
     let { detailSelected } = this.state;
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
 
 
-
     return (
-      <div className={`font-viewer${ selected ? "--script-selected" : "--script" }`} data-id={this.props.id}>
+      <div onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} className={`font-viewer${ selected ? "--script-selected" : "--script" }`} data-id={this.props.id}>
         <div className="font-viewer__flex-wrapper--top">
           <div className="font-viewer__left--script" style={{ minWidth: leftWidthScale(screenWidth) }}>
             {
@@ -138,7 +147,7 @@ class FontViewerScript extends Component {
                 : 
                 (
                   selected ? 
-                  <FontAnimViewer message={this.props.message} font={ this.state.font } /> :
+                  <FontAnimScriptViewer id={ `${this.props.fontName}--anim` } message={this.props.message} font={ this.state.font } /> :
                   <FontOutlineViewer category={this.props.category} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
                 )
               ) :
@@ -162,7 +171,7 @@ class FontViewerScript extends Component {
 
 let mapStateToProps = state => {
   return {
-    currentViewFont: state.currentViewFont,
+    currentScriptViewFont: state.currentScriptViewFont,
     screenWidth: state.screenWidth,
     locale: state.locale
   }

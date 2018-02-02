@@ -9,6 +9,7 @@ class AnimationScriptSelector extends Component {
 
   render() {
     let { animationScriptIdx } = this.props;
+
     return (
       <div className="anim-script-selector">
         <div className="anim-selector">

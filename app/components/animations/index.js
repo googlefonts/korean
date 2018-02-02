@@ -1,9 +1,14 @@
 import { bezierBubble } from './bezierBubble';
 import { wavyBaseline } from './wavyBaseline';
+import { magnifyScript } from './magnifyScript';
+import { bezierShowScript } from './bezierShowScript';
 
 export {
   bezierBubble,
-  wavyBaseline
+  wavyBaseline,
+  // script
+  magnifyScript,
+  bezierShowScript
 }
 
 /*
