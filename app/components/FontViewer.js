@@ -62,7 +62,7 @@ class FontViewer extends Component {
   }
 
   render() {
-    let { currentViewFont, screenWidth, locale } = this.props;
+    let { currentViewFont, screenWidth, locale, backgroundMode } = this.props;
     let selected = currentViewFont == this.props.id;
     let { detailSelected } = this.state;
 
@@ -110,7 +110,7 @@ class FontViewer extends Component {
               {
                 !detailSelected ? 
                 <a href="javascript:void(0);" onClick={this.handleDetailSelectedClick.bind(this)}>
-                  <img src="./public/assets/arrow_down.svg" alt="arrow_down" />
+                  <img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" />
                 </a>
                 :
                 <ul className="font-viewer__weights">
@@ -162,6 +162,7 @@ class FontViewer extends Component {
 
 let mapStateToProps = state => {
   return {
+    backgroundMode: state.backgroundMode,
     currentViewFont: state.currentViewFont,
     screenWidth: state.screenWidth,
     locale: state.locale

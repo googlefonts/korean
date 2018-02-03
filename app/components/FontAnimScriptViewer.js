@@ -5,6 +5,7 @@ import { BODY_600, BODY_480 } from '../constants/defaults';
 import { magnifyScript, bezierShowScript } from './animations';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
+import { convertBgMode } from '../utils';
 
 const Fragment = React.Fragment;
 class FontAnimScriptViewer extends Component {
@@ -27,9 +28,9 @@ class FontAnimScriptViewer extends Component {
     this.view = paper.View._viewsById[this.refCanvas.id];
 
 
-    var { font, message, screenHeight, screenWidth, animationScriptIdx } = this.props;
+    var { font, message, screenHeight, screenWidth, animationScriptIdx, backgroundMode } = this.props;
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth));
+    this.createGlyphPath(font, message, this.getSize(screenWidth), backgroundMode);
 
     this.attachAnimation(this.props);
     this.project.activate();
@@ -52,7 +53,16 @@ class FontAnimScriptViewer extends Component {
     } else if (newProps.animationScriptIdx != this.props.animationScriptIdx) {
       this.detachAnimation(this.props);
       this.attachAnimation(newProps);
+    } else if (newProps.backgroundMode != this.props.backgroundMode){
+      this.bgModeAnimation(newProps);
     }
+  }
+  
+  bgModeAnimation(props){
+    let { backgroundMode, animationScriptIdx } = props;
+
+    this.animations[animationScriptIdx].changeBgMode.bind(this, this)(backgroundMode);
+   
   }
 
   detachAnimation(props){
@@ -62,8 +72,8 @@ class FontAnimScriptViewer extends Component {
 
 
   attachAnimation(props){
-    let { animationScriptIdx } = props;
-    this.animations[animationScriptIdx].attach.bind(this, this)();
+    let { animationScriptIdx, backgroundMode } = props;
+    this.animations[animationScriptIdx].attach.bind(this, this)(backgroundMode);
   }
 
   updatePosition(props){
@@ -118,7 +128,7 @@ class FontAnimScriptViewer extends Component {
 
   }
 
-  createGlyphPath(font, message, size){
+  createGlyphPath(font, message, size, backgroundMode){
 
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
@@ -137,7 +147,7 @@ class FontAnimScriptViewer extends Component {
         x: x,
         y: fontSize * 0.5,
         fontSize: fontSize,
-        fillColor: 'black',
+        fillColor: convertBgMode(backgroundMode, "f"),
         unitsPerEm: font.unitsPerEm
       });
       this.glyphs.push(glyph);
@@ -158,7 +168,7 @@ class FontAnimScriptViewer extends Component {
   }
 
   resetMessage(props){
-    let { message, font, screenHeight, screenWidth, animationScriptIdx } = props;
+    let { message, font, screenHeight, screenWidth, animationScriptIdx, backgroundMode } = props;
     
     this.project.activate();
     _.each(this.glyphs, glyph => {
@@ -167,7 +177,7 @@ class FontAnimScriptViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth));
+    this.createGlyphPath(font, message, this.getSize(screenWidth), backgroundMode);
 
     
     this.detachAnimation(props);
@@ -260,7 +270,8 @@ let mapStateToProps = state => {
   return {
     screenWidth: state.screenWidth,
     screenHeight: state.screenHeight,
-    animationScriptIdx: state.animationScriptIdx
+    animationScriptIdx: state.animationScriptIdx,
+    backgroundMode: state.backgroundMode
   }
 }
 

@@ -46,7 +46,7 @@ class HeaderCollapsed extends Component {
   }
 
   render() {
-    let { categoryDropdownOpened, locale, screenWidth, headerCollapsedTop } = this.props;
+    let { categoryDropdownOpened, locale, screenWidth, headerCollapsedTop, backgroundMode } = this.props;
     let currentCategory = _.find(CATEGORIES, categoryData => { return categoryData.id == this.props.currentCategory; });
 
     return (
@@ -82,7 +82,7 @@ class HeaderCollapsed extends Component {
                             currentCategory.nameEn
                           }
                         </div>
-                        <img src="./public/assets/arrow_down.svg" alt="arrow_down" />
+                        <img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" />
                       </Fragment> : 
                       <Fragment>
                         <div className="category-selector__label-en-collapsed">
@@ -95,7 +95,7 @@ class HeaderCollapsed extends Component {
                             currentCategory.nameKo
                           }
                         </div>
-                        <img src="./public/assets/arrow_down.svg" alt="arrow_down" />
+                        <img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" />
                       </Fragment>
                     }
                   </a>
@@ -216,7 +216,8 @@ let mapStateToProps = state => {
     currentCategory: state.currentCategory,
     categoryDropdownOpened: state.categoryDropdownOpened,
     screenWidth: state.screenWidth,
-    headerCollapsedTop: state.headerCollapsedTop
+    headerCollapsedTop: state.headerCollapsedTop,
+    backgroundMode: state.backgroundMode
   }
 }
 

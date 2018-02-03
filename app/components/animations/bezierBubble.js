@@ -1,24 +1,26 @@
 import paper from 'paper';
+import { convertBgMode } from '../../utils'; 
 export const bezierBubble = {
-  attach: (_this) => {
+  attach: (_this, backgroundMode) => {
 
     _this.bezierBubble = {
       point: new paper.Point(400, 200)
     };
-    
 
     _this.project.activate();
 
     _this.bezierBubble.maskCircle = new paper.Path.Circle({center: [400, 200], radius: 150, fillColor: "green"});
 
-    _this.bezierBubble.circle = new paper.Path.Circle({center: [400, 200], radius: 150, strokeColor: "black"});
+    _this.bezierBubble.circle = new paper.Path.Circle({center: [400, 200], radius: 150, strokeColor: convertBgMode(backgroundMode, "f")});
 
     _this.bezierBubble.maskedGlyphs = [];
 
     _.each(_this.glyphs, (glyph, i) => {
       glyph.strokeWidth = 0;
+      glyph.fillColor = convertBgMode(backgroundMode, "f");
       var _g = glyph.clone();
-      _g.fillColor = "white";
+      _g.strokeColor = convertBgMode(backgroundMode, "f");
+      _g.fillColor = convertBgMode(backgroundMode, "b");
       _g.dashArray = [5, 5];
       _g.strokeWidth = 2;
       _this.bezierBubble.maskedGlyphs.push(_g);
@@ -43,6 +45,26 @@ export const bezierBubble = {
 
   }, 
 
+  changeBgMode: (_this, backgroundMode) => {
+
+    _this.project.activate();
+
+    _.each(_this.bezierBubble.maskedGlyphs, g => {
+      g.strokeColor = convertBgMode(backgroundMode, "f");
+      g.fillColor = convertBgMode(backgroundMode, "b");
+    });
+
+
+    _.each(_this.glyphs, (glyph, i) => {
+      glyph.fillColor = convertBgMode(backgroundMode, "f");
+    });
+
+
+    _this.bezierBubble.circle.strokeColor = convertBgMode(backgroundMode, "f");
+
+    _this.view.draw();
+
+  },
 
   detach: (_this) => {
     _this.project.activate();

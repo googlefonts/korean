@@ -1,0 +1,9 @@
+@import 'reset';
+@import 'fonts';
+
+$base_font_size       : 14px; // px;
+$base_line_height     : 22px; // px
+$background_color: #000;
+$text_color: #FFF;
+
+@import 'body';

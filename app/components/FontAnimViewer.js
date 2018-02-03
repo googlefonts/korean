@@ -26,8 +26,8 @@ class FontAnimViewer extends Component {
     this.view = paper.View._viewsById[this.refCanvas.id];
 
 
-    var { font, message, screenHeight, screenWidth, animationIdx } = this.props;
-    this.createGlyphPath(font, message, screenWidth, screenHeight);
+    var { font, message, screenHeight, screenWidth, animationIdx, backgroundMode } = this.props;
+    this.createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode);
 
     this.attachAnimation(this.props);
     this.project.activate();
@@ -50,7 +50,16 @@ class FontAnimViewer extends Component {
     } else if (newProps.animationIdx != this.props.animationIdx) {
       this.detachAnimation(this.props);
       this.attachAnimation(newProps);
+    } else if (newProps.backgroundMode != this.props.backgroundMode){
+      this.bgModeAnimation(newProps);
     }
+  }
+
+  bgModeAnimation(props){
+    let { backgroundMode, animationIdx } = props;
+
+    this.animations[animationIdx].changeBgMode.bind(this, this)(backgroundMode);
+   
   }
 
   detachAnimation(props){
@@ -60,8 +69,8 @@ class FontAnimViewer extends Component {
 
 
   attachAnimation(props){
-    let { animationIdx } = props;
-    this.animations[animationIdx].attach.bind(this, this)();
+    let { animationIdx, backgroundMode } = props;
+    this.animations[animationIdx].attach.bind(this, this)(backgroundMode);
   }
 
   updatePosition(props){
@@ -116,7 +125,7 @@ class FontAnimViewer extends Component {
 
   }
 
-  createGlyphPath(font, message, screenWidth, screenHeight){
+  createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode){
 
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
@@ -143,7 +152,7 @@ class FontAnimViewer extends Component {
         x: x,
         y: y,
         fontSize: fontSize,
-        fillColor: 'black',
+        fillColor: backgroundMode == "black" ? "white" : "black",
         unitsPerEm: font.unitsPerEm
       });
       this.glyphs.push(glyph);
@@ -164,7 +173,7 @@ class FontAnimViewer extends Component {
   }
 
   resetMessage(props){
-    let { message, font, screenHeight, screenWidth, animationIdx } = props;
+    let { message, font, screenHeight, screenWidth, animationIdx, backgroundMode } = props;
     
     this.project.activate();
     _.each(this.glyphs, glyph => {
@@ -173,7 +182,7 @@ class FontAnimViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message,  screenWidth, screenHeight);
+    this.createGlyphPath(font, message,  screenWidth, screenHeight, backgroundMode);
     
     this.detachAnimation(props);
     this.attachAnimation(props);
@@ -213,7 +222,8 @@ let mapStateToProps = state => {
   return {
     screenWidth: state.screenWidth,
     screenHeight: state.screenHeight,
-    animationIdx: state.animationIdx
+    animationIdx: state.animationIdx,
+    backgroundMode: state.backgroundMode
   }
 }
 

@@ -3,10 +3,14 @@ var PROD = process.env.NODE_ENV == "production";
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var config  = {
-  entry: "./app/Main.js",
+  entry: {
+    bundle:      './app/main.js',
+    style_black:       './app/stylesheets/style_black.scss',
+    style_white: './app/stylesheets/style_white.scss'
+  },
   output: {
     path : __dirname + '/public',
-    filename: PROD ? "./public/bundle.min.js" : "./public/bundle.js"
+    filename: PROD ? "./public/[name].min.js" : "./public/[name].js"
   },
   module: {
     rules : [
@@ -46,9 +50,7 @@ var config  = {
     ]
   },
   plugins: PROD ? [
-    new ExtractTextPlugin({  
-      filename: './public/style.css' 
-    }),
+    new ExtractTextPlugin('./public/[name].css'),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
@@ -58,9 +60,7 @@ var config  = {
       compress: { warnings: false }
     })
   ] : [ 
-    new ExtractTextPlugin({
-      filename: './public/style.css'
-    })
+    new ExtractTextPlugin('./public/[name].css')
   ],
   devtool: 'source-map'
 }

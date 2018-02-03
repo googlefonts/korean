@@ -1,23 +1,24 @@
 import paper from 'paper';
+import { convertBgMode } from '../../utils';
+
 export const magnifyScript = {
-  attach: (_this) => {
+  attach: (_this, backgroundMode) => {
 
     _this.magnifyScript = {
       point: new paper.Point(400, 200)
     };
-    
 
     _this.project.activate();
 
     _this.magnifyScript.maskRect = new paper.Path.Rectangle({
       point: [0, 0],
       size: [400, 200],
-      fillColor: 'white'
+      fillColor: convertBgMode(backgroundMode, "b")
     });
 
     _this.magnifyScript.maskCircle = new paper.Path.Circle({center: [400, 200], radius: 100, fillColor: "green"});
 
-    _this.magnifyScript.circle = new paper.Path.Circle({center: [400, 200], radius: 100, strokeColor: "black"});
+    _this.magnifyScript.circle = new paper.Path.Circle({center: [400, 200], radius: 100, strokeColor: convertBgMode(backgroundMode, "f")});
 
     _this.magnifyScript.maskedGlyphs = [];
 
@@ -49,6 +50,27 @@ export const magnifyScript = {
     };
 
   }, 
+
+
+  changeBgMode: (_this, backgroundMode) => {
+
+    _this.project.activate();
+
+    _this.magnifyScript.maskRect.fillColor = convertBgMode(backgroundMode, "b");
+    _this.magnifyScript.circle.strokeColor = convertBgMode(backgroundMode, "f");
+    
+    _.each(_this.glyphs, (glyph, i) => {
+      glyph.fillColor = convertBgMode(backgroundMode, "f");
+    });
+
+    _.each(_this.magnifyScript.maskedGlyphs, (glyph, i) => {
+      glyph.fillColor = convertBgMode(backgroundMode, "f");  
+    });
+
+
+    _this.view.draw();
+
+  },
 
 
   detach: (_this) => {

@@ -1,8 +1,9 @@
 import paper from 'paper';
-export const wavyBaseline = {
-  attach: (_this) => {
-    // console.log(fontAn);
+import { convertBgMode } from '../../utils';
 
+export const wavyBaseline = {
+  attach: (_this, backgroundMode) => {
+    // console.log(fontAn);
     _this.wavyBaseline = {
       glyphs: []
     };
@@ -16,7 +17,10 @@ export const wavyBaseline = {
       glyph.visible = false;
       
       _g.flatten(1);
-      _g.fillColor = "white";
+      _g.fillColor = convertBgMode(backgroundMode, "b");
+      _g.strokeColor = convertBgMode(backgroundMode, "f");
+      // g.fillColor = convertBgMode(backgroundMode, "b");
+
       _this.wavyBaseline.glyphs.push(_g);
     });
 
@@ -53,6 +57,21 @@ export const wavyBaseline = {
 
 
   },
+  
+  changeBgMode: (_this, backgroundMode) => {
+
+    _this.project.activate();
+
+
+    _.each(_this.wavyBaseline.glyphs, g => {
+      g.strokeColor = convertBgMode(backgroundMode, "f");
+      g.fillColor = convertBgMode(backgroundMode, "b");
+    });
+
+    _this.view.draw();
+
+  },
+
 
   detach: (_this) => {
     _.each(_this.wavyBaseline.glyphs, g => {

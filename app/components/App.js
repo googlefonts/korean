@@ -30,10 +30,14 @@ class App extends Component {
   }
   
   componentDidMount(){
-    // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
+    document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
     gfBadge();
     this.initScroll();
     this.handleScroll();
+  }
+
+  handleBodyClick(e){
+    this.props.dispatch(changeBackgroundMode(this.props.backgroundMode == "black" ? "white" : "black"));
   }
 
   componentWillReceiveProps(newProps){
@@ -95,7 +99,7 @@ class App extends Component {
         step: '.font-viewer',
         // debug: true,
         // progress: true,
-        offset: 0.25
+        offset: 0.5
       }).onStepEnter(this.handleStepEnter.bind(this))
         // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));
@@ -122,26 +126,7 @@ class App extends Component {
 
 
   updateBackground(newProps){
-    let { backgroundMode } = newProps;
 
-    if (backgroundMode == "black"){
-      
-      document.body.style.backgroundColor = "#000"; 
-
-      _.each(document.querySelectorAll("body, div, p, span, text, a"), elem => {
-        elem.style.color = "#FFF";
-      });
-
-    } else {
-      
-      document.body.style.backgroundColor = "#FFF";
-
-      _.each(document.querySelectorAll("body, div, p, span, text, a"), elem => {
-        elem.style.color = "#000";
-      });
-
-
-    }
   }
 
   componentWillUnmount(){
@@ -155,21 +140,25 @@ class App extends Component {
   }
 
   render() {
-    let { headerMode } = this.props;
+    let { headerMode, backgroundMode } = this.props;
 
     return (
-      <section>
-        <NewsfeedLoader />
-        {
-          headerMode == "expanded" ? 
-          <Header /> : (headerMode == "collapsed" ? <HeaderCollapsed /> : null)
-        }        
-        <HeaderGutter />
-        <FontsList />
-        <Description />
-        <Footer />
-        <FontCSSLoader />
-      </section>
+      <Fragment>
+        <section>
+          <NewsfeedLoader />
+          {
+            headerMode == "expanded" ? 
+            <Header /> : (headerMode == "collapsed" ? <HeaderCollapsed /> : null)
+          }        
+          <HeaderGutter />
+          <FontsList />
+          <Description />
+          <Footer />
+          <FontCSSLoader />
+        </section>
+
+        <link rel="stylesheet" media="all" href={`./public/style_${backgroundMode}.css`} async />
+      </Fragment>
     );
   }
 }

@@ -15,7 +15,7 @@ class DropdownFontSelector extends Component {
   }
 
   render() {
-    let { descFontDropdownOpened, currentDescFontSelected, locale } = this.props;
+    let { descFontDropdownOpened, currentDescFontSelected, locale, backgroundMode } = this.props;
 
     let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont[currentDescFontSelected] == fontData.id });
 
@@ -27,12 +27,12 @@ class DropdownFontSelector extends Component {
             <Fragment>
               <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
               <div className="dropdown-font-selector__en en-regular">{ currentDescFont.nameEn }</div> 
-              <div style={{ marginTop: -2 }}><img src="./public/assets/arrow_down_white.svg" alt="arrow_down" /></div>
+              <div style={{ marginTop: -2 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
             </Fragment> :
             <Fragment>
               <div className="dropdown-font-selector__en en-black">{ currentDescFont.nameEn }</div> 
               <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
-              <div style={{ marginTop: -2 }}><img src="./public/assets/arrow_down_white.svg" alt="arrow_down" /></div>
+              <div style={{ marginTop: -2 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
             </Fragment>
           }
         </a>
@@ -48,6 +48,7 @@ class DropdownFontSelector extends Component {
 let mapStateToProps = state => {
   return {
     currentDescFont: state.currentDescFont,
+    backgroundMode: state.backgroundMode,
     locale: state.locale,
     descFontDropdownOpened: state.descFontDropdownOpened,
     currentDescFontSelected: state.currentDescFontSelected
