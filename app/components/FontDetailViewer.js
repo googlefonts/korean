@@ -54,7 +54,7 @@ class FontDetailViewer extends Component {
   }
 
   render() {
-    let { screenWidth, locale, category } = this.props;
+    let { screenWidth, locale, category, backgroundMode } = this.props;
     let { weightSelected } = this.state;
     let weights = _.map(weightSelected, w => { return w.fontWeight; }).sort();
     let leftWidthScale;
@@ -72,7 +72,7 @@ class FontDetailViewer extends Component {
       <Fragment>
         <div className="font-viewer__detail-left" style={{ minWidth: leftWidthScale(screenWidth) }}>
           <a href="javascript:void(0);" onClick={this.props.handleClosed}>
-            <img src="./public/assets/arrow_close.svg" alt="arrow_close" />
+            <img src={`./public/assets/arrow_close_${backgroundMode}.svg`} alt="arrow_close" />
           </a>
 
         </div>
@@ -154,7 +154,8 @@ class FontDetailViewer extends Component {
 let mapStateToProps = state => {
   return {
     screenWidth: state.screenWidth,
-    locale: state.locale
+    locale: state.locale,
+    backgroundMode: state.backgroundMode
   }
 }
 

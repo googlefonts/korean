@@ -19,6 +19,7 @@ class App extends Component {
     this.headerTopScale = scaleLinear().domain([62, 0]).clamp(true).range([0, -62]);
 
     this.scroller = scrollama();
+    this.handleBodyClick = this.handleBodyClick.bind(this);
   }
 
 
@@ -30,7 +31,7 @@ class App extends Component {
   }
   
   componentDidMount(){
-    document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
+    // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
     gfBadge();
     this.initScroll();
     this.handleScroll();
@@ -144,7 +145,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <section>
+        <section onClick={this.handleBodyClick}>
           <NewsfeedLoader />
           {
             headerMode == "expanded" ? 

@@ -21,8 +21,10 @@ class Header extends Component {
     this.props.dispatch(changeLocale(this.props.locale === "ko" ? "en" : "ko"));
   }
 
-  handleCurrentCategory(categoryData){
+  handleCurrentCategory(categoryData, e){
+    e.stopPropagation();
     this.props.dispatch(changeCurrentCategory(categoryData.id));
+    
   }
 
   render() {
