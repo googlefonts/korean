@@ -22,7 +22,8 @@ class FontDetailViewer extends Component {
 
   }
 
-  handleWeightToggle(weightData){
+  handleWeightToggle(weightData, e){
+    e.stopPropagation();
     this.setState({
       weightSelected: this.setWeightList(this.state.weightSelected, weightData) 
     });    

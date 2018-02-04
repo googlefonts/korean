@@ -8,7 +8,8 @@ import _ from 'lodash';
 
 class DescriptionKo extends Component {
 
-  handleCurrentDescFontSelected(name) {
+  handleCurrentDescFontSelected(name, e) {
+    e.stopPropagation();
     this.props.dispatch(changeCurrentDescFontSelected(name));
   }
 

@@ -7,7 +7,8 @@ import { DropdownFontSelector } from './';
 const Fragment = React.Fragment;
 
 class DescriptionFontSelector extends Component {
-  handleChangeCurrentDescFont(fontData){
+  handleChangeCurrentDescFont(fontData, e){
+    e.stopPropagation();
 
     let { currentDescFontSelected } = this.props;
     let newCurrentDescFont = {
@@ -45,7 +46,7 @@ class DescriptionFontSelector extends Component {
           <DropdownFontSelector /> :
           <div className="font-selector-area--mobile">
             <DropdownFontSelector />
-            <div className="font-selector--selected-mobile" href="javascript:void(0);" style={{ fontFamily: currentDescFont.fontName }}>
+            <div className="font-selector--selected-mobile" style={{ fontFamily: currentDescFont.fontName }}>
               한
             </div>
             

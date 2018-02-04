@@ -9,6 +9,7 @@ const Fragment = React.Fragment;
 class DropdownFontSelector extends Component {
   
   handleDropdownClick(e){
+    e.stopPropagation();
     if (!this.props.descFontDropdownOpened) {
       this.props.dispatch(changeDescFontDropdownOpened(true));
     }

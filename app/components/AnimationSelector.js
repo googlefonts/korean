@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { changeAnimationIdx } from '../actions';
 
 class AnimationSelector extends Component {
-  handleClick(idx){
+  handleClick(idx, e){
+    
+    e.stopPropagation();
     this.props.dispatch(changeAnimationIdx(idx));
   }
 

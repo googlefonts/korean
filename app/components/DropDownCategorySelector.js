@@ -8,12 +8,16 @@ import _ from 'lodash';
 const Fragment = React.Fragment;
 
 class DropDownCategorySelector extends Component {
-  handleCurrentCategory(categoryData){
+  handleCurrentCategory(categoryData, e){
+    
+    e.stopPropagation();
     this.props.dispatch(changeCurrentCategory(categoryData.id));
     this.props.dispatch(changeCategoryDropdownOpened(false));
   }
 
   handleClickOutside(evt){ 
+
+    evt.stopPropagation();
 
     _.delay(() => {
       this.props.dispatch(changeCategoryDropdownOpened(false));

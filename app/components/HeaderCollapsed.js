@@ -26,20 +26,28 @@ class HeaderCollapsed extends Component {
   }
 
   handleToggleLocale(e) {
+
+    e.stopPropagation();
     this.props.dispatch(changeLocale(this.props.locale === "ko" ? "en" : "ko"));
   }
 
-  handleCurrentCategory(categoryData){
+  handleCurrentCategory(categoryData, e){
+    
+    e.stopPropagation();
     this.props.dispatch(changeCurrentCategory(categoryData.id));
   }
   
   toggleMenu(e){
+    e.stopPropagation();
     this.setState({
       isMenuOpen: !this.state.isMenuOpen
     });
   }
 
   handleCategoryClick(e){
+
+    e.stopPropagation();
+
     if (!this.props.categoryDropdownOpened) {
       this.props.dispatch(changeCategoryDropdownOpened(true));
     }    
@@ -114,7 +122,7 @@ class HeaderCollapsed extends Component {
                   <a href="javascript:void(0)" className="">
                     한국어 얼리억세스 소개 
                   </a>
-                  <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
+                  <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
                     English
                   </a>
                 </div>

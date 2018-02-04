@@ -8,7 +8,8 @@ import _ from 'lodash';
 const Fragment = React.Fragment;
 
 class DropDownFontSelectorMenu extends Component {
-  handleCurrentDescFont(fontData){
+  handleCurrentDescFont(fontData, e){
+    e.stopPropagation();
     let { currentDescFontSelected } = this.props;
     let newCurrentDescFont = {
       ...this.props.currentDescFont
@@ -21,6 +22,7 @@ class DropDownFontSelectorMenu extends Component {
 
   handleClickOutside(evt){ 
 
+    evt.stopPropagation();
     _.delay(() => {
       this.props.dispatch(changeDescFontDropdownOpened(false));
     }, 100);

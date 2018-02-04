@@ -18,6 +18,7 @@ class Header extends Component {
   }
 
   handleToggleLocale(e) {
+    e.stopPropagation();
     this.props.dispatch(changeLocale(this.props.locale === "ko" ? "en" : "ko"));
   }
 

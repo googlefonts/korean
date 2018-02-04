@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import paper from 'paper';
 import { Glyph } from './';
 import { BODY_600, BODY_480 } from '../constants/defaults';
-import { magnifyScript, bezierShowScript } from './animations';
+import { magnifyScript, bezierShowScript, blurScript } from './animations';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 import { convertBgMode } from '../utils';
@@ -17,7 +17,8 @@ class FontAnimScriptViewer extends Component {
     this.containerHeight = 400;
     this.animations = [
       magnifyScript,
-      bezierShowScript
+      bezierShowScript,
+      blurScript
     ];
   }
 
@@ -259,7 +260,7 @@ class FontAnimScriptViewer extends Component {
       }
 
     return (
-      <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2} height={ height } style={{ width: width, height: height}}>
+      <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2} height={ height } style={{ transition: '0.4s filter', width: width, height: height}}>
       </canvas>
     );
   }

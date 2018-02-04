@@ -45,18 +45,21 @@ class FontViewerScript extends Component {
   }
 
   handleDetailSelectedClick(e){
+    e.stopPropagation();
     this.setState({
       detailSelected: true
     });
   }
 
-  handleWeightSelectedClick(weightData){
+  handleWeightSelectedClick(weightData, e){
+    e.stopPropagation();
     this.setState({
       fontWeightSelected: weightData.fontWeight
     });
   }
 
   handleClosed(e){
+    e.stopPropagation();
     this.setState({
       detailSelected: false
     }) 

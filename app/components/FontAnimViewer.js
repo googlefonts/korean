@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import paper from 'paper';
 import { Glyph } from './';
-import { wavyBaseline, bezierBubble } from './animations';
+import { wavyBaseline, bezierBubble, riseAndBlur } from './animations';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 
@@ -15,7 +15,8 @@ class FontAnimViewer extends Component {
     this.containerHeight = 400;
     this.animations = [
       bezierBubble,
-      wavyBaseline
+      wavyBaseline,
+      riseAndBlur
     ];
   }
 
