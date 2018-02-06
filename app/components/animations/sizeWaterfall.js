@@ -48,22 +48,48 @@ export const sizeWaterfall = {
     _this.view.onMouseMove = (e) => {
 
       _this.sizeWaterfall.point = e.point.clone();
-      _this.sizeWaterfall.point.x -= 650;
-      _this.sizeWaterfall.point.y -= 350;
+      // _this.sizeWaterfall.point.x -= 650;
+      // _this.sizeWaterfall.point.y -= 350;
     }
 
 
     
     _this.view.onFrame = (e) => {
+      var path = new paper.Path();
+      var center = _this.sizeWaterfall.originalGlyphGroup.bounds.center;
+      path.visible = false;
+      path.add(center);
+      // console.log(_this.sizeWaterfall.originalGlyphGroup.bounds.center);
+      // debugger;
+      // var point = _this.sizeWaterfall.point
         
-      var vector = _this.sizeWaterfall.point.subtract(_this.sizeWaterfall.originalGlyphGroup.center);
+
+      if (_this.sizeWaterfall.point.x > center.x) {
+        // 아래쪽 으로 U자로 휘어야함 
+        var handleIn = new paper.Point(-150, 0);
+        var handleOut = new paper.Point(0, 0);
+        
+      } else {
+        // var handleIn = new paper.Point(50, 0);
+        var handleIn = new paper.Point(150, 0);
+        var handleOut = new paper.Point(0, 0);
+        
+        // 위쪽으로 휘어야함
+      }
+
+      
+      path.add(new paper.Segment(_this.sizeWaterfall.point, handleIn, handleOut));
+      path.strokeColor = "red";
+
+      var vector = _this.sizeWaterfall.point.subtract(center);
 
       _.each(_this.sizeWaterfall.glyphGroups, (g, i) => {
 
-        g.position = _this.sizeWaterfall.originalGlyphGroup.bounds.center.add(vector.multiply(vectorScale(i)))
+        g.position = path.curves[0].getPointAtTime(vectorScale(i));//center.add(vector.multiply(vectorScale(i)))
 
       });
 
+      path.remove();
 
 
     };
