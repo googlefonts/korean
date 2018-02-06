@@ -39,16 +39,19 @@ class AnimationSelector extends Component {
               ㅁ
             </a>
           </li>
-          <li>
-            <a onClick={this.handleClick.bind(this, 5) } className={`anim-selector__link${ animationIdx == 5 ? "--selected" : "" }`} href="javascript:void(0);">
-              ㅁ
-            </a>
-          </li>
-          <li>
-            <a onClick={this.handleClick.bind(this, 6) } className={`anim-selector__link${ animationIdx == 6 ? "--selected" : "" }`} href="javascript:void(0);">
-              ㅁ
-            </a>
-          </li>
+          {
+           
+          // <li>
+          //   <a onClick={this.handleClick.bind(this, 5) } className={`anim-selector__link${ animationIdx == 5 ? "--selected" : "" }`} href="javascript:void(0);">
+          //     ㅁ
+          //   </a>
+          // </li>
+          // <li>
+          //   <a onClick={this.handleClick.bind(this, 6) } className={`anim-selector__link${ animationIdx == 6 ? "--selected" : "" }`} href="javascript:void(0);">
+          //     ㅁ
+          //   </a>
+          // </li> 
+          }
         </ul>
       </div>
     )
