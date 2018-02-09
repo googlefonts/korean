@@ -833,10 +833,6 @@ sup {
   &__container {
     margin: 100px 0 0 210px;
 
-    @include body_1280 {
-      margin-left: 100px;
-    }
-
     @include body_960 {
       margin-left: auto;
     }
@@ -967,9 +963,6 @@ sup {
   &__left {
     width: 210px;
 
-    @include body_1280 {
-      width: 100px;
-    }
   }
 
   h4 {
@@ -1077,7 +1070,14 @@ sup {
 
 .gf-badge {
   position: fixed;
-  z-index: 2;
+  z-index: 4;
   left: 24px;
   bottom: 24px;
+
+  @include body_960 {
+    left: 0;
+    bottom: 0;
+    padding: 24px 24px;
+    width: calc(100% - 48px);
+  }
 }
