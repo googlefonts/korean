@@ -140,7 +140,11 @@ class HeaderCollapsed extends Component {
             }
 
             <a href="javascript:void(0);" onClick={this.toggleMenu.bind(this)} className="header-collapsed__hamburger">
-              <img src={`./public/assets/${!this.state.isMenuOpen ? 'hamburger' : 'close'}.svg`} alt="menu" />
+              {
+                this.state.isMenuOpen ? 
+                <img src={`./public/assets/close_${backgroundMode}.svg`} alt="menu" /> :
+                <img src={`./public/assets/hamburger_${backgroundMode}.svg`} alt="menu" />
+              }
             </a>
           </div>
           {

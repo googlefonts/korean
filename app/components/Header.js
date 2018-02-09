@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
-import { CATEGORIES, BODY_600 } from '../constants/defaults';
+import { CATEGORIES, BODY_600, BODY_960 } from '../constants/defaults';
 import { connect } from 'react-redux';
-import { AnimationSelector } from './';
+import { AnimationSelector, HeaderCategories } from './';
 import { changeLocale, changeCurrentCategory, changeHeaderHeight } from '../actions';
 
 const Fragment = React.Fragment;
 
 class Header extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      isMenuOpen: false
+    };
+  }
+
   componentDidMount(){
     this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));
   }
@@ -14,6 +22,9 @@ class Header extends Component {
   componentWillReceiveProps(newProps){
     if (this.props.screenWidth != newProps.screenWidth) {
       this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));
+      // this.setState({
+      //   isMenuOpen: false
+      // });
     }
   }
 
@@ -22,14 +33,22 @@ class Header extends Component {
     this.props.dispatch(changeLocale(this.props.locale === "ko" ? "en" : "ko"));
   }
 
-  handleCurrentCategory(categoryData, e){
-    e.stopPropagation();
-    this.props.dispatch(changeCurrentCategory(categoryData.id));
-    
+  handleMenuOpen(e){
+    e.stopPropagation(e);
+    this.setState({
+      isMenuOpen: !this.state.isMenuOpen
+    });
+
+    _.delay(() => {
+
+      this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));
+
+    }, 10);
   }
 
   render() {
-    let { locale, currentCategory, screenWidth } = this.props;
+    let { isMenuOpen } = this.state;
+    let { locale, currentCategory, screenWidth, backgroundMode } = this.props;
 
     return (
       <header className="header" ref={ ref => { this.refHeader = ref; }}>
@@ -55,47 +74,22 @@ class Header extends Component {
             }
           </div>
 
-          <div className="header__categories">
-            {
-              _.map(CATEGORIES, categoryData => {
-                return (
-                  <a className={`category-selector${ categoryData.id === currentCategory ? "--selected" : ""}`} onClick={this.handleCurrentCategory.bind(this, categoryData)} key={categoryData.id} href="javascript:void(0);">
-
-                    {
-                      locale == "ko" ?
-                      <Fragment>
-                        <div className="category-selector__label-ko-left">
-                          {
-                            categoryData.nameKo
-                          }
-                        </div>
-                        <div className="category-selector__label-en-right">
-                          {
-                            categoryData.nameEn
-                          }
-                        </div>
-                      </Fragment> : 
-                      <Fragment>
-                        <div className="category-selector__label-en-left">
-                          {
-                            categoryData.nameEn
-                          }
-                        </div>                         
-                        <div className="category-selector__label-ko-right">
-                          {
-                            categoryData.nameKo
-                          }
-                        </div>
-                      </Fragment>
-                    }
-                  </a>
-                );
-              })
-            }
-          </div>
+          {
+            screenWidth > BODY_960 ?
+            <HeaderCategories /> : null
+          }
         </div>
 
         <div className="header__description-area">
+          {
+            screenWidth < BODY_960 && isMenuOpen ? 
+            <Fragment>
+              <HeaderCategories /> 
+              <div className="l-apple-box"></div>
+            </Fragment>
+            : null 
+          }
+          
           {
             locale == "ko" ?
             <div className={`header__description--${locale}`}>
@@ -141,8 +135,12 @@ class Header extends Component {
         </div>
 
         
-        <a href="javascript:void(0);" className="header__hamburger">
-          <img src="./public/assets/hamburger.svg" alt="menu" />
+        <a href="javascript:void(0);" className="header__hamburger" onClick={this.handleMenuOpen.bind(this)}>
+          {
+            isMenuOpen ? 
+            <img src={`./public/assets/close_${backgroundMode}.svg`} alt="menu" /> :
+            <img src={`./public/assets/hamburger_${backgroundMode}.svg`} alt="menu" />            
+          }
         </a>
       </header>
     )
@@ -152,6 +150,7 @@ class Header extends Component {
 let mapStateToProps = state => {
   return {
     locale: state.locale,
+    backgroundMode: state.backgroundMode,
     currentCategory: state.currentCategory,
     screenWidth: state.screenWidth
   }

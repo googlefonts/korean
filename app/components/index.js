@@ -1,5 +1,6 @@
 import Header from './Header';
 import HeaderCollapsed from './HeaderCollapsed';
+import HeaderCategories from './HeaderCategories';
 import FontsList from './FontsList';
 import Description from './Description';
 import Footer from './Footer';
@@ -26,6 +27,7 @@ import FontAnimScriptViewer from './FontAnimScriptViewer';
 export {
   Header,
   HeaderCollapsed,
+  HeaderCategories,
   FontsList,
   Description,
   FontViewer,

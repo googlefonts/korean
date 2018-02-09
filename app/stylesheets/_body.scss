@@ -281,6 +281,14 @@ sup {
 
   &__left {
     display:flex;
+    
+    @include body_960 {
+      width: 50%;
+    }
+
+    @include body_600 {
+      width: auto;
+    }
   }
 
   &__title {
@@ -312,11 +320,6 @@ sup {
 
   &__categories {
     min-width: 240px;
-
-    @include body_960 {
-      display: none;
-    }
-
   }
 
    
