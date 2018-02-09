@@ -1074,3 +1074,10 @@ sup {
   left: -24px; 
   top: 0;
 }
+
+.gf-badge {
+  position: fixed;
+  z-index: 2;
+  left: 24px;
+  bottom: 24px;
+}

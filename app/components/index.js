@@ -23,6 +23,7 @@ import DescriptionKo from './DescriptionKo';
 import DescriptionEn from './DescriptionEn';
 import AnimationScriptSelector from './AnimationScriptSelector';
 import FontAnimScriptViewer from './FontAnimScriptViewer';
+import GoogleFontBadge from './GoogleFontBadge';
 
 export {
   Header,
@@ -49,5 +50,6 @@ export {
   DescriptionEn,
   FontViewerScript,
   AnimationScriptSelector,
-  FontAnimScriptViewer
+  FontAnimScriptViewer,
+  GoogleFontBadge
 };

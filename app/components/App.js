@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode, changeHeaderCollapsedTop } from '../actions';
-import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter } from './';
+import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter, GoogleFontBadge } from './';
 import scrollama from 'scrollama';
-import gfBadge from '@googlefonts/badge';
 import { scaleLinear } from 'd3';
 import 'gsap';
 import paper from 'paper';
@@ -32,7 +31,6 @@ class App extends Component {
   
   componentDidMount(){
     // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
-    gfBadge();
     this.initScroll();
     this.handleScroll();
   }
@@ -157,7 +155,7 @@ class App extends Component {
           <Footer />
           <FontCSSLoader />
         </section>
-
+        <GoogleFontBadge />
         <link rel="stylesheet" media="all" href={`./public/style_${backgroundMode}.css`} async />
       </Fragment>
     );
