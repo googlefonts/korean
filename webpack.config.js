@@ -1,16 +1,17 @@
 var webpack = require('webpack');
 var PROD = process.env.NODE_ENV == "production";
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 var config  = {
   entry: {
-    bundle:      './app/main.js',
-    style_black:       './app/stylesheets/style_black.scss',
+    bundle:      './app/Main.js',
+    style_black: './app/stylesheets/style_black.scss',
     style_white: './app/stylesheets/style_white.scss'
   },
   output: {
     path : __dirname + '/public',
-    filename: PROD ? "./public/[name].min.js" : "./public/[name].js"
+    filename: PROD ? "./[name].min.js" : "./public/[name].js"
   },
   module: {
     rules : [
@@ -50,14 +51,14 @@ var config  = {
     ]
   },
   plugins: PROD ? [
-    new ExtractTextPlugin('./public/[name].css'),
+    new ExtractTextPlugin('[name].css'),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
+    new UglifyJSPlugin({
+      uglifyOptions: { warnings: false }
     })
   ] : [ 
     new ExtractTextPlugin('./public/[name].css')
