@@ -52,6 +52,7 @@ export const wavyBaseline = {
       _this.wavyBaseline.glyphs.push(_g);
     });
 
+    // figure out width
     // _this.wavyBaseline.dx = (Math.PI / ) * 50;
 
 
