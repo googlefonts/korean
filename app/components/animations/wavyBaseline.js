@@ -130,6 +130,10 @@ export const wavyBaseline = {
     _.each(_this.wavyBaseline.glyphs, g => {
       g.remove();
     });
+    
+    _.each(_this.wavyBaseline.originalPosGlyph, g => {
+      g.remove();
+    });
 
     _.each(_this.glyphs, (glyph, i) => {
       glyph.visible = true;
