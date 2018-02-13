@@ -1,30 +1,42 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
+import { scaleLinear } from 'd3';
+
+const amountScale = scaleLinear().domain([150, 2000]).clamp(true).range([50, 300]);
+var xDomain = [Number.MAX_VALUE, Number.MIN_VALUE];
 
 const interpolateCompoundPath = (path) => {
-  
+  // console.log(_this.xDist);
   var interpolatedPath = new paper.CompoundPath();
   
   for (var i = 0; i < path.children.length; i++) {
       var childIntPath = new paper.Path();
       var child = path.children[i];
-      var amount = 100;
+      var amount = Math.floor(amountScale(child.length));
       var length = child.length;
       
       for (var j = 0; j < amount + 1; j++) {
           var offset = j / amount * length;
           var point = child.getPointAt(offset);
-          // var circle = new Path.Circle({
-          //     center: point,
-          //     radius: 2,
-          //     fillColor: 'red'
-          // });
+          
+          if (point.x > xDomain[1]) {
+
+            xDomain[1] = point.x;
+
+          } 
+
+          if (point.x < xDomain[0]) {
+            
+            xDomain[0] = point.x;
+
+          }
+
           childIntPath.add(point);
       }
       childIntPath.closed = true;
       interpolatedPath.addChild(childIntPath);
   }  
-  interpolatedPath.fullySelected = true;
+  // interpolatedPath.fullySelected = true;
   return interpolatedPath;
 };
 
@@ -32,7 +44,8 @@ export const wavyBaseline = {
   attach: (_this, backgroundMode) => {
     // console.log(fontAn);
     _this.wavyBaseline = {
-      glyphs: []
+      glyphs: [],
+      originalPosGlyphs: []
     };
 
    
@@ -50,23 +63,36 @@ export const wavyBaseline = {
       // g.fillColor = convertBgMode(backgroundMode, "b");
 
       _this.wavyBaseline.glyphs.push(_g);
+      let originalPosGlyph = _g.clone();
+      originalPosGlyph.visible = false;
+      _this.wavyBaseline.originalPosGlyphs.push(originalPosGlyph);
     });
 
+    // console.log(xDomain);
     // figure out width
     // _this.wavyBaseline.dx = (Math.PI / ) * 50;
 
 
+    var amplitudeScale = scaleLinear().domain(xDomain).clamp(true).range([0, Math.PI]);
+    var theta = 0;
+
     _this.view.onFrame = (e) => {
 
-      var i = 0;
-      _.each(_this.wavyBaseline.glyphs, g => {
+      theta += 0.02;
+
+      _.each(_this.wavyBaseline.glyphs, (g, i) => {
         
-        _.each(g.children, child => {
+        var originalGlyph = _this.wavyBaseline.originalPosGlyphs[i];
 
-          _.each(child.segments, (seg, j) => {
+        _.each(g.children, (child, j) => {
 
-            let p = seg.point.clone();
+          var originalChild = originalGlyph.children[j];
 
+          _.each(child.segments, (seg, k) => {
+
+            var originalSegment = originalChild.segments[k];
+            let x = theta + amplitudeScale(seg.point.x);
+            seg.point.y = originalSegment.point.y + Math.sin(x) * 50;
 
 
           });
