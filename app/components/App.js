@@ -98,7 +98,7 @@ class App extends Component {
         step: '.font-viewer',
         // debug: true,
         // progress: true,
-        offset: 0.5
+        offset: 0.2
       }).onStepEnter(this.handleStepEnter.bind(this))
         // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));
