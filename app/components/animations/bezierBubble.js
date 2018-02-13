@@ -4,7 +4,7 @@ export const bezierBubble = {
   attach: (_this, backgroundMode) => {
 
     _this.bezierBubble = {
-      point: new paper.Point(400, 200)
+      point: new paper.Point(-800, -800)
     };
 
     _this.project.activate();
@@ -35,6 +35,7 @@ export const bezierBubble = {
       _this.bezierBubble.point = e.point;
     }
 
+    // _this.view.emit('onMouseMove');
 
     _this.view.onFrame = (e) => {
       _this.project.activate();
