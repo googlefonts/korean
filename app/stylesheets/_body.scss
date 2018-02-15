@@ -409,18 +409,16 @@ sup {
   z-index:4;
 }
 .anim-selector {
-  ul {
-    li {
-      display: inline-block;
-    }
-  }
+  display: flex;
+  align-items:center;
 
   &__link {
-
-    color: gray; 
+    margin-right: 8px;
+    opacity: 0.5;
 
     &--selected {
-      color: $text_color;
+      @extend .anim-selector__link;
+      opacity: 1;
     }
   }
 }
