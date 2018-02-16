@@ -63,7 +63,7 @@ export const sizeWaterfall = {
       // debugger;
       // var point = _this.sizeWaterfall.point
         
-
+      
       if (_this.sizeWaterfall.point.x > center.x) {
         // 아래쪽 으로 U자로 휘어야함 
         var handleIn = new paper.Point(-150, 0);
