@@ -9,7 +9,29 @@ let initialState = {
   animationScriptIdx: 0,
   categoryDropdownOpened: false,
   descFontDropdownOpened: false,
-  currentViewFont: null,
+  currentViewFont: {
+    id: 1,
+    nameKo: "노토 산스 KR",
+    nameEn: "Noto Sans KR",
+    fontName: "Noto Sans KR",
+    fontUrl : "./public/fonts/NotoSansCJKkr-Regular-2350.woff",
+    cssUrl : "./public/fonts/notosans.css",
+    weights: [
+      {
+        fontWeight: 400,
+        weightName: "Regular"
+      },
+      {
+        fontWeight: 600,
+        weightName: "Medium"
+      }
+    ],
+    foundryKo: "산돌커뮤니케이션",
+    foundryEn: "Sandoll Communication",
+    descriptionKo: "네이버는 2008년부터 매년 새로운 글꼴을 만들어 무료로 배포하고 있습니다. 나눔고딕은 문서의 본문에도 잘 쓸 수 있는 고딕 글꼴입니다. 글자 끝의 날카로운 부분을 둥글게 처리해 친근하고 부드러운 느낌입니다.",
+    descriptionEn: "Since 2008, Naver has created new fonts for free every year. Sharing Gothic is a Gothic font that can be used well in the body of a document. It is a friendly and soft feeling by rounding the sharp part of the end of the letter.",
+    category: 1
+  },
   currentScriptViewFont: null,
   currentDescFontSelected: "all", // all, title, paragraph
   currentDescFont: {

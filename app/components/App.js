@@ -98,7 +98,7 @@ class App extends Component {
         step: '.font-viewer',
         // debug: true,
         // progress: true,
-        offset: 0.2
+        offset: 0.4
       }).onStepEnter(this.handleStepEnter.bind(this))
         // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));
@@ -151,8 +151,10 @@ class App extends Component {
           }        
           <HeaderGutter />
           <FontsList />
-          <Description />
-          <Footer />
+          <section className="description-footer">
+            <Description />
+            <Footer />
+          </section>
           <FontCSSLoader />
         </section>
         <GoogleFontBadge />

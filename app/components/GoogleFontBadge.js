@@ -18,29 +18,28 @@ class GoogleFontBadge extends Component {
     
     this.scroller = scrollama();
 
+
     this.scroller.setup({
-        step: '.description',
+        step: '.description-footer',
         // progress: true,
-        offset: screenHeight - 69 / screenHeight 
+        offset: (screenHeight - 69) / screenHeight 
       }).onStepEnter(this.handleStepEnter.bind(this))
         // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));
   }
 
   handleStepEnter(e){
-    if (e.direction == "down") {
       this.setState({
         conversed: true
       })
-    }
   }
 
   handleStepExit(e){
-    if (e.direction == "up") {
+
+    
       this.setState({
         conversed: false
       });
-    }
   }
 
   render() {
