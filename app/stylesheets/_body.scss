@@ -693,7 +693,7 @@ sup {
   &--top {
     display: flex;
     justify-content: space-between;
-      
+    align-items: center;
     padding-bottom: 15px;
     margin-bottom:15px;
     border-bottom: 1px solid $background_color;
@@ -768,14 +768,16 @@ sup {
     position:absolute;
     width:270px;
     padding: 0;
-    top: 40px;
+    top: 43px;
     right: 0;
     background-color: $text_color;
     border: 1px solid $background_color;
     border-radius: 2px;
 
     @include body_600 { 
-      width: 100%;
+      width: calc(100% - 48px);
+      top: 63px;
+      right: 24px;
     }
   }
 
@@ -858,7 +860,7 @@ sup {
   }
 
   &__container {
-    margin: 100px 0 0 210px;
+    margin: 0 0 0 210px;
 
     @include body_960 {
       margin-left: auto;

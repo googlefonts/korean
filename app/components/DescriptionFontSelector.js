@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FONTS, BODY_600 } from '../constants/defaults';
 import { changeCurrentDescFont, changeCurrentDescFontSelected } from '../actions';
-import { DropdownFontSelector } from './';
+import { DropdownFontSelector, DropdownFontSelectorMenu } from './';
 import { getCurrentDescFont } from '../utils';
 
 const Fragment = React.Fragment;
@@ -33,43 +33,32 @@ class DescriptionFontSelector extends Component {
   }
 
   render() {
-    let { screenWidth, headerMode, currentDescFontSelected } = this.props;
+    let { screenWidth, descFontDropdownOpened, headerMode, currentDescFontSelected } = this.props;
     let currentDescFont = getCurrentDescFont(this.props.currentDescFont, currentDescFontSelected);
 
     return (
       <div className={`font-selector-header ${headerMode == "black" ? "black" : ""}`}>
 
-        {
-          screenWidth > BODY_600 ? 
 
-          <div className="font-selector-header--top">
-            <div className="font-selector-header__tb-selector">
-              <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "all")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "all" ? "--selected" : ""}`}>
-                전체
-              </a>
-              <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "title")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "title" ? "--selected" : ""}`}>
-                제목
-              </a> 
-              <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "paragraph")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "paragraph" ? "--selected" : ""}`}>
-                본문
-              </a>
-            </div>
-            <DropdownFontSelector />
+        <div className="font-selector-header--top">
+          <div className="font-selector-header__tb-selector">
+            <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "all")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "all" ? "--selected" : ""}`}>
+              전체
+            </a>
+            <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "title")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "title" ? "--selected" : ""}`}>
+              제목
+            </a> 
+            <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "paragraph")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "paragraph" ? "--selected" : ""}`}>
+              본문
+            </a>
           </div>
-          :
-          <div className="font-selector-area--mobile">
-            <DropdownFontSelector />
-            {
-              /*
-                <div className="font-selector--selected-mobile" style={{ fontFamily: currentDescFont.fontName }}>
-                한
-              </div>
-              */  
-            }
-            
-          </div>
+          <DropdownFontSelector />
 
-        }
+          {
+            descFontDropdownOpened ? 
+            <DropdownFontSelectorMenu /> : null  
+          }
+        </div>
 
         {
           screenWidth > BODY_600 ? 
@@ -95,6 +84,7 @@ let mapStateToProps = state => {
     currentDescFont: state.currentDescFont,
     screenWidth: state.screenWidth,
     headerMode: state.headerMode,
+    descFontDropdownOpened: state.descFontDropdownOpened,
     currentDescFontSelected: state.currentDescFontSelected
   }
 };
