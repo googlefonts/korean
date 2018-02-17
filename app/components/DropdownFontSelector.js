@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { FONTS } from '../constants/defaults';
 import { changeDescFontDropdownOpened } from '../actions';
 import { DropdownFontSelectorMenu } from './';
+import { getCurrentDescFont } from '../utils';
 
 const Fragment = React.Fragment;
 
@@ -18,7 +19,8 @@ class DropdownFontSelector extends Component {
   render() {
     let { descFontDropdownOpened, currentDescFontSelected, locale, backgroundMode } = this.props;
 
-    let currentDescFont = _.find(FONTS, fontData => { return this.props.currentDescFont[currentDescFontSelected] == fontData.id });
+    let currentDescFont = getCurrentDescFont(this.props.currentDescFont, currentDescFontSelected);
+
 
     return (
       <div className="dropdown-font-selector">
@@ -49,7 +51,7 @@ class DropdownFontSelector extends Component {
 let mapStateToProps = state => {
   return {
     currentDescFont: state.currentDescFont,
-    backgroundMode: state.backgroundMode,
+    backgroundMode: state.backgroundMode == "black" ? "white" : "black",
     locale: state.locale,
     descFontDropdownOpened: state.descFontDropdownOpened,
     currentDescFontSelected: state.currentDescFontSelected

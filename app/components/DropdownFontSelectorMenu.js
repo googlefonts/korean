@@ -15,7 +15,13 @@ class DropDownFontSelectorMenu extends Component {
       ...this.props.currentDescFont
     };
 
-    newCurrentDescFont[currentDescFontSelected] = fontData.id;
+    if (currentDescFontSelected == "all") {
+      newCurrentDescFont["title"] = fontData.id;
+      newCurrentDescFont["paragraph"] = fontData.id;
+    } else {
+      newCurrentDescFont[currentDescFontSelected] = fontData.id;
+    }
+
     this.props.dispatch(changeCurrentDescFont(newCurrentDescFont));
     this.props.dispatch(changeDescFontDropdownOpened(false));
   }

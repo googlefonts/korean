@@ -1,3 +1,5 @@
+import { FONTS } from '../constants/defaults';
+
 export const numberWithDelimiter = (number, delimiter, separator) => {
   try {
     var delimiter = delimiter || ",";
@@ -16,5 +18,23 @@ export const convertBgMode = (bgMode, fgOrBg) => {
     return fgOrBg == "f" ? "white" : "black";
   } else {
     return fgOrBg == "f" ? "black" : "white";  
+  }
+}
+
+export const getCurrentDescFont = (currentDescFont, mode) => {
+    
+  if (mode === "all") {
+    if (currentDescFont["title"] == currentDescFont["paragraph"]) {
+      return _.find(FONTS, fontData => { return currentDescFont["title"] == fontData.id });
+    } else {
+      return {
+        id: -1,
+        nameKo: "-",
+        nameEn: "-"
+      };
+    }
+    
+  } else {
+    return _.find(FONTS, fontData => { return currentDescFont[mode] == fontData.id });
   }
 }
