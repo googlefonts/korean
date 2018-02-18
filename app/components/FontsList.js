@@ -64,18 +64,19 @@ class FontsList extends Component {
 
               return (
                 <Fragment key={k}>
-                  <a name={`category-${k}`} data-category-id={k}></a>
-                  <AnimationScriptSelector />
-                  <div className="font-script-list">
-                    {
-                      _.map(categoryFont.fonts, (fontData, i) => {
-                        idx++; 
-                        return (
-                          <FontViewerScript key={fontData.id} message={this.cutString(MESSAGES[idx], fontData.category)} {...fontData} />
-                        )
-                      })
-                    }
-                  </div>
+                  <section className="font-script-container">
+                    <a name={`category-${k}`} data-category-id={k}></a>
+                    <div className="font-script-list">
+                      {
+                        _.map(categoryFont.fonts, (fontData, i) => {
+                          idx++; 
+                          return (
+                            <FontViewerScript key={fontData.id} message={this.cutString(MESSAGES[idx], fontData.category)} {...fontData} />
+                          )
+                        })
+                      }
+                    </div>
+                  </section>
                 </Fragment>
               );
 
@@ -83,15 +84,15 @@ class FontsList extends Component {
 
               return (
                 <Fragment key={k}>
-                  <a name={`category-${k}`} data-category-id={k}></a>
-                  {
-                    _.map(categoryFont.fonts, (fontData, i) => {
-                      idx++; 
-                      return (
-                        <FontViewer key={fontData.id} message={this.cutString(MESSAGES[idx], fontData.category)} {...fontData} />
-                      )
-                    })
-                  }
+                    <a name={`category-${k}`} data-category-id={k}></a>
+                    {
+                      _.map(categoryFont.fonts, (fontData, i) => {
+                        idx++; 
+                        return (
+                          <FontViewer key={fontData.id} message={this.cutString(MESSAGES[idx], fontData.category)} {...fontData} />
+                        )
+                      })
+                    }
                 </Fragment>
               );
 

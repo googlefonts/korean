@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { CATEGORIES, BODY_600, BODY_960 } from '../constants/defaults';
 import { connect } from 'react-redux';
-import { AnimationSelector, DropDownCategorySelector } from './';
+import { AnimationSelector, DropDownCategorySelector, AnimationScriptSelector } from './';
 import { changeLocale, changeCurrentCategory, changeHeaderHeight, changeCategoryDropdownOpened } from '../actions';
+import scrollama from 'scrollama';
 
 const Fragment = React.Fragment;
 
@@ -10,9 +11,36 @@ class HeaderCollapsed extends Component {
   constructor(props){
     super(props);
 
+    this.scroller = scrollama();
     this.state = {
-      isMenuOpen: false
+      isMenuOpen: false,
+      isOnScript: false
     };
+  }
+
+  componentDidMount(){
+    this.scroller.setup({
+        step: '.font-script-container',
+        // debug: true,
+        // progress: true,
+        offset: 60 / this.props.screenHeight
+      }).onStepEnter(this.handleStepEnter.bind(this))
+        // .onStepProgress(this.handleStepProgress.bind(this))
+        .onStepExit(this.handleStepExit.bind(this));
+  }
+
+  handleStepEnter(e){
+    this.setState({
+      isOnScript: true
+    });
+  }
+
+  handleStepExit(e){  
+
+    this.setState({
+      isOnScript: false
+    });
+  
   }
 
   componentWillReceiveProps(newProps){
@@ -54,12 +82,17 @@ class HeaderCollapsed extends Component {
   }
 
   render() {
+    let { isOnScript } = this.state;
     let { categoryDropdownOpened, locale, screenWidth, headerCollapsedTop, backgroundMode } = this.props;
     let currentCategory = _.find(CATEGORIES, categoryData => { return categoryData.id == this.props.currentCategory; });
 
     return (
       <Fragment>
         <header className="header-collapsed" style={{ top: headerCollapsedTop }} ref={ ref => { this.refHeader = ref; }}>
+        {
+          
+                    // <AnimationScriptSelector />
+        }
           <div className="header-collapsed__flexwrap">
             <div className="header-collapsed__left">
               {
@@ -112,7 +145,7 @@ class HeaderCollapsed extends Component {
             </div>
             {
               screenWidth > BODY_600 ? 
-              <AnimationSelector /> : null
+              (isOnScript ? <AnimationScriptSelector/> : <AnimationSelector />) : null
             }
             
             {
@@ -228,6 +261,7 @@ let mapStateToProps = state => {
     currentCategory: state.currentCategory,
     categoryDropdownOpened: state.categoryDropdownOpened,
     screenWidth: state.screenWidth,
+    screenHeight: state.screenHeight,
     headerCollapsedTop: state.headerCollapsedTop,
     backgroundMode: state.backgroundMode
   }

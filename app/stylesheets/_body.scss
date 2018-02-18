@@ -431,6 +431,11 @@ sup {
   padding: 26px 24px;
 }
 
+.font-script-container {
+  border-top: 1px solid $text_color;
+  padding-top: 50px;
+}
+
 .font-script-list {
   display: flex;
   flex-wrap: wrap;
