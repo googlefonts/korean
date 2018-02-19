@@ -6,7 +6,8 @@ export const shadowSkew = {
   attach: (_this, backgroundMode) => {
 
     _this.shadowSkew = {
-      point: new paper.Point(400, 200)
+      point: new paper.Point(400, 200),
+      tPoint: new paper.Point(400, 200)
     };
 
     _this.project.activate();
@@ -47,7 +48,7 @@ export const shadowSkew = {
     var xScale = scaleLinear().domain([0, 200, 600]).clamp(true).range([1.0, 1.0, 2.0]);
 
     _this.view.onMouseMove = (e) => {
-      _this.shadowSkew.point = e.point;
+      _this.shadowSkew.tPoint = e.point;
     }
 
     _this.clonedLeftGroup = null;
@@ -57,6 +58,7 @@ export const shadowSkew = {
     
     _this.view.onFrame = (e) => {
       
+      _this.shadowSkew.point = _this.shadowSkew.point.add(_this.shadowSkew.tPoint.subtract(_this.shadowSkew.point).multiply(0.2));
       let skewAmount = skewAmountScale(_this.shadowSkew.point.y);
       let xScaleAmount = xScale(_this.shadowSkew.point.y);
 

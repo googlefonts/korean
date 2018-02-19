@@ -98,29 +98,22 @@ class App extends Component {
         step: '.font-viewer',
         // debug: true,
         // progress: true,
-        offset: 0.4
+        offset: 200 / this.props.screenHeight
       }).onStepEnter(this.handleStepEnter.bind(this))
         // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));
   }
 
-  handleStepProgress(e){
-    console.log(e);
-  }
 
   handleStepEnter(e){
-    // console.log(this.props.currentViewFont, e.element.dataset.id);
     if (this.props.currentViewFont != Number(e.element.dataset.id)) {
-      this.props.dispatch(changeCurrentViewFont(e.element.dataset.id));
+      this.props.dispatch(changeCurrentViewFont(Number(e.element.dataset.id)));
     }
-    
-    // console.log("enter", e.element.dataset.id);
   }
 
   handleStepExit(e){
     this.props.dispatch(changeCurrentViewFont(null));
-    // debugger;
-    // console.log("exit", e.element.dataset.id);
+  
   }
 
 

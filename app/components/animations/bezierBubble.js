@@ -4,7 +4,8 @@ export const bezierBubble = {
   attach: (_this, backgroundMode) => {
 
     _this.bezierBubble = {
-      point: new paper.Point(-800, -800),
+      point: new paper.Point(400, 200),
+      rPoint: new paper.Point(400, 200),
       points: []
     };
 
@@ -60,8 +61,10 @@ export const bezierBubble = {
 
     _this.view.onFrame = (e) => {
       _this.project.activate();
-      _this.bezierBubble.maskCircle.position = _this.bezierBubble.point;
-      _this.bezierBubble.circle.position = _this.bezierBubble.point;
+      _this.bezierBubble.rPoint = _this.bezierBubble.rPoint.add(_this.bezierBubble.point.subtract(_this.bezierBubble.rPoint).multiply(0.2));
+
+      _this.bezierBubble.maskCircle.position = _this.bezierBubble.rPoint;
+      _this.bezierBubble.circle.position = _this.bezierBubble.rPoint;
       _this.view.draw();
     };
 
