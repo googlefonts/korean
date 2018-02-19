@@ -112,7 +112,10 @@ class Header extends Component {
               </div>
               { 
                 screenWidth <= BODY_600 ? 
-                <AnimationSelector />
+                <Fragment>
+                  <div className="l-apple-box"></div>
+                  <AnimationSelector />
+                </Fragment>
                 : null
               }
             </div> : 
@@ -127,7 +130,11 @@ class Header extends Component {
               </div>
               { 
                 screenWidth <= BODY_600 ? 
-                <AnimationSelector />
+
+                <Fragment>
+                  <div className="l-apple-box"></div>
+                  <AnimationSelector />
+                </Fragment>
                 : null
               }
             </div>
