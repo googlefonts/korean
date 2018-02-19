@@ -128,7 +128,7 @@ class FontDetailViewer extends Component {
                   "굵기추가" : "Weights"
                 }
               </div>
-              <div>
+              <div className="font-viewer__detail-content">
                 {
                   _.map(this.props.weights, weightData => {
 

@@ -19,6 +19,9 @@ class HeaderCollapsed extends Component {
   }
 
   componentDidMount(){
+
+    this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight + 20));
+
     this.scroller.setup({
         step: '.font-script-container',
         // debug: true,

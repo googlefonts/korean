@@ -12,7 +12,7 @@ export const magnifyScript = {
 
     _this.magnifyScript.maskRect = new paper.Path.Rectangle({
       point: [0, 0],
-      size: [400, 200],
+      size: [400, 400],
       fillColor: convertBgMode(backgroundMode, "b")
     });
 

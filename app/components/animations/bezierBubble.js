@@ -6,7 +6,7 @@ export const bezierBubble = {
     _this.bezierBubble = {
       point: new paper.Point(400, 200),
       rPoint: new paper.Point(400, 200),
-      points: []
+      points: new paper.Group()
     };
 
     _this.project.activate();
@@ -25,7 +25,7 @@ export const bezierBubble = {
           let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(1.5, 1.5)), 3);
 
           p.fillColor = convertBgMode(backgroundMode, 'f');
-          _this.bezierBubble.points.push(p);
+          _this.bezierBubble.points.addChild(p);
         });
       });
 
@@ -84,9 +84,8 @@ export const bezierBubble = {
       glyph.fillColor = convertBgMode(backgroundMode, "f");
     });
 
-    _.each(_this.bezierBubble.points, p => {
-      p.fillColor = convertBgMode(backgroundMode, "f");
-    });
+    _this.bezierBubble.points.fillColor = convertBgMode(backgroundMode, "f");
+
 
     _this.bezierBubble.circle.strokeColor = convertBgMode(backgroundMode, "f");
 
@@ -105,15 +104,14 @@ export const bezierBubble = {
     });
 
 
-    _.each(_this.bezierBubble.points, p => {
-      p.remove();
-    });
+
     _.each(_this.bezierBubble.maskedGlyphs, g => {
       g.remove();
     });
 
 
     _this.bezierBubble.group.remove();
+    _this.bezierBubble.points.remove();
 
     _this.view.onFrame = null;
     _this.view.onMouseMove = null;
@@ -122,8 +120,11 @@ export const bezierBubble = {
   }, 
 
 
-  updatePosition: (_this, x, y, fontScale, font) => {
+  updatePosition: (_this, x, y, fontScale, font, backgroundMode) => {
     var kerningValue = 0;
+
+
+    _this.project.activate();
 
     _.each(_this.bezierBubble.maskedGlyphs, (glyph, i) => {
       glyph.position = new paper.Point(x, y);
@@ -136,6 +137,31 @@ export const bezierBubble = {
         x += kerningValue * fontScale;
       }
     });
+
+    // _this.bezierBubble.group.removeChild(_this.bezierBubble.points);
+    _this.bezierBubble.points.remove();
+    _this.bezierBubble.points = new paper.Group();
+
+    // debugger;
+    _.each(_this.bezierBubble.maskedGlyphs, g => {
+
+      _.each(g.children, (child, j) => {
+        _.each(child.segments, (seg, k) => {
+          
+          let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(1.5, 1.5)), 3);
+
+          p.fillColor = convertBgMode(backgroundMode, 'f');
+          _this.bezierBubble.points.addChild(p);
+        });
+      });
+    });
+
+    _this.bezierBubble.group.addChild(_this.bezierBubble.points);
+    _this.bezierBubble.group.clipped = true;
+
+    _this.view.draw();
+
+
 
   }
 };

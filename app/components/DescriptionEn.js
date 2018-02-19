@@ -39,17 +39,14 @@ class DescriptionEn extends Component {
 
     return (
       <div className="description__container">
-        <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "title")}>
-          <h4 className={selectedOrNot("title")} style={fontNames.title}>
-            Google Fonts + Korean Early Access
-          </h4>
-        </a>
+        <h4 style={fontNames.title}>
+          Google Fonts + Korean Early Access
+        </h4>
+        
+        <p style={fontNames.paragraph}>
+          Google Fonts + Korean Early Access is a list of Korean open source web fonts that are not yet officially supported in Google's fonts but can be easily used without license restrictions.
+        </p>
 
-        <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "big")}>
-          <p className={`description__big ${selectedOrNot('big')}`} style={fontNames.big}>
-            Google Fonts + Korean Early Access is a list of Korean open source web fonts that are not yet officially supported in Google's fonts but can be easily used without license restrictions.
-          </p>
-        </a>
 
       </div>
     );

@@ -3,6 +3,8 @@ import { convertBgMode } from '../../utils';
 import { scaleLinear } from 'd3';
 
 const amountScale = scaleLinear().domain([150, 2000]).clamp(true).range([50, 300]);
+const waveScale = scaleLinear().domain([0, 2000]).clamp(true).range([0, Math.PI * 2.5]);
+
 var yMax = Number.MIN_VALUE;
 const interpolateCompoundPath = (path) => {
   // console.log(_this.xDist);
@@ -78,7 +80,9 @@ export const wavyBaseline = {
     baseline.remove();
     _this.wavyBaseline.realBaseLine.strokeColor = convertBgMode(backgroundMode, "f");
 
-    var amplitudeScale = scaleLinear().domain([0, _this.props.screenWidth]).clamp(true).range([0, Math.PI * 2]);
+
+    var amplitudeScale = scaleLinear().domain([0, _this.props.screenWidth]).clamp(true).range([0, waveScale(_this.props.screenWidth)]);
+
     var theta = 0;
 
     _this.view.onFrame = (e) => {

@@ -171,9 +171,18 @@ class FontOutlineViewer extends Component {
 
     } else {
 
-      let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
-      width = (screenWidth - 24 * 2) - leftWidthScale(screenWidth);
-      height = 400;
+      if (screenWidth < BODY_480) {
+
+        width = (screenWidth - 24 * 2);
+        height = 400;
+
+      } else {
+
+        let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
+        width = (screenWidth - 24 * 2) - leftWidthScale(screenWidth);
+        height = 400;
+      }
+
     }
 
     return (

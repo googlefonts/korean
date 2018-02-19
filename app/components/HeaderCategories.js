@@ -9,6 +9,7 @@ class HeaderCategories extends Component {
   handleCurrentCategory(categoryData, e){
     e.stopPropagation();
     this.props.dispatch(changeCurrentCategory(categoryData.id)); 
+
   }
 
   render() {
