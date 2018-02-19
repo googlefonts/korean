@@ -588,6 +588,10 @@ sup {
     @include body_1280 {
       display: block;
     }
+
+    @include body_480 {
+      width: calc(100% - 65px);
+    }
   }
 
   &__detail-right--script {
@@ -694,6 +698,16 @@ sup {
     padding: 20px 24px;
     background-color: $text_color;
 
+
+    .dropdown-font-selector__menu {
+      @include body_600 {
+        top: 63px;
+        right: 24px;
+        width: calc(100% - 48px);
+
+      }  
+    }
+    
   }
 
   &--top {
@@ -712,6 +726,11 @@ sup {
       margin-right: 10px;
       padding: 5px 7px;
       font-size:0.9em;
+
+      @include body_480 {
+        margin-right: 2px;
+        padding: 5px 5px;
+      }
 
       &--selected {
         @extend .font-selector-header__tb-selector__link;
@@ -781,15 +800,17 @@ sup {
     border-radius: 2px;
 
     @include body_600 { 
-      width: calc(100% - 48px);
-      top: 63px;
-      right: 24px;
+      width: 100%;
     }
+
+
+
   }
 
   &__selected {
     display: flex;
     align-content: flex-start;
+    align-items: center;
     // margin-top: 15px;
 
     @include body_600 {
@@ -804,10 +825,20 @@ sup {
 
   &__en{
     margin-top:2px;
+    font-size:0.9em;
+
+    @include body_480 {
+      font-size: 0.8em;
+    }
   }
 
   &__ko {
     margin-right:0;
+    font-size:0.9em;
+
+    @include body_480 {
+      font-size: 0.8em;
+    }
   }
 
 

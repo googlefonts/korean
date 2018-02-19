@@ -41,21 +41,23 @@ class App extends Component {
 
   componentWillReceiveProps(newProps){
     if (newProps.currentCategory != this.props.currentCategory) {
-      this.moveScroll(newProps.currentCategory);
+      this.moveScroll(newProps.currentCategory);  
     }
   }
 
   moveScroll(currentCategory){
-    let headerHeight;
+    let { headerHeight } = this.props;
+
+    let collapsedHeaderHeight;
     if (!_.isNull(document.querySelector(".header-collapsed"))) {
-      headerHeight = document.querySelector(".header-collapsed").offsetHeight;
+      collapsedHeaderHeight = document.querySelector(".header-collapsed").offsetHeight;
     } else {
-      headerHeight = 62;
+      collapsedHeaderHeight = 62;
     }
     let categoryPosTop = document.querySelector(`a[name=category-${currentCategory}]`).offsetTop;
     let offset = 20;
 
-    TweenMax.to((document.documentElement || document.body.parentNode || document.body), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - headerHeight - offset });
+    TweenMax.to((document.documentElement || document.body.parentNode || document.body), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight - offset - headerHeight });
   }
 
   handleScroll(e){
@@ -164,6 +166,7 @@ let mapStateToProps = state => {
     screenHeight: state.screenHeight,
     currentCategory: state.currentCategory,
     currentViewFont: state.currentViewFont,
+    headerHeight: state.headerHeight,
     locale: state.locale,
     backgroundMode: state.backgroundMode
   }

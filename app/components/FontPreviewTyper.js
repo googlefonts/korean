@@ -68,21 +68,36 @@ class FontPreviewTyper extends Component {
 
         catStyle = {
           marginTop: -40,
-          marginLeft: -27,
+          marginLeft: 0,
           fontSize: '20.0em',
-          height: 400
+          height: 400,
+          width: '100%',
+          textAlign: 'center'
         }
 
       }
 
     } else {
       
-      catStyle = {
-        marginTop: -40,
-        marginLeft: -27,
-        fontSize: '20.0em',
-        height: 400
+
+      if (screenWidth < BODY_480) {
+        catStyle = {
+          marginTop: -40,
+          marginLeft: 0,
+          fontSize: '20.0em',
+          height: 400,
+          width: '100%',
+          textAlign: 'center'
+        }
+      } else {
+        catStyle = {
+          marginTop: -40,
+          marginLeft: -27,
+          fontSize: '20.0em',
+          height: 400
+        }  
       }
+      
     
     }
 

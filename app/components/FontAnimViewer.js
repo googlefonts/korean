@@ -4,6 +4,7 @@ import { Glyph } from './';
 import { wavyBaseline, bezierBubble, riseAndBlur, shadowSkew, sizeWaterfall } from './animations';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
+import { BODY_480 } from '../constants/defaults';
 
 const Fragment = React.Fragment;
 class FontAnimViewer extends Component {
@@ -78,7 +79,7 @@ class FontAnimViewer extends Component {
 
   updatePosition(props){
 
-    let { screenHeight, screenWidth, font, animationIdx } = props;
+    let { screenHeight, screenWidth, font, animationIdx, backgroundMode } = props;
     let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
 
 
@@ -87,7 +88,7 @@ class FontAnimViewer extends Component {
     var fontScale = 1 / font.unitsPerEm * fontSize;
     var x, y;
 
-    if (screenWidth > 480) {
+    if (screenWidth > BODY_480) {
       x = 24 + 160 + leftWidthScale(screenWidth);
       y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
     } else {
@@ -113,7 +114,7 @@ class FontAnimViewer extends Component {
     });
 
 
-    if (screenWidth > 480) {
+    if (screenWidth > BODY_480) {
       x = 24 + 160 + leftWidthScale(screenWidth);
       y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
     } else {
@@ -122,7 +123,7 @@ class FontAnimViewer extends Component {
     }
     
 
-    this.animations[animationIdx].updatePosition.bind(this, this)(x, y, fontScale, font);
+    this.animations[animationIdx].updatePosition.bind(this, this)(x, y, fontScale, font, backgroundMode);
 
     this.view.draw();
 

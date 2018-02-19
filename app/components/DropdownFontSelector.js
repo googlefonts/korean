@@ -34,7 +34,7 @@ class DropdownFontSelector extends Component {
             <Fragment>
               <div className="dropdown-font-selector__en en-black">{ currentDescFont.nameEn }</div> 
               <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
-              <div style={{ marginTop: -2 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
+              <div style={{ marginTop: -6 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
             </Fragment>
           }
         </a>
