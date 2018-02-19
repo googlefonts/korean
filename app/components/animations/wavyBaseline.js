@@ -3,12 +3,11 @@ import { convertBgMode } from '../../utils';
 import { scaleLinear } from 'd3';
 
 const amountScale = scaleLinear().domain([150, 2000]).clamp(true).range([50, 300]);
-var xDomain = [Number.MAX_VALUE, Number.MIN_VALUE];
-
+var yMax = Number.MIN_VALUE;
 const interpolateCompoundPath = (path) => {
   // console.log(_this.xDist);
   var interpolatedPath = new paper.CompoundPath();
-  
+    
   for (var i = 0; i < path.children.length; i++) {
       var childIntPath = new paper.Path();
       var child = path.children[i];
@@ -19,16 +18,8 @@ const interpolateCompoundPath = (path) => {
           var offset = j / amount * length;
           var point = child.getPointAt(offset);
           
-          if (point.x > xDomain[1]) {
-
-            xDomain[1] = point.x;
-
-          } 
-
-          if (point.x < xDomain[0]) {
-            
-            xDomain[0] = point.x;
-
+          if (yMax < point.y) {
+            yMax = point.y;
           }
 
           childIntPath.add(point);
@@ -68,17 +59,36 @@ export const wavyBaseline = {
       _this.wavyBaseline.originalPosGlyphs.push(originalPosGlyph);
     });
 
-    // console.log(xDomain);
-    // figure out width
-    // _this.wavyBaseline.dx = (Math.PI / ) * 50;
+    var baseline = new paper.Path.Line(
+      new paper.Point(0, yMax + 10), new paper.Point(_this.props.screenWidth, yMax + 10)
+    );
 
+    let amount = 500;
+    let length = baseline.length;
+    
+    _this.wavyBaseline.realBaseLine = new paper.Path();
 
-    var amplitudeScale = scaleLinear().domain(xDomain).clamp(true).range([0, Math.PI]);
+    for (let j = 0; j < amount + 1; j++) {
+      let offset = j / amount * length;
+      let point = baseline.getPointAt(offset);
+  
+      _this.wavyBaseline.realBaseLine.add(point);
+    }
+
+    baseline.remove();
+    _this.wavyBaseline.realBaseLine.strokeColor = convertBgMode(backgroundMode, "f");
+
+    var amplitudeScale = scaleLinear().domain([0, _this.props.screenWidth]).clamp(true).range([0, Math.PI * 2]);
     var theta = 0;
 
     _this.view.onFrame = (e) => {
 
       theta += 0.02;
+
+      _.each(_this.wavyBaseline.realBaseLine.segments, (seg, i) => {
+        let x = theta + amplitudeScale(seg.point.x);
+        seg.point.y = (yMax + 10) + Math.sin(x) * 50;
+      });
 
       _.each(_this.wavyBaseline.glyphs, (g, i) => {
         
@@ -121,6 +131,9 @@ export const wavyBaseline = {
       g.fillColor = convertBgMode(backgroundMode, "b");
     });
 
+
+    _this.wavyBaseline.realBaseline.strokeColor = convertBgMode(backgroundMode, "f");
+
     _this.view.draw();
 
   },
@@ -134,10 +147,13 @@ export const wavyBaseline = {
     _.each(_this.wavyBaseline.originalPosGlyph, g => {
       g.remove();
     });
+    _this.wavyBaseline.realBaseLine.remove();
 
     _.each(_this.glyphs, (glyph, i) => {
       glyph.visible = true;
     });
+
+
 
     _this.view.onFrame = null;
   },

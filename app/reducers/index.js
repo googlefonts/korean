@@ -11,10 +11,9 @@ let initialState = {
   descFontDropdownOpened: false,
   currentViewFont: null,
   currentScriptViewFont: null,
-  currentDescFontSelected: "paragraph", // title, big, paragraph
+  currentDescFontSelected: "all", // all, title, paragraph
   currentDescFont: {
     title: 1,
-    big: 1,
     paragraph: 1
   }, 
   currentCategory: 1,

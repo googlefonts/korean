@@ -2,7 +2,6 @@
 body {
   font-size: $base_font_size;
   line-height: $base_line_height;
-  transition: 0.4s background-color;
   background-color: $background_color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -409,18 +408,17 @@ sup {
   z-index:4;
 }
 .anim-selector {
-  ul {
-    li {
-      display: inline-block;
-    }
-  }
+  display: flex;
+  align-items:center;
 
   &__link {
-
-    color: gray; 
+    margin-right: 8px;
+    border:none !important;
+    opacity: 0.5;
 
     &--selected {
-      color: $text_color;
+      @extend .anim-selector__link;
+      opacity: 1;
     }
   }
 }
@@ -432,6 +430,11 @@ sup {
 
 .fonts-list {
   padding: 26px 24px;
+}
+
+.font-script-container {
+  border-top: 1px solid $text_color;
+  padding-top: 50px;
 }
 
 .font-script-list {
@@ -688,20 +691,50 @@ sup {
     left: 0;
     top: 0;
     width: calc(100% - 48px);
-    padding: 26px 24px;
-    background-color: $background_color;
+    padding: 20px 24px;
+    background-color: $text_color;
 
   }
+
+  &--top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom:15px;
+    border-bottom: 1px solid $background_color;
+  }
+
+  &__tb-selector {
+    display:flex;
+
+    &__link {
+      margin-right: 10px;
+      padding: 5px 7px;
+      font-size:0.9em;
+
+      &--selected {
+        @extend .font-selector-header__tb-selector__link;
+        background-color: $background-color !important;
+        color: $text_color !important;
+        border-radius: 2px;
+      }
+
+    }
+  }
+
+
+
   
 } 
 
 .font-selector-area {
-  border-bottom: 1px solid $text_color;
   // margin: 0 2 0 0;
   padding-bottom: 20px;
 
+
+
   &--mobile {
-    border-bottom: 1px solid $text_color;
     // margin: 0 2 0 0;
     padding-bottom: 10px;
     position:relative;
@@ -718,8 +751,8 @@ sup {
 
   &--selected { 
     @extend .font-selector;
-    background-color: $text_color;
-    color: $background_color !important;
+    background-color: $background_color;
+    color: $text_color !important;
     border-radius: 3px;
   }
 
@@ -741,21 +774,23 @@ sup {
     position:absolute;
     width:270px;
     padding: 0;
-    top: 40px;
-    left: 0;
-    background-color: $background_color;
-    border: 1px solid $text_color;
+    top: 43px;
+    right: 0;
+    background-color: $text_color;
+    border: 1px solid $background_color;
     border-radius: 2px;
 
     @include body_600 { 
-      width: 100%;
+      width: calc(100% - 48px);
+      top: 63px;
+      right: 24px;
     }
   }
 
   &__selected {
     display: flex;
     align-content: flex-start;
-    margin-top: 15px;
+    // margin-top: 15px;
 
     @include body_600 {
       margin-top: 0;
@@ -809,10 +844,10 @@ sup {
     }
 
     &:hover {
-      background-color: $text_color;
+      background-color: $background_color;
       opacity: 1;
       div {
-        color: $background_color;
+        color: $text_color;
       }
 
     }
@@ -824,14 +859,14 @@ sup {
 
 .description {
   padding: 26px 24px;
-  background-color: $background_color;
+  background-color: $text_color;
 
   div, a, p, h1, h2, h3, span {
-    color: $text_color;
+    color: $background_color;
   }
 
   &__container {
-    margin: 100px 0 0 210px;
+    margin: 0 0 0 210px;
 
     @include body_960 {
       margin-left: auto;
@@ -953,11 +988,11 @@ sup {
 .footer {
   margin: 0;
   padding: 26px 24px;
-  border-top: 1px solid $text_color;
-  background-color: $background_color;
+  border-top: 1px solid $background_color;
+  background-color: $text_color;
 
   div, a, p{
-    color: $text_color;
+    color: $background_color;
   }
 
   &__left {

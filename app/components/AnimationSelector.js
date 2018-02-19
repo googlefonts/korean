@@ -10,49 +10,24 @@ class AnimationSelector extends Component {
   }
 
   render() {
-    let { animationIdx } = this.props;
+    let { animationIdx, backgroundMode } = this.props;
     return (
       <div className="anim-selector">
-        <ul>
-          <li>
-            <a onClick={this.handleClick.bind(this, 0) } className={`anim-selector__link${ animationIdx == 0 ? "--selected" : "" }`} href="javascript:void(0);">
-              ㅁ
-            </a>
-          </li>
-          <li>
-            <a onClick={this.handleClick.bind(this, 1) } className={`anim-selector__link${ animationIdx == 1 ? "--selected" : "" }`} href="javascript:void(0);">
-              ㅁ
-            </a>
-          </li>
-          <li>
-            <a onClick={this.handleClick.bind(this, 2) } className={`anim-selector__link${ animationIdx == 2 ? "--selected" : "" }`} href="javascript:void(0);">
-              ㅁ
-            </a>
-          </li>
-          <li>
-            <a onClick={this.handleClick.bind(this, 3) } className={`anim-selector__link${ animationIdx == 3 ? "--selected" : "" }`} href="javascript:void(0);">
-              ㅁ
-            </a>
-          </li>
-          <li>
-            <a onClick={this.handleClick.bind(this, 4) } className={`anim-selector__link${ animationIdx == 4 ? "--selected" : "" }`} href="javascript:void(0);">
-              ㅁ
-            </a>
-          </li>
-          {
-           
-          // <li>
-          //   <a onClick={this.handleClick.bind(this, 5) } className={`anim-selector__link${ animationIdx == 5 ? "--selected" : "" }`} href="javascript:void(0);">
-          //     ㅁ
-          //   </a>
-          // </li>
-          // <li>
-          //   <a onClick={this.handleClick.bind(this, 6) } className={`anim-selector__link${ animationIdx == 6 ? "--selected" : "" }`} href="javascript:void(0);">
-          //     ㅁ
-          //   </a>
-          // </li> 
-          }
-        </ul>
+        <a onClick={this.handleClick.bind(this, 0) } className={`anim-selector__link${ animationIdx == 0 ? "--selected" : "" }`} href="javascript:void(0);">
+          <img src={`./public/assets/ef1_${backgroundMode}.svg`} />
+        </a>
+        <a onClick={this.handleClick.bind(this, 1) } className={`anim-selector__link${ animationIdx == 1 ? "--selected" : "" }`} href="javascript:void(0);">
+          <img src={`./public/assets/ef2_${backgroundMode}.svg`} />
+        </a>
+        <a onClick={this.handleClick.bind(this, 2) } className={`anim-selector__link${ animationIdx == 2 ? "--selected" : "" }`} href="javascript:void(0);">
+          <img src={`./public/assets/ef3_${backgroundMode}.svg`} />
+        </a>
+        <a onClick={this.handleClick.bind(this, 3) } className={`anim-selector__link${ animationIdx == 3 ? "--selected" : "" }`} href="javascript:void(0);">
+          <img src={`./public/assets/ef4_${backgroundMode}.svg`} />              
+        </a>
+        <a onClick={this.handleClick.bind(this, 4) } className={`anim-selector__link${ animationIdx == 4 ? "--selected" : "" }`} href="javascript:void(0);">
+          <img src={`./public/assets/ef5_${backgroundMode}.svg`} />
+        </a>
       </div>
     )
   }
@@ -60,6 +35,7 @@ class AnimationSelector extends Component {
 
 let mapStateToProps = state => {
   return {
+    backgroundMode: state.backgroundMode,
     animationIdx: state.animationIdx
   }
 }

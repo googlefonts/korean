@@ -48,7 +48,7 @@ let mapStateToProps = state => {
   return {
     locale: state.locale,
     screenWidth: state.screenWidth,
-    headerMode: state.headerMode,
+    headerMode: state.headerMode, 
     currentDescFontSelected: state.currentDescFontSelected
   }
 }

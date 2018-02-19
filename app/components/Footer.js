@@ -82,7 +82,7 @@ class Footer extends Component {
 
 let mapStateToProps = state => {
   return {
-    backgroundMode: state.backgroundMode,
+    backgroundMode: state.backgroundMode == "black" ? "white" : "black",
     screenWidth: state.screenWidth,
     locale: state.locale
   }

@@ -2,7 +2,7 @@ import paper from 'paper';
 import { convertBgMode } from '../../utils';
 import { scaleLinear } from 'd3';
 
-const GROUP_COUNT = 20;
+const GROUP_COUNT = 25;
 
 const vectorScale = scaleLinear().domain([0, GROUP_COUNT]).clamp(true).range([0.0, 1.0]);
 
@@ -10,7 +10,8 @@ export const sizeWaterfall = {
   attach: (_this, backgroundMode) => {
 
     _this.sizeWaterfall = {
-      point: new paper.Point(400, 200)
+      point: new paper.Point(400, 200),
+      tPoint: new paper.Point(400, 200)
     };
 
     _this.project.activate();
@@ -47,14 +48,16 @@ export const sizeWaterfall = {
 
     _this.view.onMouseMove = (e) => {
 
-      _this.sizeWaterfall.point = e.point.clone();
-      // _this.sizeWaterfall.point.x -= 650;
-      // _this.sizeWaterfall.point.y -= 350;
+      _this.sizeWaterfall.tPoint = e.point.clone();
     }
 
 
+    var handleScale = scaleLinear().domain([0, _this.sizeWaterfall.originalGlyphGroup.bounds.center.x, _this.props.screenWidth]).clamp(true).range([200, 0, -200]);
     
     _this.view.onFrame = (e) => {
+
+      _this.sizeWaterfall.point = _this.sizeWaterfall.point.add(_this.sizeWaterfall.tPoint.subtract(_this.sizeWaterfall.point).multiply(0.2));
+      
       var path = new paper.Path();
       var center = _this.sizeWaterfall.originalGlyphGroup.bounds.center;
       path.visible = false;
@@ -63,19 +66,22 @@ export const sizeWaterfall = {
       // debugger;
       // var point = _this.sizeWaterfall.point
         
+      
+      var handleIn = new paper.Point(handleScale(_this.sizeWaterfall.point.x), 0);
+      var handleOut = new paper.Point(0, 0);
 
-      if (_this.sizeWaterfall.point.x > center.x) {
-        // 아래쪽 으로 U자로 휘어야함 
-        var handleIn = new paper.Point(-150, 0);
-        var handleOut = new paper.Point(0, 0);
+      // if (_this.sizeWaterfall.point.x > center.x) {
+      //   // 아래쪽 으로 U자로 휘어야함 
+      //   var handleIn = new paper.Point(-150, 0);
+      //   var handleOut = new paper.Point(0, 0);
         
-      } else {
-        // var handleIn = new paper.Point(50, 0);
-        var handleIn = new paper.Point(150, 0);
-        var handleOut = new paper.Point(0, 0);
+      // } else {
+      //   // var handleIn = new paper.Point(50, 0);
+      //   var handleIn = new paper.Point(150, 0);
+      //   var handleOut = new paper.Point(0, 0);
         
-        // 위쪽으로 휘어야함
-      }
+      //   // 위쪽으로 휘어야함
+      // }
 
       
       path.add(new paper.Segment(_this.sizeWaterfall.point, handleIn, handleOut));
