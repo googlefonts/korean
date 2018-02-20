@@ -51,7 +51,8 @@ class FontPreviewTyper extends Component {
           marginTop: -20,
           marginLeft: 0,
           fontSize: '10.0em',
-          height: 200
+          height: 200,
+          paddingBottom: 40
         }
 
       
@@ -61,7 +62,11 @@ class FontPreviewTyper extends Component {
           marginTop: -30,
           marginLeft: -10,
           fontSize: '15.0em',
-          height: 300
+          height: 300,
+          paddingLeft: 0,
+          paddingRight: 0,
+          paddingTop: 0,
+          paddingBottom: 40
         }
       
       } else {
@@ -72,7 +77,10 @@ class FontPreviewTyper extends Component {
           fontSize: '20.0em',
           height: 400,
           width: '100%',
-          textAlign: 'center'
+          textAlign: 'center',
+          paddingLeft: 0,
+          paddingRight: 0,
+          paddingTop: 0
         }
 
       }
@@ -87,14 +95,22 @@ class FontPreviewTyper extends Component {
           fontSize: '20.0em',
           height: 400,
           width: '100%',
-          textAlign: 'center'
+          textAlign: 'center',
+          paddingLeft: 0,
+          paddingRight: 0,
+          paddingTop: 0,
+          paddingBottom: 40
         }
       } else {
         catStyle = {
           marginTop: -40,
           marginLeft: -27,
           fontSize: '20.0em',
-          height: 400
+          height: 400,
+          paddingLeft: 0,
+          paddingRight: 0,
+          paddingTop: 0,
+          paddingBottom: 40
         }  
       }
       

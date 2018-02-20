@@ -114,8 +114,13 @@ class App extends Component {
   }
 
   handleStepExit(e){
-    this.props.dispatch(changeCurrentViewFont(null));
-  
+    if (window.scrollY < this.props.headerHeight) {
+      this.props.dispatch(changeCurrentViewFont(1)); 
+    } else {
+      this.props.dispatch(changeCurrentViewFont(null));
+    
+    }
+    
   }
 
 
