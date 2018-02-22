@@ -3,6 +3,7 @@ import paper from 'paper';
 import { Glyph } from './';
 import { BODY_600, BODY_480 } from '../constants/defaults';
 import { connect } from 'react-redux';
+import { convertBgMode } from '../utils';
 import { scaleLinear } from 'd3';
 
 class FontOutlineViewer extends Component {
@@ -17,9 +18,9 @@ class FontOutlineViewer extends Component {
     this.project = paper.View._viewsById[this.refCanvas.id]._project;
     this.view = paper.View._viewsById[this.refCanvas.id];
 
-    var { font, message, category, screenWidth } = this.props;
+    var { font, message, category, screenWidth, backgroundMode } = this.props;
 
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth));
+    this.createGlyphPath(font, message, this.getSize(category, screenWidth), backgroundMode);
     
     this.project.activate();
     this.view.draw();
@@ -33,10 +34,20 @@ class FontOutlineViewer extends Component {
   componentWillReceiveProps(newProps){
     if (newProps.message != this.props.message) {
       this.resetMessage(newProps);
+    } else if (newProps.backgroundMode != this.props.backgroundMode) {
+      this.changeColor(newProps);
     }
   }
 
-  createGlyphPath(font, message, size){
+  changeColor(props) {
+    let { backgroundMode } = props;
+    _.each(this.glyphs, g => {
+      g.strokeColor = convertBgMode(backgroundMode, "f");
+      g.fillColor = convertBgMode(backgroundMode, "b");
+    });
+  }
+
+  createGlyphPath(font, message, size, backgroundMode){
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
     var kerningValue = 0;
@@ -51,6 +62,8 @@ class FontOutlineViewer extends Component {
         glyph: glyphData,
         x: x,
         y: fontSize * 0.5,
+        strokeColor: convertBgMode(backgroundMode, "f"),
+        fillColor: convertBgMode(backgroundMode, "b"),
         fontSize: fontSize,
         unitsPerEm: font.unitsPerEm
       });
@@ -95,7 +108,7 @@ class FontOutlineViewer extends Component {
   }
 
   resetMessage(props){
-    let { message, font, category, screenWidth} = props;
+    let { message, font, category, screenWidth, backgroundMode } = props;
     
     this.project.activate();
     _.each(this.glyphs, glyph => {
@@ -104,7 +117,7 @@ class FontOutlineViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth));
+    this.createGlyphPath(font, message, this.getSize(category, screenWidth), backgroundMode);
     this.view.draw();
 
   }
@@ -195,7 +208,8 @@ class FontOutlineViewer extends Component {
 
 let mapStateToProps = state => {
   return {
-    screenWidth: state.screenWidth
+    screenWidth: state.screenWidth,
+    backgroundMode: state.backgroundMode
   }
 }
 

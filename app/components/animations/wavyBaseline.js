@@ -136,7 +136,7 @@ export const wavyBaseline = {
     });
 
 
-    _this.wavyBaseline.realBaseline.strokeColor = convertBgMode(backgroundMode, "f");
+    _this.wavyBaseline.realBaseLine.strokeColor = convertBgMode(backgroundMode, "f");
 
     _this.view.draw();
 

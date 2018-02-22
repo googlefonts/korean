@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode, changeHeaderCollapsedTop } from '../actions';
+import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode, changeHeaderCollapsedTop, changeAnimationIdx, changeAnimationScriptIdx } from '../actions';
 import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter, GoogleFontBadge } from './';
 import scrollama from 'scrollama';
 import { scaleLinear } from 'd3';
 import 'gsap';
 import paper from 'paper';
+import { isTouchDevice } from '../utils';
 
 const Fragment = React.Fragment;
 
@@ -36,7 +37,22 @@ class App extends Component {
   }
 
   handleBodyClick(e){
-    this.props.dispatch(changeBackgroundMode(this.props.backgroundMode == "black" ? "white" : "black"));
+    let { isOnScript, animationIdx, animationScriptIdx } = this.props;
+
+    if (!isTouchDevice()){
+      this.props.dispatch(changeBackgroundMode(this.props.backgroundMode == "black" ? "white" : "black"));   
+    } 
+
+    if (isOnScript) {
+
+      this.props.dispatch(changeAnimationScriptIdx(++animationScriptIdx % 3));  
+    
+    } else {
+
+      this.props.dispatch(changeAnimationIdx(++animationIdx % 5));
+
+    }
+
   }
 
   componentWillReceiveProps(newProps){
@@ -173,7 +189,10 @@ let mapStateToProps = state => {
     currentViewFont: state.currentViewFont,
     headerHeight: state.headerHeight,
     locale: state.locale,
-    backgroundMode: state.backgroundMode
+    backgroundMode: state.backgroundMode,
+    isOnScript: state.isOnScript,
+    animationIdx: state.animationIdx,
+    animationScriptIdx: state.animationScriptIdx
   }
 }
 

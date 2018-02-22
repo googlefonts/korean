@@ -16,6 +16,7 @@ let initialState = {
     title: 1,
     paragraph: 1
   }, 
+  isOnScript: false,
   currentCategory: 1,
   newsFeeds: [],
   backgroundMode: "black",
@@ -30,6 +31,11 @@ var reducer = (state = initialState, action) => {
         ...state,
         screenWidth: action.payload.screenWidth,
         screenHeight: action.payload.screenHeight
+      };
+    case 'CHANGE_IS_ON_SCRIPT': 
+      return {
+        ...state,
+        isOnScript: action.payload.isOnScript
       };
     case 'CHANGE_CURRENT_SCRIPT_VIEW_FONT':
       return {

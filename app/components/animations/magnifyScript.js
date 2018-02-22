@@ -35,6 +35,22 @@ export const magnifyScript = {
     _this.magnifyScript.group = new paper.Group([_this.magnifyScript.maskCircle, _this.magnifyScript.scaleGroup]);
 
     _this.magnifyScript.group.clipped = true;
+    
+    _this.magnifyScript.maskRect.fillColor = convertBgMode(backgroundMode, "b");
+    _this.magnifyScript.circle.strokeColor = convertBgMode(backgroundMode, "f");
+    
+    _.each(_this.glyphs, (glyph, i) => {
+      glyph.fillColor = convertBgMode(backgroundMode, "f");
+      glyph.strokeColor = convertBgMode(backgroundMode, "f");
+    });
+
+    _.each(_this.magnifyScript.maskedGlyphs, (glyph, i) => {
+      glyph.fillColor = convertBgMode(backgroundMode, "f");  
+      glyph.strokeColor = convertBgMode(backgroundMode, "f");
+    });
+
+
+
     _this.view.draw();
 
     _this.view.onMouseMove = (e) => {
@@ -61,10 +77,12 @@ export const magnifyScript = {
     
     _.each(_this.glyphs, (glyph, i) => {
       glyph.fillColor = convertBgMode(backgroundMode, "f");
+      glyph.strokeColor = convertBgMode(backgroundMode, "f");
     });
 
     _.each(_this.magnifyScript.maskedGlyphs, (glyph, i) => {
       glyph.fillColor = convertBgMode(backgroundMode, "f");  
+      glyph.strokeColor = convertBgMode(backgroundMode, "f");
     });
 
 

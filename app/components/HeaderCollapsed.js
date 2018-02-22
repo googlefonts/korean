@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { AnimationSelector, DropDownCategorySelector, AnimationScriptSelector } from './';
 import { changeLocale, changeCurrentCategory, changeHeaderHeight, changeCategoryDropdownOpened } from '../actions';
 import scrollama from 'scrollama';
+import { changeIsOnScript } from '../actions';
 
 const Fragment = React.Fragment;
 
@@ -13,8 +14,7 @@ class HeaderCollapsed extends Component {
 
     this.scroller = scrollama();
     this.state = {
-      isMenuOpen: false,
-      isOnScript: false
+      isMenuOpen: false
     };
   }
 
@@ -33,17 +33,11 @@ class HeaderCollapsed extends Component {
   }
 
   handleStepEnter(e){
-    this.setState({
-      isOnScript: true
-    });
+    this.props.dispatch(changeIsOnScript(true)); 
   }
 
   handleStepExit(e){  
-
-    this.setState({
-      isOnScript: false
-    });
-  
+    this.props.dispatch(changeIsOnScript(false));
   }
 
   componentWillReceiveProps(newProps){
@@ -85,8 +79,8 @@ class HeaderCollapsed extends Component {
   }
 
   render() {
-    let { isOnScript } = this.state;
-    let { categoryDropdownOpened, locale, screenWidth, headerCollapsedTop, backgroundMode } = this.props;
+    // let {  } = this.state;
+    let { isOnScript, categoryDropdownOpened, locale, screenWidth, headerCollapsedTop, backgroundMode } = this.props;
     let currentCategory = _.find(CATEGORIES, categoryData => { return categoryData.id == this.props.currentCategory; });
 
     return (
@@ -264,6 +258,7 @@ let mapStateToProps = state => {
     currentCategory: state.currentCategory,
     categoryDropdownOpened: state.categoryDropdownOpened,
     screenWidth: state.screenWidth,
+    isOnScript: state.isOnScript,
     screenHeight: state.screenHeight,
     headerCollapsedTop: state.headerCollapsedTop,
     backgroundMode: state.backgroundMode
