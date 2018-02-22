@@ -1,11 +1,20 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
 import { scaleLinear } from 'd3';
+import { BODY_480 } from '../../constants/defaults';
 
-const sizeScale = scaleLinear().domain([0, 150]).clamp(true).range([100, 0]);
 export const magnifyScript = {
   attach: (_this, backgroundMode) => {
 
+    var sizeScale;
+
+    if (_this.props.screenWidth <= BODY_480) {
+      sizeScale = scaleLinear().domain([0, 300]).clamp(true).range([180, 0]);
+    } else {
+      sizeScale = scaleLinear().domain([0, 170]).clamp(true).range([100, 0]);
+
+    }
+    
     _this.magnifyScript = {
       point: new paper.Point(400, 200),
       tPoint: new paper.Point(400, 200),
