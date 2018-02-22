@@ -31,7 +31,7 @@ class FontAnimScriptViewer extends Component {
 
     var { font, message, screenHeight, screenWidth, animationScriptIdx, backgroundMode } = this.props;
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth), backgroundMode);
+    this.createGlyphPath(font, message, this.getSize(screenWidth), screenWidth, screenHeight, backgroundMode);
 
     this.attachAnimation(this.props);
     this.project.activate();
@@ -129,16 +129,26 @@ class FontAnimScriptViewer extends Component {
 
   }
 
-  createGlyphPath(font, message, size, backgroundMode){
+  createGlyphPath(font, message, size, screenWidth, screenHeight, backgroundMode){
 
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
+
     var kerningValue = 0;
-    let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
+    let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
 
   
     var fontSize = size || 300;
-    var x = size * 0.5 + 10 * 0.5;
+    var x, y;
+
+    if (screenWidth > BODY_480) {
+      x = 24 + leftWidthScale(screenWidth) + size * 0.5 + 10 * 0.5;
+      y = (screenHeight * 0.5 - this.getHeight(screenWidth) * 0.5) + size * 0.5;
+    } else { 
+      x = 24;
+      y = (screenHeight * 0.5 - this.getHeight(screenWidth) * 0.5) + 150 + 46;
+    }
+
     var fontScale = 1 / font.unitsPerEm * fontSize;
     
     _.each(fontGlyphs, (glyphData, i) => {
@@ -146,7 +156,7 @@ class FontAnimScriptViewer extends Component {
       let glyph = new Glyph({
         glyph: glyphData,
         x: x,
-        y: fontSize * 0.5,
+        y: y,
         fontSize: fontSize,
         fillColor: convertBgMode(backgroundMode, "f"),
         unitsPerEm: font.unitsPerEm
@@ -178,7 +188,7 @@ class FontAnimScriptViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth), backgroundMode);
+    this.createGlyphPath(font, message, this.getSize(screenWidth), screenWidth, screenHeight, backgroundMode);
 
     
     this.detachAnimation(props);
@@ -186,6 +196,25 @@ class FontAnimScriptViewer extends Component {
 
     this.view.draw();
 
+  }
+
+  getHeight(screenWidth) {
+  
+    if (screenWidth > BODY_600){
+    
+      return 200;
+
+    
+    } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
+      
+      return 300;
+
+    
+    } else {
+
+      return 400;
+
+    }    
   }
 
 
@@ -211,32 +240,36 @@ class FontAnimScriptViewer extends Component {
   componentDidUpdate(){
 
    
-    let { screenWidth, category } = this.props;
-    let leftWidthScale;
+    // let { screenWidth, category } = this.props;
+    // let leftWidthScale;
     
       
-    if (screenWidth > BODY_600){
+    // if (screenWidth > BODY_600){
     
-      leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-      this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth), 200);
+    //   leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
+    //   this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth), 200);
     
-    } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
+    // } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
 
-      leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-      this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) - leftWidthScale(screenWidth), 300);
+    //   leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
+    //   this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) - leftWidthScale(screenWidth), 300);
     
-    } else {
+    // } else {
 
-      this.view.viewSize = new paper.Size(screenWidth - 24 * 2, 400);
+    //   this.view.viewSize = new paper.Size(screenWidth - 24 * 2, 400);
 
-    }
+    // }
+
+    let { screenWidth, screenHeight } = this.props;
+    this.view.viewSize = new paper.Size( screenWidth, screenHeight );
 
   }
 
   render() {
-    let { screenWidth, id, category } = this.props;
+    let { screenWidth, id, category, screenHeight } = this.props;
     let width, height, leftWidthScale;
 
+    // let height;
 
     if (screenWidth > BODY_600){
     
@@ -257,11 +290,17 @@ class FontAnimScriptViewer extends Component {
       width = screenWidth - 24 * 2;
       height = 400;
 
-      }
+    }
 
     return (
-      <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2} height={ height } style={{ transition: '0.4s filter', width: width, height: height}}>
-      </canvas>
+      <Fragment>
+        <div className="font-anim-viewer" style={{ height: screenHeight, top: -(screenHeight * 0.5 - height * 0.5) }}>
+          <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
+          </canvas>
+        </div>
+        <div style={{ width: width, height: height}}>
+        </div>
+      </Fragment>
     );
   }
 }
@@ -270,7 +309,7 @@ class FontAnimScriptViewer extends Component {
 let mapStateToProps = state => {
   return {
     screenWidth: state.screenWidth,
-    screenHeight: state.screenHeight,
+    screenHeight: state.screenHeight * 0.5,
     animationScriptIdx: state.animationScriptIdx,
     backgroundMode: state.backgroundMode
   }
