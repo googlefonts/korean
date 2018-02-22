@@ -8,6 +8,16 @@ export const windowResize = (width, height) => {
   }
 };
 
+export const changeIsOnScript = (isOnScript) => {
+  return {
+    type: 'CHANGE_IS_ON_SCRIPT',
+    payload: {
+      isOnScript: isOnScript
+    }
+  }
+}
+
+
 export const changeCurrentScriptViewFont = (currentScriptViewFont) => {
   return {
     type: 'CHANGE_CURRENT_SCRIPT_VIEW_FONT',

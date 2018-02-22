@@ -20,13 +20,13 @@ class AnimationSelector extends Component {
           <img src={`./public/assets/ef2_${backgroundMode}.svg`} />
         </a>
         <a onClick={this.handleClick.bind(this, 2) } className={`anim-selector__link${ animationIdx == 2 ? "--selected" : "" }`} href="javascript:void(0);">
-          <img src={`./public/assets/ef3_${backgroundMode}.svg`} />
+          <img src={`./public/assets/ef4_${backgroundMode}.svg`} />
         </a>
         <a onClick={this.handleClick.bind(this, 3) } className={`anim-selector__link${ animationIdx == 3 ? "--selected" : "" }`} href="javascript:void(0);">
-          <img src={`./public/assets/ef4_${backgroundMode}.svg`} />              
+          <img src={`./public/assets/ef5_${backgroundMode}.svg`} />              
         </a>
         <a onClick={this.handleClick.bind(this, 4) } className={`anim-selector__link${ animationIdx == 4 ? "--selected" : "" }`} href="javascript:void(0);">
-          <img src={`./public/assets/ef5_${backgroundMode}.svg`} />
+          <img src={`./public/assets/ef6_${backgroundMode}.svg`} />
         </a>
       </div>
     )

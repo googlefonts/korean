@@ -17,9 +17,9 @@ class FontAnimViewer extends Component {
     this.animations = [
       bezierBubble,
       wavyBaseline,
-      riseAndBlur,
+      sizeWaterfall,
       shadowSkew,
-      sizeWaterfall
+      riseAndBlur,
     ];
   }
 
