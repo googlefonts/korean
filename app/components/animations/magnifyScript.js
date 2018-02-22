@@ -1,18 +1,32 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
+import { scaleLinear } from 'd3';
 
+const sizeScale = scaleLinear().domain([0, 150]).clamp(true).range([100, 0]);
 export const magnifyScript = {
   attach: (_this, backgroundMode) => {
 
     _this.magnifyScript = {
-      point: new paper.Point(400, 200)
+      point: new paper.Point(400, 200),
+      tPoint: new paper.Point(400, 200),
+      size: 100,
+      tSize: 100
     };
 
     _this.project.activate();
 
+    _this.magnifyScript.maskedGlyphs = new paper.Group();
+
+    _.each(_this.glyphs, (glyph, i) => {
+      glyph.strokeWidth = 0;
+      var _g = glyph.clone();
+
+      _this.magnifyScript.maskedGlyphs.addChild(_g);
+    });
+
     _this.magnifyScript.maskRect = new paper.Path.Rectangle({
-      point: [0, 0],
-      size: [400, 400],
+      point: [_this.magnifyScript.maskedGlyphs.bounds.left - 50, _this.magnifyScript.maskedGlyphs.bounds.top - 50],
+      size: [_this.magnifyScript.maskedGlyphs.bounds.size.width + 50, _this.magnifyScript.maskedGlyphs.bounds.size.height + 50],
       fillColor: convertBgMode(backgroundMode, "b")
     });
 
@@ -20,17 +34,10 @@ export const magnifyScript = {
 
     _this.magnifyScript.circle = new paper.Path.Circle({center: [400, 200], radius: 100, strokeColor: convertBgMode(backgroundMode, "f")});
 
-    _this.magnifyScript.maskedGlyphs = [];
 
-    _.each(_this.glyphs, (glyph, i) => {
-      glyph.strokeWidth = 0;
-      var _g = glyph.clone();
 
-      _this.magnifyScript.maskedGlyphs.push(_g);
-    });
-
-    _this.magnifyScript.scaleGroup = new paper.Group([_this.magnifyScript.maskRect].concat(_this.magnifyScript.maskedGlyphs));
-    _this.magnifyScript.scaleGroup.scale(1.27);
+    _this.magnifyScript.scaleGroup = new paper.Group([_this.magnifyScript.maskRect, _this.magnifyScript.maskedGlyphs]);
+    _this.magnifyScript.scaleGroup.scale(1.4);
 
     _this.magnifyScript.group = new paper.Group([_this.magnifyScript.maskCircle, _this.magnifyScript.scaleGroup]);
 
@@ -44,7 +51,7 @@ export const magnifyScript = {
       glyph.strokeColor = convertBgMode(backgroundMode, "f");
     });
 
-    _.each(_this.magnifyScript.maskedGlyphs, (glyph, i) => {
+    _.each(_this.magnifyScript.maskedGlyphs.children, (glyph, i) => {
       glyph.fillColor = convertBgMode(backgroundMode, "f");  
       glyph.strokeColor = convertBgMode(backgroundMode, "f");
     });
@@ -54,14 +61,30 @@ export const magnifyScript = {
     _this.view.draw();
 
     _this.view.onMouseMove = (e) => {
-      _this.magnifyScript.point = e.point;
+      _this.magnifyScript.tPoint = e.point;
+      let dist = Math.abs(_this.magnifyScript.tPoint.y - _this.magnifyScript.maskedGlyphs.bounds.center.y);
+    
+      _this.magnifyScript.tSize = sizeScale(dist);
+
     }
 
 
     _this.view.onFrame = (e) => {
+       _this.magnifyScript.size += (_this.magnifyScript.tSize - _this.magnifyScript.size) * 0.2;
+
+      _this.magnifyScript.point = _this.magnifyScript.point.add(_this.magnifyScript.tPoint.subtract(_this.magnifyScript.point).multiply(0.2));
+
+      let radius = _this.magnifyScript.maskCircle.bounds.width / 2;
+      
       _this.project.activate();
+
+
       _this.magnifyScript.maskCircle.position = _this.magnifyScript.point;
       _this.magnifyScript.circle.position = _this.magnifyScript.point;
+
+      _this.magnifyScript.maskCircle.scale(_this.magnifyScript.size / radius);
+      _this.magnifyScript.circle.scale(_this.magnifyScript.size / radius);
+
       _this.view.draw();
     };
 
@@ -80,7 +103,7 @@ export const magnifyScript = {
       glyph.strokeColor = convertBgMode(backgroundMode, "f");
     });
 
-    _.each(_this.magnifyScript.maskedGlyphs, (glyph, i) => {
+    _.each(_this.magnifyScript.maskedGlyphs.children, (glyph, i) => {
       glyph.fillColor = convertBgMode(backgroundMode, "f");  
       glyph.strokeColor = convertBgMode(backgroundMode, "f");
     });
@@ -102,9 +125,8 @@ export const magnifyScript = {
       glyph.strokeWidth = 1;
     });
 
-    _.each(_this.magnifyScript.maskedGlyphs, g => {
-      g.remove();
-    });
+    _this.magnifyScript.maskedGlyphs.remove();
+
     _this.magnifyScript.group.remove();
 
     _this.view.onFrame = null;
