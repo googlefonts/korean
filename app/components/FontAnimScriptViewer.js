@@ -145,7 +145,7 @@ class FontAnimScriptViewer extends Component {
       x = 24 + leftWidthScale(screenWidth) + size * 0.5 + 10 * 0.5;
       y = (screenHeight * 0.5 - this.getHeight(screenWidth) * 0.5) + size * 0.5;
     } else { 
-      x = 24;
+      x = 24 + size * 0.5 + 10 * 0.5;
       y = (screenHeight * 0.5 - this.getHeight(screenWidth) * 0.5) + 150 + 46;
     }
 
