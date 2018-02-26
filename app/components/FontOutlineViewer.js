@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { convertBgMode } from '../utils';
 import { scaleLinear } from 'd3';
 
+const Fragment = React.Fragment;
 class FontOutlineViewer extends Component {
   constructor(props){
     super(props);
@@ -199,8 +200,8 @@ class FontOutlineViewer extends Component {
     }
 
     return (
-      <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2} height={ height } style={{ width: width, height: height}}>
-      </canvas>
+        <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2} height={ height } style={{ width: width, height: height}}>
+        </canvas>
     );
   }
 }
