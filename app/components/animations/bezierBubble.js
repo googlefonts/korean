@@ -2,12 +2,13 @@ import paper from 'paper';
 import { convertBgMode } from '../../utils'; 
 import { scaleLinear } from 'd3';
 
-const sizeScale = scaleLinear().domain([0, 200]).clamp(true).range([180, 0]);
+const sizeScale = scaleLinear().domain([0, 200]).clamp(true).range([150, 0]);
 
 export const bezierBubble = {
   attach: (_this, backgroundMode) => {
 
     _this.bezierBubble = {
+      prevPoint: new paper.Point(400, 200),
       point: new paper.Point(400, 200),
       rPoint: new paper.Point(400, 200),
       points: new paper.Group(),
@@ -23,7 +24,7 @@ export const bezierBubble = {
       _.each(glyph.children, (child, j) => {
         _.each(child.segments, (seg, k) => {
           
-          let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(1.5, 1.5)), 3);
+          let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(2, 2)), 4);
 
           p.fillColor = convertBgMode(backgroundMode, 'f');
           _this.bezierBubble.points.addChild(p);
@@ -78,23 +79,33 @@ export const bezierBubble = {
 
     // _this.view.emit('onMouseMove');
 
+    var theta = 0;
+    // var velocitySizeScale = scaleLinear().domain([0, 250]).clamp(true).range([20, -50]);
+
     _this.view.onFrame = (e) => {
+      theta += 0.06;
       _this.project.activate();
 
+      let len = _this.bezierBubble.rPoint.subtract(_this.bezierBubble.prevPoint).length;
+
       _this.bezierBubble.size += (_this.bezierBubble.tSize - _this.bezierBubble.size) * 0.2;
+      _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * 2.5;
+      // _this.bezierBubble.size += velocitySizeScale(len);
 
       _this.bezierBubble.rPoint = _this.bezierBubble.rPoint.add(_this.bezierBubble.point.subtract(_this.bezierBubble.rPoint).multiply(0.2));
 
+     
       // get
-      let radius = _this.bezierBubble.maskCircle.bounds.width / 2;
 
+      let radius = _this.bezierBubble.maskCircle.bounds.width / 2;
       _this.bezierBubble.maskCircle.position = _this.bezierBubble.rPoint;
       _this.bezierBubble.circle.position = _this.bezierBubble.rPoint;
+
       _this.bezierBubble.maskCircle.scale(_this.bezierBubble.size / radius);
       _this.bezierBubble.circle.scale(_this.bezierBubble.size / radius);
       
+      _this.bezierBubble.prevPoint = _this.bezierBubble.rPoint.clone();
 
-      
       _this.view.draw();
     };
 
