@@ -180,6 +180,7 @@ class HeaderCollapsed extends Component {
           {
             (this.state.isMenuOpen) ? 
             <Fragment>
+
               <div className="header-collapsed__categories">
                 {
                   _.map(CATEGORIES, categoryData => {
@@ -217,6 +218,10 @@ class HeaderCollapsed extends Component {
                   })
                 }
               </div>
+              <div className="l-apple-box--half"></div>
+              {
+                isOnScript ? <AnimationScriptSelector/> : <AnimationSelector />
+              }
               {
                 screenWidth <= BODY_600 ? (locale == "ko" ? 
                 <div className={`header__menu--${locale}`} style={{ marginTop: 10}}>

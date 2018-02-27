@@ -41,18 +41,19 @@ class App extends Component {
 
     if (!isTouchDevice()){
       this.props.dispatch(changeBackgroundMode(this.props.backgroundMode == "black" ? "white" : "black"));   
+      if (isOnScript) {
+
+        this.props.dispatch(changeAnimationScriptIdx(++animationScriptIdx % 3));  
+      
+      } else {
+
+        this.props.dispatch(changeAnimationIdx(++animationIdx % 5));
+
+      }
+
     } 
 
-    if (isOnScript) {
-
-      this.props.dispatch(changeAnimationScriptIdx(++animationScriptIdx % 3));  
-    
-    } else {
-
-      this.props.dispatch(changeAnimationIdx(++animationIdx % 5));
-
-    }
-
+   
   }
 
   componentWillReceiveProps(newProps){
