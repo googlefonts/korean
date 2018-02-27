@@ -1,11 +1,16 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
 import 'gsap';
+import { scaleLinear } from 'd3';
 
 export const riseAndBlur = {
   attach: (_this, backgroundMode) => {
 
     _this.riseAndBlur = {
+      point: new paper.Point(400, 200),
+      tPoint: new paper.Point(400, 200),
+      lgCenter: new paper.Point(400, 200),
+      originalPos: []
     };
     
     _this.project.activate();
@@ -15,6 +20,11 @@ export const riseAndBlur = {
     _.each(_this.glyphs, (glyph, i) => {
       // glyph.strokeWidth = 0;
       
+      if (i == 0) {
+        _this.riseAndBlur.lgCenter = glyph.bounds.center;
+      }
+      _this.riseAndBlur.originalPos.push(glyph.position.clone());
+
       var _g = glyph.clone();
       _this.riseAndBlur.blurGlyphs.push(_g);
 
@@ -22,37 +32,38 @@ export const riseAndBlur = {
       _g.fillColor = convertBgMode(backgroundMode, "f");
 
     });
+    _this.view.onMouseMove = (e) => {
+      _this.riseAndBlur.tPoint = e.point;
+    }
 
-    var t = {
-      blurAmount: 0
+    var len = _this.riseAndBlur.blurGlyphs.length;
+    var middle = Math.floor(len / 2);
+
+
+    var blurAmountScale = scaleLinear().domain([0, 350]).clamp(true).range([0, 15]);
+    var offsetScale = scaleLinear().domain([0, 350]).clamp(true).range([0, 200])
+
+    _this.view.onFrame = (e) => {
+      
+
+      _this.riseAndBlur.point = _this.riseAndBlur.point.add(_this.riseAndBlur.tPoint.subtract(_this.riseAndBlur.point).multiply(0.2));
+
+      let dist = _this.riseAndBlur.lgCenter.y - _this.riseAndBlur.point.y;
+
+      _this.refCanvas.style.filter = `blur(${blurAmountScale(Math.abs(dist))}px)`;
+
+      _.each(_this.riseAndBlur.blurGlyphs, (g, i) => {
+        let offsetNum;
+
+        if (dist > 0) {
+          offsetNum = middle - i;  
+        } else {
+          offsetNum = i - middle;    
+        }
+        
+        g.position = new paper.Point(_this.riseAndBlur.originalPos[i].x, _this.riseAndBlur.originalPos[i].y + offsetNum * offsetScale(Math.abs(dist)));
+      });
     };
-
-    TweenMax.to(t, 2.0 + _this.riseAndBlur.blurGlyphs.length * 0.2, { blurAmount: 10, repeat: 9999, yoyo: true, onUpdate: e => {
-        _this.refCanvas.style.filter = `blur(${t.blurAmount}px)`;
-    }});
-
-    
-    _.each(_this.riseAndBlur.blurGlyphs, (g, i) => {
-      g.tween = {
-        yOriginal: g.position.y,
-        yOffset: g.position.y + 200
-      };
-
-
-      g.position = new paper.Point(g.position.x, g.tween.yOffset);
-
-      TweenMax.to(g.tween, 2.0, { yoyo: true, repeat: 9999, delay: i * 0.2, ease: Power3.easeOut, yOffset: g.tween.yOriginal - 200, onUpdate: () => {
-
-        _this.project.activate();
-        g.position = new paper.Point(g.position.x, g.tween.yOffset);
-        // console.log(g.position.x, g.position.y);
-        _this.view.draw();
-      }});
-
-    });
-
-    
-
 
 
     _this.view.draw();
@@ -87,6 +98,8 @@ export const riseAndBlur = {
 
     _this.refCanvas.style.filter = "blur(0)";
 
+    _this.view.onFrame = null;
+    _this.view.onMouseMove = null;
     _this.view.draw();
   }, 
 
