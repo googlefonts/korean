@@ -3,7 +3,6 @@ import { convertBgMode } from '../../utils';
 import { scaleLinear } from 'd3';
 
 const amountScale = scaleLinear().domain([150, 2000]).clamp(true).range([50, 300]);
-const waveScale = scaleLinear().domain([0, 2000]).clamp(true).range([0, Math.PI * 2.5]);
 
 var yMax = Number.MIN_VALUE;
 const interpolateCompoundPath = (path) => {
@@ -38,7 +37,11 @@ export const wavyBaseline = {
     // console.log(fontAn);
     _this.wavyBaseline = {
       glyphs: [],
-      originalPosGlyphs: []
+      originalPosGlyphs: [],
+      metrics: new paper.Group(),
+      point: new paper.Point(400, 200),
+      tPoint: new paper.Point(400, 200),
+      prevPoint: new paper.Point(400, 200)
     };
 
    
@@ -49,7 +52,22 @@ export const wavyBaseline = {
 
       // var _g = glyph.clone();
       var _g = interpolateCompoundPath(glyph);
+      
+      var scale = 1 / glyph.unitsPerEm * glyph.glyphFontSize;
+      var metric = new paper.Path.Line(
+        new paper.Point(glyph.x - glyph.unitsPerEm * 0.45 * scale, 150), new paper.Point(glyph.x - glyph.unitsPerEm * 0.45 * scale, 550)
+      );
+
+      _this.wavyBaseline.metrics.addChild(metric);
+
+      if (i + 1 >= _this.glyphs.length) {
+        var metric = new paper.Path.Line(new paper.Point(glyph.x + glyph.unitsPerEm * 0.45 * scale, 150), new paper.Point(glyph.x + glyph.unitsPerEm * 0.45 * scale, 550));
+        
+        _this.wavyBaseline.metrics.addChild(metric);
+      }
+
       glyph.visible = false;
+
       
       _g.fillColor = convertBgMode(backgroundMode, "b");
       _g.strokeColor = convertBgMode(backgroundMode, "f");
@@ -60,6 +78,10 @@ export const wavyBaseline = {
       originalPosGlyph.visible = false;
       _this.wavyBaseline.originalPosGlyphs.push(originalPosGlyph);
     });
+
+    _this.wavyBaseline.metrics.strokeColor = convertBgMode(backgroundMode, "f");
+    _this.wavyBaseline.metrics.dashArray = [1, 3];
+    _this.wavyBaseline.metrics.strokeWidth = 1;
 
     var baseline = new paper.Path.Line(
       new paper.Point(0, yMax + 10), new paper.Point(_this.props.screenWidth, yMax + 10)
@@ -81,17 +103,43 @@ export const wavyBaseline = {
     _this.wavyBaseline.realBaseLine.strokeColor = convertBgMode(backgroundMode, "f");
 
 
-    var amplitudeScale = scaleLinear().domain([0, _this.props.screenWidth]).clamp(true).range([0, waveScale(_this.props.screenWidth)]);
+
+    _this.view.onMouseMove = (e) => {
+      _this.wavyBaseline.tPoint = e.point;
+    }
+
+    var centerY = _.mean(_.map(_this.wavyBaseline.originalPosGlyphs, g => {
+      return g.bounds.center.y;
+    }));
+
 
     var theta = 0;
+    var radiusScale = scaleLinear().domain([0, 350]).clamp(true).range([50, 300]);
+    var waveScale = scaleLinear().domain([0, 350]).clamp(true).range([Math.PI * 0.5, Math.PI * 3.5]);
+    var amplitudeScale = scaleLinear().domain([0, _this.props.screenWidth]).clamp(true).range([0, waveScale(_this.props.screenWidth)]);
 
     _this.view.onFrame = (e) => {
-
       theta += 0.02;
+
+      _this.wavyBaseline.point = _this.wavyBaseline.point.add(_this.wavyBaseline.tPoint.subtract(_this.wavyBaseline.point).multiply(0.2));
+
+      let dist = Math.abs(centerY - _this.wavyBaseline.point.y);
+      amplitudeScale.range([0, waveScale(dist)]);
 
       _.each(_this.wavyBaseline.realBaseLine.segments, (seg, i) => {
         let x = theta + amplitudeScale(seg.point.x);
-        seg.point.y = (yMax + 10) + Math.sin(x) * 50;
+        seg.point.y = (yMax + 10) + Math.sin(x) * radiusScale(dist);
+      });
+
+      _.each(_this.wavyBaseline.metrics.children, (child, i) => {
+        
+        _.each(child.segments, (seg, j) => {
+
+          let x = theta + amplitudeScale(seg.point.x);
+          seg.point.y = (j % 2 == 0 ? 150 : 550) + Math.sin(x) * radiusScale(dist);
+
+        });
+      
       });
 
       _.each(_this.wavyBaseline.glyphs, (g, i) => {
@@ -106,7 +154,7 @@ export const wavyBaseline = {
 
             var originalSegment = originalChild.segments[k];
             let x = theta + amplitudeScale(seg.point.x);
-            seg.point.y = originalSegment.point.y + Math.sin(x) * 50;
+            seg.point.y = originalSegment.point.y + Math.sin(x) * radiusScale(dist);
 
 
           });
@@ -116,6 +164,7 @@ export const wavyBaseline = {
         
       });  
 
+      _this.wavyBaseline.prevPoint = _this.wavyBaseline.point.clone();
 
     }
     
@@ -128,6 +177,7 @@ export const wavyBaseline = {
   changeBgMode: (_this, backgroundMode) => {
 
     _this.project.activate();
+    _this.wavyBaseline.metrics.strokeColor = convertBgMode(backgroundMode, "f");
 
 
     _.each(_this.wavyBaseline.glyphs, g => {
@@ -137,6 +187,7 @@ export const wavyBaseline = {
 
 
     _this.wavyBaseline.realBaseLine.strokeColor = convertBgMode(backgroundMode, "f");
+    _this.wavyBaseline.metrics.strokeColor = convertBgMode(backgroundMode, "f");
 
     _this.view.draw();
 
@@ -157,7 +208,7 @@ export const wavyBaseline = {
       glyph.visible = true;
     });
 
-
+    _this.wavyBaseline.metrics.remove();
 
     _this.view.onFrame = null;
   },

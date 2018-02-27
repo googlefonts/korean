@@ -7,7 +7,8 @@ export const shadowSkew = {
 
     _this.shadowSkew = {
       point: new paper.Point(400, 200),
-      tPoint: new paper.Point(400, 200)
+      tPoint: new paper.Point(400, 200),
+      lgCenter: new paper.Point(0, 0)
     };
 
     _this.project.activate();
@@ -15,7 +16,12 @@ export const shadowSkew = {
     _this.shadowSkew.leftGlyphs = [];
     _this.shadowSkew.rightGlyphs = [];
 
+
     _.each(_this.glyphs, (glyph, i) => {
+      if (i == 0) {
+        _this.shadowSkew.lgCenter = glyph.bounds.center;
+      }
+
       var lg = glyph.clone();
       var rg = glyph.clone();
       glyph.visible = false;
@@ -45,7 +51,7 @@ export const shadowSkew = {
     _this.view.draw();
 
     var skewAmountScale = scaleLinear().domain([0, 600]).clamp(true).range([-1.5, 1.0]);
-    var xScale = scaleLinear().domain([0, 200, 600]).clamp(true).range([1.0, 1.0, 2.0]);
+    var xScale = scaleLinear().domain([-500, 340, 600]).clamp(true).range([1.0, 1.0, 2.0]);
 
     _this.view.onMouseMove = (e) => {
       _this.shadowSkew.tPoint = e.point;
@@ -76,7 +82,7 @@ export const shadowSkew = {
       
 
 
-      _this.clonedLeftGroup.shear(0.0, -skewAmount, _this.shadowSkew.leftGroup.bounds.center);
+      _this.clonedLeftGroup.shear(0.0, -skewAmount, _this.shadowSkew.lgCenter);
       _this.clonedLeftGroup.scale(xScaleAmount, 1);
       _this.clonedRightGroup.shear(0.0, skewAmount, _this.shadowSkew.rightGroup.bounds.center);
       _this.clonedRightGroup.scale(xScaleAmount, 1);

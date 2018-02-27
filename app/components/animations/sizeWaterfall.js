@@ -1,8 +1,8 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
-import { scaleLinear } from 'd3';
+import { scaleLinear, easeQuadIn } from 'd3';
 
-const GROUP_COUNT = 25;
+const GROUP_COUNT = 30;
 
 const vectorScale = scaleLinear().domain([0, GROUP_COUNT]).clamp(true).range([0.0, 1.0]);
 
@@ -38,7 +38,7 @@ export const sizeWaterfall = {
       let glyphGroup = _this.sizeWaterfall.originalGlyphGroup.clone();
 
       // glyphGroup.position = new paper.Point(Math.random() * 400, Math.random() * 500);
-      glyphGroup.scale(s(i));
+      glyphGroup.scale(easeQuadIn(s(i)));
       glyphGroup.fillColor = "black";//convertBgMode(backgroundMode, "b");
       glyphGroup.strokeColor = "white";//convertBgMode(backgroundMode, "f");
 
@@ -52,7 +52,7 @@ export const sizeWaterfall = {
     }
 
 
-    var handleScale = scaleLinear().domain([0, _this.sizeWaterfall.originalGlyphGroup.bounds.center.x, _this.props.screenWidth]).clamp(true).range([200, 0, -200]);
+    var handleScale = scaleLinear().domain([0, _this.sizeWaterfall.originalGlyphGroup.bounds.center.x, _this.props.screenWidth]).clamp(true).range([500, 0, -500]);
     
     _this.view.onFrame = (e) => {
 
@@ -60,7 +60,8 @@ export const sizeWaterfall = {
       
       var path = new paper.Path();
       var center = _this.sizeWaterfall.originalGlyphGroup.bounds.center;
-      path.visible = false;
+      path.visible = true;
+      // path.selected = true;
       path.add(center);
       // console.log(_this.sizeWaterfall.originalGlyphGroup.bounds.center);
       // debugger;
@@ -85,13 +86,15 @@ export const sizeWaterfall = {
 
       
       path.add(new paper.Segment(_this.sizeWaterfall.point, handleIn, handleOut));
-      path.strokeColor = "red";
+      path.strokeColor = "red"; 
+
+      // debugger;
 
       var vector = _this.sizeWaterfall.point.subtract(center);
 
       _.each(_this.sizeWaterfall.glyphGroups, (g, i) => {
 
-        g.position = path.curves[0].getPointAtTime(vectorScale(i));//center.add(vector.multiply(vectorScale(i)))
+        g.position = path.getPointAt(vectorScale(i) * path.length);//center.add(vector.multiply(vectorScale(i)))
 
       });
 
