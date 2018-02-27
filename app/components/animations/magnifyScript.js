@@ -9,7 +9,7 @@ export const magnifyScript = {
     var sizeScale;
 
     if (_this.props.screenWidth <= BODY_480) {
-      sizeScale = scaleLinear().domain([0, 300]).clamp(true).range([190, 0]);
+      sizeScale = scaleLinear().domain([0, 300]).clamp(true).range([140, 0]);
     } else {
       sizeScale = scaleLinear().domain([0, 170]).clamp(true).range([150, 0]);
 
@@ -46,7 +46,13 @@ export const magnifyScript = {
 
 
     _this.magnifyScript.scaleGroup = new paper.Group([_this.magnifyScript.maskRect, _this.magnifyScript.maskedGlyphs]);
-    _this.magnifyScript.scaleGroup.scale(1.8);
+
+    if (_this.props.screenWidth <= BODY_480) {
+      _this.magnifyScript.scaleGroup.scale(1.4);
+    } else {
+      _this.magnifyScript.scaleGroup.scale(1.8);
+
+    }
 
     _this.magnifyScript.group = new paper.Group([_this.magnifyScript.maskCircle, _this.magnifyScript.scaleGroup]);
 
