@@ -73,8 +73,8 @@ class App extends Component {
     }
     let categoryPosTop = document.querySelector(`a[name=category-${currentCategory}]`).offsetTop;
     let offset = 20;
-    debugger;
-    TweenMax.to((html || document.documentElement || document.body.parentNode || document.body), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight - offset - headerHeight });
+
+    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight - offset - headerHeight });
   }
 
   handleScroll(e){
