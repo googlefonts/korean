@@ -174,7 +174,6 @@ class App extends Component {
           </section>
           <FontCSSLoader />
         </section>
-        <GoogleFontBadge />
         <link rel="stylesheet" media="all" href={`./public/style_${backgroundMode}.css`} async />
       </Fragment>
     );
