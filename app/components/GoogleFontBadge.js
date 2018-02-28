@@ -9,7 +9,8 @@ class GoogleFontBadge extends Component {
     super(props);
 
     this.state = {
-      conversed: false
+      conversed: false,
+      footer: false
     }
   }
 
@@ -17,6 +18,14 @@ class GoogleFontBadge extends Component {
     let { screenHeight } = this.props;
     
     this.scroller = scrollama();
+    this.footerScroller = scrollama();
+
+
+    this.footerScroller.setup({
+      step: '.footer',
+      offset: (screenHeight - 90) / screenHeight,
+    }).onStepEnter(this.handleFooterEnter.bind(this))
+        .onStepExit(this.handleFooterExit.bind(this));
 
 
     this.scroller.setup({
@@ -28,10 +37,22 @@ class GoogleFontBadge extends Component {
         .onStepExit(this.handleStepExit.bind(this));
   }
 
+  handleFooterEnter(e){
+    this.setState({
+      footer: true
+    });
+  }
+
+  handleFooterExit(e){
+    this.setState({
+      footer: false
+    });
+  }
+
   handleStepEnter(e){
-      this.setState({
-        conversed: true
-      })
+    this.setState({
+      conversed: true
+    })
   }
 
   handleStepExit(e){
@@ -44,6 +65,7 @@ class GoogleFontBadge extends Component {
 
   render() {
     let { backgroundMode, screenWidth } = this.props;
+    let { footer } = this.state;
     let style = {};
 
     backgroundMode = this.state.conversed ? 
@@ -56,7 +78,7 @@ class GoogleFontBadge extends Component {
     let svgColor = backgroundMode == "black" ? "white" : "black";
 
     return (
-      <div className="gf-badge" style={style}>
+      <div className={`gf-badge${ footer ? "--footer" : ""}`} style={style}>
         <a href="https://fonts.google.com" target="_blank">
           <svg width="136px" height="42px" viewBox="0 0 136 42" version="1.1">
               <g id="made_by_google_fonts_white">

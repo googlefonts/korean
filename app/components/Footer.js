@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { BODY_600, BODY_960 } from '../constants/defaults';
+import { GoogleFontBadge } from './';
 
 const Fragment = React.Fragment;
 
@@ -14,8 +15,9 @@ class Footer extends Component {
           {
             screenWidth > BODY_960 ? 
             <div className="footer__left">
+              <GoogleFontBadge />
             </div> : 
-            null
+            <GoogleFontBadge />
           }
 
           <div className="footer__short-desc">

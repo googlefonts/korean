@@ -1191,6 +1191,11 @@ sup {
   left: 24px;
   bottom: 24px;
 
+  &--footer {
+    @extend .gf-badge;
+    position:static;
+    // bottom: 113px;
+  }
   @include body_960 {
     left: 0;
     bottom: 0;
