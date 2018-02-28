@@ -2,21 +2,19 @@ import paper from 'paper';
 import { convertBgMode } from '../../utils'; 
 import { scaleLinear } from 'd3';
 
-const sizeScale = scaleLinear().domain([0, 200]).clamp(true).range([150, 0]);
+const sizeScale = scaleLinear().domain([0, 200]).clamp(true).range([150, 1]);
 
 export const bezierBubble = {
   attach: (_this, backgroundMode) => {
-
     _this.bezierBubble = {
       prevPoint: new paper.Point(400, 200),
       point: new paper.Point(400, 200),
-      rPoint: new paper.Point(400, 200),
+      tPoint: new paper.Point(400, 200),
       points: new paper.Group(),
-      size: 150,
-      tSize: 150
+      size: 10,
+      tSize: 10
     };
 
-    _this.project.activate();
     
     _this.bezierBubble.maskedGlyphs = [];
     _.each(_this.glyphs, (glyph, i) => {
@@ -49,6 +47,8 @@ export const bezierBubble = {
     _this.bezierBubble.tSize = sizeScale(dist);
     _this.bezierBubble.size = sizeScale(dist);
     
+    _this.project.activate();
+
 
     _this.bezierBubble.maskCircle = new paper.Path.Circle({center: [400, 200], radius: _this.bezierBubble.size, fillColor: "green"});
 
@@ -57,10 +57,8 @@ export const bezierBubble = {
 
 
 
-
     _this.bezierBubble.group = new paper.Group([_this.bezierBubble.maskCircle].concat(_this.bezierBubble.maskedGlyphs).concat(_this.bezierBubble.points));
     _this.bezierBubble.group.clipped = true;
-    _this.view.draw();
 
     // _this.view.onMouseEnter = (e) => {
     //   console.log("mouseenter");
@@ -69,7 +67,7 @@ export const bezierBubble = {
     // }
 
     _this.view.onMouseMove = (e) => {
-      _this.bezierBubble.point = e.point;
+      _this.bezierBubble.tPoint = e.point;
       let dist = Math.abs(_this.bezierBubble.point.y - _this.bezierBubble.points.bounds.center.y);
     
       // let dist = _this.bezierBubble.points.bounds.center.getDistance(_this.bezierBubble.point);
@@ -86,29 +84,29 @@ export const bezierBubble = {
       theta += 0.06;
       _this.project.activate();
 
-      let len = _this.bezierBubble.rPoint.subtract(_this.bezierBubble.prevPoint).length;
+      _this.bezierBubble.point = _this.bezierBubble.point.add(_this.bezierBubble.tPoint.subtract(_this.bezierBubble.point).multiply(0.2));
+      let len = _this.bezierBubble.point.subtract(_this.bezierBubble.prevPoint).length;
 
       _this.bezierBubble.size += (_this.bezierBubble.tSize - _this.bezierBubble.size) * 0.2;
       _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * 2.5;
       // _this.bezierBubble.size += velocitySizeScale(len);
 
-      _this.bezierBubble.rPoint = _this.bezierBubble.rPoint.add(_this.bezierBubble.point.subtract(_this.bezierBubble.rPoint).multiply(0.2));
-
-     
       // get
 
       let radius = _this.bezierBubble.maskCircle.bounds.width / 2;
-      _this.bezierBubble.maskCircle.position = _this.bezierBubble.rPoint;
-      _this.bezierBubble.circle.position = _this.bezierBubble.rPoint;
-
+      _this.bezierBubble.maskCircle.position = _this.bezierBubble.point;
+      _this.bezierBubble.circle.position = _this.bezierBubble.point;
       _this.bezierBubble.maskCircle.scale(_this.bezierBubble.size / radius);
       _this.bezierBubble.circle.scale(_this.bezierBubble.size / radius);
       
-      _this.bezierBubble.prevPoint = _this.bezierBubble.rPoint.clone();
+      _this.bezierBubble.prevPoint = _this.bezierBubble.point.clone();
+
+
 
       _this.view.draw();
     };
 
+    _this.view.draw();
   }, 
 
   changeBgMode: (_this, backgroundMode) => {
