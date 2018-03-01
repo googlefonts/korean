@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>close_detail</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="0109" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Loading" transform="translate(-40.000000, -1080.000000)" stroke="#000000" stroke-width="2">
+            <g id="X" transform="translate(40.000000, 1080.000000)">
+                <path d="M2,2 L18,18" id="Line-2"></path>
+                <path d="M2,18 L18,2" id="Line-2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

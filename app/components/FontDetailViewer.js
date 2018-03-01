@@ -73,7 +73,7 @@ class FontDetailViewer extends Component {
       <Fragment>
         <div className="font-viewer__detail-left" style={{ minWidth: leftWidthScale(screenWidth) }}>
           <a href="javascript:void(0);" onClick={this.props.handleClosed}>
-            <img src={`./public/assets/arrow_close_${backgroundMode}.svg`} alt="arrow_close" />
+            <img src={`./public/assets/close_detail_${backgroundMode}.svg`} alt="arrow_close" />
           </a>
 
         </div>
