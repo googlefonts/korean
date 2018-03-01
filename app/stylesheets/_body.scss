@@ -226,7 +226,11 @@ sup {
   &__flexwrap {
     display: flex;
     justify-content: space-between;
-    align-content: center;  
+    align-content: center; 
+
+    @include body_480 {
+      display: block;
+    }
   }
 
   &__left {
@@ -246,6 +250,10 @@ sup {
     &.en-black {
       @include en_black_type;
     }
+
+    @include body_600 {
+      margin-bottom: 8px;
+    }
   }
 
   &__hamburger {
@@ -253,10 +261,9 @@ sup {
 
     @include body_960 {
       display: block;
-    }
-
-    @include body_600 {
-     
+      position: fixed;
+      right: 24px;
+      top: 18px;
     }
 
   }
