@@ -172,6 +172,9 @@ body, div, p, span, text {
   height:20px;
 }
 
+.l-apple-box--quarter {
+  height:5px;
+}
 
 .l-apple-box--half {
   height:15px;
@@ -238,7 +241,7 @@ sup {
   
   h1 {
     @include black_type;
-    width: 315px;
+    width: 275px;
 
     &.en-black {
       @include en_black_type;
@@ -310,7 +313,7 @@ sup {
   position:fixed;
   z-index: 6;
   top: 61px;
-  left: 325px;
+  left: 534px;
   padding: 10px 15px 13px;
   background-color: $background_color;
   border: 1px solid $text_color;
