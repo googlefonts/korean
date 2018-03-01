@@ -1215,6 +1215,7 @@ sup {
     // bottom: 113px;
   }
   @include body_960 {
+    position:fixed;
     left: 0;
     bottom: 0;
     padding: 24px 24px;
