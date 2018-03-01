@@ -57,12 +57,10 @@ class Header extends Component {
             {
               locale == "ko" ?
               <h1>
-                구글폰트 + 한국어 얼리억세스<br/>
-                <span className="en-black">Google Fonts + Korean Early Access</span>
+                <span className="en-black">Google Fonts</span> + 한국어
               </h1> :
               <h1>
-                <span className="en-black">Google Fonts + Korean Early Access</span><br/>
-                구글폰트 + 한국어 얼리억세스
+                <span className="en-black">Google Fonts</span> + 한국어
               </h1>
             }
             { 
