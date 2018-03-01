@@ -134,6 +134,12 @@ input {
   }
 }
 
+@mixin body_820 {
+  @media (max-width: 820px) {
+    @content;
+  }
+}
+
 @mixin body_600 {
   @media (max-width: 600px) {
     @content;
@@ -166,6 +172,9 @@ body, div, p, span, text {
   height:20px;
 }
 
+.l-apple-box--quarter {
+  height:5px;
+}
 
 .l-apple-box--half {
   height:15px;
@@ -193,9 +202,6 @@ a:hover {
   opacity: 0.5;
 }
 
-br.clearing {
-  clear:both !important
-}
 
 sup {
   position: relative;
@@ -235,7 +241,7 @@ sup {
   
   h1 {
     @include black_type;
-    width: 315px;
+    width: 275px;
 
     &.en-black {
       @include en_black_type;
@@ -307,7 +313,7 @@ sup {
   position:fixed;
   z-index: 6;
   top: 61px;
-  left: 325px;
+  left: 534px;
   padding: 10px 15px 13px;
   background-color: $background_color;
   border: 1px solid $text_color;
@@ -316,42 +322,56 @@ sup {
 }
 
 .header {
-  display:flex;
   z-index:7;
-  justify-content: space-between;
-  align-content: flex-start;
   position: fixed;
   left: 0;
   top: 0;
   width: calc(100% - 48px);
   padding: 26px 24px;
   
+  &__wrap {
+    display:flex;
+    justify-content: space-between;
+    align-content: flex-start;
 
-  @include body_600 {
-    display: block;
+    @include body_480 {
+      display: block;
+    }
+
+  }
+
+  &__mo {
+    margin-top:10px;
   }
 
   &__left {
     display:flex;
+    align-content: flex-start;
     
     @include body_960 {
-      width: 50%;
-    }
-
-    @include body_600 {
       width: auto;
     }
+
+  }
+
+
+  &__anim-wrap {
+    width: 250px;
   }
 
   &__title {
-    width: 420px;
+    width: 275px;
+
+    @include body_600 {
+      width: 100%;
+    }
   }
 
   h1 {
     @include black_type;
 
     @include body_600 {
-      margin-bottom: 20px;
+      margin-bottom: 8px;
     }
   }
 
@@ -360,12 +380,9 @@ sup {
 
     @include body_960 {
       display: block;
-    }
-
-    @include body_600 {
       position: fixed;
       right: 24px;
-      top: 26px;
+      top: 30px;
     }
 
   }
@@ -380,12 +397,12 @@ sup {
     width:300px;
     
     @include body_960 {
-      
-      margin-right: 20px;
+      width: auto;
+      margin-right: 41px;
     }
 
-    @include body_600 {
-      width: auto;
+    @include body_820 {
+      display: none;
     }
 
   }
@@ -396,6 +413,7 @@ sup {
         @extend .header__description;
         @include black_type;
         font-size:0.8em;
+        line-height:1.57142857;
       }
 
       &--en {
@@ -463,7 +481,7 @@ sup {
 .anim-selector {
   display: flex;
   align-items:center;
-
+  height: 26px;
   &__link {
     margin-right: 15px;
     border:none !important;

@@ -95,14 +95,25 @@ class HeaderCollapsed extends Component {
               {
                 locale == "ko" ? 
                 <h1>
-                  구글폰트 + 한국어 얼리억세스
+                  <span className="en-black">Google Fonts + </span> 한국어
                 </h1>
                 : 
-                <h1 className="en-black">
-                  Google Fonts + Korean Early Access
+                <h1>
+                  <span className="en-black">Google Fonts + </span> 한국어
                 </h1>
               }
 
+              {
+                screenWidth > BODY_600 ? 
+                (isOnScript ? 
+
+                  <div className="header__anim-wrap">
+                    <AnimationScriptSelector/>
+                  </div> : 
+                  <div className="header__anim-wrap">
+                    <AnimationSelector />
+                  </div>) : null
+              }
               {
                 screenWidth > BODY_960 ? 
                 <div className="header-collapsed__categories">
@@ -139,18 +150,15 @@ class HeaderCollapsed extends Component {
                   </a>
                 </div> : null 
               }
+
             </div>
+           
             {
-              screenWidth > BODY_600 ? 
-              (isOnScript ? <AnimationScriptSelector/> : <AnimationSelector />) : null
-            }
-            
-            {
-              screenWidth > BODY_960 || (screenWidth > BODY_600 && this.state.isMenuOpen) ? (locale == "ko" ? 
+              screenWidth > BODY_960 ? (locale == "ko" ? 
               <div className={`header__menu--${locale}`}>
                 <div>
                   <a href="javascript:void(0)" className="">
-                    한국어 얼리억세스 소개 
+                    <span className="en-black">Google Fonts + </span> 한국어 소개 
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
                     English
@@ -180,7 +188,15 @@ class HeaderCollapsed extends Component {
           {
             (this.state.isMenuOpen) ? 
             <Fragment>
-
+              {
+                screenWidth < BODY_600 ?    
+                <Fragment>   
+                  <div className="l-apple-box--quarter"></div>
+                  {
+                    isOnScript ? <AnimationScriptSelector/> : <AnimationSelector />
+                  }
+                </Fragment> : null
+              }
               <div className="header-collapsed__categories">
                 {
                   _.map(CATEGORIES, categoryData => {
@@ -218,25 +234,21 @@ class HeaderCollapsed extends Component {
                   })
                 }
               </div>
-              <div className="l-apple-box--half"></div>
               {
-                isOnScript ? <AnimationScriptSelector/> : <AnimationSelector />
-              }
-              {
-                screenWidth <= BODY_600 ? (locale == "ko" ? 
+                screenWidth <= BODY_960 ? (locale == "ko" ? 
                 <div className={`header__menu--${locale}`} style={{ marginTop: 10}}>
                   <div>
                     <a href="javascript:void(0)" className="">
-                      한국어 얼리억세스 소개 
+                      <span className="en-black">Google Fonts + </span> 한국어 소개 
                     </a>
-                    <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
+                    <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
                       English
                     </a>
                   </div>
                 </div> : 
                 <div className={`header__menu--${locale}`}>
                   <div>
-                    <a href="javascript:void(0)" className="">
+                    <a href="javascript:void(0)" className="en-black">
                       Introduction
                     </a>
                     <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
