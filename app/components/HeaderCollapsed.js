@@ -152,7 +152,14 @@ class HeaderCollapsed extends Component {
               }
 
             </div>
-           
+            {
+              screenWidth < BODY_600 ?
+              <div className="header__anim-wrap">
+                {
+                  isOnScript ? <AnimationScriptSelector/> : <AnimationSelector />
+                }
+              </div> : null
+            }
             {
               screenWidth > BODY_960 ? (locale == "ko" ? 
               <div className={`header__menu--${locale}`}>
@@ -188,15 +195,7 @@ class HeaderCollapsed extends Component {
           {
             (this.state.isMenuOpen) ? 
             <Fragment>
-              {
-                screenWidth < BODY_600 ?    
-                <Fragment>   
-                  <div className="l-apple-box--quarter"></div>
-                  {
-                    isOnScript ? <AnimationScriptSelector/> : <AnimationSelector />
-                  }
-                </Fragment> : null
-              }
+             
               <div className="header-collapsed__categories">
                 {
                   _.map(CATEGORIES, categoryData => {
