@@ -126,7 +126,7 @@ class FontOutlineViewer extends Component {
 
   componentDidUpdate(){
 
-    let { screenWidth, category } = this.props;
+    let { screenWidth, category, containerHeight } = this.props;
     let leftWidthScale;
     
     if (category === 3) {
@@ -150,13 +150,13 @@ class FontOutlineViewer extends Component {
     } else {
 
       leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
-      this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) - leftWidthScale(screenWidth), 400 );
+      this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) - leftWidthScale(screenWidth), containerHeight );
     }
     
   }
 
   render() {
-    let { screenWidth, id, category } = this.props;
+    let { screenWidth, id, category, containerHeight } = this.props;
     let width, height, leftWidthScale;
 
     if (category === 3) {
@@ -188,13 +188,13 @@ class FontOutlineViewer extends Component {
       if (screenWidth < BODY_480) {
 
         width = (screenWidth - 24 * 2);
-        height = 400;
+        height = containerHeight;
 
       } else {
 
         let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
         width = (screenWidth - 24 * 2) - leftWidthScale(screenWidth);
-        height = 400;
+        height = containerHeight;
       }
 
     }

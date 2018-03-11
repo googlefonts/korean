@@ -13,7 +13,6 @@ class FontAnimViewer extends Component {
 
     this.glyphs = [];
 
-    this.containerHeight = 400;
     this.animations = [
       bezierBubble,
       wavyBaseline,
@@ -30,8 +29,8 @@ class FontAnimViewer extends Component {
     this.view = paper.View._viewsById[this.refCanvas.id];
 
 
-    var { font, message, screenHeight, screenWidth, animationIdx, backgroundMode } = this.props;
-    this.createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode);
+    var { font, message, screenHeight, screenWidth, animationIdx, backgroundMode, containerHeight } = this.props;
+    this.createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode, containerHeight);
 
     this.attachAnimation(this.props);
     this.project.activate();
@@ -79,7 +78,7 @@ class FontAnimViewer extends Component {
 
   updatePosition(props){
 
-    let { screenHeight, screenWidth, font, animationIdx, backgroundMode } = props;
+    let { screenHeight, screenWidth, font, animationIdx, backgroundMode, containerHeight } = props;
     let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
 
 
@@ -90,10 +89,10 @@ class FontAnimViewer extends Component {
 
     if (screenWidth > BODY_480) {
       x = 24 + 160 + leftWidthScale(screenWidth);
-      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + 150;
     } else {
       x = 24 + 160;
-      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150 + 46;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + 150 + 46;
     }
     
 
@@ -116,10 +115,10 @@ class FontAnimViewer extends Component {
 
     if (screenWidth > BODY_480) {
       x = 24 + 160 + leftWidthScale(screenWidth);
-      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + 150;
     } else {
       x = 24 + 160;
-      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150 + 46;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + 150 + 46;
     }
     
 
@@ -129,7 +128,7 @@ class FontAnimViewer extends Component {
 
   }
 
-  createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode){
+  createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode, containerHeight){
 
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
@@ -141,10 +140,10 @@ class FontAnimViewer extends Component {
 
     if (screenWidth > 480) {
       x = 24 + 160 + leftWidthScale(screenWidth);
-      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + 150;
     } else {
       x = 24 + 160;
-      y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150 + 46;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + 150 + 46;
     }
 
     var fontScale = 1 / font.unitsPerEm * fontSize;
@@ -177,7 +176,7 @@ class FontAnimViewer extends Component {
   }
 
   resetMessage(props){
-    let { message, font, screenHeight, screenWidth, animationIdx, backgroundMode } = props;
+    let { message, font, screenHeight, screenWidth, animationIdx, backgroundMode, containerHeight } = props;
     
     this.project.activate();
     _.each(this.glyphs, glyph => {
@@ -186,7 +185,7 @@ class FontAnimViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message,  screenWidth, screenHeight, backgroundMode);
+    this.createGlyphPath(font, message,  screenWidth, screenHeight, backgroundMode, containerHeight);
     
     this.detachAnimation(props);
     this.attachAnimation(props);
@@ -204,17 +203,17 @@ class FontAnimViewer extends Component {
   }
 
   render() {
-    let { screenWidth, screenHeight, id } = this.props;
+    let { screenWidth, screenHeight, id, containerHeight } = this.props;
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 230]);
     let width = screenWidth - (leftWidthScale(screenWidth) + 24 * 2);
 
     return (
       <Fragment>
-        <div className="font-anim-viewer" style={{ height: screenHeight, top: -(screenHeight * 0.5 - this.containerHeight * 0.5) }}>
+        <div className="font-anim-viewer" style={{ height: screenHeight, top: -(screenHeight * 0.5 - containerHeight * 0.5) }}>
           <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
           </canvas>
         </div>
-        <div style={{ width: width, height: this.containerHeight}}>
+        <div style={{ width: width, height: containerHeight}}>
         </div>
       </Fragment>
     );
