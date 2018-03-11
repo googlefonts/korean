@@ -139,7 +139,7 @@ class FontViewer extends Component {
             this.state.loaded ? 
               ( 
                 detailSelected ?
-                <FontPreviewTyper {...this.props} fontWeightSelected={this.state.fontWeightSelected} />
+                <FontPreviewTyper {...this.props}  size={sizeScale(screenWidth)} containerHeight={heightScale(screenWidth)} fontWeightSelected={this.state.fontWeightSelected} />
                 : 
                 (
                   selected ? 

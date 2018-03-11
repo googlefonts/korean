@@ -40,7 +40,7 @@ class FontPreviewTyper extends Component {
   }
 
   render() {
-    let { category, screenWidth } = this.props;
+    let { category, screenWidth, size, containerHeight } = this.props;
     let catStyle;
 
     if (category === 3) {
@@ -59,7 +59,7 @@ class FontPreviewTyper extends Component {
       } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
         
         catStyle = {
-          marginTop: -30,
+          marginTop: -20,
           marginLeft: -10,
           fontSize: '15.0em',
           height: 300,
@@ -72,7 +72,7 @@ class FontPreviewTyper extends Component {
       } else {
 
         catStyle = {
-          marginTop: -40,
+          marginTop: -20,
           marginLeft: 0,
           fontSize: '20.0em',
           height: 400,
@@ -90,10 +90,10 @@ class FontPreviewTyper extends Component {
 
       if (screenWidth < BODY_480) {
         catStyle = {
-          marginTop: -40,
+          marginTop: -20,
           marginLeft: 0,
-          fontSize: '20.0em',
-          height: 400,
+          fontSize: size,
+          height: containerHeight,
           width: '100%',
           textAlign: 'center',
           paddingLeft: 0,
@@ -103,10 +103,10 @@ class FontPreviewTyper extends Component {
         }
       } else {
         catStyle = {
-          marginTop: -40,
+          marginTop: -20,
           marginLeft: -27,
-          fontSize: '20.0em',
-          height: 400,
+          fontSize: size,
+          height: containerHeight,
           paddingLeft: 0,
           paddingRight: 0,
           paddingTop: 0,
