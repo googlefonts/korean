@@ -19,9 +19,9 @@ class FontOutlineViewer extends Component {
     this.project = paper.View._viewsById[this.refCanvas.id]._project;
     this.view = paper.View._viewsById[this.refCanvas.id];
 
-    var { font, message, category, screenWidth, backgroundMode } = this.props;
+    var { font, message, category, screenWidth, backgroundMode, size } = this.props;
 
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth), backgroundMode);
+    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode);
     
     this.project.activate();
     this.view.draw();
@@ -34,6 +34,9 @@ class FontOutlineViewer extends Component {
 
   componentWillReceiveProps(newProps){
     if (newProps.message != this.props.message) {
+      this.resetMessage(newProps);
+     } else if (newProps.screenWidth != this.props.screenWidth || 
+               newProps.screenHeight != this.props.screenHeight) {
       this.resetMessage(newProps);
     } else if (newProps.backgroundMode != this.props.backgroundMode) {
       this.changeColor(newProps);
@@ -86,7 +89,7 @@ class FontOutlineViewer extends Component {
 
   }
 
-  getSize(category, screenWidth) {
+  getSize(category, screenWidth, size) {
     if (category === 3) {
 
       if (screenWidth > BODY_600){
@@ -104,12 +107,12 @@ class FontOutlineViewer extends Component {
       }
 
     } else {
-      return 300;
+      return size;
     }
   }
 
   resetMessage(props){
-    let { message, font, category, screenWidth, backgroundMode } = props;
+    let { message, font, category, screenWidth, backgroundMode, size } = props;
     
     this.project.activate();
     _.each(this.glyphs, glyph => {
@@ -118,7 +121,7 @@ class FontOutlineViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth), backgroundMode);
+    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode);
     this.view.draw();
 
   }

@@ -8,6 +8,7 @@ import _ from 'lodash';
 
 const Fragment = React.Fragment;
 const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([400, 700]);
+const sizeScale = scaleLinear().domain([1440, 2560]).clamp(true).range([300, 500]);
 
 class FontViewer extends Component {
   constructor(props){
@@ -142,8 +143,8 @@ class FontViewer extends Component {
                 : 
                 (
                   selected ? 
-                  <FontAnimViewer containerHeight={heightScale(screenWidth)} id={ `${this.props.fontName}--anim` } message={this.props.message} font={ this.state.font } /> :
-                  <FontOutlineViewer containerHeight={heightScale(screenWidth)} size={300} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
+                  <FontAnimViewer containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ `${this.props.fontName}--anim` } message={this.props.message} font={ this.state.font } /> :
+                  <FontOutlineViewer containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
                 )
               ) :
               <div style={{width: '50%', height: heightScale(screenWidth), display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

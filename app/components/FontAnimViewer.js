@@ -29,8 +29,8 @@ class FontAnimViewer extends Component {
     this.view = paper.View._viewsById[this.refCanvas.id];
 
 
-    var { font, message, screenHeight, screenWidth, animationIdx, backgroundMode, containerHeight } = this.props;
-    this.createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode, containerHeight);
+    var { font, message, screenHeight, screenWidth, animationIdx, backgroundMode, containerHeight, size } = this.props;
+    this.createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode, containerHeight, size);
 
     this.attachAnimation(this.props);
     this.project.activate();
@@ -49,7 +49,8 @@ class FontAnimViewer extends Component {
       this.resetMessage(newProps);
     } else if (newProps.screenWidth != this.props.screenWidth || 
                newProps.screenHeight != this.props.screenHeight) {
-      this.updatePosition(newProps);
+      this.resetMessage(newProps);
+      // this.updatePosition(newProps);
     } else if (newProps.animationIdx != this.props.animationIdx) {
       this.detachAnimation(this.props);
       this.attachAnimation(newProps);
@@ -128,14 +129,14 @@ class FontAnimViewer extends Component {
 
   }
 
-  createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode, containerHeight){
+  createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode, containerHeight, size){
 
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
     var kerningValue = 0;
     let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
 
-    var fontSize = 300;
+    var fontSize = size;
     var x, y;
 
     if (screenWidth > 480) {
@@ -176,7 +177,7 @@ class FontAnimViewer extends Component {
   }
 
   resetMessage(props){
-    let { message, font, screenHeight, screenWidth, animationIdx, backgroundMode, containerHeight } = props;
+    let { message, font, screenHeight, screenWidth, animationIdx, backgroundMode, containerHeight, size } = props;
     
     this.project.activate();
     _.each(this.glyphs, glyph => {
@@ -185,7 +186,7 @@ class FontAnimViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message,  screenWidth, screenHeight, backgroundMode, containerHeight);
+    this.createGlyphPath(font, message,  screenWidth, screenHeight, backgroundMode, containerHeight, size);
     
     this.detachAnimation(props);
     this.attachAnimation(props);
