@@ -94,7 +94,7 @@ class FontOutlineViewer extends Component {
 
       if (screenWidth > BODY_600){
         
-        return 150;
+        return size;
       
       } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
 
@@ -137,7 +137,7 @@ class FontOutlineViewer extends Component {
       if (screenWidth > BODY_600){
       
         leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-        this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth), 200);
+        this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth), containerHeight);
       
       } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
 
@@ -169,7 +169,7 @@ class FontOutlineViewer extends Component {
       
         leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
         width = (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth);
-        height = 200;
+        height = containerHeight;
 
       
       } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
