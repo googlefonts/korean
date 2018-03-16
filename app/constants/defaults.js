@@ -3,8 +3,9 @@ export const BODY_960 = 960;
 export const BODY_820 = 820;
 export const BODY_600 = 600;
 export const BODY_480 = 480;
-
-// curl -A "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko PTST/379" https://fonts.googleapis.com/css?family=Nanum+Pen+Script
+// Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko PTST/379
+// Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko
+// curl -A "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" "https://fonts.googleapis.com/css?family=Nanum+Gothic:700&subset=korean"
 
 export const FONTS = [
   {
@@ -14,56 +15,56 @@ export const FONTS = [
     fontName: "Noto Sans KR",
     weights: [
       {
-        fontWeight: 400,
-        weightName: "Regular"
+        fontWeight: 900,
+        weightName: "Black"
       }
     ],
-    fontUrl : "https://fonts.gstatic.com/s/notosanskr/v3/PbykFmXiEBPT4ITbgNA5CgmG0X7u.otf",
-    cssUrl : "https://fonts.googleapis.com/css?family=Noto+Sans+KR",
+    fontUrl : "https://fonts.gstatic.com/s/notosanskr/v3/Pby7FmXiEBPT4ITbgNA5CgmOUln45bIX.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Noto+Sans+KR:500,900",
     foundryKo: "산돌커뮤니케이션",
     foundryEn: "Sandoll Communication",
     descriptionKo: "노토 산스는 조화로운 획의 두께와 높이로 여러 문자가 시각적으로 어우러지도록 디자인되었습니다. 노토 산스 로마자 버전의 특징을 한글에 적용해 자폭이 좁으면서도 닿자의 속 공간이 크게 디자인되었습니다. 2018년 현재 30가지 문자를 지원하고, 앞으로 모든 유니코드를 포함할 예정입니다.",
     descriptionEn: "Noto fonts are intended to be visually harmonious across multiple languages, with compatible heights and stroke thicknesses. Inheriting the visual characteristics of the Roman alphabet in Noto Sans, its Hangul portion is designed to be narrow in width with more open counters.",
     category: 1
   },
-  // {
-  //   id: 2,
-  //   nameKo: "검은고딕",
-  //   nameEn: "Black Han Sans",
-  //   fontName: "Black Han Sans",
-  //   weights: [
-  //     {
-  //       fontWeight: 400,
-  //       weightName: "Regular"
-  //     }
-  //   ],
-  //   fontUrl : "https://fonts.gstatic.com/s/blackhansans/v1/ea8Aad44WunzF9a-dL6toA8r8kqSK3M.woff",
-  //   cssUrl : "https://fonts.googleapis.com/css?family=Black+Han+Sans",
-  //   foundryKo: "산돌커뮤니케이션",
-  //   foundryEn: "Sandoll Communication",
-  //   descriptionKo: "일반적인 한글 고딕체에 비해 강한 인상을 주는 서체입니다.",
-  //   descriptionEn: "Black Hans Sans makes a bold impression.",
-  //   category: 1
-  // },
-  // {
-  //   id: 20,
-  //   nameKo: "나눔고딕",
-  //   nameEn: "Nanum Gothic",
-  //   fontName: "Nanum Gothic",
-  //   weights: [
-  //     {
-  //       fontWeight: 400,
-  //       weightName: "Regular"
-  //     }
-  //   ],
-  //   fontUrl : "https://fonts.gstatic.com/s/nanumgothic/v7/PN_3Rfi-oW3hYwmKDpxS7F_D-djY.woff",
-  //   cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic",
-  //   foundryKo: "산돌커뮤니케이션",
-  //   foundryEn: "Sandoll Communication",
-  //   descriptionKo: "획의 마감을 곡선으로 표현해 기존의 한글 고딕체에 비해 부드러운 인상을 강조한 서체입니다.",
-  //   descriptionEn: "Nanum Gothic is a sans-serif font that achieves a softer look with its curved terminals.",
-  //   category: 1
-  // },
+  {
+    id: 2,
+    nameKo: "검은고딕",
+    nameEn: "Black Han Sans",
+    fontName: "Black Han Sans",
+    weights: [
+      {
+        fontWeight: 400,
+        weightName: "Regular"
+      }
+    ],
+    fontUrl : "https://fonts.gstatic.com/s/blackhansans/v1/ea8Aad44WunzF9a-dL6toA8r8kqYK3M.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Black+Han+Sans",
+    foundryKo: "산돌커뮤니케이션",
+    foundryEn: "Sandoll Communication",
+    descriptionKo: "일반적인 한글 고딕체에 비해 강한 인상을 주는 서체입니다.",
+    descriptionEn: "Black Hans Sans makes a bold impression.",
+    category: 1
+  },
+  {
+    id: 20,
+    nameKo: "나눔고딕",
+    nameEn: "Nanum Gothic",
+    fontName: "Nanum Gothic",
+    weights: [
+      {
+        fontWeight: 400,
+        weightName: "Regular"
+      }
+    ],
+    fontUrl : "https://fonts.gstatic.com/s/nanumgothic/v7/PN_oRfi-oW3hYwmKDpxS7F_LQv3Lw1sg.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic:700",
+    foundryKo: "산돌커뮤니케이션",
+    foundryEn: "Sandoll Communication",
+    descriptionKo: "획의 마감을 곡선으로 표현해 기존의 한글 고딕체에 비해 부드러운 인상을 강조한 서체입니다.",
+    descriptionEn: "Nanum Gothic is a sans-serif font that achieves a softer look with its curved terminals.",
+    category: 1
+  },
   // {
   //   id: 30,
   //   nameKo: "나눔 고딕 코딩",
@@ -387,44 +388,44 @@ export const FONTS = [
   //   descriptionEn: "Black And White Picture expresses the nostalgia of faded black and white photos through its old and scratchy texture.",
   //   category: 3
   // },
-  {
-    id: 18,
-    nameKo: "나눔 손글씨 붓",
-    nameEn: "Nanum Brush Script",
-    fontName: "Nanum Brush Script",
-    fontUrl : "https://fonts.gstatic.com/s/nanumbrushscript/v8/wXK2E2wfpokopxzthSqPbcR5_gVaxazCiaps.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Brush+Script",
-    weights: [
-      {
-        fontWeight: 400,
-        weightName: "Regular"
-      }
-    ],
-    foundryKo: "산돌커뮤니케이션",
-    foundryEn: "Sandoll Communication",
-    descriptionKo: "붓글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
-    descriptionEn: "Nanum Brush Script combines the rhythmic qualities of brush script with a sense of comfort.",
-    category: 3
-  },
-  {
-    id: 19,
-    nameKo: "나눔 손글씨 펜",
-    nameEn: "Nanum Brush Pen",
-    fontName: "Nanum Brush Pen",
-    fontUrl : "https://fonts.gstatic.com/s/nanumpenscript/v6/daaDSSYiLGqEal3MvdA_FOL_3FkN6zn0bA.ttf",
-    cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Pen+Script",
-    weights: [
-      {
-        fontWeight: 400,
-        weightName: "Regular"
-      }
-    ],
-    foundryKo: "산돌커뮤니케이션",
-    foundryEn: "Sandoll Communication",
-    descriptionKo: "펜글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
-    descriptionEn: "Nanum Brush Script combines the rhythmic qualities of pen writing with a sense of comfort.",
-    category: 3
-  }
+  // {
+  //   id: 18,
+  //   nameKo: "나눔 손글씨 붓",
+  //   nameEn: "Nanum Brush Script",
+  //   fontName: "Nanum Brush Script",
+  //   fontUrl : "https://fonts.gstatic.com/s/nanumbrushscript/v8/wXK2E2wfpokopxzthSqPbcR5_gVaxazCiaps.woff",
+  //   cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Brush+Script",
+  //   weights: [
+  //     {
+  //       fontWeight: 400,
+  //       weightName: "Regular"
+  //     }
+  //   ],
+  //   foundryKo: "산돌커뮤니케이션",
+  //   foundryEn: "Sandoll Communication",
+  //   descriptionKo: "붓글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
+  //   descriptionEn: "Nanum Brush Script combines the rhythmic qualities of brush script with a sense of comfort.",
+  //   category: 3
+  // },
+  // {
+  //   id: 19,
+  //   nameKo: "나눔 손글씨 펜",
+  //   nameEn: "Nanum Brush Pen",
+  //   fontName: "Nanum Brush Pen",
+  //   fontUrl : "https://fonts.gstatic.com/s/nanumpenscript/v6/daaDSSYiLGqEal3MvdA_FOL_3FkN6zn0bA.ttf",
+  //   cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Pen+Script",
+  //   weights: [
+  //     {
+  //       fontWeight: 400,
+  //       weightName: "Regular"
+  //     }
+  //   ],
+  //   foundryKo: "산돌커뮤니케이션",
+  //   foundryEn: "Sandoll Communication",
+  //   descriptionKo: "펜글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
+  //   descriptionEn: "Nanum Brush Script combines the rhythmic qualities of pen writing with a sense of comfort.",
+  //   category: 3
+  // }
 ];
 
 export const CATEGORIES = [

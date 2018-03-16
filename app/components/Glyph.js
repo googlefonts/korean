@@ -25,7 +25,7 @@ class Glyph extends paper.CompoundPath{
     var y = 0;
 
     var scale = 1 / this.unitsPerEm * this.glyphFontSize;
-
+    // debugger;
     _.each(this.fontGlyph.path.commands, (cmd, i) => { 
       // debugger;
       // console.log(cmd);
@@ -67,10 +67,11 @@ class Glyph extends paper.CompoundPath{
 
       } else if (cmd.type === 'Q') {
       
-        var pt = new paper.Point(cmd.x * scale, - cmd.y * scale);
-        this.currentPath.add(pt);
+        var handle = new paper.Point(cmd.x1 * scale, - cmd.y1 * scale);   
+        var pt = new paper.Point(cmd.x * scale, - cmd.y * scale);  
 
-        // ctx.quadraticCurveTo(cmd.x1, cmd.y1, cmd.x, cmd.y);
+        
+        this.currentPath.quadraticCurveTo(handle, pt);
       
       } else if (cmd.type === 'Z') {
         this.currentPath.closed = true;
