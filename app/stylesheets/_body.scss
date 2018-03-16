@@ -69,7 +69,7 @@ body {
 
 
 @mixin regular_type {
-  font-family: "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans KR", Helvetica, Arial, sans-serif;
   font-size: 1em;
   line-height:1.3;
   font-style:   normal;
@@ -93,11 +93,11 @@ body {
 }
 
 @mixin black_type {
-  font-family: "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans KR", Helvetica, Arial, sans-serif;
   font-size: 1em;
   line-height:1.3;
   font-style:   normal;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 textarea, input {
