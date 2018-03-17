@@ -103,7 +103,7 @@ class FontPreviewTyper extends Component {
         }
       } else {
         catStyle = {
-          marginTop: -20,
+          marginTop: -50,
           marginLeft: 0,
           fontSize: size,
           height: containerHeight,

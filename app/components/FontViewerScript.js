@@ -38,7 +38,7 @@ class FontViewerScript extends Component {
         this.setState({
           loaded: true,
           font: font,
-          fontWeightSelected: !_.isNull(_.first(this.props.weights).fontWeight) ? _.first(this.props.weights).fontWeight : 400
+          fontWeightSelected: !_.isNull(_.last(this.props.weights).fontWeight) ? _.last(this.props.weights).fontWeight : 400
         });
       
       }
@@ -158,9 +158,11 @@ class FontViewerScript extends Component {
                   <FontOutlineViewer containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} category={this.props.category} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
                 )
               ) :
-              <div>
-                loading...
-              </div>          
+              <div style={{width: '50%', height: heightScale(screenWidth), display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <div className="linear-activity">
+                  <div className="indeterminate"></div>
+                </div>
+              </div>                 
           }
         </div>
 

@@ -627,6 +627,8 @@ sup {
       }
 
       a.selected {
+        @include en_black_type;
+        font-size: 0.9em;
         @include body_480 {
           text-decoration: underline;
           text-decoration-skip: ink;
@@ -770,9 +772,8 @@ sup {
     left: 0;
     top: 0;
     width: calc(100% - 48px);
-    padding: 20px 24px;
+    padding: 20px 24px 0  24px;
     background-color: $text_color;
-
 
     .dropdown-font-selector__menu {
       @include body_600 {
@@ -792,6 +793,10 @@ sup {
     padding-bottom: 15px;
     margin-bottom:15px;
     border-bottom: 1px solid $background_color;
+
+    @include body_600 {
+      margin-bottom: 0;
+    }
   }
 
   &__tb-selector {
@@ -868,11 +873,15 @@ sup {
     position:absolute;
     width:270px;
     padding: 0;
-    top: 43px;
-    right: 0;
+    top: 63px;
+    right: 24px;
+
     background-color: $text_color;
     border: 1px solid $background_color;
     border-radius: 2px;
+    height: 300px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
     @include body_600 { 
       width: 100%;
@@ -1002,11 +1011,11 @@ sup {
 
   h4 {
     // margin-bottom: 20px;
-    padding: 20px;
-    margin: 0 0 20px -20px;
     width: 590px;
-    border:1px solid rgba(0, 0, 0, 0);
-    
+    margin-top: 100px;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    line-height: 1.6;
     @include body_960 {
       width: 80%;
     }
@@ -1018,10 +1027,7 @@ sup {
 
   p {
     width: 590px;
-    padding: 20px;
-    margin: 0 0 0 -20px;
-    margin-bottom: 40px;
-    border:1px solid rgba(0, 0, 0, 0);
+    margin-bottom: 20px;
     line-height: 1.6;
 
     @include body_960 {

@@ -3,6 +3,7 @@ import { CATEGORIES, BODY_600, BODY_960, BODY_820 } from '../constants/defaults'
 import { connect } from 'react-redux';
 import { AnimationSelector, HeaderCategories } from './';
 import { changeLocale, changeCurrentCategory, changeHeaderHeight } from '../actions';
+import 'gsap';
 
 const Fragment = React.Fragment;
 
@@ -26,6 +27,13 @@ class Header extends Component {
   handleToggleLocale(e) {
     e.stopPropagation();
     this.props.dispatch(changeLocale(this.props.locale === "ko" ? "en" : "ko"));
+  }
+
+  moveToDescription(e){
+  
+    let pos = document.querySelector("a[name=description-indicator]").offsetTop;
+
+    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: pos });
   }
 
   handleMenuOpen(e){
@@ -58,7 +66,7 @@ class Header extends Component {
                   <span className="en-black">Google Fonts + </span> 한국어
                 </h1> :
                 <h1>
-                  <span className="en-black">Google Fonts + </span> 한국어
+                  <span className="en-black">Google Fonts + Korean</span>
                 </h1>
               }
             </div>
@@ -96,7 +104,7 @@ class Header extends Component {
               locale == "ko" ? 
               <div className={`header__menu--${locale}`}>
                 <div>
-                  <a href="javascript:void(0)" className="">
+                  <a href="javascript:void(0)" className=""  onClick={this.moveToDescription.bind(this)}>
                     <span className="en-black">Google Fonts + </span> 한국어 소개 
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
@@ -114,7 +122,7 @@ class Header extends Component {
               </div> : 
               <div className={`header__menu--${locale}`}>
                 <div>
-                  <a href="javascript:void(0)" className="en-black">
+                  <a href="javascript:void(0)" className="en-black" onClick={this.moveToDescription.bind(this)}>
                     Introduction
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">

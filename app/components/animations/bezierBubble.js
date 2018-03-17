@@ -133,7 +133,6 @@ export const bezierBubble = {
   },
 
   detach: (_this) => {
-    _this.project.activate();
 
     _this.bezierBubble.circle.remove();
     _this.bezierBubble.maskCircle.remove();
@@ -155,7 +154,6 @@ export const bezierBubble = {
     _this.view.onFrame = null;
     _this.view.onMouseMove = null;
     _this.view.onMouseEnter = null;
-    _this.view.draw();
   }, 
 
 

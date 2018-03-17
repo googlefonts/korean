@@ -39,13 +39,49 @@ class DescriptionEn extends Component {
 
     return (
       <div className="description__container">
-        <h4 style={fontNames.title}>
-          Google Fonts + Korean Early Access
-        </h4>
+
+        <div className="l-apple-box--double">
+        </div>
         
+        <h4 style={fontNames.title}>
+         Google Fonts has been making the web more beautiful, fast, and open through great typography. Optimized by machine learning, Google Fonts now offers Korean and this showcase website.
+        </h4>
+
+        <h4 style={fontNames.title}>
+          Why do Korean fonts pose a challenge for web use?
+        </h4>
+
         <p style={fontNames.paragraph}>
-          Google Fonts + Korean Early Access is a list of Korean open source web fonts that are not yet officially supported in Google's fonts but can be easily used without license restrictions.
+          Hangul consists of 19 consonants, designed after the shapes of the articulators when making the sounds, and 21 vowels, evolved from three basic shapes representing the sky, the earth, and human. These elements, called jamo, are then grouped into syllabic blocks, making up the letters. Hangul was originally intended to be written from top to bottom and right to left since its inception in 1446 (then called Hunminjeongeum) but is now generally written from left to right, with spaces between words and Western punctuation.
         </p>
+
+        <p style={fontNames.paragraph}>
+          In Hangul, the visual balance of a jamo changes in relation to its surrounding jamo, similar to Chinese letters or Japanese kana. For this reason, a Korean font usually includes every possible combination of jamo, resulting in 11,172 glyphs. Developing a font with this many glyphs requires not only significant time and expense, but also results in a much larger file size. For example, Google is developing the Noto fonts to support all languages, and while the Noto Latin font is 445KB, the Noto Simplified Chinese (SC) font is 15.7MB, containing a total of 44,683 glyphs. The large file sizes have been the biggest hurdle to using Korean fonts effectively on the web.
+        </p>
+
+        <h4 style={fontNames.title}>
+          Google Fonts uses font subsetting, informed by machine learning
+        </h4>
+
+
+        <p style={fontNames.paragraph}>
+          By scanning Korean web pages, Google modeled which characters are most likely to appear together, which informed a subset slicing strategy that sorts all 17,388 glyphs into over 100 slices. Using this method, the user sees all the glyphs in the desired font, because their browser only loads the font slices required for that page. This means much faster loading times.
+        </p>
+
+        <p style={fontNames.paragraph}>
+          Cross-site caching is another key benefit of using the Google Fonts API, and since each font slice can be used across websites, the latency benefits increase over time.
+        </p>
+
+        
+        <h4 style={fontNames.title}>
+          Google Fonts + Korean embraces open source values
+        </h4>
+
+        <p style={fontNames.paragraph}>
+          All the fonts in our catalog are free and open source, following the SIL Open Font License (OFL). This license, specially created for fonts and related software, provides the legal framework for sharing favorites and collaborating easily with friends and colleagues across the globe. Google Fonts takes care of all the licensing and hosting, ensuring that the latest and greatest version of any font is available to everyone. 
+        </p>
+
+
 
 
       </div>
