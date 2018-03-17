@@ -25,28 +25,29 @@ class Footer extends Component {
               locale == "ko" ?
               <div className="footer__short-desc-column">
                 <h4>
-                  구글폰트에 참여하기
+                  Google Fonts 에 참여하세요.
+
                 </h4><br/>
                 <p>
-                  구글폰트는 전세계의 디자이너들과 협업하며 웹에서 손쉽게 사용할 수 있는 폰트들을 개발합니다.
+                  Google Fonts는 전 세계의 디자이너와 함께 웹에서 손쉽게 사용할 수 있는 폰트를 개발합니다. Google Fonts와 이곳에 여러분이 제작한 한글 폰트를 제공하고 싶다면 언제든지 <a href="https://twitter.com/googlefonts" target="_blank">@googlefonts</a> 앞으로 멘션을 보내주세요.
                 </p>
               </div> :
 
               <div className="footer__short-desc-column">
                 <h4 className="en-regular">
-                  Contributing
+                  Join our community
                 </h4><br/>
                 <p className="en-regular">
-                  Google Fonts collaborate with designers around the world and develop fonts that are easy to use on the web.
+                  We are working with designers around the world to produce best-in-class typeface designs that are made for the web. If you want to offer your own Korean font through Google Fonts, please contact <a href="https://twitter.com/googlefonts" target="_blank">@googlefonts</a>. 
                 </p>
               </div> 
             }
 
             <div className="l-apple-box"></div>
             <p className="en-regular">
-              <a href="javascript:void(0);">API Documentation</a><br/>
-              <a href="javascript:void(0);">Github</a><br/>
-              <a href="javascript:void(0);">Early Access</a>
+              <a href="https://developers.google.com/fonts/docs/getting_started" target="_blank">API Documentation</a><br/>
+              <a href="https://github.com/google/fonts" target="_blank">Github</a><br/>
+              <a href="https://fonts.google.com/earlyaccess" target="_blank">Early Access</a>
             </p>
           </div>
           
@@ -55,18 +56,18 @@ class Footer extends Component {
 
               Made by Friends of Google Fonts<br/><br/>
 
-              Dave Crossland<br/>
-              Irin Kim<br/>
-              Suyoung Jang<br/>
-              E Roon Kang<br/>
-              Wonyoung So
+              <a href="http://yang-jang.com/" target="_blank">Suyoung Jang</a><br/>
+              <a href="http://eroonkang.com" target="_blank">E Roon Kang</a><br/>
+              <a href="http://wonyoung.so" target="_blank">Wonyoung So</a><br/>
+              <a href="http://minguhongmfg.com/" target="_blank">Guhong Min</a><br/>
+              Hannah Son
             </p>
           </div>
 
           <div className="footer__social">
             <p className="en-regular">
-              @googlefonts on Twitter<br/>
-              @googlefonts on GitHub
+              <a href="https://twitter.com/googlefonts" target="_blank">@googlefonts on Twitter</a><br/>
+              <a href="https://github.com/google/fonts" target="_blank">@googlefonts on GitHub</a>
             </p>
           </div>
         </div>

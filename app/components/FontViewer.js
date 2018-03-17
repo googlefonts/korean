@@ -35,7 +35,7 @@ class FontViewer extends Component {
         this.setState({
           loaded: true,
           font: font,
-          fontWeightSelected: !_.isNull(_.first(this.props.weights).fontWeight) ? _.first(this.props.weights).fontWeight : 400
+          fontWeightSelected: !_.isNull(_.last(this.props.weights).fontWeight) ? _.last(this.props.weights).fontWeight : 400
         });
       
       }

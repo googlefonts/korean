@@ -4,8 +4,10 @@ import { FontViewer, FontViewerScript, AnimationScriptSelector } from './';
 import _ from 'lodash';
 import { MESSAGES } from '../constants/messages';
 import { connect } from 'react-redux';
+import { scaleLinear } from 'd3';
 
 const Fragment = React.Fragment;
+const msgScale = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 9]);
 
 class FontsList extends Component {
   cutString(msg, category){
@@ -26,16 +28,16 @@ class FontsList extends Component {
       }
 
     } else {
-
-      if (screenWidth < BODY_600) {
-        return msg[0];
-      } else if (screenWidth >= BODY_600 && screenWidth < BODY_960) {
-        return msg.substring(0, 2);
-      } else if (screenWidth >= BODY_960 && screenWidth < BODY_1280) {
-        return msg.substring(0, 3);
-      } else {
-        return msg;
-      }
+      return msg.substring(0, Math.floor(msgScale(screenWidth)));
+      // if (screenWidth < BODY_600) {
+      //   return msg[0];
+      // } else if (screenWidth >= BODY_600 && screenWidth < BODY_960) {
+      //   return msg.substring(0, 2);
+      // } else if (screenWidth >= BODY_960 && screenWidth < BODY_1280) {
+      //   return msg.substring(0, 3);
+      // } else {
+      //   return msg;
+      // }
     }
   }
 

@@ -7,6 +7,8 @@ import { DescriptionKo, DescriptionEn } from './';
 import { FONTS } from '../constants/defaults';
 import _ from 'lodash';
 
+const Fragment = React.Fragment;
+
 class Description extends Component {
 
   render() {
@@ -27,19 +29,22 @@ class Description extends Component {
   
 
     return (
-      <section className="description">
-        <DescriptionFontSelector />
-        {
-          headerMode == "black" ?
-          <div className="description__header-gutter" style={{ height: headerHeight }}></div> : null  
-        }
-        
-        {
-          locale == "ko" ?
-          <DescriptionKo /> :
-          <DescriptionEn />
-        }
-      </section>
+      <Fragment>
+        <a name="description-indicator"></a>
+        <section className="description">
+          <DescriptionFontSelector />
+          {
+            headerMode == "black" ?
+            <div className="description__header-gutter" style={{ height: headerHeight }}></div> : null  
+          }
+          
+          {
+            locale == "ko" ?
+            <DescriptionKo /> :
+            <DescriptionEn />
+          }
+        </section>
+      </Fragment>
     )
   }
 }

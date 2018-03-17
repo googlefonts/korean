@@ -29,6 +29,11 @@ class FontDetailViewer extends Component {
     });    
   }
 
+  handleFocus(e){
+    // debugger;
+    e.stopPropagation(e);
+  }
+
   setWeightList(list, data) {
     let newList = [...list];
 
@@ -52,6 +57,19 @@ class FontDetailViewer extends Component {
 
 
     return newList;
+  }
+
+  createCSSURL(type, weights){
+    let { fontName } = this.props;
+    if (type == 0) {  
+
+      return `<link href="https://fonts.googleapis.com/css?family=${fontName.replace(/ /g, "+")}:${ weights.join(',')}" rel="stylesheet">`;
+
+    } else {
+
+      return `@import url('https://fonts.googleapis.com/css?family=${fontName.replace(/ /g, "+")}:${ weights.join(',')}')`;
+
+    }
   }
 
   render() {
@@ -108,7 +126,7 @@ class FontDetailViewer extends Component {
                 HTML
               </div>
               <div className="font-viewer__detail-content">
-                <input type="text" className="font-viewer__copy-input" readOnly value={ weights.join('; ') } />
+                <input type="text" className="font-viewer__copy-input" onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(0, weights) } />
               </div>
             </div>
 
@@ -117,7 +135,7 @@ class FontDetailViewer extends Component {
                 CSS
               </div>
               <div className="font-viewer__detail-content">
-                <input type="text" className="font-viewer__copy-input" readOnly value={ weights.join('; ') } />
+                <input type="text" className="font-viewer__copy-input" onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(1, weights) } />
               </div>
             </div>
 
