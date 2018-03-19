@@ -203,7 +203,7 @@ class FontOutlineViewer extends Component {
     }
 
     return (
-        <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2} height={ height } style={{ width: width, height: height}}>
+        <canvas onMouseEnter={this.props.onMouseEnter} id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2} height={ height } style={{ width: width, height: height}}>
         </canvas>
     );
   }

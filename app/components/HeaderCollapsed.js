@@ -5,6 +5,7 @@ import { AnimationSelector, DropDownCategorySelector, AnimationScriptSelector } 
 import { changeLocale, changeCurrentCategory, changeHeaderHeight, changeCategoryDropdownOpened } from '../actions';
 import scrollama from 'scrollama';
 import { changeIsOnScript } from '../actions';
+import 'gsap';
 
 const Fragment = React.Fragment;
 
@@ -16,6 +17,13 @@ class HeaderCollapsed extends Component {
     this.state = {
       isMenuOpen: false
     };
+  }
+
+  moveToDescription(e){
+    e.stopPropagation();
+    let pos = document.querySelector("a[name=description-indicator]").offsetTop;
+
+    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: pos });
   }
 
   componentDidMount(){
@@ -164,7 +172,7 @@ class HeaderCollapsed extends Component {
               screenWidth > BODY_960 ? (locale == "ko" ? 
               <div className={`header__menu--${locale}`}>
                 <div>
-                  <a href="javascript:void(0)" className="">
+                  <a href="javascript:void(0)" className="" onClick={this.moveToDescription.bind(this)}>
                     <span className="en-black">Google Fonts + </span> 한국어 소개 
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
@@ -174,7 +182,7 @@ class HeaderCollapsed extends Component {
               </div> : 
               <div className={`header__menu--${locale}`}>
                 <div>
-                  <a href="javascript:void(0)" className="">
+                  <a href="javascript:void(0)"  onClick={this.moveToDescription.bind(this)}>
                     Introduction
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
@@ -237,7 +245,7 @@ class HeaderCollapsed extends Component {
                 screenWidth <= BODY_960 ? (locale == "ko" ? 
                 <div className={`header__menu--${locale}`} style={{ marginTop: 10}}>
                   <div>
-                    <a href="javascript:void(0)" className="">
+                    <a href="javascript:void(0)" className="" onClick={this.moveToDescription.bind(this)}>
                       <span className="en-black">Google Fonts + </span> 한국어 소개 
                     </a>
                     <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
@@ -247,7 +255,7 @@ class HeaderCollapsed extends Component {
                 </div> : 
                 <div className={`header__menu--${locale}`}>
                   <div>
-                    <a href="javascript:void(0)" className="en-black">
+                    <a href="javascript:void(0)" onClick={this.moveToDescription.bind(this)} className="en-black">
                       Introduction
                     </a>
                     <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">

@@ -86,7 +86,7 @@ class FontViewerScript extends Component {
 
 
     return (
-      <div onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} className={`font-viewer${ selected ? "--script-selected" : "--script" }`} data-id={this.props.id}>
+      <div onMouseLeave={this.handleMouseLeave.bind(this)} className={`font-viewer${ selected ? "--script-selected" : "--script" }`} data-id={this.props.id}>
         <div className="font-viewer__flex-wrapper--top">
           <div className="font-viewer__left--script" style={{ minWidth: leftWidthScale(screenWidth) }}>
             {
@@ -154,8 +154,8 @@ class FontViewerScript extends Component {
                 : 
                 (
                   selected ? 
-                  <FontAnimScriptViewer containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ `${this.props.fontName}--anim` } message={this.props.message} font={ this.state.font } /> :
-                  <FontOutlineViewer containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} category={this.props.category} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
+                  <FontAnimScriptViewer  containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ `${this.props.fontName}--anim` } message={this.props.message} font={ this.state.font } /> :
+                  <FontOutlineViewer  onMouseEnter={this.handleMouseEnter.bind(this)}  containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} category={this.props.category} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
                 )
               ) :
               <div style={{width: '50%', height: heightScale(screenWidth), display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

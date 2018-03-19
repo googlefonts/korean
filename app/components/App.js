@@ -78,12 +78,22 @@ class App extends Component {
   }
 
   handleScroll(e){
-    // console.log(window.scrollTop);
+    
+
     var descTop = document.querySelector('.description').getBoundingClientRect().top;
     var scrollY = window.scrollY;
+    let collapsedHeaderHeight;
     
+    if (!_.isNull(document.querySelector(".header-collapsed"))) {
+      collapsedHeaderHeight = document.querySelector(".header-collapsed").offsetHeight;
+    } else {
+      collapsedHeaderHeight = 62;
+    }
+
+    this.headerTopScale.domain([collapsedHeaderHeight, 0]).range([0, -collapsedHeaderHeight]);
+
     // console.log("descTop: ", descTop);
-    if (descTop < 62 && descTop >= 0) {
+    if (descTop < collapsedHeaderHeight && descTop >= 0) {
       
       this.props.dispatch(changeHeaderCollapsedTop(this.headerTopScale(descTop)));
     
@@ -117,7 +127,7 @@ class App extends Component {
         step: '.font-viewer',
         // debug: true,
         // progress: true,
-        offset: 200 / this.props.screenHeight
+        offset: 0.5,//300 / this.props.screenHeight
       }).onStepEnter(this.handleStepEnter.bind(this))
         // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));

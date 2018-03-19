@@ -261,7 +261,7 @@ sup {
 
     @include body_960 {
       display: block;
-      position: fixed;
+      position: absolute;
       right: 24px;
       top: 18px;
     }
@@ -674,6 +674,8 @@ sup {
   &__detail-right--script {
     @extend .font-viewer__detail-right;
     display: block;
+    width: calc(100% - 105px);
+
   }
 
     &__column-left {
@@ -748,6 +750,7 @@ sup {
   &__weight-link {
     padding: 5px 12px;
     @include en_regular_type;
+    font-size: 0.9em;
     margin-right: 10px;
     &--selected {
       @extend .font-viewer__weight-link;
