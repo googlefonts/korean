@@ -1,5 +1,6 @@
 import { FONTS } from '../constants/defaults';
 
+
 export const numberWithDelimiter = (number, delimiter, separator) => {
   try {
     var delimiter = delimiter || ",";
