@@ -34,7 +34,7 @@ const interpolateCompoundPath = (path) => {
 };
 
 export const wavyBaseline = {
-  attach: (_this, backgroundMode) => {
+  attach: (_this, backgroundMode, size) => {
     // console.log(fontAn);
     _this.wavyBaseline = {
       glyphs: [],
@@ -56,13 +56,13 @@ export const wavyBaseline = {
       
       var scale = 1 / glyph.unitsPerEm * glyph.glyphFontSize;
       var metric = new paper.Path.Line(
-        new paper.Point(glyph.x - glyph.unitsPerEm * 0.45 * scale, 150), new paper.Point(glyph.x - glyph.unitsPerEm * 0.45 * scale, 550)
+        new paper.Point(glyph.x - glyph.unitsPerEm * 0.45 * scale, 150), new paper.Point(glyph.x - glyph.unitsPerEm * 0.45 * scale, size * 3)
       );
 
       _this.wavyBaseline.metrics.addChild(metric);
 
       if (i + 1 >= _this.glyphs.length) {
-        var metric = new paper.Path.Line(new paper.Point(glyph.x + glyph.unitsPerEm * 0.45 * scale, 150), new paper.Point(glyph.x + glyph.unitsPerEm * 0.45 * scale, 550));
+        var metric = new paper.Path.Line(new paper.Point(glyph.x + glyph.unitsPerEm * 0.45 * scale, 150), new paper.Point(glyph.x + glyph.unitsPerEm * 0.45 * scale, size * 3));
         
         _this.wavyBaseline.metrics.addChild(metric);
       }
@@ -146,7 +146,7 @@ export const wavyBaseline = {
         _.each(child.segments, (seg, j) => {
 
           let x = theta + amplitudeScale(seg.point.x);
-          seg.point.y = (j % 2 == 0 ? 150 : 550) + Math.sin(x) * radiusScale(dist);
+          seg.point.y = (j % 2 == 0 ? 150 : 750) + Math.sin(x) * radiusScale(dist);
 
         });
       

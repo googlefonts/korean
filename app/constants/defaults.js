@@ -5,7 +5,8 @@ export const BODY_600 = 600;
 export const BODY_480 = 480;
 // Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko PTST/379
 // Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko
-// curl -A "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" "https://fonts.googleapis.com/css?family=Nanum+Pen+Script&subset=korean"
+// curl -A "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" "https://fonts.googleapis.com/css?family=Nanum+Myeongjo:800&subset=korean"
+
 
 export const FONTS = [
   {
@@ -71,10 +72,18 @@ export const FONTS = [
       {
         fontWeight: 400,
         weightName: "Regular"
+      },
+      {
+        fontWeight: 700,
+        weightName: "Bold"
+      },
+      {
+        fontWeight: 800,
+        weightName: "ExtraBold"
       }
     ],
-    fontUrl : "https://fonts.gstatic.com/s/nanumgothic/v7/PN_oRfi-oW3hYwmKDpxS7F_LQv3Lw1sg.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic:700",
+    fontUrl : "https://fonts.gstatic.com/s/nanumgothic/v7/PN_oRfi-oW3hYwmKDpxS7F_LXv7Lw1sg.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800",
     foundryKo: "산돌커뮤니케이션",
     foundryEn: "Sandoll Communication",
     descriptionKo: "획의 마감을 곡선으로 표현해 기존의 한글 고딕체에 비해 부드러운 인상을 강조한 서체입니다.",
@@ -90,10 +99,14 @@ export const FONTS = [
       {
         fontWeight: 400,
         weightName: "Regular"
+      },
+      {
+        fontWeight: 700,
+        weightName: "Bold"
       }
     ],
-    fontUrl : "https://fonts.gstatic.com/s/nanumgothiccoding/v6/8QIVdjzHisX_8vv59_xMxtPFW4IXROws-6k7UQ.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding",
+    fontUrl : "https://fonts.gstatic.com/s/nanumgothiccoding/v6/8QIYdjzHisX_8vv59_xMxtPFW4IXROws8xgeQsh29Q.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700",
     foundryKo: "산돌커뮤니케이션",
     foundryEn: "Sandoll Communication",
     descriptionKo: "코딩을 위해 전문적 힌팅이 적용된 고정폭 서체입니다.",
@@ -109,10 +122,18 @@ export const FONTS = [
       {
         fontWeight: 400,
         weightName: "Regular"
+      },
+      {
+        fontWeight: 700,
+        weightName: "Bold"
+      },
+      {
+        fontWeight: 800,
+        weightName: "ExtraBold"
       }
     ],
-    fontUrl : "https://fonts.gstatic.com/s/nanummyeongjo/v6/9Btx3DZF0dXLMZlywRbVRNhxy2LmcnM.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Myeongjo",
+    fontUrl : "https://fonts.gstatic.com/s/nanummyeongjo/v6/9Bty3DZF0dXLMZlywRbVRNhxy2pLVGA5r_c.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700,800",
     foundryKo: "산돌커뮤니케이션",
     foundryEn: "Sandoll Communication",
     descriptionKo: "부리와 맺음 등의 마감을 직선적으로 표현해 기존의 한글 명조체보다 현대적인 인상을 주는 서체입니다.",
@@ -202,12 +223,44 @@ export const FONTS = [
     fontName: "Gothic A1",
     weights: [
       {
+        fontWeight: 100,
+        weightName: "Thin"
+      },
+      {
+        fontWeight: 200,
+        weightName: "ExtraLight"
+      },
+      {
+        fontWeight: 300,
+        weightName: "Light"
+      },
+      {
+        fontWeight: 400,
+        weightName: "Regular"
+      },
+      {
+        fontWeight: 500,
+        weightName: "Medium"
+      },
+      {
+        fontWeight: 600,
+        weightName: "Semibold"
+      },
+      {
+        fontWeight: 700,
+        weightName: "Bold"
+      },
+      {
+        fontWeight: 800,
+        weightName: "ExtraBold"
+      },
+      {
         fontWeight: 900,
         weightName: "Black"
       }
     ],
     fontUrl : "https://fonts.gstatic.com/s/gothica1/v1/CSR44z5ZnPydRjlCCwlC6OA6RfN9.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Gothic+A1:900",
+    cssUrl : "https://fonts.googleapis.com/css?family=Gothic+A1:100,200,300,400,500,600,700,800,900",
     foundryKo: "폰트릭스",
     foundryEn: "FontRix",
     descriptionKo: "다양한 굵기와 최적화된 공간 분배를 통해 매체에 구분 없이 사용할 수 있는 고딕체입니다.",

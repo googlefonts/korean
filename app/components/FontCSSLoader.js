@@ -11,7 +11,7 @@ class FontCSSLoader extends Component {
         {
           _.map(FONTS, fontData => {
             return (
-              <link key={fontData.id} rel="stylesheet" href={fontData.cssUrl} />
+              <link key={fontData.id} rel="stylesheet" href={fontData.cssUrl} async/>
             )
           })
         }

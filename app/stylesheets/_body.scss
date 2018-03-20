@@ -628,7 +628,7 @@ sup {
 
       a.selected {
         @include en_black_type;
-        font-size: 0.9em;
+        font-size: 0.85em;
         @include body_480 {
           text-decoration: underline;
           text-decoration-skip: ink;

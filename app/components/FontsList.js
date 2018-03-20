@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 
 const Fragment = React.Fragment;
-const msgScale = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 6]);
+const msgScale = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 5.2]);
 const msgScaleScript = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 6]);
+const MSGS = _.shuffle(MESSAGES);
 
 class FontsList extends Component {
   cutString(msg, category){
@@ -54,7 +55,7 @@ class FontsList extends Component {
                         _.map(categoryFont.fonts, (fontData, i) => {
                           idx++; 
                           return (
-                            <FontViewerScript key={fontData.id} message={this.cutString(MESSAGES[idx], fontData.category)} {...fontData} />
+                            <FontViewerScript key={fontData.id} message={this.cutString(MSGS[idx], fontData.category)} {...fontData} />
                           )
                         })
                       }
@@ -72,7 +73,7 @@ class FontsList extends Component {
                       _.map(categoryFont.fonts, (fontData, i) => {
                         idx++; 
                         return (
-                          <FontViewer key={fontData.id} message={this.cutString(MESSAGES[idx], fontData.category)} {...fontData} />
+                          <FontViewer key={fontData.id} message={this.cutString(MSGS[idx], fontData.category)} {...fontData} />
                         )
                       })
                     }
