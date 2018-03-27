@@ -13,20 +13,20 @@ class AnimationSelector extends Component {
     let { animationIdx, backgroundMode } = this.props;
     return (
       <div className="anim-selector">
-        <a onClick={this.handleClick.bind(this, 0) } className={`anim-selector__link${ animationIdx == 0 ? "--selected" : "" }`} href="javascript:void(0);">
-          <img src={`./public/assets/ef1_${backgroundMode}.svg`} />
+        <a onClick={this.handleClick.bind(this, 0) } className={`anim-selector__link`} href="javascript:void(0);">
+          <img src={`./public/assets/ef1_${backgroundMode}${ animationIdx == 0 ? "_selected" : "" }.svg`} />
         </a>
-        <a onClick={this.handleClick.bind(this, 1) } className={`anim-selector__link${ animationIdx == 1 ? "--selected" : "" }`} href="javascript:void(0);">
-          <img src={`./public/assets/ef2_${backgroundMode}.svg`} />
+        <a onClick={this.handleClick.bind(this, 1) } className={`anim-selector__link`} href="javascript:void(0);">
+          <img src={`./public/assets/ef2_${backgroundMode}${ animationIdx == 1 ? "_selected" : "" }.svg`} />
         </a>
-        <a onClick={this.handleClick.bind(this, 2) } className={`anim-selector__link${ animationIdx == 2 ? "--selected" : "" }`} href="javascript:void(0);">
-          <img src={`./public/assets/ef4_${backgroundMode}.svg`} />
+        <a onClick={this.handleClick.bind(this, 2) } className={`anim-selector__link`} href="javascript:void(0);">
+          <img src={`./public/assets/ef4_${backgroundMode}${ animationIdx == 2 ? "_selected" : "" }.svg`} />
         </a>
-        <a onClick={this.handleClick.bind(this, 3) } className={`anim-selector__link${ animationIdx == 3 ? "--selected" : "" }`} href="javascript:void(0);">
-          <img src={`./public/assets/ef5_${backgroundMode}.svg`} />              
+        <a onClick={this.handleClick.bind(this, 3) } className={`anim-selector__link`} href="javascript:void(0);">
+          <img src={`./public/assets/ef5_${backgroundMode}${ animationIdx == 3 ? "_selected" : "" }.svg`} />              
         </a>
-        <a onClick={this.handleClick.bind(this, 4) } className={`anim-selector__link${ animationIdx == 4 ? "--selected" : "" }`} href="javascript:void(0);">
-          <img src={`./public/assets/ef6_${backgroundMode}.svg`} />
+        <a onClick={this.handleClick.bind(this, 4) } className={`anim-selector__link`} href="javascript:void(0);">
+          <img src={`./public/assets/ef6_${backgroundMode}${ animationIdx == 4 ? "_selected" : "" }.svg`} />
         </a>
       </div>
     )

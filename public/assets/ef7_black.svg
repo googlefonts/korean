@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
-    <title>Ef7</title>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>ef7_black</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Body-1440" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-231.000000, -93.000000)">
-        <g id="Group-5" transform="translate(30.000000, 89.000000)" fill="#FFFFFF">
-            <g id="Ef7" transform="translate(197.000000, 4.000000)">
-                <path d="M8,6 C8,7.104 7.104,8 6,8 C4.896,8 4,7.104 4,6 C4,4.896 4.896,4 6,4 C7.104,4 8,4.896 8,6" id="Fill-1"></path>
-                <path d="M8,14 C8,15.104 7.104,16 6,16 C4.896,16 4,15.104 4,14 C4,12.896 4.896,12 6,12 C7.104,12 8,12.896 8,14" id="Fill-3"></path>
-                <path d="M16,6 C16,7.104 15.104,8 14,8 C12.896,8 12,7.104 12,6 C12,4.896 12.896,4 14,4 C15.104,4 16,4.896 16,6" id="Fill-5"></path>
-                <path d="M16,14 C16,15.104 15.104,16 14,16 C12.896,16 12,15.104 12,14 C12,12.896 12.896,12 14,12 C15.104,12 16,12.896 16,14" id="Fill-7"></path>
-            </g>
-        </g>
+    <g id="ef7_black" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M7.2675,7.2675 L14.5,14.5 L7.2675,7.2675 C6.815,7.72 6.19,8 5.5,8 C4.12,8 3,6.88 3,5.5 C3,4.12 4.12,3 5.5,3 C6.88,3 8,4.12 8,5.5 C8,6.19 7.72,6.815 7.2675,7.2675 Z" id="Fill-1" stroke="#FFFFFF" stroke-width="1.5" fill="#000000"></path>
+        <path d="M17,14.5 C17,15.88 15.88,17 14.5,17 C13.12,17 12,15.88 12,14.5 C12,13.12 13.12,12 14.5,12 C15.88,12 17,13.12 17,14.5" id="Fill-1-Copy" stroke="#FFFFFF" stroke-width="1.5" fill="#000000"></path>
     </g>
 </svg>

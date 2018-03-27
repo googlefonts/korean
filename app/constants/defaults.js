@@ -45,7 +45,7 @@ export const FONTS = [
   //   category: 1
   // },
   {
-    id: 2,
+    id: 1,
     nameKo: "검은고딕",
     nameEn: "Black Han Sans",
     fontName: "Black Han Sans",
