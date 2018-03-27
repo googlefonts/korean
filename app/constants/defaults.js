@@ -9,41 +9,41 @@ export const BODY_480 = 480;
 
 
 export const FONTS = [
-  {
-    id: 1,
-    nameKo: "노토 산스",
-    nameEn: "Noto Sans KR",
-    fontName: "Noto Sans KR",
-    weights: [
-      {
-        fontWeight: 100,
-        weightName: "Extra Light"
-      },
-      {
-        fontWeight: 300,
-        weightName: "Light"
-      },
-      {
-        fontWeight: 500,
-        weightName: "Medium"
-      },
-      {
-        fontWeight: 700,
-        weightName: "Bold"
-      },
-      {
-        fontWeight: 900,
-        weightName: "Black"
-      }
-    ],
-    fontUrl : "https://fonts.gstatic.com/s/notosanskr/v3/Pby7FmXiEBPT4ITbgNA5CgmOUln45bIX.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,500,700,900",
-    foundryKo: "산돌커뮤니케이션",
-    foundryEn: "Sandoll Communication",
-    descriptionKo: "노토 산스는 조화로운 획의 두께와 높이로 여러 문자가 시각적으로 어우러지도록 디자인되었습니다. 노토 산스 로마자 버전의 특징을 한글에 적용해 자폭이 좁으면서도 닿자의 속 공간이 크게 디자인되었습니다. 2018년 현재 30가지 문자를 지원하고, 앞으로 모든 유니코드를 포함할 예정입니다.",
-    descriptionEn: "Noto fonts are intended to be visually harmonious across multiple languages, with compatible heights and stroke thicknesses. Inheriting the visual characteristics of the Roman alphabet in Noto Sans, its Hangul portion is designed to be narrow in width with more open counters.",
-    category: 1
-  },
+  // {
+  //   id: 1,
+  //   nameKo: "노토 산스",
+  //   nameEn: "Noto Sans KR",
+  //   fontName: "Noto Sans KR",
+  //   weights: [
+  //     {
+  //       fontWeight: 100,
+  //       weightName: "Extra Light"
+  //     },
+  //     {
+  //       fontWeight: 300,
+  //       weightName: "Light"
+  //     },
+  //     {
+  //       fontWeight: 500,
+  //       weightName: "Medium"
+  //     },
+  //     {
+  //       fontWeight: 700,
+  //       weightName: "Bold"
+  //     },
+  //     {
+  //       fontWeight: 900,
+  //       weightName: "Black"
+  //     }
+  //   ],
+  //   fontUrl : "https://fonts.gstatic.com/s/notosanskr/v3/Pby7FmXiEBPT4ITbgNA5CgmOUln45bIX.woff",
+  //   cssUrl : "https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,500,700,900",
+  //   foundryKo: "산돌커뮤니케이션",
+  //   foundryEn: "Sandoll Communication",
+  //   descriptionKo: "노토 산스는 조화로운 획의 두께와 높이로 여러 문자가 시각적으로 어우러지도록 디자인되었습니다. 노토 산스 로마자 버전의 특징을 한글에 적용해 자폭이 좁으면서도 닿자의 속 공간이 크게 디자인되었습니다. 2018년 현재 30가지 문자를 지원하고, 앞으로 모든 유니코드를 포함할 예정입니다.",
+  //   descriptionEn: "Noto fonts are intended to be visually harmonious across multiple languages, with compatible heights and stroke thicknesses. Inheriting the visual characteristics of the Roman alphabet in Noto Sans, its Hangul portion is designed to be narrow in width with more open counters.",
+  //   category: 1
+  // },
   {
     id: 2,
     nameKo: "검은고딕",
