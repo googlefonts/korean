@@ -9,7 +9,7 @@ import _ from 'lodash';
 
 const Fragment = React.Fragment;
 
-const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([200, 400]);
+const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([150, 400]);
 const sizeScale = scaleLinear().domain([1440, 2560]).clamp(true).range([150, 250]);
 
 

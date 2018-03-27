@@ -31,13 +31,6 @@ body {
     animation: indeterminate_first 1.5s infinite ease-out;
 }
 
-.indeterminate:after {
-    content: '';
-    position: absolute;
-    height: 100%;
-    background-color: $text_color;
-    animation: indeterminate_second 1.5s infinite ease-in;
-}
 
 @keyframes indeterminate_first {
     0% {
@@ -50,16 +43,6 @@ body {
     }
 }
 
-@keyframes indeterminate_second {
-    0% {
-        left: -150%;
-        width: 100%;
-    }
-    100% {
-        left: 100%;
-        width: 10%;
-    }
-}
 
 .marching-ants {
   border: 1px dashed $text_color !important;
@@ -93,7 +76,7 @@ body {
 }
 
 @mixin black_type {
-  font-family: "NSK", Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans KR", Helvetica, Arial, sans-serif;
   font-size: 1em;
   line-height:1.3;
   font-style:   normal;
@@ -525,7 +508,7 @@ sup {
 .font-viewer {
   background-color: transparent;
   transition: 0.2s background-color;
-  margin-bottom: 40px;
+  margin-bottom: 0;
   position:relative;
   z-index:4;
 
@@ -537,6 +520,8 @@ sup {
 
   &--script {
     @extend .font-viewer;
+    position:relative;
+    z-index:6;
     width: calc(50% - 10px);
 
     @include body_600 {
@@ -546,6 +531,7 @@ sup {
 
   &--script-selected {
     @extend .font-viewer--script;
+    z-index:5;
     // width: 50%;
     // background-color: rgba(255, 255, 255, 0.1);
   }
@@ -592,7 +578,7 @@ sup {
 
   h3 {
     font-size:0.8em;
-
+    cursor: pointer; 
     .ko {
       @include black_type;
     }
@@ -764,6 +750,10 @@ sup {
 .font-selector-header {
   z-index: 3;
   position: relative;
+  .dropdown-font-selector__menu {
+    top: 131px;
+    left: 197px;
+  }
 
   &.black {
     position: fixed;
@@ -774,10 +764,15 @@ sup {
     background-color: $text_color;
 
     .dropdown-font-selector__menu {
+      top: 155px;
+      left: 221px;
       @include body_600 {
-        top: 63px;
+        
+        top: 58px;
         right: 24px;
+        left: auto;
         width: calc(100% - 48px);
+
 
       }  
     }
@@ -786,18 +781,20 @@ sup {
 
   &--top {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
-    padding-bottom: 15px;
-    margin-bottom:15px;
-    border-bottom: 1px solid $background_color;
+    padding-bottom: 10px;
+    
 
     @include body_600 {
+      justify-content: space-between;
       margin-bottom: 0;
+      border-bottom: 1px solid $background_color;
     }
   }
 
   &__tb-selector {
+    width: 207px;
     display:flex;
 
     &__link {
@@ -828,8 +825,15 @@ sup {
 .font-selector-area {
   // margin: 0 2 0 0;
   padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px dotted $background_color;
+  overflow-x: scroll;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 
-
+  &__wrap {
+    // width:
+  }
 
   &--mobile {
     // margin: 0 2 0 0;
@@ -840,11 +844,15 @@ sup {
 }
 
 .font-selector {
-  padding: 8px;
+
+  padding: 10px;
   margin-right: 5px;
-  width: 17px;
+  width: 37px;
+  height: 37px;
+  font-size: 2.0em;
   text-align: center;
   display: inline-block;
+
 
   &--selected { 
     @extend .font-selector;
@@ -871,8 +879,9 @@ sup {
     position:absolute;
     width:270px;
     padding: 0;
-    top: 63px;
-    right: 24px;
+    top: 155px;
+    left: 221px;
+
 
     background-color: $text_color;
     border: 1px solid $background_color;
@@ -976,6 +985,52 @@ sup {
 
   div, a, p, h1, h2, h3, span {
     color: $background_color;
+  }
+
+  .desc-column-area {
+    display: flex;
+
+
+    @include body_1280 {
+      display: block;
+    }
+
+    .left {
+      margin-right: 145px;
+      @include body_960 {
+        margin: 0;
+      }
+    }
+    .right { 
+      margin-top: 100px;
+
+      @include body_1280 {
+        display:flex;
+        // justify-content: space-between;
+        width: 590px;
+
+        p {
+          width: auto;
+        }
+      }
+
+      @include body_960 {
+        width: auto;
+      }
+
+      .right-wrap {
+        margin-right: 20px;
+        // width: 50%;
+        @include body_600 {
+          width: 50%;
+        }
+      }
+
+      h5 {
+        font-size:2.0em;
+        margin-bottom:5px;
+      }
+    }
   }
 
   &__container {
@@ -1220,6 +1275,10 @@ sup {
   left: 24px;
   bottom: 24px;
 
+  svg { 
+
+    opacity: 0.5;
+  }
   &--footer {
     @extend .gf-badge;
     position:static;

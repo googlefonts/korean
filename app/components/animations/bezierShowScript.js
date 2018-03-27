@@ -1,6 +1,18 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
 
+/*
+  config 변수를 바꾸면 됩니다.
+*/
+const config = {
+  strokeWidth: 0.5,
+  dashArrayEnabled: false,
+  dashArray: [1, 2],
+  pointSize: 3,
+  opacity: 0.5
+}
+
+
 export const bezierShowScript = {
   attach: (_this, backgroundMode) => {
 
@@ -19,7 +31,7 @@ export const bezierShowScript = {
       _.each(glyph.children, (child, j) => {
         _.each(child.segments, (seg, k) => {
           
-          let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(1, 1)), 2);
+          let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(config.pointSize / 2, config.pointSize / 2)), config.pointSize);
 
           p.fillColor = convertBgMode(backgroundMode, 'f');
           _this.bezierShowScript.points.push(p);
@@ -34,8 +46,18 @@ export const bezierShowScript = {
       _g.fillColor = convertBgMode(backgroundMode, "b");
       // _g.fullySelected = true;
       _g.strokeColor = convertBgMode(backgroundMode, "f");
-      _g.dashArray = [1, 2];
-      _g.strokeWidth = 1;
+
+      //
+      // config의 속성은 여기에서 바뀜
+      //
+      if (config.dashArrayEnabled) {
+        _g.dashArray = config.dashArray;
+      }
+      
+      _g.strokeWidth = config.strokeWidth;
+      
+      _g.opacity = config.opacity;
+
 
     });
 

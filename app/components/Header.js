@@ -30,7 +30,7 @@ class Header extends Component {
   }
 
   moveToDescription(e){
-  
+    e.stopPropagation();
     let pos = document.querySelector("a[name=description-indicator]").offsetTop;
 
     TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: pos });

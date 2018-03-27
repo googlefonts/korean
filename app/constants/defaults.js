@@ -91,6 +91,57 @@ export const FONTS = [
     category: 1
   },
   {
+    id: 24,
+    nameKo: "고딕 A1",
+    nameEn: "Gothic A1",
+    fontName: "Gothic A1",
+    weights: [
+      {
+        fontWeight: 100,
+        weightName: "Thin"
+      },
+      {
+        fontWeight: 200,
+        weightName: "ExtraLight"
+      },
+      {
+        fontWeight: 300,
+        weightName: "Light"
+      },
+      {
+        fontWeight: 400,
+        weightName: "Regular"
+      },
+      {
+        fontWeight: 500,
+        weightName: "Medium"
+      },
+      {
+        fontWeight: 600,
+        weightName: "Semibold"
+      },
+      {
+        fontWeight: 700,
+        weightName: "Bold"
+      },
+      {
+        fontWeight: 800,
+        weightName: "ExtraBold"
+      },
+      {
+        fontWeight: 900,
+        weightName: "Black"
+      }
+    ],
+    fontUrl : "https://fonts.gstatic.com/s/gothica1/v1/CSR44z5ZnPydRjlCCwlC6OA6RfN9.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Gothic+A1:100,200,300,400,500,600,700,800,900",
+    foundryKo: "폰트릭스",
+    foundryEn: "FontRix",
+    descriptionKo: "다양한 굵기와 최적화된 공간 분배를 통해 매체에 구분 없이 사용할 수 있는 고딕체입니다.",
+    descriptionEn: "Gothic_A1 is a versatile sans-serif typeface with multiple weights and optimized spatial distribution.",
+    category: 1
+  },
+  {
     id: 30,
     nameKo: "나눔 고딕 코딩",
     nameEn: "Nanum Gothic Coding",
@@ -176,7 +227,7 @@ export const FONTS = [
     foundryEn: "FontRix",
     descriptionKo: "아크릴 판에 자를 대고 잘라낸 옛 간판을 모티브로 삼은 서체입니다. 자음과 모음의 획이 서로 이어지는 것이 특징으로, 한글 폰트로는 최초로 ㅅ, ㅈ, ㅎ 등의 닿자 옆의 홀자에 따라 닿자의 형태가 자동으로 달라집니다.",
     descriptionEn: "DOHYEON is inspired by old and kitschy hand-cut vinyl letters on acrylic sheets. Consonants and vowels are visually connected, and it automatically selects the right consonant for its adjacent vowel.",
-    category: 1
+    category: 3
   },
   {
     id: 5,
@@ -215,57 +266,6 @@ export const FONTS = [
     descriptionKo: "붓글씨의 특징을 반영해 굵기의 변화가 자유롭고, 세로 모임 글자의 곁줄기를 굵고 길게 강조해 바다 위로 솟은 독도의 이미지를 시각화한 서체입니다.",
     descriptionEn: "Designed with free brush strokes and pronounced vertical lines, Daehanminkook Dokdo represents the bold presence of Dokdo above the sea.",
     category: 3
-  },
-  {
-    id: 7,
-    nameKo: "고딕 A1",
-    nameEn: "Gothic A1",
-    fontName: "Gothic A1",
-    weights: [
-      {
-        fontWeight: 100,
-        weightName: "Thin"
-      },
-      {
-        fontWeight: 200,
-        weightName: "ExtraLight"
-      },
-      {
-        fontWeight: 300,
-        weightName: "Light"
-      },
-      {
-        fontWeight: 400,
-        weightName: "Regular"
-      },
-      {
-        fontWeight: 500,
-        weightName: "Medium"
-      },
-      {
-        fontWeight: 600,
-        weightName: "Semibold"
-      },
-      {
-        fontWeight: 700,
-        weightName: "Bold"
-      },
-      {
-        fontWeight: 800,
-        weightName: "ExtraBold"
-      },
-      {
-        fontWeight: 900,
-        weightName: "Black"
-      }
-    ],
-    fontUrl : "https://fonts.gstatic.com/s/gothica1/v1/CSR44z5ZnPydRjlCCwlC6OA6RfN9.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Gothic+A1:100,200,300,400,500,600,700,800,900",
-    foundryKo: "폰트릭스",
-    foundryEn: "FontRix",
-    descriptionKo: "다양한 굵기와 최적화된 공간 분배를 통해 매체에 구분 없이 사용할 수 있는 고딕체입니다.",
-    descriptionEn: "Gothic_A1 is a versatile sans-serif typeface with multiple weights and optimized spatial distribution.",
-    category: 1
   },
   {
     id: 8,
@@ -398,7 +398,7 @@ export const FONTS = [
     foundryEn: "FontRix",
     descriptionKo: "기존 한글 명조체의 요소를 탈네모틀 구조에 적용하고, 글줄의 리듬감 있는 흐름을 표현한 서체입니다.",
     descriptionEn: "Stylish applies characteristics of Hangul serif fonts to a non-square frame structure with a rhythmical baseline.",
-    category: 2
+    category: 3
   },
   {
     id: 15,
