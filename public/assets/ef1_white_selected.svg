@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
-    <title>ef1_black</title>
+    <title>ef1_white_selected</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="ef1_black" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M18.7777778,10.1111111 C18.7777778,15.02 14.7977778,19 9.88888889,19 C4.98,19 1,15.02 1,10.1111111 C1,5.20222222 4.98,1.22222222 9.88888889,1.22222222 C14.7977778,1.22222222 18.7777778,5.20222222 18.7777778,10.1111111 Z" id="Page-1" stroke="#FFFFFF" stroke-width="1.5"></path>
+    <g id="ef1_white_selected" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M18.7777778,10.1111111 C18.7777778,15.02 14.7977778,19 9.88888889,19 C4.98,19 1,15.02 1,10.1111111 C1,5.20222222 4.98,1.22222222 9.88888889,1.22222222 C14.7977778,1.22222222 18.7777778,5.20222222 18.7777778,10.1111111 Z" id="Page-1" fill="#000000"></path>
         <path d="M14,10 C14,12.209 12.209,14 10,14 C7.791,14 6,12.209 6,10 C6,7.791 7.791,6 10,6 C12.209,6 14,7.791 14,10 Z" id="Page-1" stroke="#FFFFFF" stroke-width="1.5"></path>
     </g>
 </svg>

@@ -492,12 +492,7 @@ sup {
   &__link {
     margin-right: 15px;
     border:none !important;
-    opacity: 0.5;
-
-    &--selected {
-      @extend .anim-selector__link;
-      opacity: 1;
-    }
+    opacity: 1;
   }
 }
 
