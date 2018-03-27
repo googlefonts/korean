@@ -24,16 +24,15 @@ class App extends Component {
 
 
   componentWillMount(){
-    window.addEventListener('resize', this.handleResize);
-    window.addEventListener('scroll', this.handleScroll);
-    this.handleResize();
 
   }
   
   componentDidMount(){
+
+    window.addEventListener('resize', this.handleResize);
+    window.addEventListener('scroll', this.handleScroll);
+    this.handleResize();
     // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
-    this.initScroll();
-    this.handleScroll();
   }
 
   handleBodyClick(e){
@@ -123,11 +122,12 @@ class App extends Component {
   }
 
   initScroll(){
+    // console.log(this.props.screenHeight);
     this.scroller.setup({
         step: '.font-viewer',
         // debug: true,
         // progress: true,
-        offset: 0.5,//300 / this.props.screenHeight
+        offset: (document.querySelectorAll('.font-viewer')[1].offsetTop - 10) / window.innerHeight,//(document.querySelectorAll('.font-viewer')[0].offsetTop + document.querySelectorAll('.font-viewer')[0].offsetHeight - 50) / this.props.screenHeight
       }).onStepEnter(this.handleStepEnter.bind(this))
         // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));
@@ -161,8 +161,12 @@ class App extends Component {
   }
 
   handleResize(e){
-    this.scroller.resize();
     this.props.dispatch(windowResize(window.innerWidth, window.innerHeight));
+
+    this.initScroll();
+    this.handleScroll();
+    this.scroller.resize();
+  
   }
 
   render() {

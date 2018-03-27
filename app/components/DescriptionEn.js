@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { changeCurrentDescFontSelected } from '../actions';
-import { BODY_960, BODY_600 } from '../constants/defaults';
+import { BODY_960, BODY_600, BODY_1280 } from '../constants/defaults';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 import { FONTS } from '../constants/defaults';
@@ -59,18 +59,78 @@ class DescriptionEn extends Component {
           In Hangul, the visual balance of a jamo changes in relation to its surrounding jamo, similar to Chinese letters or Japanese kana. For this reason, a Korean font usually includes every possible combination of jamo, resulting in 11,172 glyphs. Developing a font with this many glyphs requires not only significant time and expense, but also results in a much larger file size. For example, Google is developing the Noto fonts to support all languages, and while the Noto Latin font is 445KB, the Noto Simplified Chinese (SC) font is 15.7MB, containing a total of 44,683 glyphs. The large file sizes have been the biggest hurdle to using Korean fonts effectively on the web.
         </p>
 
-        <h4 style={fontNames.title}>
-          Google Fonts uses font subsetting, informed by machine learning
-        </h4>
+        <div className="desc-column-area">
+          {
+            screenWidth < BODY_1280 ? 
+            <div className="right">
+              <div className="right-wrap">
+                <h5 style={fontNames.title}>
+                  65,535
+                </h5>
+                <p style={fontNames.paragraph}>
+                  Total Number of Glyph (Hangul)<br/>
+                  Noto Sans KR
+                </p>
+              </div>
+
+              <div className="right-wrap">
+                <h5 style={fontNames.title}>
+                  2,416
+                </h5>
+                <p style={fontNames.paragraph}>
+                  Total Number of Glyph (Latin + Greek + Cyrilic)<br/>
+                  Noto Sans
+                </p>
+              </div>
+            </div> : null
+          }
+          <div className="left">
+            <h4 style={{...fontNames.title, marginTop: screenWidth > BODY_1280 ? 100 : 10 }}>
+              Google Fonts uses font subsetting, informed by machine learning
+            </h4>
 
 
-        <p style={fontNames.paragraph}>
-          By scanning Korean web pages, Google modeled which characters are most likely to appear together, which informed a subset slicing strategy that sorts all 17,388 glyphs into over 100 slices. Using this method, the user sees all the glyphs in the desired font, because their browser only loads the font slices required for that page. This means much faster loading times.
-        </p>
+            <p style={fontNames.paragraph}>
+              By scanning Korean web pages, Google modeled which characters are most likely to appear together, which informed a subset slicing strategy that sorts all 17,388 glyphs into over 100 slices. Using this method, the user sees all the glyphs in the desired font, because their browser only loads the font slices required for that page. This means much faster loading times.
+            </p>
 
-        <p style={fontNames.paragraph}>
-          Cross-site caching is another key benefit of using the Google Fonts API, and since each font slice can be used across websites, the latency benefits increase over time.
-        </p>
+            <p style={fontNames.paragraph}>
+              Cross-site caching is another key benefit of using the Google Fonts API, and since each font slice can be used across websites, the latency benefits increase over time.
+            </p>
+
+          </div>
+          {
+            screenWidth >= BODY_1280 ? 
+            <div className="right">
+              <div className="right-wrap">
+                <h5 style={fontNames.title}>
+                  65,535
+                </h5>
+                <p style={fontNames.paragraph}>
+                  Total Number of Glyph (Hangul)<br/>
+                  Noto Sans KR
+                </p>
+              </div>
+
+              <div className="right-wrap">
+                <h5 style={fontNames.title}>
+                  2,416
+                </h5>
+               <p style={fontNames.paragraph}>
+                  Total Number of Glyph (Latin + Greek + Cyrilic)<br/>
+                  Noto Sans
+                </p>
+              </div>
+            </div> : null
+          }
+         
+         
+
+        </div>
+
+
+
+        
 
         
         <h4 style={fontNames.title}>

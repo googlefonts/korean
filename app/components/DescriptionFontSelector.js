@@ -39,6 +39,22 @@ class DescriptionFontSelector extends Component {
     return (
       <div className={`font-selector-header ${headerMode == "black" ? "black" : ""}`}>
 
+        {
+          screenWidth > BODY_600 ? 
+          <div className="font-selector-area">
+            <div className="font-selector-area__wrap" style={{ width: FONTS.length * 70}}>
+              {
+                _.map(FONTS, fontData => {
+                  return (
+                    <a className={`font-selector${ currentDescFont.id === fontData.id ? "--selected" : "" }`} key={fontData.id} onClick={this.handleChangeCurrentDescFont.bind(this, fontData)} href="javascript:void(0);" style={{ fontFamily: fontData.fontName }}>
+                      한
+                    </a>
+                  )
+                })
+              }
+            </div>
+          </div> : null 
+        }
 
         <div className="font-selector-header--top">
           <div className="font-selector-header__tb-selector">
@@ -60,20 +76,6 @@ class DescriptionFontSelector extends Component {
           }
         </div>
 
-        {
-          screenWidth > BODY_600 ? 
-          <div className="font-selector-area">
-            {
-              _.map(FONTS, fontData => {
-                return (
-                  <a className={`font-selector${ currentDescFont.id === fontData.id ? "--selected" : "" }`} key={fontData.id} onClick={this.handleChangeCurrentDescFont.bind(this, fontData)} href="javascript:void(0);" style={{ fontFamily: fontData.fontName }}>
-                    한
-                  </a>
-                )
-              })
-            }
-          </div> : null 
-        }
       </div>
     );
   }

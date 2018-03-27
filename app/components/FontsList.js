@@ -5,25 +5,84 @@ import _ from 'lodash';
 import { MESSAGES } from '../constants/messages';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
+import { cutString } from '../utils';
 
 const Fragment = React.Fragment;
-const msgScale = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 5.2]);
+const msgScale = cutString;
 const msgScaleScript = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 6]);
-const MSGS = _.shuffle(MESSAGES);
+const SELECTED_MSGS = _.first(_.shuffle(MESSAGES));
 
 class FontsList extends Component {
-  cutString(msg, category){
-    let { screenWidth } = this.props;
-    
-    if (category === 3) {
+  constructor(props){
 
-      return msg.substring(0, Math.floor(msgScaleScript(screenWidth)));
-    } else {
-      return msg.substring(0, Math.floor(msgScale(screenWidth)));
+    super(props);
+    this.state = {
+      len: Math.floor(msgScale(window.innerWidth)),
+      scriptLen: Math.floor(msgScaleScript(window.innerWidth))
+    };
+
+  }
+  
+  componentDidMount(){
+    this.updateLen(this.props.screenWidth);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.screenWidth != this.props.screenWidth) { 
+      this.updateLen(newProps.screenWidth);
     }
   }
 
+  filterString(len, scriptLen){
+    var big = _.shuffle(_.filter(SELECTED_MSGS, msg => {
+        return msg[1] === len;
+      }));
+
+    var script = _.shuffle(_.filter(SELECTED_MSGS, msg => {
+      return msg[1] === scriptLen;
+    }));
+
+    if (big.length === 0){
+      big = _.shuffle(_.map(SELECTED_MSGS, msg => {
+        return [msg[0].substring(0, len), 1];
+      }));
+
+    }
+
+    if (script.length === 0) {
+      script = _.shuffle(_.map(SELECTED_MSGS, msg => {
+        return [msg[0].substring(0, scriptLen), 1];
+      }));
+    }
+
+    return {
+      big: big,
+      script: script
+    }
+  }
+
+  updateLen(screenWidth){
+    this.setState({
+      len: Math.floor(msgScale(screenWidth)),
+      scriptLen: Math.floor(msgScaleScript(screenWidth))
+    });
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    return nextState.len != this.state.len ||
+           nextState.scriptLen != this.state.scriptLen;
+  }
+
   render() {
+    let { screenWidth } = this.props;
+    let { len, scriptLen } = this.state;
+
+
+    let filteredMsgs = this.filterString(len, scriptLen);
+    // debugger;
+    console.log("big", filteredMsgs.big);
+    console.log("script", filteredMsgs.script);
+    
     var categoryFonts = {};
 
     _.each(CATEGORIES, categoryData => {
@@ -55,7 +114,7 @@ class FontsList extends Component {
                         _.map(categoryFont.fonts, (fontData, i) => {
                           idx++; 
                           return (
-                            <FontViewerScript key={fontData.id} message={this.cutString(MSGS[idx], fontData.category)} {...fontData} />
+                            <FontViewerScript key={fontData.id} message={filteredMsgs.script[i % filteredMsgs.script.length][0]} {...fontData} />
                           )
                         })
                       }
@@ -73,7 +132,7 @@ class FontsList extends Component {
                       _.map(categoryFont.fonts, (fontData, i) => {
                         idx++; 
                         return (
-                          <FontViewer key={fontData.id} message={this.cutString(MSGS[idx], fontData.category)} {...fontData} />
+                          <FontViewer key={fontData.id} message={filteredMsgs.big[i % filteredMsgs.big.length][0]} {...fontData} />
                         )
                       })
                     }

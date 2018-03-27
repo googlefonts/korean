@@ -17,6 +17,15 @@ export const changeIsOnScript = (isOnScript) => {
   }
 }
 
+export const changeCurrentDetailSelected = (currentDetailSelected) => {
+  return {
+    type: 'CHANGE_CURRENT_DETAIL_SELECTED',
+    payload: {
+      currentDetailSelected: currentDetailSelected
+    }
+  }
+}
+
 
 export const changeCurrentScriptViewFont = (currentScriptViewFont) => {
   return {

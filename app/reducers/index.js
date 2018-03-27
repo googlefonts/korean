@@ -11,6 +11,7 @@ let initialState = {
   descFontDropdownOpened: false,
   currentViewFont: null,
   currentScriptViewFont: null,
+  currentDetailSelected: null,
   currentDescFontSelected: "all", // all, title, paragraph
   currentDescFont: {
     title: 1,
@@ -32,6 +33,11 @@ var reducer = (state = initialState, action) => {
         screenWidth: action.payload.screenWidth,
         screenHeight: action.payload.screenHeight
       };
+    case 'CHANGE_CURRENT_DETAIL_SELECTED':
+      return {
+        ...state,
+        currentDetailSelected: action.payload.currentDetailSelected
+      }
     case 'CHANGE_IS_ON_SCRIPT': 
       return {
         ...state,
