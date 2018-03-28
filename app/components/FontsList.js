@@ -18,11 +18,18 @@ class FontsList extends Component {
     super(props);
     this.state = {
       len: Math.floor(msgScale(window.innerWidth)),
-      scriptLen: Math.floor(msgScaleScript(window.innerWidth))
+      scriptLen: Math.floor(msgScaleScript(window.innerWidth)),
     };
 
+    this.big = [["농식품부", 1]];
+    this.script = [["농식품부", 1]];
+
   }
-  
+  componentWillMount() {
+    this.big = this.filterString(this.state.len);
+    this.script = this.filterString(this.state.scriptLen);
+  }
+
   componentDidMount(){
     this.updateLen(this.props.screenWidth);
   }
@@ -33,32 +40,19 @@ class FontsList extends Component {
     }
   }
 
-  filterString(len, scriptLen){
-    var big = _.shuffle(_.filter(SELECTED_MSGS, msg => {
-        return msg[1] === len;
-      }));
-
-    var script = _.shuffle(_.filter(SELECTED_MSGS, msg => {
-      return msg[1] === scriptLen;
+  filterString(len){
+    var words = _.shuffle(_.filter(SELECTED_MSGS, msg => {
+      return msg[1] === len;
     }));
 
-    if (big.length === 0){
-      big = _.shuffle(_.map(SELECTED_MSGS, msg => {
+
+    if (words.length === 0) {
+      words = _.shuffle(_.map(SELECTED_MSGS, msg => {
         return [msg[0].substring(0, len), 1];
       }));
-
     }
 
-    if (script.length === 0) {
-      script = _.shuffle(_.map(SELECTED_MSGS, msg => {
-        return [msg[0].substring(0, scriptLen), 1];
-      }));
-    }
-
-    return {
-      big: big,
-      script: script
-    }
+    return words;
   }
 
   updateLen(screenWidth){
@@ -69,8 +63,28 @@ class FontsList extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    return nextState.len != this.state.len ||
-           nextState.scriptLen != this.state.scriptLen;
+    var result = false;
+
+    if (nextState.len != this.state.len) {
+    
+      this.big = this.filterString(nextState.len);
+
+      result = true;
+    
+    }
+
+    if (nextState.scriptLen != this.state.scriptLen) {
+      
+      this.script = this.filterString(nextState.scriptLen);
+      
+      result = true;
+
+    }
+
+    return result;
+
+
+
   }
 
   render() {
@@ -78,10 +92,10 @@ class FontsList extends Component {
     let { len, scriptLen } = this.state;
 
 
-    let filteredMsgs = this.filterString(len, scriptLen);
-    // debugger;
-    console.log("big", filteredMsgs.big);
-    console.log("script", filteredMsgs.script);
+    // let filteredMsgs = this.filterString(len, scriptLen);
+    // // debugger;
+    // console.log("big", filteredMsgs.big);
+    // console.log("script", filteredMsgs.script);
     
     var categoryFonts = {};
 
@@ -114,7 +128,7 @@ class FontsList extends Component {
                         _.map(categoryFont.fonts, (fontData, i) => {
                           idx++; 
                           return (
-                            <FontViewerScript key={fontData.id} message={filteredMsgs.script[i % filteredMsgs.script.length][0]} {...fontData} />
+                            <FontViewerScript key={fontData.id} message={this.script[i % this.script.length][0]} {...fontData} />
                           )
                         })
                       }
@@ -132,7 +146,7 @@ class FontsList extends Component {
                       _.map(categoryFont.fonts, (fontData, i) => {
                         idx++; 
                         return (
-                          <FontViewer key={fontData.id} message={filteredMsgs.big[i % filteredMsgs.big.length][0]} {...fontData} />
+                          <FontViewer key={fontData.id} message={this.big[i % this.big.length][0]} {...fontData} />
                         )
                       })
                     }
