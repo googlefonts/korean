@@ -72,7 +72,7 @@ class FontPreviewTyper extends Component {
       } else {
 
         catStyle = {
-          marginTop: -20,
+          marginTop: 0,
           marginLeft: 0,
           fontSize: '20.0em',
           height: 400,
@@ -90,7 +90,7 @@ class FontPreviewTyper extends Component {
 
       if (screenWidth < BODY_480) {
         catStyle = {
-          marginTop: -20,
+          marginTop: 0,
           marginLeft: 0,
           fontSize: size,
           height: containerHeight,
@@ -103,7 +103,7 @@ class FontPreviewTyper extends Component {
         }
       } else {
         catStyle = {
-          marginTop: -50,
+          marginTop: 0,
           marginLeft: 0,
           fontSize: size,
           height: containerHeight,
