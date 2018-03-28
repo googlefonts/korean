@@ -172,7 +172,7 @@ class Header extends Component {
               screenWidth < BODY_820 ? (locale == "ko" ? 
               <div className={`header__menu--${locale}`}>
                 <div>
-                  <a href="javascript:void(0)" className="">
+                  <a href="javascript:void(0)" className=""  onClick={this.moveToDescription.bind(this)}>
                     <span className="en-black">Google Fonts + </span> 한국어 소개 
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
@@ -182,7 +182,7 @@ class Header extends Component {
               </div> : 
               <div className={`header__menu--${locale}`}>
                 <div>
-                  <a href="javascript:void(0)" className="en-black">
+                  <a href="javascript:void(0)" className="en-black" onClick={this.moveToDescription.bind(this)}>
                     Introduction
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
