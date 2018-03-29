@@ -6,6 +6,8 @@ import { scaleLinear } from 'd3';
 import { FONTS } from '../constants/defaults';
 import _ from 'lodash';
 
+
+
 class DescriptionKo extends Component {
 
   retrieveFontName(currentDescFont) {

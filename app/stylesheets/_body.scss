@@ -1189,10 +1189,17 @@ sup {
         display:inline-block;
         vertical-align: top;
         position:relative;
+
+        color: $text_color;
+        border: 1px solid $background_color;
+        &:hover {
+         color: $text_color;
+         background-color: $background_color;
+        }
         &.consonant {
           width: 59px;
           height: 59px;
-          border: 1px solid $background_color;
+          
           &.short {
             height:33px;
           }
@@ -1203,7 +1210,6 @@ sup {
         &.vowel {
           width:59px;
           height:11px;
-          border: 1px solid $background_color;
           &.vertical {
             transform-origin: 0 25px;
             transform: rotate(90deg);
