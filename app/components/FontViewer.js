@@ -46,16 +46,6 @@ class FontViewer extends Component {
 
   }
 
-  handleDetailSelectedClick(e){
-    e.stopPropagation();
-
-    if (this.props.id === this.props.currentDetailSelected) {
-      this.props.dispatch(changeCurrentDetailSelected(null));
-    } else {
-      this.props.dispatch(changeCurrentDetailSelected(this.props.id)); 
-    }
-  }
-
   handleWeightSelectedClick(weightData, e){
     e.stopPropagation();
     this.setState({
@@ -66,6 +56,16 @@ class FontViewer extends Component {
   handleClosed(e){
     e.stopPropagation();
     this.props.dispatch(changeCurrentDetailSelected(null)); 
+  }
+
+  handleDetailSelectedClick(e){
+    e.stopPropagation();
+
+    if (this.props.id === this.props.currentDetailSelected) {
+      this.props.dispatch(changeCurrentDetailSelected(null));
+    } else {
+      this.props.dispatch(changeCurrentDetailSelected(this.props.id)); 
+    }
   }
 
   handleMouseEnter(e){

@@ -33,6 +33,7 @@ class FontDetailViewer extends Component {
   handleFocus(e){
     // debugger;
     e.stopPropagation(e);
+    e.target.select();
   }
 
   setWeightList(list, data) {
@@ -83,16 +84,16 @@ class FontDetailViewer extends Component {
   getFoundriesDesc(foundries){
     
     return {
-      ko: _.map(foundries, f => { 
+      ko: _.map(foundries, (f, i) => { 
           return (
-            <p>
+            <p key={i}>
               { FOUNDRIES[f].ko }
             </p>
           );
         }),
-      en: _.map(foundries, f => { 
+      en: _.map(foundries, (f, i) => { 
           return (
-            <p className="en-regular">
+            <p key={i} className="en-regular">
               { FOUNDRIES[f].en }
             </p>
           );
@@ -117,7 +118,7 @@ class FontDetailViewer extends Component {
 
     let foundryTitles = this.getFoundriesTitle(this.props.foundries);
     let foundryDescs = this.getFoundriesDesc(this.props.foundries);
-    debugger;
+    // debugger;
     return (
       <Fragment>
         <div className="font-viewer__detail-left" style={{ minWidth: leftWidthScale(screenWidth) }}>

@@ -109,7 +109,7 @@ class FontPreviewTyper extends Component {
           height: containerHeight,
           paddingLeft: 0,
           paddingRight: 0,
-          paddingTop: 0,
+          paddingTop: 15,
           paddingBottom: 40
         }  
       }

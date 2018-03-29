@@ -42,7 +42,11 @@ class FontsList extends Component {
 
   filterString(len){
     var words = _.shuffle(_.filter(SELECTED_MSGS, msg => {
-      return msg[1] === len;
+      try {
+        return msg[1] === len;
+      } catch(e){
+        debugger;
+      }
     }));
 
 
