@@ -31,7 +31,7 @@ export const sizeWaterfall = {
 
     _this.sizeWaterfall.glyphGroups = [];
 
-    var s = scaleLinear().domain([0, GROUP_COUNT]).clamp(true).range([1.0, 0.2]);
+    var s = scaleLinear().domain([0, GROUP_COUNT]).clamp(true).range([1.0, 0.5]);
 
     for (let i = 0; i < GROUP_COUNT; i++) {
 

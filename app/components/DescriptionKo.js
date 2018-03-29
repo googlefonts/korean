@@ -6,6 +6,8 @@ import { scaleLinear } from 'd3';
 import { FONTS } from '../constants/defaults';
 import _ from 'lodash';
 
+
+
 class DescriptionKo extends Component {
 
   retrieveFontName(currentDescFont) {
@@ -30,7 +32,21 @@ class DescriptionKo extends Component {
       return areaName == currentDescFontSelected ? "marching-ants" : "";
     }
 
-    let fontNames = this.retrieveFontName(currentDescFont);
+    var fontNames;
+
+    try {
+      fontNames = this.retrieveFontName(currentDescFont);
+    } catch(e){
+      fontNames = {
+        paragraph: {
+          fontFamily: "Noto Sans KR"
+        },
+        title: {
+          fontFamily: "Noto Sans KR"
+        }
+      }
+    }
+
 
     return (
       <div className="description__container">
@@ -39,9 +55,9 @@ class DescriptionKo extends Component {
         </div>
 
         
-        <h4 style={fontNames.title}>
-          Google Fonts는 양질의 타이포그래피를 통해 웹을 더욱 아름답고 빠르며 누구나 참여할 수 있는 공간으로 만들어왔습니다. Google Fonts + 한국어는 Google Fonts에 아직 등록되지 않은 한글 폰트를 머신 러닝에 기반을 둔 최적화 기술을 통해 시범적으로 제공하고, 그 가능성을 실험합니다.
-        </h4>
+        <h3 style={fontNames.title}>
+          Google Fonts + 한국어는 Google Fonts에 아직 등록되지 않은 한글 폰트를 머신 러닝에 기반을 둔 최적화 기술을 통해 시범적으로 제공하고, 그 가능성을 실험합니다.
+        </h3>
 
         <h4 style={fontNames.title}>
           큰 용량은 이제껏 한글 폰트를 웹에서 사용할 때 맞닥뜨리는 가장 큰 걸림돌이었습니다.
@@ -51,6 +67,37 @@ class DescriptionKo extends Component {
           한글은 발음 구조의 모양을 본뜬 닿자(자음을 나타내는 낱자) 19가지와 하늘, 땅, 인간을 추상화한 홀자(모음을 나타내는 낱자) 21가지로 이루어집니다. 서로 조합된 낱자는 음절 하나를 나타내는 글자가 되고, 글자는 모여 단어가 됩니다. 한글은 1446년 ‘훈민정음(訓民正音)’이라는 이름으로 반포된 무렵에는 중국이나 일본과 마찬가지로 오른쪽부터 세로로 썼지만, 오늘날에는 왼쪽부터 가로로, 단어마다 띄어 쓰는 등 서구의 방식을 따릅니다.
         </p>
 
+        <div className="desc-jamo-area">
+          <div className="letter">
+            <div className="consonant">자음</div>
+            <div className="vowel vertical">모음</div>
+          </div>
+          <div className="letter narrow">
+            <div className="consonant">자음</div><br/>
+            <div className="vowel stacked">모음</div>
+          </div>
+          <div className="letter">
+            <div className="consonant">자음</div>
+            <div className="vowel vertical long">모음</div><br/>
+            <div className="vowel stacked">모음</div>
+          </div>
+          <div className="letter narrow">
+            <div className="consonant short">자음</div><br/>
+            <div className="vowel stacked">모음</div><br/>
+            <div className="consonant short stacked">자음</div>
+          </div>
+          <div className="letter">
+            <div className="consonant">자음</div>
+            <div className="vowel vertical">모음</div><br/>
+            <div className="consonant short indent stacked">자음</div>
+          </div>
+          <div className="letter">
+            <div className="consonant short">자음</div>
+            <div className="vowel vertical short">모음</div><br/>
+            <div className="vowel stacked">모음</div><br/>
+            <div className="consonant short indent stacked">자음</div>
+          </div>
+        </div>
 
         <p style={fontNames.paragraph}>
           한글의 각 글자에서 낱자는 주변 낱자와의 관계에 따라 모양이 조금씩 달라지고, 이런 현상은 한자와 가나에서도 나타납니다. 따라서 한글을 바르게 표시하기 위해서는 기본적으로 낱자를 모두 조합한 11,172가지 글리프를 폰트에 포함해야 합니다. 이는 폰트를 제작하는 기간과 비용뿐 아니라 파일의 용량에도 큰 영향을 미칩니다. 예컨대 Google이 전 세계의 모든 문자를 표시하기 위해 개발하고 있는 노토 산스(Noto Sans) 로마자 버전의 용량은 445KB에 불과하지만, 44,683가지 글자를 포함한 CJK 버전은 15.7MB에 달하며, 폰트를 완전히 다운로드하기 전까지는 페이지가 바르게 표시되지 않습니다. 이는 지금까지 웹에서 다양한 한글 폰트를 제대로 이용하는 데 큰 제약이었습니다.

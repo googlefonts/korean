@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FONTS } from '../constants/defaults';
+import { FONTS, BODY_600 } from '../constants/defaults';
 import { changeDescFontDropdownOpened } from '../actions';
 import { getCurrentDescFont } from '../utils';
 
@@ -16,7 +16,7 @@ class DropdownFontSelector extends Component {
   }
 
   render() {
-    let { currentDescFontSelected, locale, backgroundMode } = this.props;
+    let { currentDescFontSelected, locale, backgroundMode, screenWidth } = this.props;
 
     let currentDescFont = getCurrentDescFont(this.props.currentDescFont, currentDescFontSelected);
 
@@ -28,13 +28,21 @@ class DropdownFontSelector extends Component {
             locale == "ko" ? 
             <Fragment>
               <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
-              <div className="dropdown-font-selector__en en-regular">{ currentDescFont.nameEn }</div> 
+              {
+                screenWidth > BODY_600 ? 
+                <div className="dropdown-font-selector__en en-regular">{ currentDescFont.nameEn }</div> 
+                : null  
+              }
               <div style={{ marginTop: -2 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
             </Fragment> :
             <Fragment>
-              <div className="dropdown-font-selector__en en-black">{ currentDescFont.nameEn }</div> 
-              <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
-              <div style={{ marginTop: -6 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
+              <div className="dropdown-font-selector__en en-black" style={{ fontSize: screenWidth > BODY_600 ? '0.8em' : '0.9em' }}>{ currentDescFont.nameEn }</div> 
+              {
+                screenWidth > BODY_600 ? 
+                <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
+                : null
+              }
+              <div style={{ marginTop: screenWidth > BODY_600 ? -6 : 0 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
             </Fragment>
           }
         </a>
@@ -46,6 +54,7 @@ class DropdownFontSelector extends Component {
 let mapStateToProps = state => {
   return {
     currentDescFont: state.currentDescFont,
+    screenWidth: state.screenWidth,
     backgroundMode: state.backgroundMode == "black" ? "white" : "black",
     locale: state.locale,
     currentDescFontSelected: state.currentDescFontSelected

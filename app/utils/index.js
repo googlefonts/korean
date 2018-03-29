@@ -1,6 +1,6 @@
 import { FONTS, BODY_480 } from '../constants/defaults';
 import { scaleLinear } from 'd3';
-
+import _ from 'lodash';
 export const numberWithDelimiter = (number, delimiter, separator) => {
   try {
     var delimiter = delimiter || ",";
@@ -23,10 +23,15 @@ export const convertBgMode = (bgMode, fgOrBg) => {
 }
 
 export const getCurrentDescFont = (currentDescFont, mode) => {
-    
+  // debugger;
   if (mode === "all") {
     if (currentDescFont["title"] == currentDescFont["paragraph"]) {
-      return _.find(FONTS, fontData => { return currentDescFont["title"] == fontData.id });
+      var resultFont = _.find(FONTS, fontData => { return currentDescFont["title"] == fontData.id });
+      return _.isUndefined(resultFont) ? {
+        id: -1,
+        nameKo: "-",
+        nameEn: "-"
+      } : resultFont;
     } else {
       return {
         id: -1,
@@ -36,7 +41,14 @@ export const getCurrentDescFont = (currentDescFont, mode) => {
     }
     
   } else {
-    return _.find(FONTS, fontData => { return currentDescFont[mode] == fontData.id });
+
+    var resultFont = _.find(FONTS, fontData => { return currentDescFont["title"] == fontData.id });
+    return _.isUndefined(resultFont) ? {
+        id: -1,
+        nameKo: "-",
+        nameEn: "-"
+      } : resultFont;
+
   }
 }
 

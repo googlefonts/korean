@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as opentype from 'opentype.js'
-import { changeCurrentScriptViewFont, changeCurrentViewFont } from '../actions';
+import { changeCurrentScriptViewFont, changeCurrentViewFont, changeCurrentDetailSelected } from '../actions';
 import { BODY_480 } from '../constants/defaults';
 import { FontAnimScriptViewer, FontOutlineViewer, FontPreviewTyper, FontAnimViewer, FontDetailViewer } from './';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import _ from 'lodash';
 
 const Fragment = React.Fragment;
 
-const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([150, 400]);
+const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([170, 300]);
 const sizeScale = scaleLinear().domain([1440, 2560]).clamp(true).range([150, 250]);
 
 
@@ -20,7 +20,7 @@ class FontViewerScript extends Component {
     this.state = {
       loaded: false,
       font: null,
-      detailSelected: false,
+      // detailSelected: false,
       fontWeightSelected: null
     }
   }
@@ -50,9 +50,8 @@ class FontViewerScript extends Component {
 
   handleDetailSelectedClick(e){
     e.stopPropagation();
-    this.setState({
-      detailSelected: true
-    });
+
+    this.props.dispatch(changeCurrentDetailSelected(this.props.id));
   }
 
   handleWeightSelectedClick(weightData, e){
@@ -64,9 +63,8 @@ class FontViewerScript extends Component {
 
   handleClosed(e){
     e.stopPropagation();
-    this.setState({
-      detailSelected: false
-    }) 
+
+    this.props.dispatch(changeCurrentDetailSelected(null));
   }
 
   handleMouseEnter(e){
@@ -79,9 +77,11 @@ class FontViewerScript extends Component {
   }
 
   render() {
-    let { currentScriptViewFont, screenWidth, locale, backgroundMode } = this.props;
+    let { currentScriptViewFont, screenWidth, locale, backgroundMode, currentDetailSelected } = this.props;
     let selected = currentScriptViewFont == this.props.id;
-    let { detailSelected } = this.state;
+    // let { detailSelected } = this.state;
+    let detailSelected = currentDetailSelected == this.props.id;
+
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
 
 
@@ -91,7 +91,7 @@ class FontViewerScript extends Component {
           <div className="font-viewer__left--script" style={{ minWidth: leftWidthScale(screenWidth) }}>
             {
               locale == "ko" ? 
-              <h3>
+              <h3 onClick={this.handleDetailSelectedClick.bind(this)}>
                 <span className="ko">{ this.props.nameKo }</span>
 
                 {
@@ -105,7 +105,7 @@ class FontViewerScript extends Component {
                 }
                 <span className="en-black">{ this.props.nameEn }</span>
               </h3> : 
-              <h3>
+              <h3 onClick={this.handleDetailSelectedClick.bind(this)}>
                 <span className="en-black">{ this.props.nameEn }</span>
 
                 {
@@ -183,7 +183,8 @@ let mapStateToProps = state => {
     backgroundMode: state.backgroundMode,
     currentScriptViewFont: state.currentScriptViewFont,
     screenWidth: state.screenWidth,
-    locale: state.locale
+    locale: state.locale,
+    currentDetailSelected: state.currentDetailSelected
   }
 };
 
