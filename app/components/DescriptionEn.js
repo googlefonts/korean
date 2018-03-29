@@ -43,9 +43,9 @@ class DescriptionEn extends Component {
         <div className="l-apple-box--double">
         </div>
         
-        <h4 style={fontNames.title}>
+        <h3 style={fontNames.title}>
          Google Fonts has been making the web more beautiful, fast, and open through great typography. Optimized by machine learning, Google Fonts now offers Korean and this showcase website.
-        </h4>
+        </h3>
 
         <h4 style={fontNames.title}>
           Why do Korean fonts pose a challenge for web use?

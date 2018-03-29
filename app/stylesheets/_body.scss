@@ -1071,13 +1071,29 @@ sup {
 
   }
 
+  h3 {
+    width: 840px;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    font-size: 2em;
+    line-height: 1.4;
+    font-weight: 400;
+    @include body_1280 {
+      width: 590px;
+    }
+    @include body_600 {
+      width: 100px;
+    }
+  }
+
   h4 {
     // margin-bottom: 20px;
     width: 590px;
     margin-top: 100px;
     margin-bottom: 30px;
-    font-size: 1.5em;
-    line-height: 1.6;
+    font-size: 1.125em;
+    line-height: 1.4;
+    font-weight:700;
     @include body_960 {
       width: 80%;
     }
@@ -1115,48 +1131,100 @@ sup {
     }
   }
 
-    &__column-left {
-      width:590px;
-      // margin-right: 150px;
+  &__column-left {
+    width:590px;
+    // margin-right: 150px;
 
-      @include body_960 {
-        width: 100%;
+    @include body_960 {
+      width: 100%;
+    }
+  }
+
+  &__column-right {
+    width: calc(100% - 790px);
+    min-width: 200px;
+    display: block;
+
+    @include body_1280 {
+      width: auto;
+    }
+
+    @include body_960 {
+      display: flex;
+      justify-content: center;
+      width: 80%;
+    }
+  }
+
+  &__stat-wrap {
+    @include body_960 {
+      margin-right: 20px;
+    }
+  }
+
+  &__big-numeric {
+    font-size:2.5em;
+    
+    padding: 20px;
+    margin: 0 0 0 -20px;
+    border:1px solid rgba(0, 0, 0, 0);
+    margin-bottom: 10px;
+  }
+
+  .desc-jamo-area {
+    margin:60px 0;
+    .letter {
+      display: inline-block;
+      width:110px;
+      margin-right: 40px;
+      vertical-align: top;
+      &.narrow {
+        width:84px;
+      }
+
+      div {
+        font-size: 11px;
+        text-transform: uppercase;
+        padding: 6.5px 6.5px;
+        display:inline-block;
+        vertical-align: top;
+        position:relative;
+        &.consonant {
+          width: 59px;
+          height: 59px;
+          border: 1px solid $background_color;
+          &.short {
+            height:33px;
+          }
+          &.indent {
+            margin-left:25px;
+          }
+        }
+        &.vowel {
+          width:59px;
+          height:11px;
+          border: 1px solid $background_color;
+          &.vertical {
+            transform-origin: 0 25px;
+            transform: rotate(90deg);
+            margin-top:-25px;
+            position:absolute;
+          }
+          &.long {
+            width: 84px;
+          }
+          &.short {
+            width: 58px;
+          }
+        }
+        &.stacked {
+          margin-top:-1px;
+        }
       }
     }
 
-    &__column-right {
-      width: calc(100% - 790px);
-      min-width: 200px;
-      display: block;
+  }
 
-      @include body_1280 {
-        width: auto;
-      }
-
-      @include body_960 {
-        display: flex;
-        justify-content: center;
-        width: 80%;
-      }
-    }
-
-    &__stat-wrap {
-      @include body_960 {
-        margin-right: 20px;
-      }
-    }
-
-
-
-
-    &__big-numeric {
-      font-size:2.5em;
-      
-      padding: 20px;
-      margin: 0 0 0 -20px;
-      border:1px solid rgba(0, 0, 0, 0);
-      margin-bottom: 10px;
-    }
 }
 
 .footer {
