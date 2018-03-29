@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { scaleLinear } from 'd3';
 const Fragment = React.Fragment;
 import { connect } from 'react-redux';
+import { FOUNDRIES } from '../constants/defaults';
 
 class FontDetailViewer extends Component {
   constructor(props){
@@ -32,6 +33,7 @@ class FontDetailViewer extends Component {
   handleFocus(e){
     // debugger;
     e.stopPropagation(e);
+    e.target.select();
   }
 
   setWeightList(list, data) {
@@ -72,6 +74,34 @@ class FontDetailViewer extends Component {
     }
   }
 
+  getFoundriesTitle(foundries){
+    return {
+      ko: `${_.map(foundries, f => { return FOUNDRIES[f].titleKo; }).join(', ')}`,
+      en: `${_.map(foundries, f => { return FOUNDRIES[f].titleEn; }).join(', ')}`
+    }
+  }
+
+  getFoundriesDesc(foundries){
+    
+    return {
+      ko: _.map(foundries, (f, i) => { 
+          return (
+            <p key={i}>
+              { FOUNDRIES[f].ko }
+            </p>
+          );
+        }),
+      en: _.map(foundries, (f, i) => { 
+          return (
+            <p key={i} className="en-regular">
+              { FOUNDRIES[f].en }
+            </p>
+          );
+        })  
+      
+    };
+  }
+
   render() {
     let { screenWidth, locale, category, backgroundMode } = this.props;
     let { weightSelected } = this.state;
@@ -86,7 +116,9 @@ class FontDetailViewer extends Component {
       leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 210]);
     }
 
-
+    let foundryTitles = this.getFoundriesTitle(this.props.foundries);
+    let foundryDescs = this.getFoundriesDesc(this.props.foundries);
+    // debugger;
     return (
       <Fragment>
         <div className="font-viewer__detail-left" style={{ minWidth: leftWidthScale(screenWidth) }}>
@@ -105,8 +137,10 @@ class FontDetailViewer extends Component {
               </p>
               <div className="l-apple-box"></div>
               <p>
-                제작 <span className="bold">{ this.props.foundryKo }</span>
+                제작 <span className="bold">{ foundryTitles.ko }</span>
               </p>
+              <div className="l-apple-box--quarter"></div>
+              { foundryDescs.ko }
             </div> : 
 
             <div className={`font-viewer__column-left${addClassName}`}>
@@ -115,8 +149,10 @@ class FontDetailViewer extends Component {
               </p>
               <div className="l-apple-box"></div>
               <p className="en-regular">
-                Type Foundry <span className="en-black">{ this.props.foundryEn }</span>
+                Type Foundry <span className="en-black">{ foundryTitles.en }</span>
               </p>
+              <div className="l-apple-box--quarter"></div>
+              { foundryDescs.en }
             </div>
           }
 

@@ -8,6 +8,7 @@ import 'gsap';
 import paper from 'paper';
 import { isTouchDevice } from '../utils';
 
+
 const Fragment = React.Fragment;
 
 class App extends Component {

@@ -5,8 +5,51 @@ import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 import { FONTS } from '../constants/defaults';
 import _ from 'lodash';
+import scrollama from 'scrollama';
+import CountUp, { startAnimation } from 'react-countup';
 
 class DescriptionEn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      hovered: null, // consonant, vowel, null
+      countUpPlay: false,
+      oncePlayed: false
+    };
+  }
+
+  componentDidMount(){
+    
+    this.scroller = scrollama();
+
+    this.scroller.setup({
+        step: '.desc-column-area',
+        // debug: true,
+        // progress: true,
+        offset: (window.innerHeight - 150) / window.innerHeight,
+      }).onStepEnter(this.handleStepEnter.bind(this))
+        // .onStepProgress(this.handleStepProgress.bind(this))
+        // .onStepExit(this.handleStepExit.bind(this));
+  }
+
+  handleStepEnter(e){
+    this.setState({
+      countUpPlay: true
+    });
+  }
+
+  handleMouseEnter(hov) {
+    this.setState({
+      hovered: hov
+    });
+  }
+
+  handleMouseLeave() {
+    this.setState({
+      hovered: null
+    });
+  }
+
 
   handleCurrentDescFontSelected(name, e) {
     e.stopPropagation();
@@ -34,8 +77,34 @@ class DescriptionEn extends Component {
     let selectedOrNot = (areaName) => {
       return areaName == currentDescFontSelected ? "marching-ants" : "";
     }
+    let { hovered, countUpPlay, oncePlayed } = this.state;
 
-    let fontNames = this.retrieveFontName(currentDescFont);
+
+    if (countUpPlay && !oncePlayed) {
+
+      this.setState({
+        oncePlayed: true
+      });
+      startAnimation(this.bigCountUp);
+      startAnimation(this.smCountUp);
+    }
+
+    var fontNames;
+
+    try {
+      fontNames = this.retrieveFontName(currentDescFont);
+    } catch(e){
+      fontNames = {
+        paragraph: {
+          fontFamily: "Noto Sans KR"
+        },
+        title: {
+          fontFamily: "Noto Sans KR"
+        }
+      }
+    }
+
+
 
     return (
       <div className="description__container">
@@ -43,9 +112,9 @@ class DescriptionEn extends Component {
         <div className="l-apple-box--double">
         </div>
         
-        <h4 style={fontNames.title}>
+        <h3 style={fontNames.title}>
          Google Fonts has been making the web more beautiful, fast, and open through great typography. Optimized by machine learning, Google Fonts now offers Korean and this showcase website.
-        </h4>
+        </h3>
 
         <h4 style={fontNames.title}>
           Why do Korean fonts pose a challenge for web use?
@@ -54,6 +123,39 @@ class DescriptionEn extends Component {
         <p style={fontNames.paragraph}>
           Hangul consists of 19 consonants, designed after the shapes of the articulators when making the sounds, and 21 vowels, evolved from three basic shapes representing the sky, the earth, and human. These elements, called jamo, are then grouped into syllabic blocks, making up the letters. Hangul was originally intended to be written from top to bottom and right to left since its inception in 1446 (then called Hunminjeongeum) but is now generally written from left to right, with spaces between words and Western punctuation.
         </p>
+
+        <div className="desc-jamo-area">
+          <div className="letter">
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} className={`vowel vertical ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div>
+          </div>
+          <div className="letter narrow">
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel stacked ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div>
+          </div>
+          <div className="letter">
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel vertical long ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel stacked ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div>
+          </div>
+          <div className="letter narrow">
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel stacked ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
+          </div>
+          <div className="letter">
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel vertical ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short indent stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
+          </div>
+          <div className="letter">
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel vertical short ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel stacked ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short indent stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
+          </div>
+        </div>
+
 
         <p style={fontNames.paragraph}>
           In Hangul, the visual balance of a jamo changes in relation to its surrounding jamo, similar to Chinese letters or Japanese kana. For this reason, a Korean font usually includes every possible combination of jamo, resulting in 11,172 glyphs. Developing a font with this many glyphs requires not only significant time and expense, but also results in a much larger file size. For example, Google is developing the Noto fonts to support all languages, and while the Noto Latin font is 445KB, the Noto Simplified Chinese (SC) font is 15.7MB, containing a total of 44,683 glyphs. The large file sizes have been the biggest hurdle to using Korean fonts effectively on the web.
@@ -65,7 +167,7 @@ class DescriptionEn extends Component {
             <div className="right">
               <div className="right-wrap">
                 <h5 style={fontNames.title}>
-                  65,535
+                  <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
                   Total Number of Glyph (Hangul)<br/>
@@ -75,7 +177,7 @@ class DescriptionEn extends Component {
 
               <div className="right-wrap">
                 <h5 style={fontNames.title}>
-                  2,416
+                  <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
                   Total Number of Glyph (Latin + Greek + Cyrilic)<br/>
@@ -104,7 +206,7 @@ class DescriptionEn extends Component {
             <div className="right">
               <div className="right-wrap">
                 <h5 style={fontNames.title}>
-                  65,535
+                  <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
                   Total Number of Glyph (Hangul)<br/>
@@ -114,7 +216,7 @@ class DescriptionEn extends Component {
 
               <div className="right-wrap">
                 <h5 style={fontNames.title}>
-                  2,416
+                  <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                <p style={fontNames.paragraph}>
                   Total Number of Glyph (Latin + Greek + Cyrilic)<br/>
