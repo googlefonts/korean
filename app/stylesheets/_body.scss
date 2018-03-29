@@ -627,8 +627,8 @@ sup {
 
   &__detail-left {
     min-width: 210px;
-    padding-top: 20px;
-    border-top: 2px solid $text_color;
+    //padding-top: 30px;
+    //border-top: 2px solid $text_color;
   }
 
   &__detail-left--script {
@@ -637,14 +637,14 @@ sup {
   }
 
   &__detail-right {
-    border-top: 2px solid $text_color;
-    padding-top: 20px;
+    border-top: 1px dotted $text_color;
+    padding-top: 30px;
     
     display: flex;
     justify-content: space-between;
 
     @include body_1280 {
-      display: block;
+      //display: block;
     }
 
     @include body_480 {
@@ -714,6 +714,7 @@ sup {
     &--ko {
       @extend .font-viewer__detail-label;
       @include black_type;
+      font-size:0.9em;
     }
   }
 
@@ -722,17 +723,24 @@ sup {
   }
 
   &__copy-input {
-    padding: 5px 10px;
+    padding: 0 0 0 7px;
     background-color: $text_color;
     color: $background_color;
     width: calc(100% - 20px); 
+    height: 30px;
+    font-family: 'Roboto Mono', monospace;
+    border-radius: 2px;
   }
 
   &__weight-link {
-    padding: 5px 12px;
+    display:inline-block;
+    padding: 0 9px;
     @include en_regular_type;
     font-size: 0.9em;
     margin-right: 10px;
+    border-radius: 2px;
+    height: 30px;
+    line-height: 30px;
     &--selected {
       @extend .font-viewer__weight-link;
       background-color: $text_color;
