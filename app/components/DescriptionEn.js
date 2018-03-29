@@ -34,8 +34,22 @@ class DescriptionEn extends Component {
     let selectedOrNot = (areaName) => {
       return areaName == currentDescFontSelected ? "marching-ants" : "";
     }
+    var fontNames;
 
-    let fontNames = this.retrieveFontName(currentDescFont);
+    try {
+      fontNames = this.retrieveFontName(currentDescFont);
+    } catch(e){
+      fontNames = {
+        paragraph: {
+          fontFamily: "Noto Sans KR"
+        },
+        title: {
+          fontFamily: "Noto Sans KR"
+        }
+      }
+    }
+
+
 
     return (
       <div className="description__container">
