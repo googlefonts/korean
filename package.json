@@ -30,6 +30,7 @@
     "paper": "^0.11.5",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-countup": "^3.0.3",
     "react-dom": "^16.2.0",
     "react-onclickoutside": "^6.7.1",
     "react-redux": "^5.0.6",

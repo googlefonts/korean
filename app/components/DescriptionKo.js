@@ -5,10 +5,38 @@ import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 import { FONTS } from '../constants/defaults';
 import _ from 'lodash';
-
-
+import scrollama from 'scrollama';
+import CountUp, { startAnimation } from 'react-countup';
 
 class DescriptionKo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      hovered: null, // consonant, vowel, null
+      countUpPlay: false,
+      oncePlayed: false
+    };
+  }
+
+  componentDidMount(){
+    
+    this.scroller = scrollama();
+
+    this.scroller.setup({
+        step: '.desc-column-area',
+        // debug: true,
+        // progress: true,
+        offset: (window.innerHeight - 150) / window.innerHeight,
+      }).onStepEnter(this.handleStepEnter.bind(this))
+        // .onStepProgress(this.handleStepProgress.bind(this))
+        // .onStepExit(this.handleStepExit.bind(this));
+  }
+
+  handleStepEnter(e){
+    this.setState({
+      countUpPlay: true
+    });
+  }
 
   retrieveFontName(currentDescFont) {
     var result = {};
@@ -25,14 +53,37 @@ class DescriptionKo extends Component {
     return result;
   }
 
+  handleMouseEnter(hov) {
+    this.setState({
+      hovered: hov
+    });
+  }
+
+  handleMouseLeave() {
+    this.setState({
+      hovered: null
+    });
+  }
+
+
   render() {
     let { currentDescFontSelected, currentDescFont, screenWidth } = this.props;
     let marginRightScale = scaleLinear().domain([960, 1280]).clamp(true).range([20, 150]);
     let selectedOrNot = (areaName) => {
       return areaName == currentDescFontSelected ? "marching-ants" : "";
     }
+    let { hovered, countUpPlay, oncePlayed } = this.state;
 
     var fontNames;
+
+    if (countUpPlay && !oncePlayed) {
+
+      this.setState({
+        oncePlayed: true
+      });
+      startAnimation(this.bigCountUp);
+      startAnimation(this.smCountUp);
+    }
 
     try {
       fontNames = this.retrieveFontName(currentDescFont);
@@ -69,33 +120,33 @@ class DescriptionKo extends Component {
 
         <div className="desc-jamo-area">
           <div className="letter">
-            <div className="consonant">자음</div>
-            <div className="vowel vertical">모음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} className={`vowel vertical ${ hovered === "vowel" ? "highlighted" : ""}`}>모음</div>
           </div>
           <div className="letter narrow">
-            <div className="consonant">자음</div><br/>
-            <div className="vowel stacked">모음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel stacked ${ hovered === "vowel" ? "highlighted" : ""}`}>모음</div>
           </div>
           <div className="letter">
-            <div className="consonant">자음</div>
-            <div className="vowel vertical long">모음</div><br/>
-            <div className="vowel stacked">모음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel vertical long ${ hovered === "vowel" ? "highlighted" : ""}`}>모음</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel stacked ${ hovered === "vowel" ? "highlighted" : ""}`}>모음</div>
           </div>
           <div className="letter narrow">
-            <div className="consonant short">자음</div><br/>
-            <div className="vowel stacked">모음</div><br/>
-            <div className="consonant short stacked">자음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel stacked ${ hovered === "vowel" ? "highlighted" : ""}`}>모음</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
           </div>
           <div className="letter">
-            <div className="consonant">자음</div>
-            <div className="vowel vertical">모음</div><br/>
-            <div className="consonant short indent stacked">자음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel vertical ${ hovered === "vowel" ? "highlighted" : ""}`}>모음</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short indent stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
           </div>
           <div className="letter">
-            <div className="consonant short">자음</div>
-            <div className="vowel vertical short">모음</div><br/>
-            <div className="vowel stacked">모음</div><br/>
-            <div className="consonant short indent stacked">자음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel vertical short ${ hovered === "vowel" ? "highlighted" : ""}`}>모음</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel stacked ${ hovered === "vowel" ? "highlighted" : ""}`}>모음</div><br/>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short indent stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
           </div>
         </div>
 
@@ -109,7 +160,7 @@ class DescriptionKo extends Component {
             <div className="right">
               <div className="right-wrap">
                 <h5 style={fontNames.title}>
-                  65,535
+                  <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
                   총 글리프 개수 (한글)<br/>
@@ -119,7 +170,7 @@ class DescriptionKo extends Component {
 
               <div className="right-wrap">
                 <h5 style={fontNames.title}>
-                  2,416
+                  <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
                   총 글리프 개수 (라틴 + 그리스 + 키릴자모)<br/>
@@ -149,7 +200,7 @@ class DescriptionKo extends Component {
             <div className="right">
               <div className="right-wrap">
                 <h5 style={fontNames.title}>
-                  65,535
+                  <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
                   총 글리프 개수 (한글)<br/>
@@ -159,7 +210,7 @@ class DescriptionKo extends Component {
 
               <div className="right-wrap">
                 <h5 style={fontNames.title}>
-                  2,416
+                  <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
                   총 글리프 개수 (라틴 + 그리스 + 키릴자모)<br/>

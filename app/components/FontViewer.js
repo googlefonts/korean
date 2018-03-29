@@ -18,7 +18,8 @@ class FontViewer extends Component {
     this.state = {
       loaded: false,
       font: null,
-      fontWeightSelected: null
+      fontWeightSelected: null,
+      hovered: false
     }
   }
 
@@ -48,7 +49,11 @@ class FontViewer extends Component {
   handleDetailSelectedClick(e){
     e.stopPropagation();
 
-    this.props.dispatch(changeCurrentDetailSelected(this.props.id));
+    if (this.props.id === this.props.currentDetailSelected) {
+      this.props.dispatch(changeCurrentDetailSelected(null));
+    } else {
+      this.props.dispatch(changeCurrentDetailSelected(this.props.id)); 
+    }
   }
 
   handleWeightSelectedClick(weightData, e){
@@ -63,11 +68,23 @@ class FontViewer extends Component {
     this.props.dispatch(changeCurrentDetailSelected(null)); 
   }
 
+  handleMouseEnter(e){
+    this.setState({
+      hovered: true
+    });
+  }
+
+  handleMouseLeave(e){
+    this.setState({
+      hovered: false
+    })
+  }
+
   render() {
     let { currentViewFont, screenWidth, locale, backgroundMode, currentDetailSelected } = this.props;
     let selected = currentViewFont == this.props.id;
     let detailSelected = currentDetailSelected == this.props.id;
-
+    let { hovered } = this.state;
     let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
 
 
@@ -77,7 +94,7 @@ class FontViewer extends Component {
           <div className="font-viewer__left" style={{ minWidth: leftWidthScale(screenWidth) }}>
             {
               locale == "ko" ? 
-              <h3 onClick={this.handleDetailSelectedClick.bind(this)}>
+              <h3 style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
                 <span className="ko">{ this.props.nameKo }</span>
 
                 {
@@ -91,7 +108,7 @@ class FontViewer extends Component {
                 }
                 <span className="en-black">{ this.props.nameEn }</span>
               </h3> : 
-              <h3 onClick={this.handleDetailSelectedClick.bind(this)}>
+              <h3 style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
                 <span className="en-black">{ this.props.nameEn }</span>
 
                 {
@@ -111,7 +128,7 @@ class FontViewer extends Component {
             <div className="font-viewer__weight-area">
               {
                 !detailSelected ? 
-                <a href="javascript:void(0);" onClick={this.handleDetailSelectedClick.bind(this)}>
+                <a href="javascript:void(0);" style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
                   <img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" />
                 </a>
                 :

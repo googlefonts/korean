@@ -579,6 +579,10 @@ sup {
   h3 {
     font-size:0.8em;
     cursor: pointer; 
+    transition: 0.4s opacity;
+    &:hover {
+      opacity: 0.5;
+    }
     .ko {
       @include black_type;
     }
@@ -1200,7 +1204,7 @@ sup {
 
         color: $text_color;
         border: 1px solid $background_color;
-        &:hover {
+        &.highlighted {
          color: $text_color;
          background-color: $background_color;
         }
