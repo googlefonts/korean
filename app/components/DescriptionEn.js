@@ -43,9 +43,9 @@ class DescriptionEn extends Component {
         <div className="l-apple-box--double">
         </div>
         
-        <h4 style={fontNames.title}>
+        <h3 style={fontNames.title}>
          Google Fonts has been making the web more beautiful, fast, and open through great typography. Optimized by machine learning, Google Fonts now offers Korean and this showcase website.
-        </h4>
+        </h3>
 
         <h4 style={fontNames.title}>
           Why do Korean fonts pose a challenge for web use?
@@ -54,6 +54,38 @@ class DescriptionEn extends Component {
         <p style={fontNames.paragraph}>
           Hangul consists of 19 consonants, designed after the shapes of the articulators when making the sounds, and 21 vowels, evolved from three basic shapes representing the sky, the earth, and human. These elements, called jamo, are then grouped into syllabic blocks, making up the letters. Hangul was originally intended to be written from top to bottom and right to left since its inception in 1446 (then called Hunminjeongeum) but is now generally written from left to right, with spaces between words and Western punctuation.
         </p>
+
+        <div className="desc-jamo-area">
+          <div class="letter">
+            <div class="consonant">Conso-<br/>nant</div>
+            <div class="vowel vertical">Vowel</div>
+          </div>
+          <div class="letter narrow">
+            <div class="consonant">Conso-<br/>nant</div><br/>
+            <div class="vowel stacked">Vowel</div>
+          </div>
+          <div class="letter">
+            <div class="consonant">Conso-<br/>nant</div>
+            <div class="vowel vertical long">Vowel</div><br/>
+            <div class="vowel stacked">Vowel</div>
+          </div>
+          <div class="letter narrow">
+            <div class="consonant short">Conso-<br/>nant</div><br/>
+            <div class="vowel stacked">Vowel</div><br/>
+            <div class="consonant short stacked">Conso-<br/>nant</div>
+          </div>
+          <div class="letter">
+            <div class="consonant">Conso-<br/>nant</div>
+            <div class="vowel vertical">Vowel</div><br/>
+            <div class="consonant short indent stacked">Conso-<br/>nant</div>
+          </div>
+          <div class="letter">
+            <div class="consonant short">Conso-<br/>nant</div>
+            <div class="vowel vertical short">Vowel</div><br/>
+            <div class="vowel stacked">Vowel</div><br/>
+            <div class="consonant short indent stacked">Conso-<br/>nant</div>
+          </div>
+        </div>
 
         <p style={fontNames.paragraph}>
           In Hangul, the visual balance of a jamo changes in relation to its surrounding jamo, similar to Chinese letters or Japanese kana. For this reason, a Korean font usually includes every possible combination of jamo, resulting in 11,172 glyphs. Developing a font with this many glyphs requires not only significant time and expense, but also results in a much larger file size. For example, Google is developing the Noto fonts to support all languages, and while the Noto Latin font is 445KB, the Noto Simplified Chinese (SC) font is 15.7MB, containing a total of 44,683 glyphs. The large file sizes have been the biggest hurdle to using Korean fonts effectively on the web.
