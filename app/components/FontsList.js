@@ -9,7 +9,7 @@ import { cutString } from '../utils';
 
 const Fragment = React.Fragment;
 const msgScale = cutString;
-const msgScaleScript = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 6]);
+const msgScaleScript = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 5.9]);
 const SELECTED_MSGS = _.first(_.shuffle(MESSAGES));
 
 class FontsList extends Component {
@@ -48,7 +48,7 @@ class FontsList extends Component {
 
     if (words.length === 0) {
       words = _.shuffle(_.map(SELECTED_MSGS, msg => {
-        return [msg[0].substring(0, len), 1];
+        return [msg[0].substring(0, len), len];
       }));
     }
 
@@ -90,8 +90,9 @@ class FontsList extends Component {
   render() {
     let { screenWidth } = this.props;
     let { len, scriptLen } = this.state;
+    var totalIdx = 0;
 
-
+    // console.log(this.big);
     // let filteredMsgs = this.filterString(len, scriptLen);
     // // debugger;
     // console.log("big", filteredMsgs.big);
@@ -145,8 +146,9 @@ class FontsList extends Component {
                     {
                       _.map(categoryFont.fonts, (fontData, i) => {
                         idx++; 
+                        totalIdx++;
                         return (
-                          <FontViewer key={fontData.id} message={this.big[i % this.big.length][0]} {...fontData} />
+                          <FontViewer key={fontData.id} message={this.big[totalIdx % this.big.length][0]} {...fontData} />
                         )
                       })
                     }

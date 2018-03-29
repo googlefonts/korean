@@ -32,7 +32,21 @@ class DescriptionKo extends Component {
       return areaName == currentDescFontSelected ? "marching-ants" : "";
     }
 
-    let fontNames = this.retrieveFontName(currentDescFont);
+    var fontNames;
+
+    try {
+      fontNames = this.retrieveFontName(currentDescFont);
+    } catch(e){
+      fontNames = {
+        paragraph: {
+          fontFamily: "Noto Sans KR"
+        },
+        title: {
+          fontFamily: "Noto Sans KR"
+        }
+      }
+    }
+
 
     return (
       <div className="description__container">

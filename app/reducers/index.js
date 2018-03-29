@@ -14,8 +14,8 @@ let initialState = {
   currentDetailSelected: null,
   currentDescFontSelected: "all", // all, title, paragraph
   currentDescFont: {
-    title: 1,
-    paragraph: 1
+    title: null,
+    paragraph: null
   }, 
   isOnScript: false,
   currentCategory: 1,
