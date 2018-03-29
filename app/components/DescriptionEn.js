@@ -56,34 +56,34 @@ class DescriptionEn extends Component {
         </p>
 
         <div className="desc-jamo-area">
-          <div class="letter">
-            <div class="consonant">Conso-<br/>nant</div>
-            <div class="vowel vertical">Vowel</div>
+          <div className="letter">
+            <div className="consonant">Conso-<br/>nant</div>
+            <div className="vowel vertical">Vowel</div>
           </div>
-          <div class="letter narrow">
-            <div class="consonant">Conso-<br/>nant</div><br/>
-            <div class="vowel stacked">Vowel</div>
+          <div className="letter narrow">
+            <div className="consonant">Conso-<br/>nant</div><br/>
+            <div className="vowel stacked">Vowel</div>
           </div>
-          <div class="letter">
-            <div class="consonant">Conso-<br/>nant</div>
-            <div class="vowel vertical long">Vowel</div><br/>
-            <div class="vowel stacked">Vowel</div>
+          <div className="letter">
+            <div className="consonant">Conso-<br/>nant</div>
+            <div className="vowel vertical long">Vowel</div><br/>
+            <div className="vowel stacked">Vowel</div>
           </div>
-          <div class="letter narrow">
-            <div class="consonant short">Conso-<br/>nant</div><br/>
-            <div class="vowel stacked">Vowel</div><br/>
-            <div class="consonant short stacked">Conso-<br/>nant</div>
+          <div className="letter narrow">
+            <div className="consonant short">Conso-<br/>nant</div><br/>
+            <div className="vowel stacked">Vowel</div><br/>
+            <div className="consonant short stacked">Conso-<br/>nant</div>
           </div>
-          <div class="letter">
-            <div class="consonant">Conso-<br/>nant</div>
-            <div class="vowel vertical">Vowel</div><br/>
-            <div class="consonant short indent stacked">Conso-<br/>nant</div>
+          <div className="letter">
+            <div className="consonant">Conso-<br/>nant</div>
+            <div className="vowel vertical">Vowel</div><br/>
+            <div className="consonant short indent stacked">Conso-<br/>nant</div>
           </div>
-          <div class="letter">
-            <div class="consonant short">Conso-<br/>nant</div>
-            <div class="vowel vertical short">Vowel</div><br/>
-            <div class="vowel stacked">Vowel</div><br/>
-            <div class="consonant short indent stacked">Conso-<br/>nant</div>
+          <div className="letter">
+            <div className="consonant short">Conso-<br/>nant</div>
+            <div className="vowel vertical short">Vowel</div><br/>
+            <div className="vowel stacked">Vowel</div><br/>
+            <div className="consonant short indent stacked">Conso-<br/>nant</div>
           </div>
         </div>
 

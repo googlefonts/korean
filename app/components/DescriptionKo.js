@@ -68,34 +68,34 @@ class DescriptionKo extends Component {
         </p>
 
         <div className="desc-jamo-area">
-          <div class="letter">
-            <div class="consonant">자음</div>
-            <div class="vowel vertical">모음</div>
+          <div className="letter">
+            <div className="consonant">자음</div>
+            <div className="vowel vertical">모음</div>
           </div>
-          <div class="letter narrow">
-            <div class="consonant">자음</div><br/>
-            <div class="vowel stacked">모음</div>
+          <div className="letter narrow">
+            <div className="consonant">자음</div><br/>
+            <div className="vowel stacked">모음</div>
           </div>
-          <div class="letter">
-            <div class="consonant">자음</div>
-            <div class="vowel vertical long">모음</div><br/>
-            <div class="vowel stacked">모음</div>
+          <div className="letter">
+            <div className="consonant">자음</div>
+            <div className="vowel vertical long">모음</div><br/>
+            <div className="vowel stacked">모음</div>
           </div>
-          <div class="letter narrow">
-            <div class="consonant short">자음</div><br/>
-            <div class="vowel stacked">모음</div><br/>
-            <div class="consonant short stacked">자음</div>
+          <div className="letter narrow">
+            <div className="consonant short">자음</div><br/>
+            <div className="vowel stacked">모음</div><br/>
+            <div className="consonant short stacked">자음</div>
           </div>
-          <div class="letter">
-            <div class="consonant">자음</div>
-            <div class="vowel vertical">모음</div><br/>
-            <div class="consonant short indent stacked">자음</div>
+          <div className="letter">
+            <div className="consonant">자음</div>
+            <div className="vowel vertical">모음</div><br/>
+            <div className="consonant short indent stacked">자음</div>
           </div>
-          <div class="letter">
-            <div class="consonant short">자음</div>
-            <div class="vowel vertical short">모음</div><br/>
-            <div class="vowel stacked">모음</div><br/>
-            <div class="consonant short indent stacked">자음</div>
+          <div className="letter">
+            <div className="consonant short">자음</div>
+            <div className="vowel vertical short">모음</div><br/>
+            <div className="vowel stacked">모음</div><br/>
+            <div className="consonant short indent stacked">자음</div>
           </div>
         </div>
 
