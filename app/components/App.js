@@ -57,7 +57,8 @@ class App extends Component {
   }
 
   componentWillReceiveProps(newProps){
-    if (newProps.currentCategory != this.props.currentCategory) {
+    if (newProps.currentCategory != this.props.currentCategory && 
+        newProps.currentCategory.type === "click") {
       this.moveScroll(newProps.currentCategory.id);  
     }
   }
