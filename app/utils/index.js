@@ -42,7 +42,7 @@ export const getCurrentDescFont = (currentDescFont, mode) => {
     
   } else {
 
-    var resultFont = _.find(FONTS, fontData => { return currentDescFont["title"] == fontData.id });
+    var resultFont = _.find(FONTS, fontData => { return currentDescFont[mode] == fontData.id });
     return _.isUndefined(resultFont) ? {
         id: -1,
         nameKo: "폰트선택",

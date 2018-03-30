@@ -11,7 +11,11 @@ class DropDownCategorySelector extends Component {
   handleCurrentCategory(categoryData, e){
     
     e.stopPropagation();
-    this.props.dispatch(changeCurrentCategory(categoryData.id));
+    this.props.dispatch(changeCurrentCategory({
+      id: categoryData.id,
+      type: 'click' // click, scroll
+    }));
+
     this.props.dispatch(changeCategoryDropdownOpened(false));
   }
 

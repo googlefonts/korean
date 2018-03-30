@@ -58,7 +58,7 @@ class App extends Component {
 
   componentWillReceiveProps(newProps){
     if (newProps.currentCategory != this.props.currentCategory) {
-      this.moveScroll(newProps.currentCategory);  
+      this.moveScroll(newProps.currentCategory.id);  
     }
   }
 
@@ -72,7 +72,7 @@ class App extends Component {
       collapsedHeaderHeight = 62;
     }
     let categoryPosTop = document.querySelector(`a[name=category-${currentCategory}]`).offsetTop;
-    let offset = 20;
+    let offset = 0;
 
     TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight - offset - headerHeight });
   }
@@ -109,11 +109,11 @@ class App extends Component {
 
     } else {
 
-      if (scrollY < 10) {
+      if (scrollY < 60) {
         
         this.props.dispatch(changeHeaderMode("expanded"));
 
-      } else if (scrollY >= 10) {
+      } else {
       
         this.props.dispatch(changeHeaderMode("collapsed"));
       

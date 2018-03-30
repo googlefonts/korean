@@ -23,6 +23,7 @@ class DescriptionFontSelector extends Component {
       newCurrentDescFont[currentDescFontSelected] = fontData.id;
     }
 
+    console.log(newCurrentDescFont);
     this.props.dispatch(changeCurrentDescFont(newCurrentDescFont));
 
   }

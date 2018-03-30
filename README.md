@@ -1,5 +1,5 @@
-# Google Fonts + 한국어 얼리억세스
-
+# Google Fonts + 한국어 • Google Fonts + Korean
+ 
 As Google makes progress on supporting Korean web typography, we invite designers and developers to experiment with these Korean web fonts now available from Google Fonts Early Access.
 
 This repository contains the type specimen site built to showcase the collection.

@@ -519,9 +519,13 @@ sup {
   padding: 26px 24px;
 }
 
-.font-script-container {
+.font-container {
   border-top: 1px solid $text_color;
   padding-top: 50px;
+
+  &:nth-child(1) {
+    border:none;
+  }
 }
 
 .font-script-list {
