@@ -18,7 +18,10 @@ let initialState = {
     paragraph: null
   }, 
   isOnScript: false,
-  currentCategory: 1,
+  currentCategory: {
+    id: 1,
+    type: 'scroll' // click, scroll
+  }, 
   newsFeeds: [],
   backgroundMode: "black",
   locale: "ko",

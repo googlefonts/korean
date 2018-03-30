@@ -31,7 +31,7 @@ class HeaderCollapsed extends Component {
     this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight + 20));
 
     this.scroller.setup({
-        step: '.font-script-container',
+        step: '.font-container',
         // debug: true,
         // progress: true,
         offset: 60 / this.props.screenHeight
@@ -41,11 +41,20 @@ class HeaderCollapsed extends Component {
   }
 
   handleStepEnter(e){
-    this.props.dispatch(changeIsOnScript(true)); 
+    this.props.dispatch(changeCurrentCategory({
+      id: Number(e.element.dataset.categoryId),
+      type: 'scroll' // click, scroll
+    }));
+
+    if (Number(e.element.dataset.categoryId) === 3) {
+      this.props.dispatch(changeIsOnScript(true));   
+    }
   }
 
   handleStepExit(e){  
-    this.props.dispatch(changeIsOnScript(false));
+    if (Number(e.element.dataset.categoryId) === 3) {
+      this.props.dispatch(changeIsOnScript(false));
+    }
   }
 
   componentWillReceiveProps(newProps){
@@ -89,7 +98,7 @@ class HeaderCollapsed extends Component {
   render() {
     // let {  } = this.state;
     let { isOnScript, categoryDropdownOpened, locale, screenWidth, headerCollapsedTop, backgroundMode } = this.props;
-    let currentCategory = _.find(CATEGORIES, categoryData => { return categoryData.id == this.props.currentCategory; });
+    let currentCategory = _.find(CATEGORIES, categoryData => { return categoryData.id == this.props.currentCategory.id; });
 
     return (
       <Fragment>

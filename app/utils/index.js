@@ -29,24 +29,24 @@ export const getCurrentDescFont = (currentDescFont, mode) => {
       var resultFont = _.find(FONTS, fontData => { return currentDescFont["title"] == fontData.id });
       return _.isUndefined(resultFont) ? {
         id: -1,
-        nameKo: "-",
-        nameEn: "-"
+        nameKo: "폰트선택",
+        nameEn: "Choose"
       } : resultFont;
     } else {
       return {
         id: -1,
-        nameKo: "-",
-        nameEn: "-"
+        nameKo: "폰트선택",
+        nameEn: "Choose"
       };
     }
     
   } else {
 
-    var resultFont = _.find(FONTS, fontData => { return currentDescFont["title"] == fontData.id });
+    var resultFont = _.find(FONTS, fontData => { return currentDescFont[mode] == fontData.id });
     return _.isUndefined(resultFont) ? {
         id: -1,
-        nameKo: "-",
-        nameEn: "-"
+        nameKo: "폰트선택",
+        nameEn: "Choose"
       } : resultFont;
 
   }
