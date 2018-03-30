@@ -32,7 +32,6 @@ class FontViewer extends Component {
         console.log(err);
 
       } else {
-
         this.setState({
           loaded: true,
           font: font,
