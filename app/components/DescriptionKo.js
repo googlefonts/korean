@@ -138,7 +138,7 @@ class DescriptionKo extends Component {
             <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
           </div>
           <div className="letter">
-            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
             <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel vertical ${ hovered === "vowel" ? "highlighted" : ""}`}>모음</div><br/>
             <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short indent stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>자음</div>
           </div>

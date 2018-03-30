@@ -1194,7 +1194,7 @@ sup {
     .letter {
       display: inline-block;
       width:110px;
-      margin-right: 40px;
+      margin: 0 40px 40px 0;
       vertical-align: top;
       &.narrow {
         width:84px;

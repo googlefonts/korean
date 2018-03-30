@@ -144,7 +144,7 @@ class DescriptionEn extends Component {
             <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
           </div>
           <div className="letter">
-            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
             <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel vertical ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div><br/>
             <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short indent stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
           </div>
