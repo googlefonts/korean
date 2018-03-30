@@ -94,10 +94,10 @@ class Header extends Component {
               screenWidth > BODY_960 ? 
               (locale == "ko" ?
               <div className={`header__description--${locale}`}>
-                구글폰트 + 한국어 얼리억세스는 다양한 한글폰트를 온라인에서 보다 가볍고 손쉽게 사용할 수 있도록 실험적으로 마련된 한국어 오픈소스 웹폰트의 목록입니다.
+                <span className="en-black">Google Fonts</span>는 양질의 타이포그래피를 통해 웹을 더욱 아름답고 빠르며 누구나 참여할 수 있는 공간으로 만들어왔습니다. <span className="en-black">Google Fonts</span> + 한국어는 오픈소스 한글 폰트를 머신 러닝에 기반을 둔 최적화 기술을 통해 시범적으로 제공하고, 그 가능성을 실험합니다.
               </div> :
               <div className={`header__description--${locale}`}>
-                Google Fonts + Korean Early Access is an experimental showcase for Korean fonts that aren’t yet fully supported.
+                Google Fonts has been making the web more beautiful, fast, and open through great typography. Optimized by machine learning, Google Fonts now offers Korean and this showcase website.
               </div>) : null
             }
             {

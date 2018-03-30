@@ -58,6 +58,17 @@ body {
   }
 }
 
+@keyframes drop_elem {
+  0% {
+    display: none;
+    margin-top: -60px;
+  }
+  100% {
+    display: block;
+    margin-top: 0px;
+  }
+}
+
 
 .marching-ants {
   border: 1px dashed $text_color !important;
@@ -220,6 +231,7 @@ sup {
   padding: 17px 24px;
   background-color: $background_color;
   border-bottom: 1px solid $text_color;
+  animation: drop_elem 0.3s linear;
 
   &__flexwrap {
     display: flex;
@@ -270,7 +282,7 @@ sup {
 
 .category-selector {
   display:flex;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 
   &--selected {
     @extend .category-selector;
@@ -280,25 +292,25 @@ sup {
   &__label-ko-left {
     @include black_type;
     min-width: 125px;
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
   &__label-ko-right {
     @include regular_type;
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
 
   &__label-en-right {
     @include en_regular_type;
-    margin-right: 10px;
+    margin-right: 20px;
     margin-top: 1px;
   }
 
   &__label-en-left {
     @include en_black_type;
     min-width: 145px;
-    margin-right: 10px;
+    margin-right: 20px;
     margin-top: 1px;
   }
 
@@ -317,13 +329,17 @@ sup {
 .dropdown-category-selector {
   position:fixed;
   z-index: 6;
-  top: 61px;
-  left: 534px;
-  padding: 10px 15px 13px;
+  top: 60px;
+  left: 523px;
+  padding: 0px 25px 10px 25px;
   background-color: $background_color;
   border: 1px solid $text_color;
   border-top: none;
   border-radius: 0 0 2px 2px;
+  animation: show_elem .2s ease-in-out;
+  .category-selector{
+    margin-bottom: 12px;
+  }
 }
 
 .header {
@@ -399,7 +415,7 @@ sup {
    
 
   &__description-area {
-    width:300px;
+    width:380px;
     
     @include body_960 {
       width: auto;
@@ -413,7 +429,7 @@ sup {
   }
 
     &__description {
-      margin-bottom: 20px;
+      margin-bottom: 1em;
       &--ko {
         @extend .header__description;
         @include black_type;
@@ -424,7 +440,7 @@ sup {
       &--en {
         @extend .header__description;
         @include en_black_type;
-        font-size:0.8em;
+        font-size:0.9em;
       }
     }
 
@@ -445,7 +461,7 @@ sup {
       a { 
         @include black_type;
         font-size:0.8em;
-        margin-right: 10px;
+        margin-right: 20px;
         padding-bottom: 2px;
         border-bottom: 1px dotted $text_color;
       }
@@ -454,7 +470,7 @@ sup {
         @include en_black_type;
 
         font-size:0.8em;
-        margin-right: 10px;
+        margin-right: 20px;
         padding-bottom: 2px;
         border-bottom: 1px dotted $text_color;
       }
@@ -466,7 +482,7 @@ sup {
       a { 
         @include en_black_type;
         font-size:0.8em;
-        margin-right: 10px;
+        margin-right: 20px;
         padding-bottom: 2px;
         border-bottom: 1px dotted $text_color;
       }
