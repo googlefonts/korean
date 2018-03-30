@@ -59,7 +59,11 @@ class FontOutlineViewer extends Component {
     var fontSize = size || 300;
     var x = size * 0.5 + 10 * 0.5;
     var fontScale = 1 / font.unitsPerEm * fontSize;
-
+    
+    if (this.props.category === 3) {
+      console.log(this.props.id);
+    }
+    
     _.each(fontGlyphs, (glyphData, i) => {
       // debugger;
       let glyph = new Glyph({
@@ -76,11 +80,18 @@ class FontOutlineViewer extends Component {
 
 
       if (glyphData.advanceWidth) {
-        x += glyphData.advanceWidth * fontScale;
+        x += 1000 * fontScale; // WHY? advancewidth가 커닝을 흐트림 
+        // if (this.props.category === 3) {
+        //   console.log("advanceWidth", glyphData.advanceWidth);
+        // }
       }
       if (i < fontGlyphs.length - 1) {
         kerningValue = font.getKerningValue(glyphData, fontGlyphs[i + 1]);
         x += kerningValue * fontScale;
+        // if (this.props.category === 3) {
+        //   console.log("kerning: ", kerningValue);
+        // }
+        
       }
 
     });

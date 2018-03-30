@@ -21,8 +21,8 @@ class FontsList extends Component {
       scriptLen: Math.floor(msgScaleScript(window.innerWidth)),
     };
 
-    this.big = [["농식품부", 1]];
-    this.script = [["농식품부", 1]];
+    this.big = [["광흥창", 1]];
+    this.script = [["광흥창", 1]];
 
   }
   componentWillMount() {
@@ -56,7 +56,7 @@ class FontsList extends Component {
       }));
     }
 
-    return words;
+    return [["광흥창", 1]];
   }
 
   updateLen(screenWidth){
