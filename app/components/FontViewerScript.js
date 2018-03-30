@@ -9,8 +9,8 @@ import _ from 'lodash';
 
 const Fragment = React.Fragment;
 
-const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([170, 300]);
-const sizeScale = scaleLinear().domain([1440, 2560]).clamp(true).range([150, 250]);
+const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([200, 300]);
+const sizeScale = scaleLinear().domain([1440, 2560]).clamp(true).range([125, 225]);
 
 
 class FontViewerScript extends Component {
