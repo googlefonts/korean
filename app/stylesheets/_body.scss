@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  word-break: keep-all;
 }
 
 .linear-activity {
@@ -43,6 +44,20 @@ body {
     }
 }
 
+@keyframes show_elem {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 
 .marching-ants {
   border: 1px dashed $text_color !important;
@@ -55,7 +70,7 @@ body {
   font-family: "Noto Sans KR", Helvetica, Arial, sans-serif;
   font-size: 1em;
   line-height:1.3;
-  font-style:   normal;
+  font-style: normal;
   font-weight: 400;
 }
 
@@ -137,7 +152,7 @@ input {
 
 
 
-body, div, p, span, text {
+body, div, p, text {
   @include regular_type;
   color: $text_color;
 }
@@ -178,7 +193,7 @@ body, div, p, span, text {
 a {
   color:$text_color;
   text-decoration: none;
-  transition: 0.5s opacity;
+  transition: 0.3s opacity;
 }
 
 a:hover {
@@ -507,7 +522,7 @@ sup {
 
 .font-viewer {
   background-color: transparent;
-  transition: 0.2s background-color;
+  transition: 0.3s background-color;
   margin-bottom: 0;
   position:relative;
   z-index:4;
@@ -826,7 +841,7 @@ sup {
       font-size:0.9em;
 
       @include body_480 {
-        margin-right: 2px;
+        margin-right: 4px;
         padding: 5px 5px;
       }
 
@@ -855,7 +870,8 @@ sup {
   -webkit-overflow-scrolling: touch;
 
   &__wrap {
-    // width:
+    // height:57px;
+    // overflow-x:scroll;
   }
 
   &--mobile {
@@ -874,6 +890,7 @@ sup {
   height: 37px;
   font-size: 2.0em;
   text-align: center;
+  line-height: 37px;
   display: inline-block;
 
 
@@ -900,18 +917,21 @@ sup {
 
   &__menu {
     position:absolute;
-    width:300px;
+    margin-top:0.5em;
+    width:320px;
     padding: 0;
     top: 155px;
     left: 221px;
-
+    font-size: 0.9em;
+    animation: show_elem .2s ease-in-out;
 
     background-color: $text_color;
     border: 1px solid $background_color;
     border-radius: 2px;
-    height: 300px;
+    height: 230px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+
 
     @include body_600 { 
       width: 100%;
@@ -958,7 +978,7 @@ sup {
 
   &__list {
     display:flex;
-    padding: 10px;
+    padding: 8px 10px;
 
     &--selected {
       @extend .category-selector;
@@ -966,7 +986,7 @@ sup {
 
     &__label-ko-black {
       @include black_type;
-      min-width: 145px;
+      min-width: 110px;
       margin-right: 10px;
     }
 
@@ -983,7 +1003,7 @@ sup {
 
     &__label-en-black {
       @include en_black_type;
-      min-width: 145px;
+      min-width: 180px;
       margin-right: 10px;
       margin-top: 1px;
     }
@@ -1010,6 +1030,18 @@ sup {
     color: $background_color;
   }
 
+  .inline_en {
+    font-family: Roboto;
+  }
+  .inline_en_bold {
+    font-family: Roboto;
+    font-weight: 700;
+  }
+  .inline_en_num {
+    font-family: Roboto;
+    font-weight: 100;
+  }
+
   .desc-column-area {
     display: flex;
 
@@ -1025,13 +1057,12 @@ sup {
       }
     }
     .right { 
-      margin-top: 100px;
-
+      margin-top: 2em;
       @include body_1280 {
         display:flex;
         // justify-content: space-between;
         width: 590px;
-
+        margin: 3em 0;
         p {
           width: auto;
         }
@@ -1042,17 +1073,20 @@ sup {
       }
 
       .right-wrap {
-        margin-right: 20px;
+        margin-right: 60px;
         // width: 50%;
         @include body_600 {
           width: 50%;
         }
+        p {
+          font-size:0.8em;
+        }
       }
 
       h5 {
-        font-size:2.0em;
+        font-size: 3.0em;
         margin-bottom:5px;
-
+        font-weight: 200;
         span {
           font-family: inherit;
         }
@@ -1061,12 +1095,12 @@ sup {
   }
 
   &__container {
-    margin: 0 0 0 210px;
+    margin: 0 0 120px 210px;
 
     @include body_960 {
       margin-left: auto;
+      margin-bottom: 60px;
     }
-
   }
 
   p.description__big {
@@ -1079,7 +1113,7 @@ sup {
     border:1px solid rgba(0, 0, 0, 0);
 
     @include body_1280 {
-      width: 80%; 
+      width: 100%; 
     }
 
     @include body_960 {
@@ -1091,32 +1125,34 @@ sup {
 
   h3 {
     width: 840px;
-    margin-top: 100px;
-    margin-bottom: 30px;
-    font-size: 2em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    font-size: 1.75em;
     line-height: 1.4;
     font-weight: 400;
-    @include body_1280 {
-      width: 590px;
+    @include body_960 {
+      width: 100%;
     }
     @include body_600 {
-      width: 100px;
+      margin: 0 0 1em 0;
+      font-size: 1.3em;
+      width: 100%;
     }
   }
 
   h4 {
     // margin-bottom: 20px;
     width: 590px;
-    margin-top: 100px;
-    margin-bottom: 30px;
-    font-size: 1.125em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-size: 1em;
     line-height: 1.4;
     font-weight:700;
     @include body_960 {
-      width: 80%;
+      width: 100%;
     }
-
     @include body_600 {
+      margin-top: 2em;
       width: 100%;
     }
   }
@@ -1127,7 +1163,7 @@ sup {
     line-height: 1.6;
 
     @include body_960 {
-      width: 80%;
+      width: 100%;
     }
 
     @include body_600 {
@@ -1190,16 +1226,28 @@ sup {
   }
 
   .desc-jamo-area {
-    margin:60px 0;
+    margin:70px 0 20px 0;
+    @include body_600 {
+      text-align:center;
+      margin:40px 0;
+    }
+
     .letter {
       display: inline-block;
+      text-align: left;
       width:110px;
-      margin: 0 40px 40px 0;
       vertical-align: top;
+      margin: 0 30px 40px 0;
+      @include body_960 {
+      }
+
+      @include body_600 {
+        margin: 0 15px 40px 15px;
+      }
+
       &.narrow {
         width:84px;
       }
-
       div {
         font-size: 11px;
         text-transform: uppercase;
@@ -1207,6 +1255,7 @@ sup {
         display:inline-block;
         vertical-align: top;
         position:relative;
+        transition: background-color .2s;
 
         color: $text_color;
         border: 1px solid $background_color;

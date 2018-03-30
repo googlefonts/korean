@@ -96,10 +96,12 @@ class DescriptionEn extends Component {
     } catch(e){
       fontNames = {
         paragraph: {
-          fontFamily: "Noto Sans KR"
+          fontFamily: "Roboto",
+          lineHeight: "1.45em"
         },
         title: {
-          fontFamily: "Noto Sans KR"
+          fontFamily: "Roboto",
+          lineHeight: "1.35em"
         }
       }
     }
@@ -121,7 +123,7 @@ class DescriptionEn extends Component {
         </h4>
 
         <p style={fontNames.paragraph}>
-          Hangul consists of 19 consonants, designed after the shapes of the articulators when making the sounds, and 21 vowels, evolved from three basic shapes representing the sky, the earth, and human. These elements, called jamo, are then grouped into syllabic blocks, making up the letters. Hangul was originally intended to be written from top to bottom and right to left since its inception in 1446 (then called Hunminjeongeum) but is now generally written from left to right, with spaces between words and Western punctuation.
+          Hangul consists of 19 consonants, designed after the shapes of the articulators when making the sounds, and 21 vowels, evolved from three basic shapes representing the sky, the earth, and human. These elements, called jamo, are then grouped into syllabic blocks, making up the letters.
         </p>
 
         <div className="desc-jamo-area">
@@ -166,7 +168,7 @@ class DescriptionEn extends Component {
             screenWidth < BODY_1280 ? 
             <div className="right">
               <div className="right-wrap">
-                <h5 style={fontNames.title}>
+                <h5 className="inline_en_num" style={fontNames.title}>
                   <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
@@ -176,7 +178,7 @@ class DescriptionEn extends Component {
               </div>
 
               <div className="right-wrap">
-                <h5 style={fontNames.title}>
+                <h5 className="inline_en_num" style={fontNames.title}>
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
@@ -187,7 +189,7 @@ class DescriptionEn extends Component {
             </div> : null
           }
           <div className="left">
-            <h4 style={{...fontNames.title, marginTop: screenWidth > BODY_1280 ? 100 : 10 }}>
+            <h4 style={fontNames.title}>
               Google Fonts uses font subsetting, informed by machine learning
             </h4>
 
@@ -205,7 +207,7 @@ class DescriptionEn extends Component {
             screenWidth >= BODY_1280 ? 
             <div className="right">
               <div className="right-wrap">
-                <h5 style={fontNames.title}>
+                <h5 className="inline_en_num" style={fontNames.title}>
                   <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
@@ -215,7 +217,7 @@ class DescriptionEn extends Component {
               </div>
 
               <div className="right-wrap">
-                <h5 style={fontNames.title}>
+                <h5 className="inline_en_num" style={fontNames.title}>
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                <p style={fontNames.paragraph}>

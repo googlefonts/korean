@@ -45,7 +45,7 @@ class FontsList extends Component {
       try {
         return msg[1] === len;
       } catch(e){
-        debugger;
+        // debugger;
       }
     }));
 

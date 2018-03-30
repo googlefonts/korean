@@ -42,7 +42,7 @@ class DescriptionFontSelector extends Component {
         {
           screenWidth > BODY_600 ? 
           <div className="font-selector-area">
-            <div className="font-selector-area__wrap" style={{ width: FONTS.length * 70}}>
+            <div className="font-selector-area__wrap" style={{ width: FONTS.length * 62}}>
               {
                 _.map(FONTS, fontData => {
                   return (
