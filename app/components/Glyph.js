@@ -6,7 +6,7 @@ class Glyph extends paper.CompoundPath{
     super();
     this.fontGlyph = params.glyph;
     // this.position = {x: params.x};
-    // this.advanceWidthX = params.x;
+    // this.advanceWidth = params.advanceWidth;
     this.strokeColor = params.strokeColor || 'black';
     this.fillColor = params.fillColor || "white";
     // debugger;
@@ -38,7 +38,7 @@ class Glyph extends paper.CompoundPath{
         this.currentPath = new paper.Path();
         this.addChild(this.currentPath);
 
-        var pt = new paper.Point(cmd.x * scale, - cmd.y * scale);
+        var pt = new paper.Point(this.x + cmd.x * scale, this.y + (- cmd.y * scale) );
         // this.currentPath.add(pt);
         this.currentPath.moveTo(pt);
 
@@ -46,9 +46,9 @@ class Glyph extends paper.CompoundPath{
 
       } else if (cmd.type === 'L') {
 
-        this.currentPath.add(new paper.Point(cmd.x * scale, - cmd.y * scale));
+        this.currentPath.add(new paper.Point(this.x + (cmd.x * scale), this.y + (- cmd.y * scale)));
         
-        var pt = new paper.Point(cmd.x * scale, - cmd.y * scale);        
+        var pt = new paper.Point(this.x + cmd.x * scale, this.y + (- cmd.y * scale));        
         // this.currentPath.add(pt);
         this.currentPath.lineTo(pt);
         
@@ -58,17 +58,17 @@ class Glyph extends paper.CompoundPath{
 
         // ctx.bezierCurveTo(cmd.x1, cmd.y1, cmd.x2, cmd.y2, cmd.x, cmd.y);
         
-        var handle1 = new paper.Point(cmd.x1 * scale, - cmd.y1 * scale);  
-        var handle2 = new paper.Point(cmd.x2 * scale, - cmd.y2 * scale);  
-        var pt = new paper.Point(cmd.x * scale, - cmd.y * scale);  
+        var handle1 = new paper.Point(this.x + (cmd.x1 * scale), this.y + (- cmd.y1 * scale));  
+        var handle2 = new paper.Point(this.x + (cmd.x2 * scale), this.y + (- cmd.y2 * scale));  
+        var pt = new paper.Point(this.x + (cmd.x * scale), this.y + (- cmd.y * scale));  
 
         this.currentPath.cubicCurveTo(handle1, handle2, pt);  
         
 
       } else if (cmd.type === 'Q') {
       
-        var handle = new paper.Point(cmd.x1 * scale, - cmd.y1 * scale);   
-        var pt = new paper.Point(cmd.x * scale, - cmd.y * scale);  
+        var handle = new paper.Point(this.x + (cmd.x1 * scale), this.y + (- cmd.y1 * scale));   
+        var pt = new paper.Point(this.x + (cmd.x * scale), this.y + (- cmd.y * scale));  
 
         
         this.currentPath.quadraticCurveTo(handle, pt);
@@ -81,8 +81,9 @@ class Glyph extends paper.CompoundPath{
 
 
     });
+
+    // this.updatePosition();
     
-    this.updatePosition();
     // this.position = new paper.Point(this.x, this.y);
     // this.fullySelected = true;
   
