@@ -53,19 +53,20 @@ class FontOutlineViewer extends Component {
 
   createGlyphPath(font, message, size, backgroundMode){
     var fontGlyphs = font.stringToGlyphs(message);
+    // debugger;
     var kerning = true;
     var kerningValue = 0;
 
     var fontSize = size || 300;
-    var x = size * 0.5 + 10 * 0.5;
+    var x = 24;
     var fontScale = 1 / font.unitsPerEm * fontSize;
-
+    
     _.each(fontGlyphs, (glyphData, i) => {
       // debugger;
       let glyph = new Glyph({
         glyph: glyphData,
         x: x,
-        y: fontSize * 0.5,
+        y: size * 0.89,
         strokeColor: convertBgMode(backgroundMode, "f"),
         fillColor: convertBgMode(backgroundMode, "b"),
         fontSize: fontSize,
@@ -76,11 +77,12 @@ class FontOutlineViewer extends Component {
 
 
       if (glyphData.advanceWidth) {
-        x += glyphData.advanceWidth * fontScale;
+        x += glyphData.advanceWidth * fontScale; // glyphData.advanceWidth
       }
       if (i < fontGlyphs.length - 1) {
         kerningValue = font.getKerningValue(glyphData, fontGlyphs[i + 1]);
         x += kerningValue * fontScale;
+        
       }
 
     });

@@ -56,14 +56,14 @@ export const wavyBaseline = {
       
       var scale = 1 / glyph.unitsPerEm * glyph.glyphFontSize;
       var metric = new paper.Path.Line(
-        new paper.Point(glyph.x - glyph.unitsPerEm * 0.45 * scale, size * 0.5), new paper.Point(glyph.x - glyph.unitsPerEm * 0.45 * scale, size * 1.7)
+        new paper.Point(glyph.x, size * 0.8), new paper.Point(glyph.x, size * 1.9)
       );
 
 
       _this.wavyBaseline.metrics.addChild(metric);
 
       if (i + 1 >= _this.glyphs.length) {
-        var metric = new paper.Path.Line(new paper.Point(glyph.x + glyph.unitsPerEm * 0.45 * scale, size * 0.5), new paper.Point(glyph.x + glyph.unitsPerEm * 0.45 * scale, size * 1.7));
+        var metric = new paper.Path.Line(new paper.Point(glyph.x + glyph.fontGlyph.advanceWidth * scale, size * 0.8), new paper.Point(glyph.x + glyph.fontGlyph.advanceWidth * scale, size * 1.9));
         
         _this.wavyBaseline.metrics.addChild(metric);
       }
@@ -147,7 +147,7 @@ export const wavyBaseline = {
         _.each(child.segments, (seg, j) => {
 
           let x = theta + amplitudeScale(seg.point.x);
-          seg.point.y = (j % 2 == 0 ? size * 0.5 : size * 1.7) + Math.sin(x) * radiusScale(dist);
+          seg.point.y = (j % 2 == 0 ? size * 0.8 : size * 1.9) + Math.sin(x) * radiusScale(dist);
 
         });
       

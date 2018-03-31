@@ -29,18 +29,18 @@ class DropdownFontSelector extends Component {
             <Fragment>
               <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
               {
-                screenWidth > BODY_600 ? 
-                <div className="dropdown-font-selector__en en-regular">{ currentDescFont.nameEn }</div> 
-                : null  
+                // screenWidth > BODY_600 ? 
+                // <div className="dropdown-font-selector__en en-regular">{ currentDescFont.nameEn }</div> 
+                // : null  
               }
               <div style={{ marginTop: -2 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
             </Fragment> :
             <Fragment>
               <div className="dropdown-font-selector__en en-black" style={{ fontSize: screenWidth > BODY_600 ? '0.8em' : '0.9em' }}>{ currentDescFont.nameEn }</div> 
               {
-                screenWidth > BODY_600 ? 
-                <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
-                : null
+                // screenWidth > BODY_600 ? 
+                // <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
+                // : null
               }
               <div style={{ marginTop: screenWidth > BODY_600 ? -6 : 0 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
             </Fragment>

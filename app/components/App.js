@@ -68,14 +68,14 @@ class App extends Component {
 
     let collapsedHeaderHeight;
     if (!_.isNull(document.querySelector(".header-collapsed"))) {
-      collapsedHeaderHeight = document.querySelector(".header-collapsed").offsetHeight;
+      collapsedHeaderHeight = 0;
     } else {
-      collapsedHeaderHeight = 62;
+      collapsedHeaderHeight = 61;
     }
     let categoryPosTop = document.querySelector(`a[name=category-${currentCategory}]`).offsetTop;
     let offset = 0;
 
-    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight - offset - headerHeight });
+    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight - 100 });
   }
 
   handleScroll(e){
@@ -129,7 +129,7 @@ class App extends Component {
         step: '.font-viewer',
         // debug: true,
         // progress: true,
-        offset: (document.querySelectorAll('.font-viewer')[1].offsetTop - 10) / window.innerHeight,//(document.querySelectorAll('.font-viewer')[0].offsetTop + document.querySelectorAll('.font-viewer')[0].offsetHeight - 50) / this.props.screenHeight
+        offset: (document.querySelectorAll('.font-viewer')[1].offsetTop - 140) / window.innerHeight,//(document.querySelectorAll('.font-viewer')[0].offsetTop + document.querySelectorAll('.font-viewer')[0].offsetHeight - 50) / this.props.screenHeight
       }).onStepEnter(this.handleStepEnter.bind(this))
         // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));
