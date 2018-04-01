@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
     <title>ef2_white_selected</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="ef2_white_selected" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Page-1" transform="translate(1.000000, 3.000000)">
-            <path d="M17.4,12.87432 C11.7996,8.97432 6.2004,16.77432 0.6,12.87432 L0.6,1.72512 C6.2004,5.62512 11.7996,-2.17368 17.4,1.72512 L17.4,12.87432 Z" id="Stroke-1" fill="#000000"></path>
-            <path d="M0.6,7.29972 C6.2004,11.19972 11.7996,3.40092 17.4,7.29972" id="Stroke-3" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="square"></path>
+        <g id="Page-1" transform="translate(1.000000, 3.000000)" fill="#000000">
+            <path d="M0.6,8.19846154 C3.00636132,9.70063584 5.07773044,9.45995813 9.24704057,8.00831629 C13.2321375,6.62081252 14.9031176,6.47532406 16.9714891,7.91525101 L17.4,8.2135651 L17.4,12.87432 C11.7996,8.97432 6.2004,16.77432 0.6,12.87432 L0.6,8.19846154 Z M0.6,6.38578307 L0.6,1.72512 C6.2004,5.62512 11.7996,-2.17368 17.4,1.72512 L17.4,6.40106036 C14.9937838,4.89941624 12.922786,5.14020204 8.75339025,6.59187371 C4.76838329,7.97934614 3.09712048,8.12472491 1.0285997,6.68425083 L0.6,6.38578307 Z" id="Combined-Shape"></path>
         </g>
     </g>
 </svg>

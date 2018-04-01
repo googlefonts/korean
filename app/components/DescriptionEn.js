@@ -115,11 +115,13 @@ class DescriptionEn extends Component {
         </div>
         
         <h3 style={fontNames.title}>
-         Google Fonts has been making the web more beautiful, fast, and open through great typography. Optimized by machine learning, Google Fonts now offers Korean and this showcase website.
+          Great typography makes the web more beautiful, fast, and open. Using machine learning and the latest web standards, Google Fonts now offers the open source Korean fonts showcased in this website.
         </h3>
 
         <h4 style={fontNames.title}>
+          <span className="underline">
           Why do Korean fonts pose a challenge for web use?
+          </span>
         </h4>
 
         <p style={fontNames.paragraph}>
@@ -172,8 +174,8 @@ class DescriptionEn extends Component {
                   <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  Total Number of Glyph (Hangul)<br/>
-                  Noto Sans KR
+                  Total Number of Glyphs (Hangul)<br/>
+                  Noto Sans CJK
                 </p>
               </div>
 
@@ -182,7 +184,7 @@ class DescriptionEn extends Component {
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  Total Number of Glyph (Latin + Greek + Cyrilic)<br/>
+                  Total Number of Glyphs (Latin + Greek + Cyrilic)<br/>
                   Noto Sans
                 </p>
               </div>
@@ -190,7 +192,9 @@ class DescriptionEn extends Component {
           }
           <div className="left">
             <h4 style={fontNames.title}>
+              <span className="underline">
               Google Fonts uses font subsetting, informed by machine learning
+              </span>
             </h4>
 
 
@@ -211,8 +215,8 @@ class DescriptionEn extends Component {
                   <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  Total Number of Glyph (Hangul)<br/>
-                  Noto Sans KR
+                  Total Number of Glyphs (Hangul)<br/>
+                  Noto Sans CJK
                 </p>
               </div>
 
@@ -221,7 +225,7 @@ class DescriptionEn extends Component {
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                <p style={fontNames.paragraph}>
-                  Total Number of Glyph (Latin + Greek + Cyrilic)<br/>
+                  Total Number of Glyphs (Latin + Greek + Cyrilic)<br/>
                   Noto Sans
                 </p>
               </div>
@@ -238,7 +242,9 @@ class DescriptionEn extends Component {
 
         
         <h4 style={fontNames.title}>
+          <span className="underline">
           Google Fonts + Korean embraces open source values
+          </span>
         </h4>
 
         <p style={fontNames.paragraph}>
