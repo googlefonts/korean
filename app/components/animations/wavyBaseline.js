@@ -110,8 +110,8 @@ export const wavyBaseline = {
       _this.wavyBaseline.tPoint = e.point;
     }
 
-    var centerY = _.mean(_.map(_this.wavyBaseline.originalPosGlyphs, g => {
-      return g.bounds.center.y;
+    var centerX = _.mean(_.map(_this.wavyBaseline.originalPosGlyphs, g => {
+      return g.bounds.center.x;
     }));
 
 
@@ -134,7 +134,7 @@ export const wavyBaseline = {
 
       _this.wavyBaseline.point = _this.wavyBaseline.point.add(_this.wavyBaseline.tPoint.subtract(_this.wavyBaseline.point).multiply(0.2));
 
-      let dist = Math.abs(centerY - _this.wavyBaseline.point.y);
+      let dist = Math.abs(centerX - _this.wavyBaseline.point.x);
       amplitudeScale.range([0, waveScale(dist)]);
 
       _.each(_this.wavyBaseline.realBaseLine.segments, (seg, i) => {
