@@ -36,8 +36,8 @@ export const riseAndBlur = {
       _this.riseAndBlur.tPoint = e.point;
     }
 
-    var len = _this.riseAndBlur.blurGlyphs.length;
-    var middle = Math.floor(len / 2);
+    var len = _this.riseAndBlur.blurGlyphs.length - 1;
+    var middle = len / 2;
 
 
     var blurAmountScale = scaleLinear().domain([0, 350]).clamp(true).range([0, 15]);
