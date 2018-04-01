@@ -51,7 +51,7 @@ export const shadowSkew = {
     _this.view.draw();
 
     var skewAmountScale = scaleLinear().domain([0, 600]).clamp(true).range([-1.5, 1.0]);
-    var xScale = scaleLinear().domain([-500, 340, 600]).clamp(true).range([1.0, 1.0, 0.8]);
+    var xScale = scaleLinear().domain([-500, 340, 600]).clamp(true).range([0.6, 1.0, 0.8]);
     var xShadowScale = scaleLinear().domain([-500, 340, 600]).clamp(true).range([0.8, 0.94, 1.5]); 
 
     _this.view.onMouseMove = (e) => {
