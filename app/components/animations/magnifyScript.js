@@ -34,8 +34,8 @@ export const magnifyScript = {
     });
 
     _this.magnifyScript.maskRect = new paper.Path.Rectangle({
-      point: [_this.magnifyScript.maskedGlyphs.bounds.left - 50, _this.magnifyScript.maskedGlyphs.bounds.top - 50],
-      size: [_this.magnifyScript.maskedGlyphs.bounds.size.width + 50, _this.magnifyScript.maskedGlyphs.bounds.size.height + 50],
+      point: [_this.magnifyScript.maskedGlyphs.bounds.left - 200, _this.magnifyScript.maskedGlyphs.bounds.top - 200],
+      size: [_this.magnifyScript.maskedGlyphs.bounds.size.width + 400, _this.magnifyScript.maskedGlyphs.bounds.size.height + 400],
       fillColor: convertBgMode(backgroundMode, "b")
     });
 
