@@ -28,7 +28,7 @@ class HeaderCollapsed extends Component {
 
   componentDidMount(){
 
-    this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight + 20));
+    // this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight + 20));
 
     this.scroller.setup({
         step: '.font-container',
@@ -59,7 +59,7 @@ class HeaderCollapsed extends Component {
 
   componentWillReceiveProps(newProps){
     if (this.props.screenWidth != newProps.screenWidth) {
-      this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));
+      // this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));
       this.setState({
         isMenuOpen: false
       });
