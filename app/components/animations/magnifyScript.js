@@ -60,6 +60,7 @@ export const magnifyScript = {
     
     _this.magnifyScript.maskRect.fillColor = convertBgMode(backgroundMode, "b");
     _this.magnifyScript.circle.strokeColor = convertBgMode(backgroundMode, "f");
+    _this.magnifyScript.circle.strokeWidth = 5;
     
     _.each(_this.glyphs, (glyph, i) => {
       glyph.fillColor = convertBgMode(backgroundMode, "f");

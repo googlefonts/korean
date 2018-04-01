@@ -119,7 +119,7 @@ export const wavyBaseline = {
 
 
     var theta = 0;
-    var radiusScale = scaleLinear().domain([0, 350]).clamp(true).range([50, 200]);
+    var radiusScale = scaleLinear().domain([0, 350]).clamp(true).range([50, 220]);
     var waveScale;
 
     if (_this.props.screenWidth <= BODY_480) {
@@ -128,7 +128,7 @@ export const wavyBaseline = {
     
     } else {
 
-      waveScale = scaleLinear().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.5, Math.PI * 2.1]);
+      waveScale = scaleLinear().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.5, Math.PI * 3]);
       
     }
 
