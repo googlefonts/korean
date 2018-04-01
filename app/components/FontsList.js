@@ -9,7 +9,7 @@ import { cutString } from '../utils';
 
 const Fragment = React.Fragment;
 const msgScale = cutString;
-const msgScaleScript = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 5.9]);
+const msgScaleScript = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 4.9]);
 const SELECTED_MSGS = _.first(_.shuffle(MESSAGES));
 
 class FontsList extends Component {
