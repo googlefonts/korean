@@ -475,6 +475,8 @@ export const FONTS = [
         weightName: "Bold"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/sunflower/v2/RWmPoKeF8fUjqIj7Vc-0-MDSpIEB.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Sunflower:500,700",
     foundries: ["jikji"],
