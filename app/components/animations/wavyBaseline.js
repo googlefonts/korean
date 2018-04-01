@@ -124,9 +124,11 @@ export const wavyBaseline = {
 
     if (_this.props.screenWidth <= BODY_480) {
 
-      waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
+      waveScale = scaleLinear().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
+    
     } else {
-      waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.5, Math.PI * 2.1]);
+
+      waveScale = scaleLinear().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.5, Math.PI * 2.1]);
       
     }
 
@@ -137,7 +139,8 @@ export const wavyBaseline = {
 
       _this.wavyBaseline.point = _this.wavyBaseline.point.add(_this.wavyBaseline.tPoint.subtract(_this.wavyBaseline.point).multiply(0.2));
 
-      let dist = Math.abs(centerX - _this.wavyBaseline.point.x);
+      let dist = Math.max(0, centerX - _this.wavyBaseline.point.x);
+
       amplitudeScale.range([0, waveScale(dist)]);
 
       _.each(_this.wavyBaseline.realBaseLine.segments, (seg, i) => {
