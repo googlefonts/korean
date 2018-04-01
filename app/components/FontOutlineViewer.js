@@ -19,9 +19,8 @@ class FontOutlineViewer extends Component {
     this.project = paper.View._viewsById[this.refCanvas.id]._project;
     this.view = paper.View._viewsById[this.refCanvas.id];
 
-    var { font, message, category, screenWidth, backgroundMode, size } = this.props;
-
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode);
+    var { font, message, category, screenWidth, backgroundMode, size, fontSize, letterSpacing } = this.props;
+    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode, fontSize, letterSpacing, screenWidth);
     
     this.project.activate();
     this.view.draw();
@@ -51,15 +50,15 @@ class FontOutlineViewer extends Component {
     });
   }
 
-  createGlyphPath(font, message, size, backgroundMode){
+  createGlyphPath(font, message, size, backgroundMode, fontSize, letterSpacing, screenWidth){
     var fontGlyphs = font.stringToGlyphs(message);
-    // debugger;
     var kerning = true;
     var kerningValue = 0;
 
-    var fontSize = size || 300;
-    var x = 24;
-    var fontScale = 1 / font.unitsPerEm * fontSize;
+    size = size * fontSize || 300;
+
+    var x = screenWidth > BODY_480 ? 24 : 0;
+    var fontScale = 1 / font.unitsPerEm * size;
     
     _.each(fontGlyphs, (glyphData, i) => {
       // debugger;
@@ -69,7 +68,7 @@ class FontOutlineViewer extends Component {
         y: size * 0.89,
         strokeColor: convertBgMode(backgroundMode, "f"),
         fillColor: convertBgMode(backgroundMode, "b"),
-        fontSize: fontSize,
+        fontSize: size,
         unitsPerEm: font.unitsPerEm
       });
       this.glyphs.push(glyph);
@@ -84,6 +83,9 @@ class FontOutlineViewer extends Component {
         x += kerningValue * fontScale;
         
       }
+
+      x += letterSpacing * fontScale;
+
 
     });
 
@@ -114,7 +116,7 @@ class FontOutlineViewer extends Component {
   }
 
   resetMessage(props){
-    let { message, font, category, screenWidth, backgroundMode, size } = props;
+    let { message, font, category, screenWidth, backgroundMode, size, fontSize, letterSpacing } = props;
     
     this.project.activate();
     _.each(this.glyphs, glyph => {
@@ -123,7 +125,7 @@ class FontOutlineViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode);
+    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode, fontSize, letterSpacing, screenWidth);
     this.view.draw();
 
   }

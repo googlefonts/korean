@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
     <title>ef4_white_selected</title>
     <desc>Created with Sketch.</desc>
-    <defs>
-        <rect id="path-1" x="2" y="2" width="11" height="11" rx="1"></rect>
-        <rect id="path-2" x="5" y="5" width="13" height="13" rx="1"></rect>
-    </defs>
+    <defs></defs>
     <g id="ef4_white_selected" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Rectangle-Copy">
-            <use fill="#000000" fill-rule="evenodd" xlink:href="#path-1"></use>
-            <rect stroke="#FFFFFF" stroke-width="1.5" x="2.75" y="2.75" width="9.5" height="9.5" rx="1"></rect>
-        </g>
-        <g id="Rectangle">
-            <use fill="#000000" fill-rule="evenodd" xlink:href="#path-2"></use>
-            <rect stroke="#FFFFFF" stroke-width="1.5" x="5.75" y="5.75" width="11.5" height="11.5" rx="1"></rect>
-        </g>
+        <path d="M6.7501,5.5002 L11.5001,5.5002 L11.5001,3.0002 L3.0001,3.0002 L3.0001,11.5002 L5.5001,11.5002 L5.5001,6.7502 C5.5001,6.0602 6.0601,5.5002 6.7501,5.5002" id="Fill-1" fill="#000000"></path>
+        <polygon id="Fill-3" fill="#000000" points="11.5001 7.0002 7.0001 7.0002 7.0001 11.5002 7.0001 13.0002 7.0001 17.5002 17.5001 17.5002 17.5001 7.0002 13.0001 7.0002"></polygon>
     </g>
 </svg>

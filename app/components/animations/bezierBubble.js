@@ -12,7 +12,8 @@ export const bezierBubble = {
       tPoint: new paper.Point(400, 200),
       points: new paper.Group(),
       size: 10,
-      tSize: 10
+      tSize: 10,
+      firstMoved: false
     };
 
     
@@ -67,6 +68,7 @@ export const bezierBubble = {
     // }
 
     _this.view.onMouseMove = (e) => {
+      _this.bezierBubble.firstMoved = true;
       _this.bezierBubble.tPoint = e.point;
       let dist = Math.abs(_this.bezierBubble.point.y - _this.bezierBubble.points.bounds.center.y);
     
@@ -89,8 +91,18 @@ export const bezierBubble = {
 
       _this.bezierBubble.size += (_this.bezierBubble.tSize - _this.bezierBubble.size) * 0.2;
       _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * 2.5;
+      
+      if (_this.bezierBubble.firstMoved) {
+        _this.bezierBubble.circle.visible = true;
+        _this.bezierBubble.maskCircle.visible = true;
+        _this.bezierBubble.group.visible = true;
+      } else {
+        _this.bezierBubble.circle.visible = false;
+        _this.bezierBubble.maskCircle.visible = false;
+        _this.bezierBubble.group.visible = false;
+      }
       // _this.bezierBubble.size += velocitySizeScale(len);
-
+      
       // get
 
       let radius = _this.bezierBubble.maskCircle.bounds.width / 2;

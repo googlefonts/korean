@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode, changeHeaderCollapsedTop, changeAnimationIdx, changeAnimationScriptIdx } from '../actions';
 import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter, GoogleFontBadge } from './';
+import { BODY_480 } from '../constants/defaults';
 import scrollama from 'scrollama';
 import { scaleLinear } from 'd3';
 import 'gsap';
@@ -64,18 +65,17 @@ class App extends Component {
   }
 
   moveScroll(currentCategory){
-    let { headerHeight } = this.props;
+    let { headerHeight, screenWidth } = this.props;
 
     let collapsedHeaderHeight;
     if (!_.isNull(document.querySelector(".header-collapsed"))) {
-      collapsedHeaderHeight = 0;
+      collapsedHeaderHeight = screenWidth > BODY_480 ? 90 : 130;// : 250;
     } else {
-      collapsedHeaderHeight = 61;
+      collapsedHeaderHeight = screenWidth > BODY_480 ? 180 : 220;
     }
     let categoryPosTop = document.querySelector(`a[name=category-${currentCategory}]`).offsetTop;
-    let offset = 0;
 
-    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight - 100 });
+    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight });
   }
 
   handleScroll(e){

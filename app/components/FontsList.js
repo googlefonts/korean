@@ -51,9 +51,14 @@ class FontsList extends Component {
 
 
     if (words.length === 0) {
-      words = _.shuffle(_.map(SELECTED_MSGS, msg => {
-        return [msg[0].substring(0, len), len];
-      }));
+      try {
+        words = _.shuffle(_.map(SELECTED_MSGS, msg => {
+          return [msg[0].substring(0, len), len];
+        }));  
+      } catch(e){
+        debugger;
+      }
+      
     }
 
     return words;

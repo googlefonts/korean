@@ -23,7 +23,6 @@ class DescriptionFontSelector extends Component {
       newCurrentDescFont[currentDescFontSelected] = fontData.id;
     }
 
-    console.log(newCurrentDescFont);
     this.props.dispatch(changeCurrentDescFont(newCurrentDescFont));
 
   }
@@ -34,7 +33,7 @@ class DescriptionFontSelector extends Component {
   }
 
   render() {
-    let { screenWidth, descFontDropdownOpened, headerMode, currentDescFontSelected } = this.props;
+    let { locale, screenWidth, descFontDropdownOpened, headerMode, currentDescFontSelected } = this.props;
     let currentDescFont = getCurrentDescFont(this.props.currentDescFont, currentDescFontSelected);
 
     return (
@@ -60,13 +59,13 @@ class DescriptionFontSelector extends Component {
         <div className="font-selector-header--top">
           <div className="font-selector-header__tb-selector">
             <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "all")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "all" ? "--selected" : ""}`}>
-              전체
+              { locale === "ko" ? "전체" : "All" }
             </a>
             <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "title")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "title" ? "--selected" : ""}`}>
-              제목
+              { locale === "ko" ? "제목" : "Title" }
             </a> 
             <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "paragraph")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "paragraph" ? "--selected" : ""}`}>
-              본문
+              { locale === "ko" ? "본문" : "Text" }
             </a>
           </div>
           <DropdownFontSelector />
@@ -84,6 +83,7 @@ class DescriptionFontSelector extends Component {
 
 let mapStateToProps = state => {
   return {
+    locale: state.locale,
     currentDescFont: state.currentDescFont,
     screenWidth: state.screenWidth,
     headerMode: state.headerMode,
