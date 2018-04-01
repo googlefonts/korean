@@ -4,6 +4,8 @@ export const BODY_820 = 820;
 export const BODY_600 = 600;
 export const BODY_480 = 480;
 
+// curl -A "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" "https://fonts.googleapis.com/css?family=Sunflower:700&subset=korean"
+
 export const FOUNDRIES = {
   "google": {
     titleKo: "구글",
@@ -458,24 +460,28 @@ export const FONTS = [
     descriptionEn: "Stylish applies characteristics of Hangul serif fonts to a non-square frame structure with a rhythmical baseline.",
     category: 3
   },
-  // {
-  //   id: 15,
-  //   nameKo: "해바라기",
-  //   nameEn: "Sunflower",
-  //   fontName: 'Sunflower',
-  //   weights: [
-  //     {
-  //       fontWeight: 400,
-  //       weightName: "Regular"
-  //     }
-  //   ],
-  //   fontUrl : "https://fonts.gstatic.com/s/sunflower/v1/RWmKoKeF8fUjqIj7Vc-8SeXB.woff",
-  //   cssUrl : "https://fonts.googleapis.com/css?family=Sunflower",
-  //   foundries: ["jikji"],
-  //   descriptionKo: "기하학적인 조형성을 바탕으로 곡선 표현을 부분적으로 적용한 서체입니다.",
-  //   descriptionEn: "Sunflower features partial geometric curves.",
-  //   category: 3
-  // },
+  {
+    id: 15,
+    nameKo: "해바라기",
+    nameEn: "Sunflower",
+    fontName: 'Sunflower',
+    weights: [
+      {
+        fontWeight: 500,
+        weightName: "Medium"
+      },
+      {
+        fontWeight: 700,
+        weightName: "Bold"
+      }
+    ],
+    fontUrl : "https://fonts.gstatic.com/s/sunflower/v2/RWmPoKeF8fUjqIj7Vc-0-MDSpIEB.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Sunflower:500,700",
+    foundries: ["jikji"],
+    descriptionKo: "기하학적인 조형성을 바탕으로 곡선 표현을 부분적으로 적용한 서체입니다.",
+    descriptionEn: "Sunflower features partial geometric curves.",
+    category: 3
+  },
   {
     id: 16,
     nameKo: "연성",
