@@ -124,7 +124,7 @@ export const wavyBaseline = {
 
       waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
     } else {
-      waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.5, Math.PI * 3.5]);
+      waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.5, Math.PI * 1.7]);
       
     }
 
