@@ -1,6 +1,6 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
-import { scaleLinear } from 'd3';
+import { scaleLinear, min } from 'd3';
 import { BODY_480 } from '../../constants/defaults';
 
 const amountScale = scaleLinear().domain([150, 2000]).clamp(true).range([50, 300]);
@@ -40,8 +40,8 @@ export const wavyBaseline = {
       glyphs: [],
       originalPosGlyphs: [],
       metrics: new paper.Group(),
-      point: new paper.Point(400, 200),
-      tPoint: new paper.Point(400, 200),
+      point: new paper.Point(765, 200),
+      tPoint: new paper.Point(765, 200),
       prevPoint: new paper.Point(400, 200)
     };
 
@@ -73,7 +73,7 @@ export const wavyBaseline = {
       
       _g.fillColor = convertBgMode(backgroundMode, "b");
       _g.strokeColor = convertBgMode(backgroundMode, "f");
-      // g.fillColor = convertBgMode(backgroundMode, "b");
+      _g.fillColor = convertBgMode(backgroundMode, "f");
 
       _this.wavyBaseline.glyphs.push(_g);
       let originalPosGlyph = _g.clone();
@@ -110,20 +110,25 @@ export const wavyBaseline = {
       _this.wavyBaseline.tPoint = e.point;
     }
 
-    var centerY = _.mean(_.map(_this.wavyBaseline.originalPosGlyphs, g => {
-      return g.bounds.center.y;
-    }));
+    // var centerX = _.mean(_.map(_this.wavyBaseline.originalPosGlyphs, g => {
+    //   return g.bounds.center.x;
+    // }));
+
+    var centerX = _this.wavyBaseline.originalPosGlyphs[0].bounds.left;
+
 
 
     var theta = 0;
-    var radiusScale = scaleLinear().domain([0, 350]).clamp(true).range([50, 300]);
+    var radiusScale = scaleLinear().domain([0, 350]).clamp(true).range([50, 220]);
     var waveScale;
 
     if (_this.props.screenWidth <= BODY_480) {
 
-      waveScale = scaleLinear().domain([0, 350]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
+      waveScale = scaleLinear().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
+    
     } else {
-      waveScale = scaleLinear().domain([0, 350]).clamp(true).range([Math.PI * 0.5, Math.PI * 3.5]);
+
+      waveScale = scaleLinear().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.5, Math.PI * 3]);
       
     }
 
@@ -134,7 +139,8 @@ export const wavyBaseline = {
 
       _this.wavyBaseline.point = _this.wavyBaseline.point.add(_this.wavyBaseline.tPoint.subtract(_this.wavyBaseline.point).multiply(0.2));
 
-      let dist = Math.abs(centerY - _this.wavyBaseline.point.y);
+      let dist = Math.max(0, -(centerX - _this.wavyBaseline.point.x));
+
       amplitudeScale.range([0, waveScale(dist)]);
 
       _.each(_this.wavyBaseline.realBaseLine.segments, (seg, i) => {

@@ -26,8 +26,8 @@ export const sizeWaterfall = {
 
     _this.sizeWaterfall.originalGlyphGroup = new paper.Group(_this.sizeWaterfall.glyphs);
 
-    _this.sizeWaterfall.originalGlyphGroup.fillColor = "black";//convertBgMode(backgroundMode, "b");
-    _this.sizeWaterfall.originalGlyphGroup.strokeColor = "white";//convertBgMode(backgroundMode, "f");
+    _this.sizeWaterfall.originalGlyphGroup.fillColor = convertBgMode(backgroundMode, "f");
+    _this.sizeWaterfall.originalGlyphGroup.strokeColor = convertBgMode(backgroundMode, "b");
 
     _this.sizeWaterfall.glyphGroups = [];
 
@@ -39,9 +39,29 @@ export const sizeWaterfall = {
 
       // glyphGroup.position = new paper.Point(Math.random() * 400, Math.random() * 500);
       glyphGroup.scale(easeQuadIn(s(i)));
-      glyphGroup.fillColor = "black";//convertBgMode(backgroundMode, "b");
-      glyphGroup.strokeColor = "white";//convertBgMode(backgroundMode, "f");
 
+      if (i == 0) {
+
+        if (backgroundMode == "white") {
+          glyphGroup.fillColor = convertBgMode(backgroundMode, "f");
+          glyphGroup.strokeColor = convertBgMode(backgroundMode, "b");
+        } else {
+          glyphGroup.fillColor = convertBgMode(backgroundMode, "f");
+          glyphGroup.strokeColor = convertBgMode(backgroundMode, "b");
+        }
+        
+
+      } else {
+        if (backgroundMode == "white") {
+          glyphGroup.fillColor = convertBgMode(backgroundMode, "f");
+          glyphGroup.strokeColor = convertBgMode(backgroundMode, "b");
+        } else {
+          glyphGroup.fillColor = convertBgMode(backgroundMode, "b");
+          glyphGroup.strokeColor = convertBgMode(backgroundMode, "f");
+        }
+  
+      }
+      
       _this.sizeWaterfall.glyphGroups.push(glyphGroup);
     }
 
@@ -109,14 +129,32 @@ export const sizeWaterfall = {
 
     _this.project.activate();
 
-    _this.sizeWaterfall.originalGlyphGroup.fillColor = "black";//convertBgMode(backgroundMode, "b");
-    _this.sizeWaterfall.originalGlyphGroup.strokeColor = "white";//convertBgMode(backgroundMode, "f");
+    _this.sizeWaterfall.originalGlyphGroup.fillColor = convertBgMode(backgroundMode, "f");
+    _this.sizeWaterfall.originalGlyphGroup.strokeColor = convertBgMode(backgroundMode, "b");
     
-    _.each(_this.sizeWaterfall.glyphGroups, g => {
+    _.each(_this.sizeWaterfall.glyphGroups, glyphGroup => {
       
-      g.fillColor = "black";//convertBgMode(backgroundMode, "b");
-      g.strokeColor = "white";//convertBgMode(backgroundMode, "f");
+      if (i == 0) {
 
+        if (backgroundMode == "white") {
+          glyphGroup.fillColor = convertBgMode(backgroundMode, "f");
+          glyphGroup.strokeColor = convertBgMode(backgroundMode, "b");
+        } else {
+          glyphGroup.fillColor = convertBgMode(backgroundMode, "f");
+          glyphGroup.strokeColor = convertBgMode(backgroundMode, "f");
+        }
+        
+
+      } else {
+        if (backgroundMode == "white") {
+          glyphGroup.fillColor = convertBgMode(backgroundMode, "f");
+          glyphGroup.strokeColor = convertBgMode(backgroundMode, "b");
+        } else {
+          glyphGroup.fillColor = convertBgMode(backgroundMode, "b");
+          glyphGroup.strokeColor = convertBgMode(backgroundMode, "f");
+        }
+  
+      }
     });
 
 

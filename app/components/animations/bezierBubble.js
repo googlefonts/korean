@@ -90,7 +90,7 @@ export const bezierBubble = {
       let len = _this.bezierBubble.point.subtract(_this.bezierBubble.prevPoint).length;
 
       _this.bezierBubble.size += (_this.bezierBubble.tSize - _this.bezierBubble.size) * 0.2;
-      _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * 2.5;
+      _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * 2.5; //breathing amount
       
       if (_this.bezierBubble.firstMoved) {
         _this.bezierBubble.circle.visible = true;

@@ -71,7 +71,7 @@ class App extends Component {
     if (!_.isNull(document.querySelector(".header-collapsed"))) {
       collapsedHeaderHeight = screenWidth > BODY_480 ? 90 : 130;// : 250;
     } else {
-      collapsedHeaderHeight = screenWidth > BODY_480 ? 180 : 220;
+      collapsedHeaderHeight = screenWidth > BODY_480 ? 90 : 220;
     }
     let categoryPosTop = document.querySelector(`a[name=category-${currentCategory}]`).offsetTop;
 
