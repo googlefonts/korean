@@ -76,7 +76,13 @@ class HeaderCollapsed extends Component {
   handleCurrentCategory(categoryData, e){
     
     e.stopPropagation();
-    this.props.dispatch(changeCurrentCategory(categoryData.id));
+    this.setState({
+      isMenuOpen: false
+    });
+    this.props.dispatch(changeCurrentCategory({
+      id: categoryData.id,
+      type: 'click' // click, scroll
+    }));
   }
   
   toggleMenu(e){
@@ -84,6 +90,14 @@ class HeaderCollapsed extends Component {
     this.setState({
       isMenuOpen: !this.state.isMenuOpen
     });
+  }
+
+  handleMoveTop(e){
+    e.stopPropagation();
+
+
+    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: 0 });
+  
   }
 
   handleCategoryClick(e){
@@ -109,16 +123,11 @@ class HeaderCollapsed extends Component {
         }
           <div className="header-collapsed__flexwrap">
             <div className="header-collapsed__left">
-              {
-                locale == "ko" ? 
+              <a href="javascript:void(0);" onClick={this.handleMoveTop.bind(this)}>
                 <h1>
                   <span className="en-black">Google Fonts + </span> 한국어
                 </h1>
-                : 
-                <h1>
-                  <span className="en-black">Google Fonts + </span> 한국어
-                </h1>
-              }
+              </a>            
 
               {
                 screenWidth > BODY_600 ? 
