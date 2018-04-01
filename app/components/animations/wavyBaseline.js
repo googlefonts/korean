@@ -40,8 +40,8 @@ export const wavyBaseline = {
       glyphs: [],
       originalPosGlyphs: [],
       metrics: new paper.Group(),
-      point: new paper.Point(400, 200),
-      tPoint: new paper.Point(400, 200),
+      point: new paper.Point(765, 200),
+      tPoint: new paper.Point(765, 200),
       prevPoint: new paper.Point(400, 200)
     };
 
@@ -115,15 +115,16 @@ export const wavyBaseline = {
     }));
 
 
+
     var theta = 0;
     var radiusScale = scaleLinear().domain([0, 350]).clamp(true).range([50, 300]);
     var waveScale;
 
     if (_this.props.screenWidth <= BODY_480) {
 
-      waveScale = scaleLinear().domain([0, 350]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
+      waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
     } else {
-      waveScale = scaleLinear().domain([0, 350]).clamp(true).range([Math.PI * 0.5, Math.PI * 3.5]);
+      waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.5, Math.PI * 3.5]);
       
     }
 
