@@ -73,7 +73,7 @@ export const wavyBaseline = {
       
       _g.fillColor = convertBgMode(backgroundMode, "b");
       _g.strokeColor = convertBgMode(backgroundMode, "f");
-      // g.fillColor = convertBgMode(backgroundMode, "b");
+      _g.fillColor = convertBgMode(backgroundMode, "f");
 
       _this.wavyBaseline.glyphs.push(_g);
       let originalPosGlyph = _g.clone();
