@@ -139,7 +139,7 @@ export const wavyBaseline = {
 
       _this.wavyBaseline.point = _this.wavyBaseline.point.add(_this.wavyBaseline.tPoint.subtract(_this.wavyBaseline.point).multiply(0.2));
 
-      let dist = Math.max(0, centerX - _this.wavyBaseline.point.x);
+      let dist = Math.max(0, -(centerX - _this.wavyBaseline.point.x));
 
       amplitudeScale.range([0, waveScale(dist)]);
 
