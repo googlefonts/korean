@@ -24,12 +24,9 @@ class Footer extends Component {
             {
               locale == "ko" ?
               <div className="footer__short-desc-column">
-                <h4>
-                  Google Fonts 에 참여하세요.
-
-                </h4><br/>
+                <h4><span className="inline_en_bold">Google Fonts</span>에 참여하세요.</h4>
                 <p>
-                  Google Fonts는 전 세계의 디자이너와 함께 웹에서 손쉽게 사용할 수 있는 폰트를 개발합니다. Google Fonts와 이곳에 여러분이 제작한 한글 폰트를 제공하고 싶다면 언제든지 <a href="https://twitter.com/googlefonts" target="_blank">@googlefonts</a> 앞으로 멘션을 보내주세요.
+                  <span className="inline_en">Google Fonts</span>는 전 세계의 디자이너와 함께 웹에서 손쉽게 사용할 수 있는 폰트를 개발합니다. <span className="inline_en">Google Fonts</span>와 이곳에 여러분이 제작한 한글 폰트를 제공하고 싶다면 언제든지 <a href="https://twitter.com/googlefonts" target="_blank"><span className="inline_en">@googlefonts</span></a> 앞으로 멘션을 보내주세요.
                 </p>
               </div> :
 
@@ -53,9 +50,7 @@ class Footer extends Component {
           
           <div className="footer__team">
             <p className="en-regular">
-
-              Made by Friends of Google Fonts<br/><br/>
-
+              <h5>Made by Friends of Google Fonts</h5>
               <a href="http://yang-jang.com/" target="_blank">Suyoung Jang</a><br/>
               <a href="http://eroonkang.com" target="_blank">E Roon Kang</a><br/>
               <a href="http://wonyoung.so" target="_blank">Wonyoung So</a><br/>

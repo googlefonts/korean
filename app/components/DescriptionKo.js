@@ -107,11 +107,13 @@ class DescriptionKo extends Component {
 
         
         <h3 style={fontNames.title}>
-          <span className="inline_en" style={fontNames.title}>Google Fonts</span>는 양질의 타이포그래피를 통해 웹을 더욱 아름답고 빠르며 누구나 참여할 수 있는 공간으로 만들어왔습니다. <span className="inline_en" style={fontNames.title}>Google Fonts</span> + 한국어는 오픈소스 한글 폰트를 머신 러닝에 기반을 둔 최적화 기술을 통해 시범적으로 제공하고, 그 가능성을 실험합니다.
+          좋은 타이포그래피를 통해 웹은 더욱 아름답고, 빠르며, 누구나 참여할 수 있는 공간이 될 수 있습니다. <span className="inline_en" style={fontNames.title}>Google Fonts</span>는 이 사이트에 수록된 오픈 소스 한글 폰트를 머신 러닝에 기반한 최적화 기술을 통해 시범적으로 제공합니다. 
         </h3>
 
         <h4 style={fontNames.title}>
+          <span className="underline">
           큰 용량은 이제껏 한글 폰트를 웹에서 사용할 때 맞닥뜨리는 가장 큰 걸림돌이었습니다.
+          </span>
         </h4>
 
         <p style={fontNames.paragraph}>
@@ -164,7 +166,7 @@ class DescriptionKo extends Component {
                 </h5>
                 <p style={fontNames.paragraph}>
                   총 글리프 개수 (한글)<br/>
-                  <span className="inline_en" style={fontNames.title}>Noto Sans KR</span>
+                  <span className="inline_en" style={fontNames.title}>Noto Sans CJK</span>
                 </p>
               </div>
 
@@ -181,7 +183,7 @@ class DescriptionKo extends Component {
           }
           <div className="left">
             <h4 style={fontNames.title}>
-              <span className="inline_en_bold" style={fontNames.title}>Google Fonts</span>는 머신 러닝에 기반을 둔 최적화 기술을 통해 한글 폰트를 동적으로 분할 다운로드합니다.
+              <span className="underline"><span className="inline_en" style={fontNames.title}>Google Fonts</span>는 머신 러닝에 기반을 둔 최적화 기술을 통해 한글 폰트를 동적으로 분할 다운로드합니다.</span>
             </h4>
 
 
@@ -204,7 +206,7 @@ class DescriptionKo extends Component {
                 </h5>
                 <p style={fontNames.paragraph}>
                   총 글리프 개수 (한글)<br/>
-                  <span className="inline_en" style={fontNames.title}>Noto Sans KR</span>
+                  <span className="inline_en" style={fontNames.title}>Noto Sans CJK</span>
                 </p>
               </div>
 
@@ -227,7 +229,7 @@ class DescriptionKo extends Component {
 
 
         <h4 style={fontNames.title}>
-          <span className="inline_en_bold" style={fontNames.title}>Google Fonts</span> + 한국어는 공공을 위한 가치를 지향합니다.
+          <span className="underline"><span className="inline_en" style={fontNames.title}>Google Fonts</span> + 한국어는 공공을 위한 가치를 지향합니다.</span>
         </h4>
 
 
