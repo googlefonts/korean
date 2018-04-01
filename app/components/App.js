@@ -110,7 +110,7 @@ class App extends Component {
 
     } else {
 
-      if (scrollY < 100) {
+      if (scrollY < 60) {
         
         this.props.dispatch(changeHeaderMode("expanded"));
 

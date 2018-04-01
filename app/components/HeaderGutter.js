@@ -6,8 +6,7 @@ class HeaderGutter extends Component {
     let { headerHeight } = this.props;
 
     return (      
-      // <div className="header-gutter" style={{ height: headerHeight }}>
-      <div className="header-gutter">
+      <div className="header-gutter" style={{ height: headerHeight }}>
       </div>
     );
   }
