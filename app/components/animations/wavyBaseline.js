@@ -1,6 +1,6 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
-import { scaleLinear } from 'd3';
+import { scaleLinear, min } from 'd3';
 import { BODY_480 } from '../../constants/defaults';
 
 const amountScale = scaleLinear().domain([150, 2000]).clamp(true).range([50, 300]);
@@ -110,21 +110,23 @@ export const wavyBaseline = {
       _this.wavyBaseline.tPoint = e.point;
     }
 
-    var centerX = _.mean(_.map(_this.wavyBaseline.originalPosGlyphs, g => {
-      return g.bounds.center.x;
-    }));
+    // var centerX = _.mean(_.map(_this.wavyBaseline.originalPosGlyphs, g => {
+    //   return g.bounds.center.x;
+    // }));
+
+    var centerX = _this.wavyBaseline.originalPosGlyphs[0].bounds.left;
 
 
 
     var theta = 0;
-    var radiusScale = scaleLinear().domain([0, 350]).clamp(true).range([50, 300]);
+    var radiusScale = scaleLinear().domain([0, 350]).clamp(true).range([50, 200]);
     var waveScale;
 
     if (_this.props.screenWidth <= BODY_480) {
 
       waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
     } else {
-      waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.5, Math.PI * 1.7]);
+      waveScale = scaleLinear().domain([0, _this.view.viewSize.width * 0.5]).clamp(true).range([Math.PI * 0.5, Math.PI * 2.1]);
       
     }
 
