@@ -69,3 +69,17 @@ export const cutString = (screenWidth) => {
     return 4;
   } 
 }
+
+
+export const cutStringScript = (screenWidth) => {
+  // var scale = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 4.9]);
+  if (screenWidth < 768) {
+    return 1;
+  } else if (screenWidth >= 768 && screenWidth < 1200) {
+    return 2;
+  } else if (screenWidth >= 1200 && screenWidth < 1800) {
+    return 3;
+  } else {
+    return 4;
+  } 
+}

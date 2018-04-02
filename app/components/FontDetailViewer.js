@@ -9,7 +9,8 @@ class FontDetailViewer extends Component {
     super(props);
 
     this.state = {
-      weightSelected: []
+      weightSelected: [],
+      weightClicked: false
     };
   }
 
@@ -26,8 +27,16 @@ class FontDetailViewer extends Component {
   handleWeightToggle(weightData, e){
     e.stopPropagation();
     this.setState({
-      weightSelected: this.setWeightList(this.state.weightSelected, weightData) 
+      weightSelected: this.setWeightList(this.state.weightSelected, weightData),
+      weightClicked: true
     });    
+
+    _.delay( () => {
+      this.setState({
+        weightClicked: false
+      });
+    }, 400);
+
   }
 
   handleFocus(e){
@@ -104,7 +113,7 @@ class FontDetailViewer extends Component {
 
   render() {
     let { screenWidth, locale, category, backgroundMode } = this.props;
-    let { weightSelected } = this.state;
+    let { weightSelected, weightClicked } = this.state;
     let weights = _.map(weightSelected, w => { return w.fontWeight; }).sort();
     let leftWidthScale;
     let addClassName = "";
@@ -158,7 +167,7 @@ class FontDetailViewer extends Component {
                 HTML
               </div>
               <div className="font-viewer__detail-content">
-                <input type="text" className="font-viewer__copy-input" onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(0, weights) } />
+                <input type="text" className={`font-viewer__copy-input ${weightClicked ? 'c-blink' : ''}`} onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(0, weights) } />
               </div>
             </div>
 
@@ -167,7 +176,7 @@ class FontDetailViewer extends Component {
                 CSS
               </div>
               <div className="font-viewer__detail-content">
-                <input type="text" className="font-viewer__copy-input" onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(1, weights) } />
+                <input type="text" className={`font-viewer__copy-input ${weightClicked ? 'c-blink' : ''}`} onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(1, weights) } />
               </div>
             </div>
 

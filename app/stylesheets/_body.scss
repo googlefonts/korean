@@ -260,6 +260,14 @@ a:hover {
   opacity: 0.5;
 }
 
+a:focus {
+  opacity: 1;
+}
+
+a:active {
+  opacity: 1;
+}
+
 
 sup {
   position: relative;
@@ -659,7 +667,27 @@ sup {
     display: block;
   }
 }
+.c-blink {
+    -webkit-animation-name: demo;
+    -webkit-animation-duration: 400ms;
+    -webkit-animation-iteration-count: 1;
+}    
 
+
+@-webkit-keyframes demo {
+  0% {
+    opacity:0.2;
+  }
+  // 50% {
+  //   opacity:1;
+  // }
+  // 75% {
+  //   opacity:0.5;
+  // }
+  100% {
+    opacity:1;
+  }
+}
 .font-viewer {
   background-color: transparent;
   transition: 0.3s background-color;
@@ -960,6 +988,9 @@ sup {
     height: 30px;
     font-family: 'Roboto Mono', monospace;
     border-radius: 2px;
+
+    
+    
   }
 
   &__weight-link {
