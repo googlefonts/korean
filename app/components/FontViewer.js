@@ -59,6 +59,10 @@ class FontViewer extends Component {
 
   handleDetailSelectedClick(e){
     e.stopPropagation();
+    
+    this.setState({
+      hovered: false
+    })
 
     if (this.props.id === this.props.currentDetailSelected) {
       this.props.dispatch(changeCurrentDetailSelected(null));
@@ -93,7 +97,7 @@ class FontViewer extends Component {
           <div className="font-viewer__left" style={{ minWidth: leftWidthScale(screenWidth) }}>
             {
               locale == "ko" ? 
-              <h3 style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
+              <h3 style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleMouseEnter.bind(this)} onTouchCancel={this.handleMouseLeave.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
                 <span className="ko">{ this.props.nameKo }</span>
 
                 {
@@ -107,7 +111,7 @@ class FontViewer extends Component {
                 }
                 <span className="en-black">{ this.props.nameEn }</span>
               </h3> : 
-              <h3 style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
+              <h3 style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleMouseEnter.bind(this)} onTouchCancel={this.handleMouseLeave.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
                 <span className="en-black">{ this.props.nameEn }</span>
 
                 {

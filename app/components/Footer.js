@@ -31,9 +31,7 @@ class Footer extends Component {
               </div> :
 
               <div className="footer__short-desc-column">
-                <h4 className="en-regular">
-                  Join our community
-                </h4><br/>
+                <h4 className="en-black">Join our community</h4><br/>
                 <p className="en-regular">
                   We are working with designers around the world to produce best-in-class typeface designs that are made for the web. If you want to offer your own Korean font through Google Fonts, please contact <a href="https://twitter.com/googlefonts" target="_blank">@googlefonts</a>. 
                 </p>
@@ -49,8 +47,8 @@ class Footer extends Component {
           </div>
           
           <div className="footer__team">
+            <h4><span className="inline_en_bold">Made by Friends of Google Fonts</span></h4>
             <p className="en-regular">
-              <h5>Made by Friends of Google Fonts</h5>
               <a href="http://yang-jang.com/" target="_blank">Suyoung Jang</a><br/>
               <a href="http://eroonkang.com" target="_blank">E Roon Kang</a><br/>
               <a href="http://wonyoung.so" target="_blank">Wonyoung So</a><br/>

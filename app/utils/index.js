@@ -30,13 +30,13 @@ export const getCurrentDescFont = (currentDescFont, mode) => {
       return _.isUndefined(resultFont) ? {
         id: -1,
         nameKo: "폰트선택",
-        nameEn: "Choose"
+        nameEn: "Select Font"
       } : resultFont;
     } else {
       return {
         id: -1,
         nameKo: "폰트선택",
-        nameEn: "Choose"
+        nameEn: "Select Font"
       };
     }
     
@@ -46,7 +46,7 @@ export const getCurrentDescFont = (currentDescFont, mode) => {
     return _.isUndefined(resultFont) ? {
         id: -1,
         nameKo: "폰트선택",
-        nameEn: "Choose"
+        nameEn: "Select Font"
       } : resultFont;
 
   }
@@ -58,6 +58,20 @@ export const isTouchDevice = () => {
 };
 
 export const cutString = (screenWidth) => {
+  // var scale = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 4.9]);
+  if (screenWidth < 768) {
+    return 1;
+  } else if (screenWidth >= 768 && screenWidth < 1200) {
+    return 2;
+  } else if (screenWidth >= 1200 && screenWidth < 1800) {
+    return 3;
+  } else {
+    return 4;
+  } 
+}
+
+
+export const cutStringScript = (screenWidth) => {
   // var scale = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 4.9]);
   if (screenWidth < 768) {
     return 1;

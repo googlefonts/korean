@@ -10,7 +10,8 @@ import _ from 'lodash';
 const Fragment = React.Fragment;
 
 const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([200, 300]);
-const sizeScale = scaleLinear().domain([1440, 2560]).clamp(true).range([125, 225]);
+// const sizeScale = scaleLinear().domain([1440, 2560]).clamp(true).range([125, 225]);
+const sizeScale = scaleLinear().domain([320, 425, 600, 768, 2560]).clamp(true).range([280, 370, 100, 125, 225]);
 
 
 class FontViewerScript extends Component {
@@ -80,6 +81,10 @@ class FontViewerScript extends Component {
   handleDetailSelectedClick(e){
     e.stopPropagation();
 
+    this.setState({
+      hovered: false
+    })
+
     if (this.props.id === this.props.currentDetailSelected) {
       this.props.dispatch(changeCurrentDetailSelected(null));
     } else {
@@ -112,7 +117,7 @@ class FontViewerScript extends Component {
     return (
       <div onMouseLeave={this.handleMouseLeave.bind(this)} className={`font-viewer${ selected ? "--script-selected" : "--script" }`} data-id={this.props.id}>
         <div className="font-viewer__flex-wrapper--top">
-          <div className="font-viewer__left--script" style={{ minWidth: leftWidthScale(screenWidth) }}>
+          <div className="font-viewer__left--script" style={{ minWidth: screenWidth > BODY_480 ? leftWidthScale(screenWidth) : 'auto' }}>
             {
               locale == "ko" ? 
               <h3 style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleDetailMouseEnter.bind(this)} onMouseLeave={this.handleDetailMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
@@ -174,7 +179,7 @@ class FontViewerScript extends Component {
             this.state.loaded ? 
               ( 
                 detailSelected ?
-                <FontPreviewTyper {...this.props} fontWeightSelected={this.state.fontWeightSelected} />
+                <FontPreviewTyper {...this.props} size={sizeScale(screenWidth)} fontWeightSelected={this.state.fontWeightSelected} />
                 : 
                 (
                   selected ? 

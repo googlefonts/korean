@@ -141,7 +141,7 @@ class HeaderCollapsed extends Component {
                   </div>) : null
               }
               {
-                screenWidth > BODY_960 ? 
+                screenWidth > BODY_1280 ? 
                 <div className="header-collapsed__categories">
                   <a className="category-selector--selected" href="javascript:void(0);" onClick={ this.handleCategoryClick.bind(this) }>
                     {
@@ -188,8 +188,8 @@ class HeaderCollapsed extends Component {
             }
             {
               screenWidth > BODY_960 ? (locale == "ko" ? 
-              <div className={`header__menu--${locale}`}>
-                <div>
+              <div className="header__description-area">
+                <div className={`header__menu--${locale}`}>
                   <a href="javascript:void(0)" className="" onClick={this.moveToDescription.bind(this)}>
                     <span className="en-black">Google Fonts + </span> 한국어 소개 
                   </a>
@@ -198,8 +198,8 @@ class HeaderCollapsed extends Component {
                   </a>
                 </div>
               </div> : 
-              <div className={`header__menu--${locale}`}>
-                <div>
+              <div className="header__description-area">
+                <div className={`header__menu--${locale}`}>
                   <a href="javascript:void(0)"  onClick={this.moveToDescription.bind(this)}>
                     About Google Fonts + Korean
                   </a>

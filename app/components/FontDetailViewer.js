@@ -9,7 +9,8 @@ class FontDetailViewer extends Component {
     super(props);
 
     this.state = {
-      weightSelected: []
+      weightSelected: [],
+      weightClicked: false
     };
   }
 
@@ -26,8 +27,16 @@ class FontDetailViewer extends Component {
   handleWeightToggle(weightData, e){
     e.stopPropagation();
     this.setState({
-      weightSelected: this.setWeightList(this.state.weightSelected, weightData) 
+      weightSelected: this.setWeightList(this.state.weightSelected, weightData),
+      weightClicked: true
     });    
+
+    _.delay( () => {
+      this.setState({
+        weightClicked: false
+      });
+    }, 400);
+
   }
 
   handleFocus(e){
@@ -104,16 +113,16 @@ class FontDetailViewer extends Component {
 
   render() {
     let { screenWidth, locale, category, backgroundMode } = this.props;
-    let { weightSelected } = this.state;
+    let { weightSelected, weightClicked } = this.state;
     let weights = _.map(weightSelected, w => { return w.fontWeight; }).sort();
     let leftWidthScale;
     let addClassName = "";
 
     if (category === 3) {
       addClassName = "--script"
-      leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
+      leftWidthScale = scaleLinear().domain([360, 1440]).clamp(true).range([40, 105]);
     } else {
-      leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 210]);
+      leftWidthScale = scaleLinear().domain([360, 1440]).clamp(true).range([40, 210]);
     }
 
     let foundryTitles = this.getFoundriesTitle(this.props.foundries);
@@ -122,7 +131,7 @@ class FontDetailViewer extends Component {
     return (
       <Fragment>
         <div className="font-viewer__detail-left" style={{ minWidth: leftWidthScale(screenWidth) }}>
-          <a href="javascript:void(0);" onClick={this.props.handleClosed}>
+          <a href="javascript:void(0);" onClick={this.props.handleClosed} className="close">
             <img src={`./public/assets/close_detail_${backgroundMode}.svg`} alt="arrow_close" />
           </a>
 
@@ -132,26 +141,22 @@ class FontDetailViewer extends Component {
             locale == "ko" ?
 
             <div className={`font-viewer__column-left${addClassName}`}>
-              <p>
+              <p className="font-description">
                 { this.props.descriptionKo }
               </p>
-              <div className="l-apple-box"></div>
               <p>
-                제작 <span className="bold">{ foundryTitles.ko }</span>
+                제작&nbsp;&nbsp;&nbsp;<span className="bold">{ foundryTitles.ko }</span>
               </p>
-              <div className="l-apple-box--quarter"></div>
               { foundryDescs.ko }
             </div> : 
 
             <div className={`font-viewer__column-left${addClassName}`}>
-              <p className="en-regular">
+              <p className="en-black">
                 { this.props.descriptionEn }
               </p>
-              <div className="l-apple-box"></div>
               <p className="en-regular">
-                Type Foundry <span className="en-black">{ foundryTitles.en }</span>
+                Foundry&nbsp;&nbsp;&nbsp;<span className="en-black">{ foundryTitles.en }</span>
               </p>
-              <div className="l-apple-box--quarter"></div>
               { foundryDescs.en }
             </div>
           }
@@ -162,16 +167,16 @@ class FontDetailViewer extends Component {
                 HTML
               </div>
               <div className="font-viewer__detail-content">
-                <input type="text" className="font-viewer__copy-input" onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(0, weights) } />
+                <input type="text" className={`font-viewer__copy-input ${weightClicked ? 'c-blink' : ''}`} onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(0, weights) } />
               </div>
             </div>
 
-            <div className="font-viewer__input-area">
+            <div className="font-viewer__input-area tight">
               <div className="font-viewer__detail-label">
                 CSS
               </div>
               <div className="font-viewer__detail-content">
-                <input type="text" className="font-viewer__copy-input" onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(1, weights) } />
+                <input type="text" className={`font-viewer__copy-input ${weightClicked ? 'c-blink' : ''}`} onClick={this.handleFocus.bind(this)} onFocus={this.handleFocus.bind(this)} readOnly value={ this.createCSSURL(1, weights) } />
               </div>
             </div>
 
@@ -179,7 +184,7 @@ class FontDetailViewer extends Component {
               <div className="font-viewer__detail-label--ko">
                 {
                   locale == "ko" ?
-                  "굵기추가" : "Weights"
+                  "굵기선택" : <span className='en-black'>Weights</span>
                 }
               </div>
               <div className="font-viewer__detail-content">

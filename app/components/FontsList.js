@@ -5,11 +5,11 @@ import _ from 'lodash';
 import { MESSAGES } from '../constants/messages';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
-import { cutString } from '../utils';
+import { cutString, cutStringScript } from '../utils';
 
 const Fragment = React.Fragment;
 const msgScale = cutString;
-const msgScaleScript = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 4.9]);
+const msgScaleScript = cutStringScript; //scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 4.9]);
 const SELECTED_MSGS = _.first(_.shuffle(MESSAGES));
 
 class FontsList extends Component {
@@ -41,10 +41,24 @@ class FontsList extends Component {
   }
 
   filterString(len){
+    var words;
+
     try { 
-      var words = _.shuffle(_.filter(SELECTED_MSGS, msg => {
-        return msg[1] === len;
-      }));
+      
+      if (len > 1) {
+
+        words = _.shuffle(_.filter(SELECTED_MSGS, msg => {
+          return msg[1] === len;
+        }));  
+
+      } else {
+
+        words = _.shuffle(_.map(SELECTED_MSGS, msg => {
+          return [msg[0].substring(0, len), len];
+        }));  
+ 
+      }
+      
     } catch(e){
       debugger;
     }

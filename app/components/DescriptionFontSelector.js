@@ -59,13 +59,22 @@ class DescriptionFontSelector extends Component {
         <div className="font-selector-header--top">
           <div className="font-selector-header__tb-selector">
             <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "all")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "all" ? "--selected" : ""}`}>
-              { locale === "ko" ? "전체" : "All" }
+              { locale === "ko" ? 
+                <span className="ko-regular">전체</span> : 
+                <span className="en-regular">All</span>
+              }
             </a>
             <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "title")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "title" ? "--selected" : ""}`}>
-              { locale === "ko" ? "제목" : "Title" }
+              { locale === "ko" ? 
+                <span className="ko-regular">제목</span> : 
+                <span className="en-regular">Title</span> 
+              }
             </a> 
             <a href="javascript:void(0);" onClick={this.handleCurrentDescFontSelected.bind(this, "paragraph")} className={`font-selector-header__tb-selector__link${currentDescFontSelected == "paragraph" ? "--selected" : ""}`}>
-              { locale === "ko" ? "본문" : "Text" }
+              { locale === "ko" ? 
+                <span className="ko-regular">본문</span> : 
+                <span className="en-regular">Text</span> 
+              }
             </a>
           </div>
           <DropdownFontSelector />

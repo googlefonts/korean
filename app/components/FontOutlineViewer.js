@@ -94,25 +94,25 @@ class FontOutlineViewer extends Component {
   }
 
   getSize(category, screenWidth, size) {
-    if (category === 3) {
+    // if (category === 3) {
 
-      if (screenWidth > BODY_600){
+    //   if (screenWidth > BODY_600){
         
-        return size;
+    //     return size;
       
-      } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
+    //   } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
 
-        return 250;
+    //     return 250;
       
-      } else {
+    //   } else {
 
-        return 300;
+    //     return 300;
 
-      }
+    //   }
 
-    } else {
+    // } else {
       return size;
-    }
+    // }
   }
 
   resetMessage(props){
