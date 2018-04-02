@@ -41,10 +41,14 @@ class FontsList extends Component {
   }
 
   filterString(len){
-    var words = _.shuffle(_.filter(SELECTED_MSGS, msg => {
-      return msg[1] === len;
-    }));
-
+    try { 
+      var words = _.shuffle(_.filter(SELECTED_MSGS, msg => {
+        return msg[1] === len;
+      }));
+    } catch(e){
+      debugger;
+    }
+    
 
     if (words.length === 0) {
       try {
