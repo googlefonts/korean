@@ -20,7 +20,7 @@ class FontOutlineViewer extends Component {
     this.view = paper.View._viewsById[this.refCanvas.id];
 
     var { font, message, category, screenWidth, backgroundMode, size, fontSize, letterSpacing } = this.props;
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode, fontSize, letterSpacing, screenWidth);
+    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode, fontSize, letterSpacing, screenWidth, category);
     
     this.project.activate();
     this.view.draw();
@@ -50,14 +50,20 @@ class FontOutlineViewer extends Component {
     });
   }
 
-  createGlyphPath(font, message, size, backgroundMode, fontSize, letterSpacing, screenWidth){
+  createGlyphPath(font, message, size, backgroundMode, fontSize, letterSpacing, screenWidth, category){
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
     var kerningValue = 0;
 
     size = size * fontSize || 300;
 
-    var x = screenWidth > BODY_480 ? 24 : 0;
+    var x;
+
+    if (category === 3) {
+      x = 48;
+    } else {
+      x = screenWidth > BODY_480 ? 24 : 0;
+    }
     var fontScale = 1 / font.unitsPerEm * size;
     
     _.each(fontGlyphs, (glyphData, i) => {
@@ -125,7 +131,7 @@ class FontOutlineViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode, fontSize, letterSpacing, screenWidth);
+    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode, fontSize, letterSpacing, screenWidth, category);
     this.view.draw();
 
   }
