@@ -142,11 +142,11 @@ class FontAnimScriptViewer extends Component {
     var x, y;
 
     if (screenWidth > BODY_480) {
-      x = 24 + leftWidthScale(screenWidth) + 23;
+      x = 24 + leftWidthScale(screenWidth) + 49;
       y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.88;
     } else { 
-      x = 24 + 25;
-      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.88 + 40;
+      x = 24 + 49;
+      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.88 + 45;
     }
 
     var fontScale = 1 / font.unitsPerEm * fontSize;
@@ -225,19 +225,19 @@ class FontAnimScriptViewer extends Component {
 
   getSize(screenWidth, size) {
 
-    if (screenWidth > BODY_600){
+    // if (screenWidth > BODY_600){
       
       return size;
     
-    } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
+    // } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
 
-      return 250;
+    //   return 250;
     
-    } else {
+    // } else {
 
-      return 300;
+    //   return 300;
 
-    }
+    // }
   }
 
 

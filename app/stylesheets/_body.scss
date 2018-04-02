@@ -706,6 +706,7 @@ sup {
     position:relative;
     z-index:6;
     width: calc(50% - 10px);
+    // overflow:hidden;
 
     @include body_600 {
       width: 100%;
