@@ -58,10 +58,14 @@ export const isTouchDevice = () => {
 };
 
 export const cutString = (screenWidth) => {
-  var scale = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 6.2]);
-  if (screenWidth > 1024 && screenWidth < 1300) {
+  // var scale = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 4.9]);
+  if (screenWidth < 768) {
+    return 1;
+  } else if (screenWidth >= 768 && screenWidth < 1200) {
+    return 2;
+  } else if (screenWidth >= 1200 && screenWidth < 1800) {
     return 3;
   } else {
-    return scale(screenWidth);
-  }
+    return 4;
+  } 
 }

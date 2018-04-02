@@ -8,8 +8,8 @@ import { scaleLinear } from 'd3';
 import _ from 'lodash';
 
 const Fragment = React.Fragment;
-const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([400, 550]);
-const sizeScale = scaleLinear().domain([1440, 2560]).clamp(true).range([350, 500]);
+const heightScale = scaleLinear().domain([320, 425, 768, 2560]).clamp(true).range([320, 420, 350, 550]);
+const sizeScale = scaleLinear().domain([320, 425, 768, 2560]).clamp(true).range([270, 370, 300, 500]);
 
 class FontViewer extends Component {
   constructor(props){
