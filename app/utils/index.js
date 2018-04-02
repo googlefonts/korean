@@ -30,13 +30,13 @@ export const getCurrentDescFont = (currentDescFont, mode) => {
       return _.isUndefined(resultFont) ? {
         id: -1,
         nameKo: "폰트선택",
-        nameEn: "Choose"
+        nameEn: "Select Font"
       } : resultFont;
     } else {
       return {
         id: -1,
         nameKo: "폰트선택",
-        nameEn: "Choose"
+        nameEn: "Select Font"
       };
     }
     
@@ -46,7 +46,7 @@ export const getCurrentDescFont = (currentDescFont, mode) => {
     return _.isUndefined(resultFont) ? {
         id: -1,
         nameKo: "폰트선택",
-        nameEn: "Choose"
+        nameEn: "Select Font"
       } : resultFont;
 
   }

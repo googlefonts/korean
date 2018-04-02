@@ -52,7 +52,7 @@ class FontPreviewTyper extends Component {
           marginLeft: 0,
           fontSize: '10.0em',
           height: 200,
-          paddingBottom: 40
+          paddingBottom: 20
         }
 
       

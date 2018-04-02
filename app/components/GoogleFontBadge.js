@@ -23,7 +23,7 @@ class GoogleFontBadge extends Component {
 
     this.footerScroller.setup({
       step: '.footer',
-      offset: (screenHeight - 90) / screenHeight,
+      offset: (screenHeight - 80) / screenHeight,
     }).onStepEnter(this.handleFooterEnter.bind(this))
         .onStepExit(this.handleFooterExit.bind(this));
 

@@ -27,7 +27,7 @@ class DropdownFontSelector extends Component {
           {
             locale == "ko" ? 
             <Fragment>
-              <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
+              <div className="dropdown-font-selector__ko ko-black" style={{ fontSize: screenWidth > BODY_600 ? '14px' : '14px' }}>{ currentDescFont.nameKo }</div> 
               {
                 // screenWidth > BODY_600 ? 
                 // <div className="dropdown-font-selector__en en-regular">{ currentDescFont.nameEn }</div> 
@@ -36,13 +36,14 @@ class DropdownFontSelector extends Component {
               <div style={{ marginTop: -2 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
             </Fragment> :
             <Fragment>
-              <div className="dropdown-font-selector__en en-black" style={{ fontSize: screenWidth > BODY_600 ? '0.8em' : '0.9em' }}>{ currentDescFont.nameEn }</div> 
+              <div className="dropdown-font-selector__en en-black" style={{ fontSize: screenWidth > BODY_600 ? '14px' : '14px' }}>{ currentDescFont.nameEn }</div> 
               {
                 // screenWidth > BODY_600 ? 
                 // <div className="dropdown-font-selector__ko">{ currentDescFont.nameKo }</div> 
                 // : null
               }
-              <div style={{ marginTop: screenWidth > BODY_600 ? -6 : 0 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
+              <div style={{ marginTop: -2 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
+
             </Fragment>
           }
         </a>
@@ -62,3 +63,4 @@ let mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(DropdownFontSelector);
+//<div style={{ marginTop: screenWidth > BODY_600 ? -6 : 0 }}><img src={`./public/assets/arrow_down_${backgroundMode}.svg`} alt="arrow_down" /></div>
