@@ -29,9 +29,9 @@ class FontAnimScriptViewer extends Component {
     this.view = paper.View._viewsById[this.refCanvas.id];
 
 
-    var { font, message, screenHeight, screenWidth, animationScriptIdx, backgroundMode, size, containerHeight } = this.props;
+    var { letterSpacing, fontSize, font, message, screenHeight, screenWidth, animationScriptIdx, backgroundMode, size, containerHeight } = this.props;
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight);
+    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing);
 
     this.attachAnimation(this.props);
     this.project.activate();
@@ -129,7 +129,7 @@ class FontAnimScriptViewer extends Component {
 
   }
 
-  createGlyphPath(font, message, size, screenWidth, screenHeight, backgroundMode, containerHeight){
+  createGlyphPath(font, message, size, screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing){
 
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
@@ -142,11 +142,11 @@ class FontAnimScriptViewer extends Component {
     var x, y;
 
     if (screenWidth > BODY_480) {
-      x = 24 + leftWidthScale(screenWidth) + size * 0.5 + 10 * 0.5;
-      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.5;
+      x = 24 + leftWidthScale(screenWidth) + 23;
+      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.88;
     } else { 
-      x = 24 + size * 0.5 + 10 * 0.5;
-      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + 150 + 46;
+      x = 24 + 25;
+      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.88 + 40;
     }
 
     var fontScale = 1 / font.unitsPerEm * fontSize;
@@ -168,10 +168,15 @@ class FontAnimScriptViewer extends Component {
       if (glyphData.advanceWidth) {
         x += glyphData.advanceWidth * fontScale;
       }
+
+
       if (i < fontGlyphs.length - 1) {
         kerningValue = font.getKerningValue(glyphData, fontGlyphs[i + 1]);
         x += kerningValue * fontScale;
       }
+
+      x += letterSpacing * fontScale;
+
 
     });
 
@@ -179,7 +184,7 @@ class FontAnimScriptViewer extends Component {
   }
 
   resetMessage(props){
-    let { message, font, screenHeight, screenWidth, animationScriptIdx, backgroundMode, size, containerHeight } = props;
+    let { letterSpacing, fontSize, message, font, screenHeight, screenWidth, animationScriptIdx, backgroundMode, size, containerHeight } = props;
     
     this.project.activate();
     _.each(this.glyphs, glyph => {
@@ -188,7 +193,7 @@ class FontAnimScriptViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight);
+    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing);
 
     
     this.detachAnimation(props);

@@ -96,10 +96,12 @@ class DescriptionEn extends Component {
     } catch(e){
       fontNames = {
         paragraph: {
-          fontFamily: "Noto Sans KR"
+          fontFamily: "Roboto",
+          lineHeight: "1.45em"
         },
         title: {
-          fontFamily: "Noto Sans KR"
+          fontFamily: "Roboto",
+          lineHeight: "1.35em"
         }
       }
     }
@@ -113,15 +115,17 @@ class DescriptionEn extends Component {
         </div>
         
         <h3 style={fontNames.title}>
-         Google Fonts has been making the web more beautiful, fast, and open through great typography. Optimized by machine learning, Google Fonts now offers Korean and this showcase website.
+          Great typography makes the web more beautiful, fast, and open. Using machine learning and the latest web standards, Google Fonts now offers the open source Korean fonts showcased in this website.
         </h3>
 
         <h4 style={fontNames.title}>
+          <span className="underline">
           Why do Korean fonts pose a challenge for web use?
+          </span>
         </h4>
 
         <p style={fontNames.paragraph}>
-          Hangul consists of 19 consonants, designed after the shapes of the articulators when making the sounds, and 21 vowels, evolved from three basic shapes representing the sky, the earth, and human. These elements, called jamo, are then grouped into syllabic blocks, making up the letters. Hangul was originally intended to be written from top to bottom and right to left since its inception in 1446 (then called Hunminjeongeum) but is now generally written from left to right, with spaces between words and Western punctuation.
+          Hangul consists of 19 consonants, designed after the shapes of the articulators when making the sounds, and 21 vowels, evolved from three basic shapes representing the sky, the earth, and human. These elements, called jamo, are then grouped into syllabic blocks, making up the letters.
         </p>
 
         <div className="desc-jamo-area">
@@ -144,7 +148,7 @@ class DescriptionEn extends Component {
             <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
           </div>
           <div className="letter">
-            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
+            <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
             <div onMouseEnter={this.handleMouseEnter.bind(this, "vowel")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`vowel vertical ${ hovered === "vowel" ? "highlighted" : ""}`}>Vowel</div><br/>
             <div onMouseEnter={this.handleMouseEnter.bind(this, "consonant")} onMouseLeave={this.handleMouseLeave.bind(this)} className={`consonant short indent stacked ${ hovered === "consonant" ? "highlighted" : ""}`}>Conso-<br/>nant</div>
           </div>
@@ -166,29 +170,31 @@ class DescriptionEn extends Component {
             screenWidth < BODY_1280 ? 
             <div className="right">
               <div className="right-wrap">
-                <h5 style={fontNames.title}>
+                <h5 className="inline_en_num" style={fontNames.title}>
                   <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  Total Number of Glyph (Hangul)<br/>
-                  Noto Sans KR
+                  Total Number of Glyphs (Hangul)<br/>
+                  Noto Sans CJK
                 </p>
               </div>
 
               <div className="right-wrap">
-                <h5 style={fontNames.title}>
+                <h5 className="inline_en_num" style={fontNames.title}>
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  Total Number of Glyph (Latin + Greek + Cyrilic)<br/>
+                  Total Number of Glyphs (Latin + Greek + Cyrilic)<br/>
                   Noto Sans
                 </p>
               </div>
             </div> : null
           }
           <div className="left">
-            <h4 style={{...fontNames.title, marginTop: screenWidth > BODY_1280 ? 100 : 10 }}>
+            <h4 style={fontNames.title}>
+              <span className="underline">
               Google Fonts uses font subsetting, informed by machine learning
+              </span>
             </h4>
 
 
@@ -205,21 +211,21 @@ class DescriptionEn extends Component {
             screenWidth >= BODY_1280 ? 
             <div className="right">
               <div className="right-wrap">
-                <h5 style={fontNames.title}>
+                <h5 className="inline_en_num" style={fontNames.title}>
                   <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  Total Number of Glyph (Hangul)<br/>
-                  Noto Sans KR
+                  Total Number of Glyphs (Hangul)<br/>
+                  Noto Sans CJK
                 </p>
               </div>
 
               <div className="right-wrap">
-                <h5 style={fontNames.title}>
+                <h5 className="inline_en_num" style={fontNames.title}>
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                <p style={fontNames.paragraph}>
-                  Total Number of Glyph (Latin + Greek + Cyrilic)<br/>
+                  Total Number of Glyphs (Latin + Greek + Cyrilic)<br/>
                   Noto Sans
                 </p>
               </div>
@@ -236,7 +242,9 @@ class DescriptionEn extends Component {
 
         
         <h4 style={fontNames.title}>
+          <span className="underline">
           Google Fonts + Korean embraces open source values
+          </span>
         </h4>
 
         <p style={fontNames.paragraph}>

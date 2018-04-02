@@ -4,6 +4,8 @@ export const BODY_820 = 820;
 export const BODY_600 = 600;
 export const BODY_480 = 480;
 
+// curl -A "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" "https://fonts.googleapis.com/css?family=Sunflower:700&subset=korean"
+
 export const FOUNDRIES = {
   "google": {
     titleKo: "구글",
@@ -97,6 +99,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1.15,
     fontUrl : "https://fonts.gstatic.com/s/blackhansans/v1/ea8Aad44WunzF9a-dL6toA8r8kqYK3M.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Black+Han+Sans",
     foundries: ["zesstype"],
@@ -123,6 +127,8 @@ export const FONTS = [
         weightName: "ExtraBold"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanumgothic/v7/PN_oRfi-oW3hYwmKDpxS7F_LXv7Lw1sg.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800",
     foundries: ["fontrix"],
@@ -173,6 +179,8 @@ export const FONTS = [
         weightName: "Black"
       }
     ],
+    letterSpacing: -10,
+    fontSize: 0.95,
     fontUrl : "https://fonts.gstatic.com/s/gothica1/v1/CSR44z5ZnPydRjlCCwlC6OA6RfN9.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Gothic+A1:100,200,300,400,500,600,700,800,900",
     foundries: ["hanyang"],
@@ -195,6 +203,8 @@ export const FONTS = [
         weightName: "Bold"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanumgothiccoding/v6/8QIYdjzHisX_8vv59_xMxtPFW4IXROws8xgeQsh29Q.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700",
     foundries: ["fontrix"],
@@ -221,6 +231,8 @@ export const FONTS = [
         weightName: "ExtraBold"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanummyeongjo/v6/9Bty3DZF0dXLMZlywRbVRNhxy2pLVGA5r_c.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700,800",
     foundries: ["fontrix"],
@@ -239,6 +251,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/cutefont/v1/Noaw6Uny2oWPbSHMrY6flZlS.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Cute+Font",
     foundries: ["typodesign"],
@@ -257,6 +271,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/dohyeon/v1/TwMN-I8CRRU2zM86HGE6bQE.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Do+Hyeon",
     foundries: ["woowa"],
@@ -275,6 +291,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/dokdo/v1/esDf315XNuCBLyLl6tE.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Dokdo",
     foundries: ["fontrix"],
@@ -293,6 +311,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/eastseadokdo/v1/xfuo0Wn2V2_KanASqXSZp22m06_XE6w.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=East+Sea+Dokdo",
     foundries: ["yoondesign"],
@@ -311,6 +331,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/gugi/v1/A2BVn5dXywshZAOK8w.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Gugi",
     foundries: ["taesystem"],
@@ -329,6 +351,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/himelody/v1/46ktlbP8Vnz0pJcqCTb0cmVD.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Hi+Melody",
     foundries: ["yoondesign"],
@@ -347,6 +371,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/jua/v1/co3KmW9ljjATfure.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Jua",
     foundries: ["woowa"],
@@ -365,6 +391,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/kiranghaerang/v1/E21-_dn_gvvIjhYON1lpIU4-bfqiUvE.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Kirang+Haerang",
     foundries: ["woowa"],
@@ -383,6 +411,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/poorstory/v1/jizfREFUsnUct9P6cDfd0OStKw.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Poor+Story",
     foundries: ["yoondesign"],
@@ -401,6 +431,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/songmyung/v1/1cX2aUDWAJH5-EIC7DIhn1yggg.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Song+Myung",
     foundries: ["jikji"],
@@ -419,6 +451,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/stylish/v1/m8JSjfhPYriQkk7-ToDzcw.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Stylish",
     foundries: ["asiasoft"],
@@ -433,12 +467,18 @@ export const FONTS = [
     fontName: 'Sunflower',
     weights: [
       {
-        fontWeight: 400,
-        weightName: "Regular"
+        fontWeight: 500,
+        weightName: "Medium"
+      },
+      {
+        fontWeight: 700,
+        weightName: "Bold"
       }
     ],
-    fontUrl : "https://fonts.gstatic.com/s/sunflower/v1/RWmKoKeF8fUjqIj7Vc-8SeXB.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Sunflower",
+    letterSpacing: 0,
+    fontSize: 1,
+    fontUrl : "https://fonts.gstatic.com/s/sunflower/v2/RWmPoKeF8fUjqIj7Vc-0-MDSpIEB.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Sunflower:500,700",
     foundries: ["jikji"],
     descriptionKo: "기하학적인 조형성을 바탕으로 곡선 표현을 부분적으로 적용한 서체입니다.",
     descriptionEn: "Sunflower features partial geometric curves.",
@@ -455,6 +495,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/yeonsung/v1/QldMNTpbohAGtsJvUn6BRFld.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Yeon+Sung",
     foundries: ["woowa"],
@@ -475,6 +517,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     foundries: ["asiasoft"],
     descriptionKo: "거칠고 낡은 질감을 통해 빛바랜 흑백사진의 감성을 표현한 서체입니다.",
     descriptionEn: "Black And White Picture expresses the nostalgia of faded black and white photos through its old and scratchy texture.",
@@ -493,6 +537,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     foundries: ["fontrix"],
     descriptionKo: "붓글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
     descriptionEn: "Nanum Brush Script combines the rhythmic qualities of brush script with a sense of comfort.",
@@ -511,6 +557,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
+    letterSpacing: 0,
+    fontSize: 1,
     foundries: ["fontrix"],
     descriptionKo: "펜글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
     descriptionEn: "Nanum Brush Script combines the rhythmic qualities of pen writing with a sense of comfort.",

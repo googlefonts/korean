@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { CATEGORIES, BODY_600, BODY_960, BODY_820 } from '../constants/defaults';
+import { CATEGORIES, BODY_1280, BODY_600, BODY_960, BODY_820 } from '../constants/defaults';
 import { connect } from 'react-redux';
 import { AnimationSelector, HeaderCategories } from './';
 import { changeLocale, changeCurrentCategory, changeHeaderHeight } from '../actions';
@@ -60,15 +60,9 @@ class Header extends Component {
 
           <div className="header__left">
             <div className="header__title">
-              {
-                locale == "ko" ?
-                <h1>
-                  <span className="en-black">Google Fonts + </span> 한국어
-                </h1> :
-                <h1>
-                  <span className="en-black">Google Fonts + Korean</span>
-                </h1>
-              }
+              <h1>
+                <span className="en-black">Google Fonts + </span> 한국어
+              </h1>
             </div>
 
             { 
@@ -78,7 +72,7 @@ class Header extends Component {
               </div> : null
             }
             {
-              screenWidth > BODY_960 ?
+              screenWidth > BODY_1280 ?
               <HeaderCategories /> : null
             }
           </div>
@@ -91,26 +85,25 @@ class Header extends Component {
           <div className="header__description-area">
             
             {
-              screenWidth > BODY_960 ? 
+              screenWidth > BODY_1280 ? 
               (locale == "ko" ?
               <div className={`header__description--${locale}`}>
-                구글폰트 + 한국어 얼리억세스는 다양한 한글폰트를 온라인에서 보다 가볍고 손쉽게 사용할 수 있도록 실험적으로 마련된 한국어 오픈소스 웹폰트의 목록입니다.
+                좋은 타이포그래피를 통해 웹은 더욱 아름답고, 빠르며, 누구나 참여할 수 있는 공간이 될 수 있습니다. <span className="en-black">Google Fonts</span>는 이 사이트에 수록된 오픈 소스 한글 폰트를 머신 러닝에 기반한 최적화 기술을 통해 시범적으로 제공합니다. 
               </div> :
               <div className={`header__description--${locale}`}>
-                Google Fonts + Korean Early Access is an experimental showcase for Korean fonts that aren’t yet fully supported.
+                Great typography makes the web more beautiful, fast, and open. Using machine learning and the latest web standards, Google Fonts now offers the open source Korean fonts showcased in this website.
               </div>) : null
             }
             {
-              locale == "ko" ? 
+              screenWidth > BODY_960 ? 
+              (locale == "ko" ? 
               <div className={`header__menu--${locale}`}>
-                <div>
                   <a href="javascript:void(0)" className=""  onClick={this.moveToDescription.bind(this)}>
                     <span className="en-black">Google Fonts + </span> 한국어 소개 
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
                     English
                   </a>
-                </div>
                 { 
                   screenWidth <= BODY_600 ? 
                   <Fragment>
@@ -123,7 +116,7 @@ class Header extends Component {
               <div className={`header__menu--${locale}`}>
                 <div>
                   <a href="javascript:void(0)" className="en-black" onClick={this.moveToDescription.bind(this)}>
-                    Introduction
+                    About Google Fonts + Korean
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
                     한국어
@@ -138,7 +131,7 @@ class Header extends Component {
                   </Fragment>
                   : null
                 }
-              </div>
+              </div>) : null
             }
 
             <a href="javascript:void(0);" className="header__hamburger" onClick={this.handleMenuOpen.bind(this)}>
@@ -153,7 +146,7 @@ class Header extends Component {
           { 
             screenWidth < BODY_820 ? 
             <Fragment>
-              <a href="javascript:void(0);" style={{ top: 26}} className="header__hamburger" onClick={this.handleMenuOpen.bind(this)}>
+              <a href="javascript:void(0);" className="header__hamburger" onClick={this.handleMenuOpen.bind(this)}>
                 {
                   isMenuOpen ? 
                   <img src={`./public/assets/close_${backgroundMode}.svg`} alt="menu" /> :
@@ -165,25 +158,23 @@ class Header extends Component {
           }
         </div>
         {
-          isMenuOpen && screenWidth < BODY_960 ?
+          isMenuOpen && screenWidth < BODY_1280 ?
           <div className="header__mo">
             <HeaderCategories />
             {
-              screenWidth < BODY_820 ? (locale == "ko" ? 
+              screenWidth < BODY_960 ? (locale == "ko" ? 
               <div className={`header__menu--${locale}`}>
-                <div>
                   <a href="javascript:void(0)" className=""  onClick={this.moveToDescription.bind(this)}>
                     <span className="en-black">Google Fonts + </span> 한국어 소개 
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
                     English
                   </a>
-                </div>
               </div> : 
               <div className={`header__menu--${locale}`}>
                 <div>
                   <a href="javascript:void(0)" className="en-black" onClick={this.moveToDescription.bind(this)}>
-                    Introduction
+                    About Google Fonts + Korean
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
                     한국어

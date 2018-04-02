@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode, changeHeaderCollapsedTop, changeAnimationIdx, changeAnimationScriptIdx } from '../actions';
 import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter, GoogleFontBadge } from './';
+import { BODY_480 } from '../constants/defaults';
 import scrollama from 'scrollama';
 import { scaleLinear } from 'd3';
 import 'gsap';
@@ -57,24 +58,24 @@ class App extends Component {
   }
 
   componentWillReceiveProps(newProps){
-    if (newProps.currentCategory != this.props.currentCategory) {
-      this.moveScroll(newProps.currentCategory);  
+    if (newProps.currentCategory != this.props.currentCategory && 
+        newProps.currentCategory.type === "click") {
+      this.moveScroll(newProps.currentCategory.id);  
     }
   }
 
   moveScroll(currentCategory){
-    let { headerHeight } = this.props;
+    let { headerHeight, screenWidth } = this.props;
 
     let collapsedHeaderHeight;
     if (!_.isNull(document.querySelector(".header-collapsed"))) {
-      collapsedHeaderHeight = document.querySelector(".header-collapsed").offsetHeight;
+      collapsedHeaderHeight = screenWidth > BODY_480 ? 90 : 130;// : 250;
     } else {
-      collapsedHeaderHeight = 62;
+      collapsedHeaderHeight = screenWidth > BODY_480 ? 90 : 220;
     }
     let categoryPosTop = document.querySelector(`a[name=category-${currentCategory}]`).offsetTop;
-    let offset = 20;
 
-    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight - offset - headerHeight });
+    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: categoryPosTop - collapsedHeaderHeight });
   }
 
   handleScroll(e){
@@ -109,11 +110,11 @@ class App extends Component {
 
     } else {
 
-      if (scrollY < 10) {
+      if (scrollY < 60) {
         
         this.props.dispatch(changeHeaderMode("expanded"));
 
-      } else if (scrollY >= 10) {
+      } else {
       
         this.props.dispatch(changeHeaderMode("collapsed"));
       
@@ -128,7 +129,7 @@ class App extends Component {
         step: '.font-viewer',
         // debug: true,
         // progress: true,
-        offset: (document.querySelectorAll('.font-viewer')[1].offsetTop - 10) / window.innerHeight,//(document.querySelectorAll('.font-viewer')[0].offsetTop + document.querySelectorAll('.font-viewer')[0].offsetHeight - 50) / this.props.screenHeight
+        offset: (document.querySelectorAll('.font-viewer')[1].offsetTop - 140) / window.innerHeight,//(document.querySelectorAll('.font-viewer')[0].offsetTop + document.querySelectorAll('.font-viewer')[0].offsetHeight - 50) / this.props.screenHeight
       }).onStepEnter(this.handleStepEnter.bind(this))
         // .onStepProgress(this.handleStepProgress.bind(this))
         .onStepExit(this.handleStepExit.bind(this));

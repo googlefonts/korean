@@ -1,4 +1,3 @@
-
 body {
   font-size: $base_font_size;
   line-height: $base_line_height;
@@ -6,6 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  word-break: keep-all;
 }
 
 .linear-activity {
@@ -43,6 +43,42 @@ body {
     }
 }
 
+@keyframes fade_in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes drop {
+  0% {
+    display: none;
+    margin-top: -60px;
+  }
+  100% {
+    display: block;
+    margin-top: 0px;
+  }
+}
+
+// @keyframes draw_border {
+//   0% {
+//     border-bottom: 1px solid
+//     margin-top: -60px;
+//   }
+//   100% {
+//     display: block;
+//     margin-top: 0px;
+//   }
+// }
+
 
 .marching-ants {
   border: 1px dashed $text_color !important;
@@ -50,12 +86,34 @@ body {
   
 }
 
+/*
+* Dotted Border - A SASS mixin to help you increase spacing between the dots of border-style:dotted.
+* By @florbraz
+* Documentation and examples - github.com/florbraz/Dotted-Border-w-custom-spacing-SCSS-Mixin
+* V1.0
+*/
+@mixin dottedBorder($color: #8f8f8f, $orientation: horizontal, $position: bottom, $spacing: 3px, $size: 1px) {
+  background-position: $position;
+  @if $orientation == horizontal {
+    background-image: linear-gradient(to right, $color $size/$spacing * 100%, rgba(255,255,255,0) 0%);
+    background-size: $spacing $size;
+    background-repeat: repeat-x;
+  }
+  @else {
+    background-image: linear-gradient($color $size/$spacing * 100%, rgba(255,255,255,0) 0%);
+    background-size: $size $spacing;
+    background-repeat: repeat-y;
+  }
+  .ie9 & {
+    border-#{$position}:1px dotted $color;      
+  }
+}
 
 @mixin regular_type {
   font-family: "Noto Sans KR", Helvetica, Arial, sans-serif;
   font-size: 1em;
   line-height:1.3;
-  font-style:   normal;
+  font-style: normal;
   font-weight: 400;
 }
 
@@ -137,7 +195,7 @@ input {
 
 
 
-body, div, p, span, text {
+body, div, p, text {
   @include regular_type;
   color: $text_color;
 }
@@ -178,7 +236,7 @@ body, div, p, span, text {
 a {
   color:$text_color;
   text-decoration: none;
-  transition: 0.5s opacity;
+  transition: 0.3s opacity;
 }
 
 a:hover {
@@ -202,9 +260,32 @@ sup {
   left: 0;
   top: 0;
   width: calc(100% - 48px);
-  padding: 17px 24px;
+  padding: 22px 24px 10px 24px;
   background-color: $background_color;
-  border-bottom: 1px solid $text_color;
+  height:30px;
+
+  &:after{
+    content:"";
+    background-color: $text_color;
+    position: absolute;
+    width:100%;
+    height:1px;
+    left:0;
+    top:62px;
+    @include body_480 {
+      top: 93px;
+    }
+  }
+
+  @include body_480 {
+    height: 61px;
+  }
+
+  .header__mo {
+    z-index: 999;
+  }
+  // border-bottom: 1px solid $text_color;
+  // animation: draw_border 0.5s ease-in-out;
 
   &__flexwrap {
     display: flex;
@@ -229,6 +310,7 @@ sup {
   h1 {
     @include black_type;
     width: 275px;
+    // line-height: 26px;
 
     &.en-black {
       @include en_black_type;
@@ -246,7 +328,7 @@ sup {
       display: block;
       position: absolute;
       right: 24px;
-      top: 18px;
+      top: 23px;
     }
 
   }
@@ -255,7 +337,7 @@ sup {
 
 .category-selector {
   display:flex;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 
   &--selected {
     @extend .category-selector;
@@ -265,25 +347,25 @@ sup {
   &__label-ko-left {
     @include black_type;
     min-width: 125px;
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
   &__label-ko-right {
     @include regular_type;
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
 
   &__label-en-right {
     @include en_regular_type;
-    margin-right: 10px;
-    margin-top: 1px;
+    margin-right: 20px;
+    // margin-top: 1px;
   }
 
   &__label-en-left {
     @include en_black_type;
     min-width: 145px;
-    margin-right: 10px;
+    margin-right: 20px;
     margin-top: 1px;
   }
 
@@ -302,13 +384,17 @@ sup {
 .dropdown-category-selector {
   position:fixed;
   z-index: 6;
-  top: 61px;
-  left: 534px;
-  padding: 10px 15px 13px;
+  top: 62px;
+  left: 523px;
+  padding: 0px 25px 10px 25px;
   background-color: $background_color;
   border: 1px solid $text_color;
   border-top: none;
   border-radius: 0 0 2px 2px;
+  animation: fade_in .2s ease-in-out;
+  .category-selector{
+    margin-bottom: 12px;
+  }
 }
 
 .header {
@@ -317,7 +403,7 @@ sup {
   left: 0;
   top: 0;
   width: calc(100% - 48px);
-  padding: 26px 24px;
+  padding: 22px 24px;
   
   &__wrap {
     display:flex;
@@ -331,7 +417,39 @@ sup {
   }
 
   &__mo {
-    margin-top:10px;
+    position:absolute;
+    top:60px;
+    left:0;
+    width:100%;
+    border-bottom: 1px solid $text_color;
+    background-color: $background_color;
+    animation: fade_in 0.3s ease-out;
+    @include body_480 {
+      top:90px;
+    }
+
+    .header__categories, {
+      margin: 0 24px 20px 24px;
+      @include body_960 {
+        margin-bottom: 15px;
+        &:after {
+          content: "";
+          display:block;
+          // width:300px;
+          height:1px;
+          @include dottedBorder;
+        }
+      }
+    }
+    .header__menu--ko,.header__menu--en{
+      margin: 0 24px 15px 24px;
+      a {
+        background: transparent;
+      }
+    }
+    a.en-black {
+      background: transparent !important;
+    }
   }
 
   &__left {
@@ -368,11 +486,11 @@ sup {
   &__hamburger {
     display: none;
 
-    @include body_960 {
+    @include body_1280 {
       display: block;
       position: fixed;
       right: 24px;
-      top: 30px;
+      top: 23px;
     }
 
   }
@@ -384,7 +502,7 @@ sup {
    
 
   &__description-area {
-    width:300px;
+    width:380px;
     
     @include body_960 {
       width: auto;
@@ -398,7 +516,7 @@ sup {
   }
 
     &__description {
-      margin-bottom: 20px;
+      margin-bottom: 1em;
       &--ko {
         @extend .header__description;
         @include black_type;
@@ -409,7 +527,7 @@ sup {
       &--en {
         @extend .header__description;
         @include en_black_type;
-        font-size:0.8em;
+        font-size:0.9em;
       }
     }
 
@@ -430,18 +548,20 @@ sup {
       a { 
         @include black_type;
         font-size:0.8em;
-        margin-right: 10px;
+        margin-right: 20px;
         padding-bottom: 2px;
-        border-bottom: 1px dotted $text_color;
+        // border-bottom: 1px dotted $text_color;
+        @include dottedBorder;
       }
 
       a.en-black {
         @include en_black_type;
 
         font-size:0.8em;
-        margin-right: 10px;
+        margin-right: 20px;
         padding-bottom: 2px;
-        border-bottom: 1px dotted $text_color;
+        // border-bottom: 1px dotted $text_color;
+        @include dottedBorder;
       }
     }
 
@@ -451,9 +571,10 @@ sup {
       a { 
         @include en_black_type;
         font-size:0.8em;
-        margin-right: 10px;
+        margin-right: 20px;
         padding-bottom: 2px;
-        border-bottom: 1px dotted $text_color;
+        // border-bottom: 1px dotted $text_color;
+        @include dottedBorder;
       }
     }
   }
@@ -482,15 +603,22 @@ sup {
 
 .header-gutter {
   height: 150px;
+  @include body_1280{
+    height: 50px;
+  }
 }
 
 .fonts-list {
   padding: 26px 24px;
 }
 
-.font-script-container {
+.font-container {
   border-top: 1px solid $text_color;
   padding-top: 50px;
+
+  &:nth-child(1) {
+    border:none;
+  }
 }
 
 .font-script-list {
@@ -507,7 +635,7 @@ sup {
 
 .font-viewer {
   background-color: transparent;
-  transition: 0.2s background-color;
+  transition: 0.3s background-color;
   margin-bottom: 0;
   position:relative;
   z-index:4;
@@ -600,6 +728,8 @@ sup {
       }
 
       a {
+
+        @include en_regular_type;
         font-size:0.8em;
       }
 
@@ -824,7 +954,7 @@ sup {
       font-size:0.9em;
 
       @include body_480 {
-        margin-right: 2px;
+        margin-right: 4px;
         padding: 5px 5px;
       }
 
@@ -847,13 +977,15 @@ sup {
   // margin: 0 2 0 0;
   padding-bottom: 20px;
   margin-bottom: 20px;
-  border-bottom: 1px dotted $background_color;
+  // border-bottom: 1px dotted $background_color;
+  @include dottedBorder;
   overflow-x: scroll;
   width: 100%;
   -webkit-overflow-scrolling: touch;
 
   &__wrap {
-    // width:
+    // height:57px;
+    // overflow-x:scroll;
   }
 
   &--mobile {
@@ -872,6 +1004,7 @@ sup {
   height: 37px;
   font-size: 2.0em;
   text-align: center;
+  line-height: 37px;
   display: inline-block;
 
 
@@ -898,18 +1031,21 @@ sup {
 
   &__menu {
     position:absolute;
-    width:300px;
+    margin-top:0.5em;
+    width:320px;
     padding: 0;
     top: 155px;
     left: 221px;
-
+    font-size: 0.9em;
+    animation: fade_in .2s ease-in-out;
 
     background-color: $text_color;
     border: 1px solid $background_color;
     border-radius: 2px;
-    height: 300px;
+    height: 230px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+
 
     @include body_600 { 
       width: 100%;
@@ -956,7 +1092,7 @@ sup {
 
   &__list {
     display:flex;
-    padding: 10px;
+    padding: 8px 10px;
 
     &--selected {
       @extend .category-selector;
@@ -964,7 +1100,7 @@ sup {
 
     &__label-ko-black {
       @include black_type;
-      min-width: 145px;
+      min-width: 110px;
       margin-right: 10px;
     }
 
@@ -981,7 +1117,7 @@ sup {
 
     &__label-en-black {
       @include en_black_type;
-      min-width: 145px;
+      min-width: 180px;
       margin-right: 10px;
       margin-top: 1px;
     }
@@ -998,7 +1134,17 @@ sup {
   
   
 }
-
+.inline_en {
+  font-family: Roboto;
+}
+.inline_en_bold {
+  font-family: Roboto;
+  font-weight: 700;
+}
+.inline_en_num {
+  font-family: Roboto;
+  font-weight: 100;
+}
 
 .description {
   padding: 26px 24px;
@@ -1007,6 +1153,8 @@ sup {
   div, a, p, h1, h2, h3, span {
     color: $background_color;
   }
+
+  
 
   .desc-column-area {
     display: flex;
@@ -1023,13 +1171,12 @@ sup {
       }
     }
     .right { 
-      margin-top: 100px;
-
+      margin-top: 2em;
       @include body_1280 {
         display:flex;
         // justify-content: space-between;
         width: 590px;
-
+        margin: 3em 0;
         p {
           width: auto;
         }
@@ -1040,27 +1187,34 @@ sup {
       }
 
       .right-wrap {
-        margin-right: 20px;
+        margin-right: 60px;
         // width: 50%;
         @include body_600 {
           width: 50%;
         }
+        p {
+          font-size:0.875em;
+        }
       }
 
       h5 {
-        font-size:2.0em;
+        font-size: 3.0em;
         margin-bottom:5px;
+        font-weight: 200;
+        span {
+          font-family: inherit;
+        }
       }
     }
   }
 
   &__container {
-    margin: 0 0 0 210px;
+    margin: 0 0 120px 210px;
 
     @include body_960 {
       margin-left: auto;
+      margin-bottom: 60px;
     }
-
   }
 
   p.description__big {
@@ -1073,7 +1227,7 @@ sup {
     border:1px solid rgba(0, 0, 0, 0);
 
     @include body_1280 {
-      width: 80%; 
+      width: 100%; 
     }
 
     @include body_960 {
@@ -1085,43 +1239,49 @@ sup {
 
   h3 {
     width: 840px;
-    margin-top: 100px;
-    margin-bottom: 30px;
-    font-size: 2em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    font-size: 1.75em;
     line-height: 1.4;
     font-weight: 400;
-    @include body_1280 {
-      width: 590px;
+    @include body_960 {
+      width: 100%;
     }
     @include body_600 {
-      width: 100px;
+      margin: 0 0 1em 0;
+      font-size: 1.3em;
+      width: 100%;
     }
   }
 
   h4 {
     // margin-bottom: 20px;
+    // display:inline;
     width: 590px;
-    margin-top: 100px;
-    margin-bottom: 30px;
-    font-size: 1.125em;
+    margin: 2em 0 1em 0;
+    font-size: 1em;
     line-height: 1.4;
-    font-weight:700;
+    font-weight:400;
     @include body_960 {
-      width: 80%;
-    }
-
-    @include body_600 {
       width: 100%;
+    }
+    @include body_600 {
+      margin-top: 2em;
+      width: 100%;
+    }
+    span.underline {
+      border-bottom: 1px solid;
+      line-height: 1.5em;
     }
   }
 
   p {
     width: 590px;
-    margin-bottom: 20px;
+    margin: 1em 0;
     line-height: 1.6;
 
     @include body_960 {
-      width: 80%;
+      width: 100%;
     }
 
     @include body_600 {
@@ -1184,16 +1344,28 @@ sup {
   }
 
   .desc-jamo-area {
-    margin:60px 0;
+    margin:70px 0 20px 0;
+    @include body_600 {
+      text-align:center;
+      margin:40px 0;
+    }
+
     .letter {
       display: inline-block;
+      text-align: left;
       width:110px;
-      margin-right: 40px;
       vertical-align: top;
+      margin: 0 30px 40px 0;
+      @include body_960 {
+      }
+
+      @include body_600 {
+        margin: 0 15px 40px 15px;
+      }
+
       &.narrow {
         width:84px;
       }
-
       div {
         font-size: 11px;
         text-transform: uppercase;
@@ -1201,6 +1373,7 @@ sup {
         display:inline-block;
         vertical-align: top;
         position:relative;
+        transition: background-color .2s;
 
         color: $text_color;
         border: 1px solid $background_color;
@@ -1262,32 +1435,40 @@ sup {
 
   h4 {
     @include black_type;
-    font-size:0.8em;
+    margin-bottom: 1em;
+    font-size:0.875em;
     .en-black {
       @include en_black_type;
-      font-size:0.8em;
+      font-size:0.875em;
     }
 
 
     &.en-regular {
       @include en_regular_type;
-      font-size:0.8em;
+      font-size:0.875em;
     }
 
   }
+  h5 {
+    margin-bottom: 1em;
+    font-weight: 700;
+  }
 
   p {
-    font-size:0.8em;
+    font-size:0.875em;
+    line-height: 1.6em;
 
     &.en-black {
       @include en_black_type;
-      font-size:0.8em;
+      font-size:0.875em;
+      line-height: 1.6em;
     }
 
 
     &.en-regular {
       @include en_regular_type;
-      font-size:0.8em;
+      font-size:0.875em;
+      line-height: 1.6em;
     }
 
   }
@@ -1310,7 +1491,7 @@ sup {
     width: 420px;
 
     @include body_1280 {
-      width: calc(29.1% - 20px);
+      width: calc(30% - 20px);
       margin-right: 20px;
     }
 
@@ -1323,7 +1504,8 @@ sup {
   }
 
   &__short-desc-column {
-    width: 270px;
+    // width: 350px;
+    margin-right:60px;
 
     @include body_960 { 
       width: auto;
@@ -1335,7 +1517,7 @@ sup {
     width: 310px;
     
     @include body_1280 {
-      width: calc(21.5% - 20px);
+      width: calc(30% - 20px);
       margin-right: 20px;
     }
   
@@ -1346,12 +1528,14 @@ sup {
   }
 
   &__social {
-    width: 150px;
+    width: 200px;
     @include body_1280 {
-      width: 21.5%;
+      width: 15%;
     }
 
     @include body_960 {
+      display:none;
+      width: 50%;
       margin-top: 20px;
     }
   }
@@ -1371,13 +1555,17 @@ sup {
   bottom: 24px;
 
   svg { 
-
     opacity: 0.5;
+    transition: opacity 1s;
   }
+
   &--footer {
     @extend .gf-badge;
     position:static;
     // bottom: 113px;
+    svg { 
+      opacity: 1;
+    }
   }
   @include body_960 {
     position:fixed;

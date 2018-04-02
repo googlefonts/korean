@@ -51,7 +51,8 @@ export const shadowSkew = {
     _this.view.draw();
 
     var skewAmountScale = scaleLinear().domain([0, 600]).clamp(true).range([-1.5, 1.0]);
-    var xScale = scaleLinear().domain([-500, 340, 600]).clamp(true).range([1.0, 1.0, 0.8]);
+    var xScale = scaleLinear().domain([-500, 340, 600]).clamp(true).range([0.5, 1.0, 0.8]); //mapping domain values (mouse) to range values
+    var xShadowScale = scaleLinear().domain([-500, 340, 600]).clamp(true).range([1.5, 0.94, 1.5]); 
 
     _this.view.onMouseMove = (e) => {
       _this.shadowSkew.tPoint = e.point;
@@ -67,6 +68,7 @@ export const shadowSkew = {
       _this.shadowSkew.point = _this.shadowSkew.point.add(_this.shadowSkew.tPoint.subtract(_this.shadowSkew.point).multiply(0.2));
       let skewAmount = skewAmountScale(_this.shadowSkew.point.y);
       let xScaleAmount = xScale(_this.shadowSkew.point.y);
+      let xShadowScaleAmount = xShadowScale(_this.shadowSkew.point.y);
 
       if (!_.isNull(_this.clonedLeftGroup)) {
         _this.clonedLeftGroup.remove();
@@ -80,12 +82,10 @@ export const shadowSkew = {
       _this.clonedLeftGroup.visible = true;
       _this.clonedRightGroup.visible = true;
       
-
-
       _this.clonedLeftGroup.shear(0.0, -skewAmount, _this.shadowSkew.lgCenter);
       _this.clonedLeftGroup.scale(xScaleAmount, 1);
       _this.clonedRightGroup.shear(0.0, skewAmount, _this.shadowSkew.rightGroup.bounds.center);
-      _this.clonedRightGroup.scale(xScaleAmount, 1);
+      _this.clonedRightGroup.scale(xShadowScaleAmount, 1);
 
     };
 

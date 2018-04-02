@@ -9,7 +9,7 @@ import { cutString } from '../utils';
 
 const Fragment = React.Fragment;
 const msgScale = cutString;
-const msgScaleScript = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 5.9]);
+const msgScaleScript = scaleLinear().domain([BODY_480, 2560]).clamp(true).range([1, 4.9]);
 const SELECTED_MSGS = _.first(_.shuffle(MESSAGES));
 
 class FontsList extends Component {
@@ -41,15 +41,24 @@ class FontsList extends Component {
   }
 
   filterString(len){
-    var words = _.shuffle(_.filter(SELECTED_MSGS, msg => {
-      return msg[1] === len;
-    }));
-
+    try { 
+      var words = _.shuffle(_.filter(SELECTED_MSGS, msg => {
+        return msg[1] === len;
+      }));
+    } catch(e){
+      debugger;
+    }
+    
 
     if (words.length === 0) {
-      words = _.shuffle(_.map(SELECTED_MSGS, msg => {
-        return [msg[0].substring(0, len), len];
-      }));
+      try {
+        words = _.shuffle(_.map(SELECTED_MSGS, msg => {
+          return [msg[0].substring(0, len), len];
+        }));  
+      } catch(e){
+        debugger;
+      }
+      
     }
 
     return words;
@@ -92,11 +101,6 @@ class FontsList extends Component {
     let { len, scriptLen } = this.state;
     var totalIdx = 0;
 
-    // console.log(this.big);
-    // let filteredMsgs = this.filterString(len, scriptLen);
-    // // debugger;
-    // console.log("big", filteredMsgs.big);
-    // console.log("script", filteredMsgs.script);
     
     var categoryFonts = {};
 
@@ -109,10 +113,8 @@ class FontsList extends Component {
       };
 
       categoryFonts[categoryData.id] = category;
-      // debugger;
     });
 
-    var idx = -1;
 
     return (
       <section className="fonts-list">
@@ -122,12 +124,11 @@ class FontsList extends Component {
 
               return (
                 <Fragment key={k}>
-                  <section className="font-script-container">
+                  <section className="font-container" data-category-id={k}>
                     <a name={`category-${k}`} data-category-id={k}></a>
                     <div className="font-script-list">
                       {
                         _.map(categoryFont.fonts, (fontData, i) => {
-                          idx++; 
                           return (
                             <FontViewerScript key={fontData.id} message={this.script[i % this.script.length][0]} {...fontData} />
                           )
@@ -142,16 +143,17 @@ class FontsList extends Component {
 
               return (
                 <Fragment key={k}>
+                  <section className="font-container" data-category-id={k}>
                     <a name={`category-${k}`} data-category-id={k}></a>
                     {
                       _.map(categoryFont.fonts, (fontData, i) => {
-                        idx++; 
                         totalIdx++;
                         return (
                           <FontViewer key={fontData.id} message={this.big[totalIdx % this.big.length][0]} {...fontData} />
                         )
                       })
                     }
+                  </section>
                 </Fragment>
               );
 

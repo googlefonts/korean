@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CATEGORIES, BODY_600, BODY_960 } from '../constants/defaults';
+import { CATEGORIES, BODY_600, BODY_960, BODY_1280 } from '../constants/defaults';
 import { connect } from 'react-redux';
 import { AnimationSelector, DropDownCategorySelector, AnimationScriptSelector } from './';
 import { changeLocale, changeCurrentCategory, changeHeaderHeight, changeCategoryDropdownOpened } from '../actions';
@@ -28,10 +28,10 @@ class HeaderCollapsed extends Component {
 
   componentDidMount(){
 
-    this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight + 20));
+    // this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight + 20));
 
     this.scroller.setup({
-        step: '.font-script-container',
+        step: '.font-container',
         // debug: true,
         // progress: true,
         offset: 60 / this.props.screenHeight
@@ -41,16 +41,25 @@ class HeaderCollapsed extends Component {
   }
 
   handleStepEnter(e){
-    this.props.dispatch(changeIsOnScript(true)); 
+    this.props.dispatch(changeCurrentCategory({
+      id: Number(e.element.dataset.categoryId),
+      type: 'scroll' // click, scroll
+    }));
+
+    if (Number(e.element.dataset.categoryId) === 3) {
+      this.props.dispatch(changeIsOnScript(true));   
+    }
   }
 
   handleStepExit(e){  
-    this.props.dispatch(changeIsOnScript(false));
+    if (Number(e.element.dataset.categoryId) === 3) {
+      this.props.dispatch(changeIsOnScript(false));
+    }
   }
 
   componentWillReceiveProps(newProps){
     if (this.props.screenWidth != newProps.screenWidth) {
-      this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));
+      // this.props.dispatch(changeHeaderHeight(this.refHeader.offsetHeight));
       this.setState({
         isMenuOpen: false
       });
@@ -67,7 +76,13 @@ class HeaderCollapsed extends Component {
   handleCurrentCategory(categoryData, e){
     
     e.stopPropagation();
-    this.props.dispatch(changeCurrentCategory(categoryData.id));
+    this.setState({
+      isMenuOpen: false
+    });
+    this.props.dispatch(changeCurrentCategory({
+      id: categoryData.id,
+      type: 'click' // click, scroll
+    }));
   }
   
   toggleMenu(e){
@@ -75,6 +90,14 @@ class HeaderCollapsed extends Component {
     this.setState({
       isMenuOpen: !this.state.isMenuOpen
     });
+  }
+
+  handleMoveTop(e){
+    e.stopPropagation();
+
+
+    TweenMax.to((document.scrollingElement || document.documentElement), 1, { ease: Power3.easeInOut, scrollTop: 0 });
+  
   }
 
   handleCategoryClick(e){
@@ -89,7 +112,7 @@ class HeaderCollapsed extends Component {
   render() {
     // let {  } = this.state;
     let { isOnScript, categoryDropdownOpened, locale, screenWidth, headerCollapsedTop, backgroundMode } = this.props;
-    let currentCategory = _.find(CATEGORIES, categoryData => { return categoryData.id == this.props.currentCategory; });
+    let currentCategory = _.find(CATEGORIES, categoryData => { return categoryData.id == this.props.currentCategory.id; });
 
     return (
       <Fragment>
@@ -100,16 +123,11 @@ class HeaderCollapsed extends Component {
         }
           <div className="header-collapsed__flexwrap">
             <div className="header-collapsed__left">
-              {
-                locale == "ko" ? 
+              <a href="javascript:void(0);" onClick={this.handleMoveTop.bind(this)}>
                 <h1>
                   <span className="en-black">Google Fonts + </span> 한국어
                 </h1>
-                : 
-                <h1>
-                  <span className="en-black">Google Fonts + </span> 한국어
-                </h1>
-              }
+              </a>            
 
               {
                 screenWidth > BODY_600 ? 
@@ -183,7 +201,7 @@ class HeaderCollapsed extends Component {
               <div className={`header__menu--${locale}`}>
                 <div>
                   <a href="javascript:void(0)"  onClick={this.moveToDescription.bind(this)}>
-                    Introduction
+                    About Google Fonts + Korean
                   </a>
                   <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
                     한국어
@@ -203,67 +221,67 @@ class HeaderCollapsed extends Component {
           {
             (this.state.isMenuOpen) ? 
             <Fragment>
-             
-              <div className="header-collapsed__categories">
-                {
-                  _.map(CATEGORIES, categoryData => {
-                    return (
-                      <a className={`category-selector${ categoryData.id === currentCategory ? "--selected" : ""}`} onClick={this.handleCurrentCategory.bind(this, categoryData)} key={categoryData.id} href="javascript:void(0);">
-                        {
-                          locale == "ko" ? 
-                          <Fragment>
-                            <div className="category-selector__label-ko-left">
-                              {
-                                categoryData.nameKo
-                              }
-                            </div>
-                            <div className="category-selector__label-en-right">
-                              {
-                                categoryData.nameEn
-                              }
-                            </div>
-                          </Fragment> :
-                          <Fragment> 
-                            <div className="category-selector__label-en-left">
-                              {
-                                categoryData.nameEn
-                              }
-                            </div>
-                            <div className="category-selector__label-ko-right">
-                              {
-                                categoryData.nameKo
-                              }
-                            </div>
-                          </Fragment>
-                        }
-                      </a>
-                    );
-                  })
-                }
-              </div>
+              <div className="header__mo">
+                <div className="header__categories">
+                  {
+                    _.map(CATEGORIES, categoryData => {
+                      return (
+                        <a className={`category-selector${ categoryData.id === currentCategory ? "--selected" : ""}`} onClick={this.handleCurrentCategory.bind(this, categoryData)} key={categoryData.id} href="javascript:void(0);">
+                          {
+                            locale == "ko" ? 
+                            <Fragment>
+                              <div className="category-selector__label-ko-left">
+                                {
+                                  categoryData.nameKo
+                                }
+                              </div>
+                              <div className="category-selector__label-en-right">
+                                {
+                                  categoryData.nameEn
+                                }
+                              </div>
+                            </Fragment> :
+                            <Fragment> 
+                              <div className="category-selector__label-en-left">
+                                {
+                                  categoryData.nameEn
+                                }
+                              </div>
+                              <div className="category-selector__label-ko-right">
+                                {
+                                  categoryData.nameKo
+                                }
+                              </div>
+                            </Fragment>
+                          }
+                        </a>
+                      );
+                    })
+                  }
+                </div>
               {
-                screenWidth <= BODY_960 ? (locale == "ko" ? 
-                <div className={`header__menu--${locale}`} style={{ marginTop: 10}}>
-                  <div>
-                    <a href="javascript:void(0)" className="" onClick={this.moveToDescription.bind(this)}>
-                      <span className="en-black">Google Fonts + </span> 한국어 소개 
-                    </a>
-                    <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
-                      English
-                    </a>
-                  </div>
-                </div> : 
-                <div className={`header__menu--${locale}`}>
-                  <div>
-                    <a href="javascript:void(0)" onClick={this.moveToDescription.bind(this)} className="en-black">
-                      Introduction
-                    </a>
-                    <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
-                      한국어
-                    </a> 
-                  </div>
-                </div>) : null
+                screenWidth < BODY_960 ? (locale == "ko" ? 
+              <div className={`header__menu--${locale}`}>
+                  <a href="javascript:void(0)" className=""  onClick={this.moveToDescription.bind(this)}>
+                    <span className="en-black">Google Fonts + </span> 한국어 소개 
+                  </a>
+                  <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="en-black">
+                    English
+                  </a>
+              </div> : 
+              <div className={`header__menu--${locale}`}>
+                <div>
+                  <a href="javascript:void(0)" className="en-black" onClick={this.moveToDescription.bind(this)}>
+                    About Google Fonts + Korean
+                  </a>
+                  <a href="javascript:void(0)" onClick={this.handleToggleLocale.bind(this)} className="">
+                    한국어
+                  </a> 
+                </div>
+              
+              </div>) : null
               }
+              </div>
             </Fragment> : null
           }
         </header>

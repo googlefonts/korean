@@ -8,8 +8,8 @@ import { scaleLinear } from 'd3';
 import _ from 'lodash';
 
 const Fragment = React.Fragment;
-const heightScale = scaleLinear().domain([1440, 2560]).clamp(true).range([370, 550]);
-const sizeScale = scaleLinear().domain([1440, 2560]).clamp(true).range([350, 500]);
+const heightScale = scaleLinear().domain([320, 425, 768, 2560]).clamp(true).range([320, 420, 350, 550]);
+const sizeScale = scaleLinear().domain([320, 425, 768, 2560]).clamp(true).range([270, 370, 300, 500]);
 
 class FontViewer extends Component {
   constructor(props){
@@ -32,7 +32,6 @@ class FontViewer extends Component {
         console.log(err);
 
       } else {
-
         this.setState({
           loaded: true,
           font: font,
@@ -46,16 +45,6 @@ class FontViewer extends Component {
 
   }
 
-  handleDetailSelectedClick(e){
-    e.stopPropagation();
-
-    if (this.props.id === this.props.currentDetailSelected) {
-      this.props.dispatch(changeCurrentDetailSelected(null));
-    } else {
-      this.props.dispatch(changeCurrentDetailSelected(this.props.id)); 
-    }
-  }
-
   handleWeightSelectedClick(weightData, e){
     e.stopPropagation();
     this.setState({
@@ -66,6 +55,16 @@ class FontViewer extends Component {
   handleClosed(e){
     e.stopPropagation();
     this.props.dispatch(changeCurrentDetailSelected(null)); 
+  }
+
+  handleDetailSelectedClick(e){
+    e.stopPropagation();
+
+    if (this.props.id === this.props.currentDetailSelected) {
+      this.props.dispatch(changeCurrentDetailSelected(null));
+    } else {
+      this.props.dispatch(changeCurrentDetailSelected(this.props.id)); 
+    }
   }
 
   handleMouseEnter(e){
@@ -157,8 +156,8 @@ class FontViewer extends Component {
                 : 
                 (
                   selected ? 
-                  <FontAnimViewer containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ `${this.props.fontName}--anim` } message={this.props.message} font={ this.state.font } /> :
-                  <FontOutlineViewer containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
+                  <FontAnimViewer fontSize={this.props.fontSize} letterSpacing={this.props.letterSpacing} containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ `${this.props.fontName}--anim` } message={this.props.message} font={ this.state.font } /> :
+                  <FontOutlineViewer fontSize={this.props.fontSize} letterSpacing={this.props.letterSpacing} containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
                 )
               ) :
               <div style={{width: '50%', height: heightScale(screenWidth), display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
