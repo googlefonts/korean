@@ -40,9 +40,8 @@ class Footer extends Component {
 
             <div className="l-apple-box"></div>
             <p className="en-regular">
-              <a href="https://developers.google.com/fonts/docs/getting_started" target="_blank">API Documentation</a><br/>
-              <a href="https://github.com/google/fonts" target="_blank">Github</a><br/>
-              <a href="https://fonts.google.com/earlyaccess" target="_blank">Early Access</a>
+              This website is also open source. 
+              To report any issues, please visit <a href="https://github.com/googlefonts/korean">github.com/googlefonts/korean</a>
             </p>
           </div>
           
@@ -59,8 +58,8 @@ class Footer extends Component {
 
           <div className="footer__social">
             <p className="en-regular">
-              <a href="https://twitter.com/googlefonts" target="_blank">@googlefonts on Twitter</a><br/>
-              <a href="https://github.com/google/fonts" target="_blank">@googlefonts on GitHub</a>
+              <a href="https://twitter.com/googlefonts" target="_blank">twitter.com/googlefonts</a><br/>
+              <a href="https://github.com/google/fonts" target="_blank">github.com/google/fonts</a>
             </p>
           </div>
         </div>
