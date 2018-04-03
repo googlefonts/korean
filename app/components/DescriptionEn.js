@@ -174,7 +174,7 @@ class DescriptionEn extends Component {
                   <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  Total Number of Glyphs (Hangul)<br/>
+                  Total Number of Glyphs (CJK)<br/>
                   Noto Sans CJK
                 </p>
               </div>
@@ -184,7 +184,7 @@ class DescriptionEn extends Component {
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  Total Number of Glyphs (Latin + Greek + Cyrilic)<br/>
+                  Total Number of Glyphs (Latin+Greek+Cyrilic)<br/>
                   Noto Sans
                 </p>
               </div>
@@ -215,7 +215,7 @@ class DescriptionEn extends Component {
                   <CountUp separator=',' start={0} end={65535} ref={(countUp) => { this.bigCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  Total Number of Glyphs (Hangul)<br/>
+                  Total Number of Glyphs (CJK)<br/>
                   Noto Sans CJK
                 </p>
               </div>
@@ -225,7 +225,7 @@ class DescriptionEn extends Component {
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                <p style={fontNames.paragraph}>
-                  Total Number of Glyphs (Latin + Greek + Cyrilic)<br/>
+                  Total Number of Glyphs (Latin+Greek+Cyrilic)<br/>
                   Noto Sans
                 </p>
               </div>

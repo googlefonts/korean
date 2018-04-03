@@ -29,9 +29,9 @@ class FontAnimScriptViewer extends Component {
     this.view = paper.View._viewsById[this.refCanvas.id];
 
 
-    var { letterSpacing, fontSize, font, message, screenHeight, screenWidth, animationScriptIdx, backgroundMode, size, containerHeight } = this.props;
+    var { letterSpacing, baseline, fontSize, font, message, screenHeight, screenWidth, animationScriptIdx, backgroundMode, size, containerHeight } = this.props;
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing);
+    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing, baseline);
 
     this.attachAnimation(this.props);
     this.project.activate();
@@ -129,14 +129,14 @@ class FontAnimScriptViewer extends Component {
 
   }
 
-  createGlyphPath(font, message, size, screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing){
+  createGlyphPath(font, message, size, screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing, baseline){
 
     var fontGlyphs = font.stringToGlyphs(message);
     var kerning = true;
 
     var kerningValue = 0;
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-
+    size = size * fontSize;
   
     var fontSize = size || 300;
     var x, y;
@@ -184,7 +184,7 @@ class FontAnimScriptViewer extends Component {
   }
 
   resetMessage(props){
-    let { letterSpacing, fontSize, message, font, screenHeight, screenWidth, animationScriptIdx, backgroundMode, size, containerHeight } = props;
+    let { letterSpacing, baseline, fontSize, message, font, screenHeight, screenWidth, animationScriptIdx, backgroundMode, size, containerHeight } = props;
     
     this.project.activate();
     _.each(this.glyphs, glyph => {
@@ -193,7 +193,7 @@ class FontAnimScriptViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing);
+    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing, baseline);
 
     
     this.detachAnimation(props);

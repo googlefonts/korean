@@ -161,8 +161,8 @@ class FontViewer extends Component {
                 : 
                 (
                   selected ? 
-                  <FontAnimViewer fontSize={this.props.fontSize} letterSpacing={this.props.letterSpacing} containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ `${this.props.fontName}--anim` } message={this.props.message} font={ this.state.font } /> :
-                  <FontOutlineViewer fontSize={this.props.fontSize} letterSpacing={this.props.letterSpacing} containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
+                  <FontAnimViewer fontSize={this.props.fontSize} letterSpacing={this.props.letterSpacing} baseline={this.props.baseline} containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ `${this.props.fontName}--anim` } message={this.props.message} font={ this.state.font } /> :
+                  <FontOutlineViewer fontSize={this.props.fontSize} letterSpacing={this.props.letterSpacing} baseline={this.props.baseline} containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
                 )
               ) :
               <div style={{width: '50%', height: heightScale(screenWidth), display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
