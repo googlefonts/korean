@@ -22,7 +22,7 @@ export const blurScript = {
 
     });
 
-    _this.refCanvas.style.transition = "0.4s filter";
+    _this.refCanvas.style.transition = "1s filter";
     _this.refCanvas.style.filter = "blur(6px)";
 
     _this.view.draw();
