@@ -165,7 +165,7 @@ export const FONTS = [
     cssUrl : "https://fonts.googleapis.com/css?family=Gothic+A1:100,200,300,400,500,600,700,800,900",
     foundries: ["hanyang"],
     descriptionKo: "다양한 굵기와 최적화된 공간 분배를 통해 매체에 구분 없이 사용할 수 있는 고딕체입니다.",
-    descriptionEn: "Gothic_A1 is a versatile sans-serif typeface with multiple weights and optimized spatial distribution.",
+    descriptionEn: "Gothic A1 is a versatile sans-serif typeface with multiple weights and optimized spatial distribution.",
     category: 1
   },
   {
@@ -311,7 +311,7 @@ export const FONTS = [
     cssUrl : "https://fonts.googleapis.com/css?family=Kirang+Haerang",
     foundries: ["woowa"],
     descriptionKo: "삐뚤어진 글자 테두리 모양 원형을 채워 만든 서체입니다. 동그라미가 커진 것이 특징입니다.",
-    descriptionEn: "KIRANGHAERANG features irregular outer shapes and mostly filled in circles of various sizes, creating an off-kilter, charming effect.",
+    descriptionEn: "Kirang Haerang features irregular outer shapes and mostly filled in circles of various sizes, creating an off-kilter, charming effect.",
     category: 3
   },
   {
@@ -380,7 +380,7 @@ export const FONTS = [
   {
     id: 4,
     nameKo: "도현",
-    nameEn: "Dohyeon",
+    nameEn: "Do Hyeon",
     fontName: "Do Hyeon",
     weights: [
       {
@@ -395,7 +395,7 @@ export const FONTS = [
     cssUrl : "https://fonts.googleapis.com/css?family=Do+Hyeon",
     foundries: ["woowa"],
     descriptionKo: "아크릴 판에 자를 대고 잘라낸 옛 간판을 모티브로 삼은 서체입니다. 자음과 모음의 획이 서로 이어지는 것이 특징으로, 한글 폰트로는 최초로 ㅅ, ㅈ, ㅎ 등의 닿자 옆의 홀자에 따라 닿자의 형태가 자동으로 달라집니다.",
-    descriptionEn: "DOHYEON is inspired by old and kitschy hand-cut vinyl letters on acrylic sheets. Consonants and vowels are visually connected, and it automatically selects the right consonant for its adjacent vowel.",
+    descriptionEn: "Doh Yeon is inspired by old and kitschy hand-cut vinyl letters on acrylic sheets. Consonants and vowels are visually connected, and it automatically selects the right consonant for its adjacent vowel.",
     category: 3
   },
   {
@@ -458,7 +458,7 @@ export const FONTS = [
     cssUrl : "https://fonts.googleapis.com/css?family=Song+Myung",
     foundries: ["jikji"],
     descriptionKo: "일반 한글 명조체에 비해 닿자를 상대적으로 크게 디자인하고, 불필요한 장식을 줄여 현대성을 강조한 서체입니다.",
-    descriptionEn: "With less ornaments and larger consonants, SongMyung is a contemporary take on typical Hangul serif fonts.",
+    descriptionEn: "With less ornaments and larger consonants, Song Myung is a contemporary take on typical Hangul serif fonts.",
     category: 2
   },
   {
@@ -500,7 +500,7 @@ export const FONTS = [
     cssUrl : "https://fonts.googleapis.com/css?family=Yeon+Sung",
     foundries: ["woowa"],
     descriptionKo: "어수룩해 보이지만, 부리를 강조해 한 글자씩 정성스럽게 써내려간 듯한 인상을 주는 서체입니다.",
-    descriptionEn: "YEONSUNG achieves a relaxed yet careful handwritten quality through pronounced serifs.",
+    descriptionEn: "Yeon Sung achieves a relaxed yet careful handwritten quality through pronounced serifs.",
     category: 3
   },
   {
@@ -521,7 +521,7 @@ export const FONTS = [
     cssUrl : "https://fonts.googleapis.com/css?family=Jua",
     foundries: ["woowa"],
     descriptionKo: "붓으로 직접 쓴 옛 간판을 모티브로 삼아 획의 굵기가 일정하지 않고 동글동글한 느낌을 주는 복고적 서체입니다.",
-    descriptionEn: "JUA is a retro typeface inspired by brush scripts of old signs made with irregular, round strokes.",
+    descriptionEn: "Jua is a retro typeface inspired by brush scripts of old signs made with irregular, round strokes.",
     category: 3
   },
   {
@@ -542,7 +542,7 @@ export const FONTS = [
     cssUrl : "https://fonts.googleapis.com/css?family=Hi+Melody",
     foundries: ["yoondesign"],
     descriptionKo: "손글씨의 아기자기한 인상과 탈네모틀 구조의 리듬감을 강조한 서체입니다.",
-    descriptionEn: "Himelody emphasizes the visual rhythm of its non-tetragonal structure and its cute handwritten quality.",
+    descriptionEn: "Hi Melody emphasizes the visual rhythm of its non-tetragonal structure and its cute handwritten quality.",
     category: 3
   },
   {
