@@ -175,7 +175,7 @@ class DescriptionKo extends Component {
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  총 글리프 개수 (라틴 + 그리스 + 키릴자모)<br/>
+                  총 글리프 개수 (라틴+그리스+키릴자모)<br/>
                   <span className="inline_en" style={fontNames.title}>Noto Sans</span>
                 </p>
               </div>
@@ -215,7 +215,7 @@ class DescriptionKo extends Component {
                   <CountUp separator=',' start={0} end={2416} ref={(countUp) => { this.smCountUp = countUp; }} />
                 </h5>
                 <p style={fontNames.paragraph}>
-                  총 글리프 개수 (라틴 + 그리스 + 키릴자모)<br/>
+                  총 글리프 개수 (라틴+그리스+키릴자모)<br/>
                   <span className="inline_en" style={fontNames.title}>Noto Sans</span>
                 </p>
               </div>
