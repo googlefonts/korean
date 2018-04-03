@@ -84,6 +84,13 @@ export const FOUNDRIES = {
     en: "WoowaBrothers is the provider of services, including Baemin and Baemin Riders. Starting with its typeface Hanna in 2013, WoowaBrothers has been creating and distributing retro typefaces inspired by old Korean signs. The typefaces made by WoowaBrothers celebrate a warm and amateur spirit."
   },
 
+  "naver":  {
+    titleKo: "산돌커뮤니케이션/폰트릭스/네이버",
+    titleEn: "Sandoll Communications/Fontrix/Naver",
+    ko: "산돌커뮤니케이션과 폰트릭스가 디자인하고 네이버가 배포하는 나눔글꼴 패키지의 일부입니다.",
+    en: "A part of the Nanum fonts – designed by Sandoll Communications and Fontrix, published by Naver."
+  },
+
 }
 
 export const FONTS = [
@@ -131,7 +138,7 @@ export const FONTS = [
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanumgothic/v7/PN_oRfi-oW3hYwmKDpxS7F_LXv7Lw1sg.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800",
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "획의 마감을 곡선으로 표현해 기존의 한글 고딕체에 비해 부드러운 인상을 강조한 서체입니다.",
     descriptionEn: "Nanum Gothic is a sans-serif font that achieves a softer look with its curved terminals.",
     category: 1
@@ -207,7 +214,7 @@ export const FONTS = [
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanumgothiccoding/v6/8QIYdjzHisX_8vv59_xMxtPFW4IXROws8xgeQsh29Q.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700",
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "코딩을 위해 전문적 힌팅이 적용된 고정폭 서체입니다.",
     descriptionEn: "Nanum Gothic Coding is a fixed width font designed for coding with special hinting.",
     category: 1
@@ -235,7 +242,7 @@ export const FONTS = [
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanummyeongjo/v6/9Bty3DZF0dXLMZlywRbVRNhxy2pLVGA5r_c.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700,800",
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "부리와 맺음 등의 마감을 직선적으로 표현해 기존의 한글 명조체보다 현대적인 인상을 주는 서체입니다.",
     descriptionEn: "Nanum Myungjo is a serif font that achieves a contemporary feel with its straight beaks and terminals.",
     category: 2
@@ -539,7 +546,7 @@ export const FONTS = [
     ],
     letterSpacing: 0,
     fontSize: 1,
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "붓글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
     descriptionEn: "Nanum Brush Script combines the rhythmic qualities of brush script with a sense of comfort.",
     category: 3
@@ -559,7 +566,7 @@ export const FONTS = [
     ],
     letterSpacing: 0,
     fontSize: 1,
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "펜글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
     descriptionEn: "Nanum Brush Script combines the rhythmic qualities of pen writing with a sense of comfort.",
     category: 3

@@ -700,6 +700,10 @@ sup {
   position:relative;
   z-index:4;
 
+  .preview-typer {
+    // animation: fade_in 0.3s ease-in-out;
+  }
+
   &--selected {
     @extend .font-viewer;
     // background-color: rgba(255, 255, 255, 0.1);
@@ -754,9 +758,11 @@ sup {
 
     &--bt {
       @extend .font-viewer__flex-wrapper;
-      margin: -50px 0 0 0;
+      margin: -20px 0 0 0;
       padding-bottom: 50px;
       // border-bottom: 1px solid $text_color;
+
+      animation: fade_in 0.3s ease-in-out;
 
       @include body_600 {
         margin-bottom: 50px;
@@ -1654,6 +1660,10 @@ sup {
       margin-right: 40px;
     }
 
+    @include body_600 {
+      width: calc(100%);
+      margin-right: 0px;
+    }
 
   }
 
@@ -1663,6 +1673,10 @@ sup {
 
     @include body_960 { 
       width: auto;
+    }
+
+    @include body_600 {
+      margin-right:0;
     }
 
   }
@@ -1678,6 +1692,11 @@ sup {
     @include body_960 {
       width: calc(50% - 20px);
       margin-right:0;
+    }
+    @include body_600 {
+      width: calc(100%);
+      margin-right:0;
+      margin-top:2em;
     }
   }
 
