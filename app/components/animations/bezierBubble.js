@@ -1,8 +1,8 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils'; 
-import { scaleLinear } from 'd3';
+import { scaleLinear, scalePow } from 'd3';
 
-const sizeScale = scaleLinear().domain([0, 200]).clamp(true).range([150, 1]);
+const sizeScale = scalePow().domain([0, 200]).clamp(true).range([200, 1]);
 
 export const bezierBubble = {
   attach: (_this, backgroundMode) => {
@@ -90,7 +90,9 @@ export const bezierBubble = {
       let len = _this.bezierBubble.point.subtract(_this.bezierBubble.prevPoint).length;
 
       _this.bezierBubble.size += (_this.bezierBubble.tSize - _this.bezierBubble.size) * 0.2;
-      _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * 2.5; //breathing amount
+      // _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * 1.2; //breathing amount
+      _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * _this.bezierBubble.tSize / 100; //breathing amount
+      // console.log(_this.bezierBubble.size + ":" + _this.bezierBubble.tSize/100);
       
       if (_this.bezierBubble.firstMoved) {
         _this.bezierBubble.circle.visible = true;

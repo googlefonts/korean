@@ -1,8 +1,8 @@
-export const BODY_1280 = 1280;
-export const BODY_960 = 960;
-export const BODY_820 = 820;
-export const BODY_600 = 600;
-export const BODY_480 = 480;
+export const BODY_1280 = 1279;
+export const BODY_960 = 959;
+export const BODY_820 = 819;
+export const BODY_600 = 599;
+export const BODY_480 = 479;
 
 // curl -A "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" "https://fonts.googleapis.com/css?family=Sunflower:700&subset=korean"
 
@@ -84,6 +84,13 @@ export const FOUNDRIES = {
     en: "WoowaBrothers is the provider of services, including Baemin and Baemin Riders. Starting with its typeface Hanna in 2013, WoowaBrothers has been creating and distributing retro typefaces inspired by old Korean signs. The typefaces made by WoowaBrothers celebrate a warm and amateur spirit."
   },
 
+  "naver":  {
+    titleKo: "산돌커뮤니케이션/폰트릭스/네이버",
+    titleEn: "Sandoll Communications/Fontrix/Naver",
+    ko: "산돌커뮤니케이션과 폰트릭스가 디자인하고 네이버가 배포하는 나눔글꼴 패키지의 일부입니다.",
+    en: "A part of the Nanum fonts – designed by Sandoll Communications and Fontrix, published by Naver."
+  },
+
 }
 
 export const FONTS = [
@@ -99,8 +106,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
-    letterSpacing: 0,
-    fontSize: 1.15,
+    letterSpacing: -25,
+    fontSize: 1.125,
     fontUrl : "https://fonts.gstatic.com/s/blackhansans/v1/ea8Aad44WunzF9a-dL6toA8r8kqYK3M.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Black+Han+Sans",
     foundries: ["zesstype"],
@@ -127,11 +134,11 @@ export const FONTS = [
         weightName: "ExtraBold"
       }
     ],
-    letterSpacing: 0,
+    letterSpacing: -10,
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanumgothic/v7/PN_oRfi-oW3hYwmKDpxS7F_LXv7Lw1sg.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800",
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "획의 마감을 곡선으로 표현해 기존의 한글 고딕체에 비해 부드러운 인상을 강조한 서체입니다.",
     descriptionEn: "Nanum Gothic is a sans-serif font that achieves a softer look with its curved terminals.",
     category: 1
@@ -179,7 +186,7 @@ export const FONTS = [
         weightName: "Black"
       }
     ],
-    letterSpacing: -10,
+    letterSpacing: -40,
     fontSize: 0.95,
     fontUrl : "https://fonts.gstatic.com/s/gothica1/v1/CSR44z5ZnPydRjlCCwlC6OA6RfN9.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Gothic+A1:100,200,300,400,500,600,700,800,900",
@@ -203,11 +210,11 @@ export const FONTS = [
         weightName: "Bold"
       }
     ],
-    letterSpacing: 0,
+    letterSpacing: -25,
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanumgothiccoding/v6/8QIYdjzHisX_8vv59_xMxtPFW4IXROws8xgeQsh29Q.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700",
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "코딩을 위해 전문적 힌팅이 적용된 고정폭 서체입니다.",
     descriptionEn: "Nanum Gothic Coding is a fixed width font designed for coding with special hinting.",
     category: 1
@@ -231,11 +238,11 @@ export const FONTS = [
         weightName: "ExtraBold"
       }
     ],
-    letterSpacing: 0,
+    letterSpacing: -10,
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanummyeongjo/v6/9Bty3DZF0dXLMZlywRbVRNhxy2pLVGA5r_c.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700,800",
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "부리와 맺음 등의 마감을 직선적으로 표현해 기존의 한글 명조체보다 현대적인 인상을 주는 서체입니다.",
     descriptionEn: "Nanum Myungjo is a serif font that achieves a contemporary feel with its straight beaks and terminals.",
     category: 2
@@ -252,7 +259,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 1.15,
     fontUrl : "https://fonts.gstatic.com/s/cutefont/v1/Noaw6Uny2oWPbSHMrY6flZlS.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Cute+Font",
     foundries: ["typodesign"],
@@ -263,7 +270,7 @@ export const FONTS = [
   {
     id: 4,
     nameKo: "도현",
-    nameEn: "DOHYEON",
+    nameEn: "Dohyeon",
     fontName: "Do Hyeon",
     weights: [
       {
@@ -291,8 +298,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
-    letterSpacing: 0,
-    fontSize: 1,
+    letterSpacing: -15,
+    fontSize: 1.05,
     fontUrl : "https://fonts.gstatic.com/s/dokdo/v1/esDf315XNuCBLyLl6tE.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Dokdo",
     foundries: ["fontrix"],
@@ -312,7 +319,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 1.1,
     fontUrl : "https://fonts.gstatic.com/s/eastseadokdo/v1/xfuo0Wn2V2_KanASqXSZp22m06_XE6w.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=East+Sea+Dokdo",
     foundries: ["yoondesign"],
@@ -332,7 +339,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 0.85,
     fontUrl : "https://fonts.gstatic.com/s/gugi/v1/A2BVn5dXywshZAOK8w.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Gugi",
     foundries: ["taesystem"],
@@ -351,7 +358,7 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
-    letterSpacing: 0,
+    letterSpacing: -20,
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/himelody/v1/46ktlbP8Vnz0pJcqCTb0cmVD.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Hi+Melody",
@@ -392,7 +399,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 1.05,
     fontUrl : "https://fonts.gstatic.com/s/kiranghaerang/v1/E21-_dn_gvvIjhYON1lpIU4-bfqiUvE.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Kirang+Haerang",
     foundries: ["woowa"],
@@ -432,7 +439,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 1.05,
     fontUrl : "https://fonts.gstatic.com/s/songmyung/v1/1cX2aUDWAJH5-EIC7DIhn1yggg.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Song+Myung",
     foundries: ["jikji"],
@@ -539,7 +546,7 @@ export const FONTS = [
     ],
     letterSpacing: 0,
     fontSize: 1,
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "붓글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
     descriptionEn: "Nanum Brush Script combines the rhythmic qualities of brush script with a sense of comfort.",
     category: 3
@@ -559,7 +566,7 @@ export const FONTS = [
     ],
     letterSpacing: 0,
     fontSize: 1,
-    foundries: ["fontrix"],
+    foundries: ["naver"],
     descriptionKo: "펜글씨를 표현해 꾸미지 않은 편안함과 리듬감을 주는 서체입니다.",
     descriptionEn: "Nanum Brush Script combines the rhythmic qualities of pen writing with a sense of comfort.",
     category: 3

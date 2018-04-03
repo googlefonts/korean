@@ -61,7 +61,11 @@ class Header extends Component {
           <div className="header__left">
             <div className="header__title">
               <h1>
-                <span className="en-black">Google Fonts + </span> 한국어
+                <span className="en-black">Google Fonts + </span>
+                {(locale == "ko" ? 
+                  <span className="">한국어</span> :
+                  <span className="en-black">Korean</span>
+                )}
               </h1>
             </div>
 

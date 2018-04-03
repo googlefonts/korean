@@ -125,7 +125,11 @@ class HeaderCollapsed extends Component {
             <div className="header-collapsed__left">
               <a href="javascript:void(0);" onClick={this.handleMoveTop.bind(this)}>
                 <h1>
-                  <span className="en-black">Google Fonts + </span> 한국어
+                  <span className="en-black">Google Fonts + </span>
+                    {(locale == "ko" ? 
+                      <span className="">한국어</span> :
+                      <span className="en-black">Korean</span>
+                    )}
                 </h1>
               </a>            
 

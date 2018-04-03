@@ -1,6 +1,6 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
-import { scaleLinear, min } from 'd3';
+import { scaleLinear, min, scalePow } from 'd3';
 import { BODY_480 } from '../../constants/defaults';
 
 const amountScale = scaleLinear().domain([150, 2000]).clamp(true).range([50, 300]);
@@ -119,16 +119,16 @@ export const wavyBaseline = {
 
 
     var theta = 0;
-    var radiusScale = scaleLinear().domain([0, 350]).clamp(true).range([50, 220]);
+    var radiusScale = scalePow().domain([0, 350]).clamp(true).range([50, 160]); //MAX height
     var waveScale;
 
     if (_this.props.screenWidth <= BODY_480) {
 
-      waveScale = scaleLinear().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
+      waveScale = scalePow().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
     
     } else {
 
-      waveScale = scaleLinear().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.5, Math.PI * 3]);
+      waveScale = scalePow().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.5, Math.PI * 4]); //# of waves
       
     }
 

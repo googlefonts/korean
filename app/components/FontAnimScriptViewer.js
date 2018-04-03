@@ -271,7 +271,7 @@ class FontAnimScriptViewer extends Component {
   }
 
   render() {
-    let { screenWidth, id, category, screenHeight, containerHeight } = this.props;
+    let { screenWidth, id, category, screenHeight, containerHeight, animationScriptIdx } = this.props;
     let width, height, leftWidthScale;
 
     // let height;
@@ -300,7 +300,7 @@ class FontAnimScriptViewer extends Component {
     return (
       <Fragment>
         <div className="font-anim-viewer" style={{ height: screenHeight, top: -(screenHeight * 0.5 - height * 0.5) }}>
-          <canvas id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
+          <canvas id={ id.toLowerCase().replace(/ /g, "-") } className={ "efs-" + animationScriptIdx } ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
           </canvas>
         </div>
         <div style={{ width: width, height: height}}>

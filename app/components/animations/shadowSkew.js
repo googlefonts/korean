@@ -1,6 +1,6 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
-import { scaleLinear } from 'd3';
+import { scaleLinear, scalePow } from 'd3';
 
 export const shadowSkew = {
   attach: (_this, backgroundMode) => {
@@ -50,9 +50,9 @@ export const shadowSkew = {
 
     _this.view.draw();
 
-    var skewAmountScale = scaleLinear().domain([0, 600]).clamp(true).range([-1.5, 1.0]);
-    var xScale = scaleLinear().domain([-500, 340, 600]).clamp(true).range([0.5, 1.0, 0.8]); //mapping domain values (mouse) to range values
-    var xShadowScale = scaleLinear().domain([-500, 340, 600]).clamp(true).range([1.5, 0.94, 1.5]); 
+    var skewAmountScale = scalePow().domain([0, 600]).clamp(true).range([-0.5, 0.3]);
+    var xScale = scalePow().domain([-600, 300, 600]).clamp(true).range([0.8, 1.0, 0.8]); //mapping domain values (mouse) to range values
+    var xShadowScale = scalePow().domain([-600, 300, 600]).clamp(true).range([2.0, 1.0, 1.5]); 
 
     _this.view.onMouseMove = (e) => {
       _this.shadowSkew.tPoint = e.point;

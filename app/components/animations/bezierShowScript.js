@@ -5,11 +5,11 @@ import { convertBgMode } from '../../utils';
   config 변수를 바꾸면 됩니다.
 */
 const config = {
-  strokeWidth: 0.5,
+  strokeWidth: 1,
   dashArrayEnabled: false,
   dashArray: [1, 2],
   pointSize: 3,
-  opacity: 0.5
+  opacity: 1
 }
 
 
@@ -32,8 +32,11 @@ export const bezierShowScript = {
         _.each(child.segments, (seg, k) => {
           
           let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(config.pointSize / 2, config.pointSize / 2)), config.pointSize);
+          // let p = new paper.Path.Circle(seg.point.subtract(new paper.Point(config.pointSize / 2, config.pointSize / 2)), config.pointSize);
 
-          p.fillColor = convertBgMode(backgroundMode, 'f');
+          p.fillColor = convertBgMode(backgroundMode, 'b');
+          p.strokeColor = convertBgMode(backgroundMode, 'f');
+          p.strokeWidth = 0.5;
           _this.bezierShowScript.points.push(p);
         });
       });
@@ -57,7 +60,6 @@ export const bezierShowScript = {
       _g.strokeWidth = config.strokeWidth;
       
       _g.opacity = config.opacity;
-
 
     });
 

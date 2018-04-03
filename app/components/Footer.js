@@ -31,7 +31,7 @@ class Footer extends Component {
               </div> :
 
               <div className="footer__short-desc-column">
-                <h4 className="en-black">Join our community</h4><br/>
+                <h4><span className="inline_en_bold">Join Our Community</span></h4>
                 <p className="en-regular">
                   We are working with designers around the world to produce best-in-class typeface designs that are made for the web. If you want to offer your own Korean font through Google Fonts, please contact <a href="https://twitter.com/googlefonts" target="_blank">@googlefonts</a>. 
                 </p>
