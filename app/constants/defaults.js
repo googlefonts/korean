@@ -359,7 +359,7 @@ export const FONTS = [
   {
     id: 6,
     nameKo: "대한민국독도",
-    nameEn: "Daehanminkook Dokdo",
+    nameEn: "East Sea Dokdo",
     fontName: "East Sea Dokdo",
     weights: [
       {
@@ -374,7 +374,7 @@ export const FONTS = [
     cssUrl : "https://fonts.googleapis.com/css?family=East+Sea+Dokdo",
     foundries: ["yoondesign"],
     descriptionKo: "붓글씨의 특징을 반영해 굵기의 변화가 자유롭고, 세로 모임 글자의 곁줄기를 굵고 길게 강조해 바다 위로 솟은 독도의 이미지를 시각화한 서체입니다.",
-    descriptionEn: "Designed with free brush strokes and pronounced vertical lines, Daehanminkook Dokdo represents the bold presence of Dokdo above the sea.",
+    descriptionEn: "Designed with free brush strokes and pronounced vertical lines, East Sea Dokdo represents the bold presence of Dokdo above the sea.",
     category: 3
   },
   {
