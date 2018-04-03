@@ -1,7 +1,7 @@
 import paper from 'paper';
 import { convertBgMode } from '../../utils';
 import 'gsap';
-import { scaleLinear, scalePow } from 'd3';
+import { scaleLinear, scalePow, scaleSqrt } from 'd3';
 
 export const riseAndBlur = {
   attach: (_this, backgroundMode) => {
@@ -41,7 +41,7 @@ export const riseAndBlur = {
 
 
     var blurAmountScale = scalePow().domain([0, 100]).clamp(true).range([0, 10]);
-    var offsetScale = scalePow().domain([0, 100]).clamp(true).range([0, 50])
+    var offsetScale = scaleSqrt().domain([0, 200]).clamp(true).range([0, 150])
 
     _this.view.onFrame = (e) => {
       

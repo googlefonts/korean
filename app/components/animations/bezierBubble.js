@@ -2,7 +2,7 @@ import paper from 'paper';
 import { convertBgMode } from '../../utils'; 
 import { scaleLinear, scalePow } from 'd3';
 
-const sizeScale = scalePow().domain([0, 200]).clamp(true).range([200, 1]);
+const sizeScale = scaleLinear().domain([0, 300]).clamp(true).range([180, 1]);
 
 export const bezierBubble = {
   attach: (_this, backgroundMode) => {
