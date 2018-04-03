@@ -1,8 +1,8 @@
-export const BODY_1280 = 1280;
-export const BODY_960 = 960;
-export const BODY_820 = 820;
-export const BODY_600 = 600;
-export const BODY_480 = 480;
+export const BODY_1280 = 1279;
+export const BODY_960 = 959;
+export const BODY_820 = 819;
+export const BODY_600 = 599;
+export const BODY_480 = 479;
 
 // curl -A "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" "https://fonts.googleapis.com/css?family=Sunflower:700&subset=korean"
 

@@ -109,6 +109,7 @@ class FontViewer extends Component {
                     &nbsp;
                   </Fragment>
                 }
+                <div className="l-apple-box--quarter"></div>
                 <span className="en-black">{ this.props.nameEn }</span>
               </h3> : 
               <h3 style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleMouseEnter.bind(this)} onTouchCancel={this.handleMouseLeave.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
@@ -123,7 +124,7 @@ class FontViewer extends Component {
                     &nbsp;
                   </Fragment>
                 }
-
+                <div className="l-apple-box--quarter"></div>
                 <span className="ko">{ this.props.nameKo }</span>
               </h3>
             }
