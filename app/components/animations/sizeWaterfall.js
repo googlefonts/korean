@@ -46,8 +46,8 @@ export const sizeWaterfall = {
           glyphGroup.fillColor = convertBgMode(backgroundMode, "f");
           glyphGroup.strokeColor = convertBgMode(backgroundMode, "b");
         } else {
-          glyphGroup.fillColor = convertBgMode(backgroundMode, "f");
-          glyphGroup.strokeColor = convertBgMode(backgroundMode, "b");
+          glyphGroup.fillColor = convertBgMode(backgroundMode, "b");
+          glyphGroup.strokeColor = convertBgMode(backgroundMode, "f");
         }
         
 

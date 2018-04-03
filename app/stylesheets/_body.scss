@@ -647,15 +647,17 @@ sup {
 }
 
 .fonts-list {
-  padding: 26px 24px;
+  padding: 26px 0;
 }
 
 .font-container {
-  border-top: 1px solid $text_color;
-  padding-top: 50px;
+  // border-top: 1px solid $text_color;
+  @include dottedBorderTop;
+  padding: 50px 24px 20px 24px;
 
   &:nth-child(1) {
-    border:none;
+    // border:none;
+    background: none;
   }
 }
 
@@ -752,9 +754,9 @@ sup {
 
     &--bt {
       @extend .font-viewer__flex-wrapper;
-      margin-bottom: 100px;
+      margin: -50px 0 0 0;
       padding-bottom: 50px;
-      border-bottom: 1px solid $text_color;
+      // border-bottom: 1px solid $text_color;
 
       @include body_600 {
         margin-bottom: 50px;
@@ -853,6 +855,8 @@ sup {
     .close {
       margin-top: 30px;
       display: block;
+      position:absolute;
+      z-index: 500;
       // animation: fade_in 0.3 ease-in-out;
     }
   }
@@ -1725,3 +1729,4 @@ sup {
     width: calc(100% - 48px);
   }
 }
+

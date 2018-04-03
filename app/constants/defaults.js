@@ -99,8 +99,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
-    letterSpacing: 0,
-    fontSize: 1.15,
+    letterSpacing: -25,
+    fontSize: 1.125,
     fontUrl : "https://fonts.gstatic.com/s/blackhansans/v1/ea8Aad44WunzF9a-dL6toA8r8kqYK3M.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Black+Han+Sans",
     foundries: ["zesstype"],
@@ -127,7 +127,7 @@ export const FONTS = [
         weightName: "ExtraBold"
       }
     ],
-    letterSpacing: 0,
+    letterSpacing: -10,
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanumgothic/v7/PN_oRfi-oW3hYwmKDpxS7F_LXv7Lw1sg.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800",
@@ -179,7 +179,7 @@ export const FONTS = [
         weightName: "Black"
       }
     ],
-    letterSpacing: -10,
+    letterSpacing: -40,
     fontSize: 0.95,
     fontUrl : "https://fonts.gstatic.com/s/gothica1/v1/CSR44z5ZnPydRjlCCwlC6OA6RfN9.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Gothic+A1:100,200,300,400,500,600,700,800,900",
@@ -203,7 +203,7 @@ export const FONTS = [
         weightName: "Bold"
       }
     ],
-    letterSpacing: 0,
+    letterSpacing: -25,
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanumgothiccoding/v6/8QIYdjzHisX_8vv59_xMxtPFW4IXROws8xgeQsh29Q.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700",
@@ -231,7 +231,7 @@ export const FONTS = [
         weightName: "ExtraBold"
       }
     ],
-    letterSpacing: 0,
+    letterSpacing: -10,
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/nanummyeongjo/v6/9Bty3DZF0dXLMZlywRbVRNhxy2pLVGA5r_c.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700,800",
@@ -252,7 +252,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 1.15,
     fontUrl : "https://fonts.gstatic.com/s/cutefont/v1/Noaw6Uny2oWPbSHMrY6flZlS.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Cute+Font",
     foundries: ["typodesign"],
@@ -263,7 +263,7 @@ export const FONTS = [
   {
     id: 4,
     nameKo: "도현",
-    nameEn: "DOHYEON",
+    nameEn: "Dohyeon",
     fontName: "Do Hyeon",
     weights: [
       {
@@ -291,8 +291,8 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
-    letterSpacing: 0,
-    fontSize: 1,
+    letterSpacing: -15,
+    fontSize: 1.05,
     fontUrl : "https://fonts.gstatic.com/s/dokdo/v1/esDf315XNuCBLyLl6tE.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Dokdo",
     foundries: ["fontrix"],
@@ -312,7 +312,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 1.1,
     fontUrl : "https://fonts.gstatic.com/s/eastseadokdo/v1/xfuo0Wn2V2_KanASqXSZp22m06_XE6w.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=East+Sea+Dokdo",
     foundries: ["yoondesign"],
@@ -332,7 +332,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 0.85,
     fontUrl : "https://fonts.gstatic.com/s/gugi/v1/A2BVn5dXywshZAOK8w.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Gugi",
     foundries: ["taesystem"],
@@ -351,7 +351,7 @@ export const FONTS = [
         weightName: "Regular"
       }
     ],
-    letterSpacing: 0,
+    letterSpacing: -20,
     fontSize: 1,
     fontUrl : "https://fonts.gstatic.com/s/himelody/v1/46ktlbP8Vnz0pJcqCTb0cmVD.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Hi+Melody",
@@ -392,7 +392,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 1.05,
     fontUrl : "https://fonts.gstatic.com/s/kiranghaerang/v1/E21-_dn_gvvIjhYON1lpIU4-bfqiUvE.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Kirang+Haerang",
     foundries: ["woowa"],
@@ -432,7 +432,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1,
+    fontSize: 1.05,
     fontUrl : "https://fonts.gstatic.com/s/songmyung/v1/1cX2aUDWAJH5-EIC7DIhn1yggg.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Song+Myung",
     foundries: ["jikji"],

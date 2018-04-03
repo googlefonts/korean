@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="43px" height="43px" viewBox="0 0 43 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>cursor-hv</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M21,21 L21,2 L22,2 L22,21 L41,21 L41,22 L22,22 L22,41 L21,41 L21,22 L2,22 L2,21 L21,21 Z" id="path-1"></path>
+    </defs>
+    <g id="cursor-hv" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="Combined-Shape" fill-rule="nonzero">
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <path stroke-opacity="0.2" stroke="#000000" stroke-width="1" d="M20.5,20.5 L20.5,1.5 L22.5,1.5 L22.5,20.5 L41.5,20.5 L41.5,22.5 L22.5,22.5 L22.5,41.5 L20.5,41.5 L20.5,22.5 L1.5,22.5 L1.5,20.5 L20.5,20.5 Z"></path>
+        </g>
+    </g>
+</svg>

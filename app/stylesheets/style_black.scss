@@ -6,3 +6,20 @@ $background_color: #000;
 $text_color: #FFF;
 
 @import 'body';
+
+canvas.ef-0 { //hv
+  cursor: auto;
+  cursor: url('/public/assets/cursor-hv.svg') 23 23, auto;
+}
+canvas.ef-1 { //h
+  cursor: url('/public/assets/cursor-h.svg') 23 23, auto;
+}
+canvas.ef-2 { //hv
+  cursor: url('/public/assets/cursor-hv.svg') 23 23, auto;
+}
+canvas.ef-3 { //v
+  cursor: url('/public/assets/cursor-v.svg') 23 23, auto;
+}
+canvas.ef-4 { //v
+  cursor: url('/public/assets/cursor-v.svg') 23 23, auto;
+}

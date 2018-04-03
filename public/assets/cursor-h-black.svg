@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>cursor-h-black</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M3.91751518,22 L41.0824848,22 L36.9895924,17.9071075 L37.6966991,17.2000008 L43,22.5033016 L37.6966991,27.8066025 L36.9895924,27.0994957 L41.0890881,23 L3.91091194,23 L8.01040764,27.0994957 L7.30330086,27.8066025 L2,22.5033016 L7.30330086,17.2000008 L8.01040764,17.9071075 L3.91751518,22 Z" id="path-1"></path>
+    </defs>
+    <g id="cursor-h-black" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Combined-Shape" fill-rule="nonzero">
+            <use fill="#000000" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <path stroke-opacity="0.5" stroke="#FFFFFF" stroke-width="1" d="M5.12462197,21.5 L39.875378,21.5 L36.2824856,17.9071075 L37.6966991,16.492894 L43.7071068,22.5033016 L37.6966991,28.5137093 L36.2824856,27.0994957 L39.8819813,23.5 L5.11801872,23.5 L8.71751442,27.0994957 L7.30330086,28.5137093 L1.29289322,22.5033016 L7.30330086,16.492894 L8.71751442,17.9071075 L5.12462197,21.5 Z"></path>
+        </g>
+    </g>
+</svg>
