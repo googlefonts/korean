@@ -57,11 +57,5 @@ export const blurScript = {
     _this.refCanvas.style.filter = "blur(0)";
 
     _this.view.draw();
-  }, 
-
-
-  updatePosition: (_this, x, y, fontScale, font) => {
-   
-
   }
 };

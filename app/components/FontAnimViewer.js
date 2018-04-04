@@ -50,7 +50,6 @@ class FontAnimViewer extends Component {
     } else if (newProps.screenWidth != this.props.screenWidth || 
                newProps.screenHeight != this.props.screenHeight) {
       this.resetMessage(newProps);
-      // this.updatePosition(newProps);
     } else if (newProps.animationIdx != this.props.animationIdx) {
       this.detachAnimation(this.props);
       this.attachAnimation(newProps);
@@ -75,58 +74,6 @@ class FontAnimViewer extends Component {
   attachAnimation(props){
     let { animationIdx, backgroundMode, size } = props;
     this.animations[animationIdx].attach.bind(this, this)(backgroundMode, size);
-  }
-
-  updatePosition(props){
-
-    let { screenHeight, screenWidth, font, animationIdx, backgroundMode, containerHeight } = props;
-    let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
-
-
-    var fontSize = 300;
-    var kerningValue = 0;
-    var fontScale = 1 / font.unitsPerEm * fontSize;
-    var x, y;
-
-    if (screenWidth > BODY_480) {
-      x = 24 + 160 + leftWidthScale(screenWidth);
-      y = (screenHeight * 0.5 - containerHeight * 0.5) + 1503;
-    } else {
-      x = 24 + 160;
-      y = (screenHeight * 0.5 - containerHeight * 0.5) + 150 + 46;
-    }
-    
-
-    this.project.activate();    
-
-    _.each(this.glyphs, (glyph, i) => {
-      glyph.x = x;
-      glyph.y = y;
-      glyph.updatePosition();
-
-      if (glyph.fontGlyph.advanceWidth) {
-        x += glyph.fontGlyph.advanceWidth * fontScale;
-      }
-      if (i < this.glyphs.length - 1) {
-        kerningValue = font.getKerningValue(glyph.fontGlyph, this.glyphs[i + 1].fontGlyph);
-        x += kerningValue * fontScale;
-      }
-    });
-
-
-    if (screenWidth > BODY_480) {
-      x = 24 + 160 + leftWidthScale(screenWidth);
-      y = (screenHeight * 0.5 - containerHeight * 0.5) + 150;
-    } else {
-      x = 24 + 160;
-      y = (screenHeight * 0.5 - containerHeight * 0.5) + 150 + 46;
-    }
-    
-
-    this.animations[animationIdx].updatePosition.bind(this, this)(x, y, fontScale, font, backgroundMode);
-
-    this.view.draw();
-
   }
 
   createGlyphPath(font, message, screenWidth, screenHeight, backgroundMode, containerHeight, size, fontSize, letterSpacing, baseline){

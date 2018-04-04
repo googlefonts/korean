@@ -56,31 +56,19 @@ export const bezierBubble = {
     _this.bezierBubble.circle = new paper.Path.Circle({center: [400, 200], radius: _this.bezierBubble.size, strokeColor: convertBgMode(backgroundMode, "f")});
 
 
-
-
     _this.bezierBubble.group = new paper.Group([_this.bezierBubble.maskCircle].concat(_this.bezierBubble.maskedGlyphs).concat(_this.bezierBubble.points));
     _this.bezierBubble.group.clipped = true;
 
-    // _this.view.onMouseEnter = (e) => {
-    //   console.log("mouseenter");
-    //   // debugger;
-    //   _this.bezierBubble.point = e.point;
-    // }
 
     _this.view.onMouseMove = (e) => {
       _this.bezierBubble.firstMoved = true;
       _this.bezierBubble.tPoint = e.point;
       let dist = Math.abs(_this.bezierBubble.point.y - _this.bezierBubble.points.bounds.center.y);
     
-      // let dist = _this.bezierBubble.points.bounds.center.getDistance(_this.bezierBubble.point);
       _this.bezierBubble.tSize = sizeScale(dist);
     }
 
-
-    // _this.view.emit('onMouseMove');
-
     var theta = 0;
-    // var velocitySizeScale = scaleLinear().domain([0, 250]).clamp(true).range([20, -50]);
 
     _this.view.onFrame = (e) => {
       theta += 0.06;
@@ -92,8 +80,7 @@ export const bezierBubble = {
       _this.bezierBubble.size += (_this.bezierBubble.tSize - _this.bezierBubble.size) * 0.2;
       // _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * 1.2; //breathing amount
       _this.bezierBubble.size += Math.sin(theta + Math.PI * 2) * _this.bezierBubble.tSize / 100; //breathing amount
-      // console.log(_this.bezierBubble.size + ":" + _this.bezierBubble.tSize/100);
-      
+
       if (_this.bezierBubble.firstMoved) {
         _this.bezierBubble.circle.visible = true;
         _this.bezierBubble.maskCircle.visible = true;
@@ -103,10 +90,6 @@ export const bezierBubble = {
         _this.bezierBubble.maskCircle.visible = false;
         _this.bezierBubble.group.visible = false;
       }
-      // _this.bezierBubble.size += velocitySizeScale(len);
-      
-      // get
-
       let radius = _this.bezierBubble.maskCircle.bounds.width / 2;
       _this.bezierBubble.maskCircle.position = _this.bezierBubble.point;
       _this.bezierBubble.circle.position = _this.bezierBubble.point;
@@ -169,51 +152,5 @@ export const bezierBubble = {
     _this.view.onFrame = null;
     _this.view.onMouseMove = null;
     _this.view.onMouseEnter = null;
-  }, 
-
-
-  updatePosition: (_this, x, y, fontScale, font, backgroundMode) => {
-    var kerningValue = 0;
-
-
-    _this.project.activate();
-
-    _.each(_this.bezierBubble.maskedGlyphs, (glyph, i) => {
-      glyph.position = new paper.Point(x, y);
-
-      if (_this.glyphs[i].fontGlyph.advanceWidth) {
-        x += _this.glyphs[i].fontGlyph.advanceWidth * fontScale;
-      }
-      if (i < _this.glyphs.length - 1) {
-        kerningValue = font.getKerningValue(_this.glyphs[i].fontGlyph, _this.glyphs[i + 1].fontGlyph);
-        x += kerningValue * fontScale;
-      }
-    });
-
-    // _this.bezierBubble.group.removeChild(_this.bezierBubble.points);
-    _this.bezierBubble.points.remove();
-    _this.bezierBubble.points = new paper.Group();
-
-    // debugger;
-    _.each(_this.bezierBubble.maskedGlyphs, g => {
-
-      _.each(g.children, (child, j) => {
-        _.each(child.segments, (seg, k) => {
-          
-          let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(1.5, 1.5)), 3);
-
-          p.fillColor = convertBgMode(backgroundMode, 'f');
-          _this.bezierBubble.points.addChild(p);
-        });
-      });
-    });
-
-    _this.bezierBubble.group.addChild(_this.bezierBubble.points);
-    _this.bezierBubble.group.clipped = true;
-
-    _this.view.draw();
-
-
-
   }
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode, changeHeaderCollapsedTop, changeAnimationIdx, changeAnimationScriptIdx, changeIsOnScript } from '../actions';
-import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter, GoogleFontBadge } from './';
+import { Header, HeaderCollapsed, FontsList, Description, Footer, FontCSSLoader, HeaderGutter, GoogleFontBadge } from './';
 import { BODY_480 } from '../constants/defaults';
 import scrollama from 'scrollama';
 import { scaleLinear } from 'd3';
@@ -39,9 +39,6 @@ class App extends Component {
     } else {
       document.getElementById('favicon').setAttribute('href','./public/assets/favicon_' + this.props.animationIdx + '.png');
     }
-    
-
-    // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
   }
 
   handleBodyClick(e){
@@ -177,15 +174,14 @@ class App extends Component {
     let c3 = document.querySelector('.font-container[data-category-id="3"]');
 
     let s1StartY = c1.offsetTop;
-    let s1EndY = c2.offsetTop + c2.offsetHeight;
-    let s2StartY = c3.offsetTop;
-    let s2EndY = c3.offsetTop + c3.offsetHeight;
+    let s1EndY = c2.offsetTop + c2.offsetHeight - 100;
+    let s2StartY = c3.offsetTop - 100;
+    let s2EndY = (c3.offsetTop - 100) + c3.offsetHeight + 100;
 
     let elem = (document.scrollingElement || document.documentElement);
     if (elem.scrollTop >= s1StartY && elem.scrollTop < s1EndY) {
       
       this.props.dispatch(changeIsOnScript(false));
-      this.props.dispatch(changeAnimationIdx(++animationIdx % 5));
 
     } else if (elem.scrollTop >= s2StartY && elem.scrollTop < s2EndY) {
 
@@ -247,7 +243,6 @@ class App extends Component {
     return (
       <Fragment>
         <section onClick={this.handleBodyClick}>
-          <NewsfeedLoader />
           {
             headerMode == "expanded" ? 
             <Header /> : (headerMode == "collapsed" ? <HeaderCollapsed /> : null)

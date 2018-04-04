@@ -24,12 +24,8 @@ class DescriptionKo extends Component {
 
     this.scroller.setup({
         step: '.desc-column-area',
-        // debug: true,
-        // progress: true,
         offset: (window.innerHeight - 150) / window.innerHeight,
       }).onStepEnter(this.handleStepEnter.bind(this))
-        // .onStepProgress(this.handleStepProgress.bind(this))
-        // .onStepExit(this.handleStepExit.bind(this));
   }
 
   handleStepEnter(e){

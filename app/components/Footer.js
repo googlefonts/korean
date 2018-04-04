@@ -30,7 +30,7 @@ class Footer extends Component {
                 </p>
                 <div className="l-apple-box"></div>
                 <p>
-                  이 웹사이트의 소스는 <a href="https://github.com/googlefonts/korean"><span className="inline_en">github.com/googlefonts/korean</span></a>을 통해 공개하고 있습니다. 관련 문의는 이곳에 리포트를 남겨주세요.
+                  이 웹사이트의 소스는 <a href="https://github.com/googlefonts/korean"><span className="inline_en">github.com/googlefonts/korean</span></a> 을 통해 공개하고 있습니다. 관련 문의는 이곳에 리포트를 남겨주세요.
                 </p>
               </div> :
 

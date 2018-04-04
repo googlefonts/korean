@@ -6,7 +6,6 @@ import { BODY_480 } from '../../constants/defaults';
 const amountScale = scaleLinear().domain([150, 2000]).clamp(true).range([50, 300]);
 
 const interpolateCompoundPath = (path) => {
-  // console.log(_this.xDist);
   var interpolatedPath = new paper.CompoundPath();
     
   for (var i = 0; i < path.children.length; i++) {
@@ -118,10 +117,6 @@ export const wavyBaseline = {
     _this.view.onMouseMove = (e) => {
       _this.wavyBaseline.tPoint = e.point;
     }
-
-    // var centerX = _.mean(_.map(_this.wavyBaseline.originalPosGlyphs, g => {
-    //   return g.bounds.center.x;
-    // }));
 
     var centerX = _this.wavyBaseline.originalPosGlyphs[0].bounds.left;
 
@@ -246,53 +241,5 @@ export const wavyBaseline = {
     _this.wavyBaseline.metrics.remove();
 
     _this.view.onFrame = null;
-  },
-
-  updatePosition: (_this, x, y, fontScale, font) => {
-
   }
 };
-
-// var width, height, center;
-// var points = 30;
-// var smooth = false;
-// var path = new Path();
-// var theta = 0;
-// var dx = 0;
-
-  
-// path.fillColor = 'black';
-// initializePath();
-
-// function initializePath() {
-//   center = view.center;
-//   width = view.size.width;
-//   height = view.size.height / 2;
-//   path.segments = [];
-//   dx = (Math.PI * 2 / view.size.width) * 50;
-//   path.add(view.bounds.bottomLeft);
-//   for (var i = 1; i < points; i++) {
-//     var point = new Point(width / points * i, center.y);
-//     path.add(point);
-//   }
-//   path.add(view.bounds.bottomRight);
-//   path.fullySelected = true;
-// }
-
-// function onFrame(event) {
-//     theta += 0.02;
-
-//   var x = theta;
-//   for (var i = 1; i < points; i++) {
-//     var yPos = Math.sin(x) * 50 + height;
-//     path.segments[i].point.y = yPos;
-//     x += dx;
-//   }
-//   if (smooth)
-//     path.smooth({ type: 'continuous' });
-// }
-
-// // Reposition the path whenever the window is resized:
-// function onResize(event) {
-//   initializePath();
-// }

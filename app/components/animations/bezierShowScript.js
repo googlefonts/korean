@@ -102,11 +102,5 @@ export const bezierShowScript = {
     })
 
     _this.view.draw();
-  }, 
-
-
-  updatePosition: (_this, x, y, fontScale, font) => {
-   
-
   }
 };
