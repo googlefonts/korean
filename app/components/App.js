@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode, changeHeaderCollapsedTop, changeAnimationIdx, changeAnimationScriptIdx } from '../actions';
+import { windowResize, changeBackgroundMode, changeCurrentViewFont, changeHeaderMode, changeHeaderCollapsedTop, changeAnimationIdx, changeAnimationScriptIdx, changeIsOnScript } from '../actions';
 import { Header, HeaderCollapsed, FontsList, Description, Footer, NewsfeedLoader, FontCSSLoader, HeaderGutter, GoogleFontBadge } from './';
 import { BODY_480 } from '../constants/defaults';
 import scrollama from 'scrollama';
@@ -47,17 +47,43 @@ class App extends Component {
   handleBodyClick(e){
     let { isOnScript, animationIdx, animationScriptIdx } = this.props;
 
+
     if (!isTouchDevice()){
       this.props.dispatch(changeBackgroundMode(this.props.backgroundMode == "black" ? "white" : "black"));   
-      if (isOnScript) {
 
-        this.props.dispatch(changeAnimationScriptIdx(++animationScriptIdx % 3));  
-      
-      } else {
+      let c1 = document.querySelector('.font-container[data-category-id="1"]');
+      let c2 = document.querySelector('.font-container[data-category-id="2"]');
+      let c3 = document.querySelector('.font-container[data-category-id="3"]');
 
+      let s1StartY = c1.offsetTop;
+      let s1EndY = c2.offsetTop + c2.offsetHeight;
+      let s2StartY = c3.offsetTop;
+      let s2EndY = c3.offsetTop + c3.offsetHeight;
+
+      if (e.pageY >= s1StartY && e.pageY < s1EndY) {
+        
+        this.props.dispatch(changeIsOnScript(false));
         this.props.dispatch(changeAnimationIdx(++animationIdx % 5));
 
+      } else if (e.pageY >= s2StartY && e.pageY < s2EndY) {
+
+        this.props.dispatch(changeIsOnScript(true));
+        this.props.dispatch(changeAnimationScriptIdx(++animationScriptIdx % 3));  
+
+      } else {
+
+        if (isOnScript) {
+
+          this.props.dispatch(changeAnimationScriptIdx(++animationScriptIdx % 3));  
+        
+        } else {
+
+          this.props.dispatch(changeAnimationIdx(++animationIdx % 5));
+
+        }
       }
+
+      
 
     } 
 
@@ -104,7 +130,7 @@ class App extends Component {
   }
 
   handleScroll(e){
-    
+      
 
     var descTop = document.querySelector('.description').getBoundingClientRect().top;
     var scrollY = window.scrollY;
@@ -146,6 +172,25 @@ class App extends Component {
       } 
     }
 
+    let c1 = document.querySelector('.font-container[data-category-id="1"]');
+    let c2 = document.querySelector('.font-container[data-category-id="2"]');
+    let c3 = document.querySelector('.font-container[data-category-id="3"]');
+
+    let s1StartY = c1.offsetTop;
+    let s1EndY = c2.offsetTop + c2.offsetHeight;
+    let s2StartY = c3.offsetTop;
+    let s2EndY = c3.offsetTop + c3.offsetHeight;
+
+    let elem = (document.scrollingElement || document.documentElement);
+    if (elem.scrollTop >= s1StartY && elem.scrollTop < s1EndY) {
+      
+      this.props.dispatch(changeIsOnScript(false));
+      this.props.dispatch(changeAnimationIdx(++animationIdx % 5));
+
+    } else if (elem.scrollTop >= s2StartY && elem.scrollTop < s2EndY) {
+
+      this.props.dispatch(changeIsOnScript(true));
+    }
   }
 
   initScroll(){
