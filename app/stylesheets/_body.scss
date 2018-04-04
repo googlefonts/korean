@@ -86,6 +86,9 @@ body {
   
 }
 
+#root {
+  overflow-x:hidden;
+}
 /*
 * Dotted Border - A SASS mixin to help you increase spacing between the dots of border-style:dotted.
 * By @florbraz
