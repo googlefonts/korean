@@ -145,8 +145,8 @@ class FontsList extends Component {
                       {
                         _.map(categoryFont.fonts, (fontData, i) => {
                           return (
-                            <TrackVisibility once key={fontData.id}>
-                              <FontViewerScript message={this.script[i % this.script.length][0]} {...fontData} />
+                            <TrackVisibility className="font-script-list__cont" partialVisibility={true}  once key={fontData.id}>
+                              <FontViewerScript  message={this.script[i % this.script.length][0]} {...fontData} />
                             </TrackVisibility>
                           )
                         })
@@ -166,7 +166,7 @@ class FontsList extends Component {
                       _.map(categoryFont.fonts, (fontData, i) => {
                         totalIdx++;
                         return (
-                          <TrackVisibility once key={fontData.id}>
+                          <TrackVisibility partialVisibility={true}  once key={fontData.id}>
                             <FontViewer message={this.big[totalIdx % this.big.length][0]} {...fontData} />
                           </TrackVisibility>
                         )

@@ -667,6 +667,15 @@ sup {
   position: relative;
   z-index: 4;
 
+  &__cont {
+    width: calc(50% - 10px);
+    // overflow:hidden;
+
+    @include body_600 {
+      width: 100%;
+    }
+  }
+
   @include body_600 {
     display: block;
   }
@@ -713,12 +722,13 @@ sup {
     @extend .font-viewer;
     position:relative;
     z-index:6;
-    width: calc(50% - 10px);
+    width: 100%;
+    // width: calc(50% - 10px)
     // overflow:hidden;
 
-    @include body_600 {
-      width: 100%;
-    }
+    // @include body_600 {
+    //   width: 100%;
+    // }
     .font-viewer__detail-left {
       // @include dottedBorderTop;
       // display:none;
@@ -778,7 +788,7 @@ sup {
 
   &__left--script {
     @extend .font-viewer__left;
-    min-width: 105px;
+    min-width: auto;
   }
 
 
