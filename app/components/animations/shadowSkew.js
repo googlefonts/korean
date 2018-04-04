@@ -8,7 +8,8 @@ export const shadowSkew = {
     _this.shadowSkew = {
       point: new paper.Point(400, 200),
       tPoint: new paper.Point(400, 200),
-      lgCenter: new paper.Point(0, 0)
+      lgCenter: new paper.Point(0, 0),
+      centerY: 600
     };
 
     _this.project.activate();
@@ -17,9 +18,11 @@ export const shadowSkew = {
     _this.shadowSkew.rightGlyphs = [];
 
 
+
     _.each(_this.glyphs, (glyph, i) => {
       if (i == 0) {
         _this.shadowSkew.lgCenter = glyph.bounds.center;
+        _this.shadowSkew.centerY = glyph.bounds.center.y;
       }
 
       var lg = glyph.clone();
@@ -50,9 +53,10 @@ export const shadowSkew = {
 
     _this.view.draw();
 
-    var skewAmountScale = scalePow().domain([0, 600]).clamp(true).range([-0.5, 0.3]);
-    var xScale = scalePow().domain([-600, 300, 600]).clamp(true).range([0.8, 1.0, 0.8]); //mapping domain values (mouse) to range values
-    var xShadowScale = scalePow().domain([-600, 300, 600]).clamp(true).range([2.0, 1.0, 1.5]); 
+    var skewAmountScale = scalePow().domain([0, _this.shadowSkew.centerY]).clamp(true).range([-0.5, 0.3]);
+    var xScale = scalePow().domain([_this.shadowSkew.centerY - 900, _this.shadowSkew.centerY, _this.shadowSkew.centerY + 900]).clamp(true).range([0.8, 1.0, 0.8]); //mapping domain values (mouse) to range values
+    var xShadowScale = scalePow().domain([_this.shadowSkew.centerY - 900, _this.shadowSkew.centerY, _this.shadowSkew.centerY + 900]).clamp(true).range([2.0, 1.0, 1.5]); 
+
 
     _this.view.onMouseMove = (e) => {
       _this.shadowSkew.tPoint = e.point;
