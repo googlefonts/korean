@@ -177,7 +177,7 @@ class FontViewerScript extends Component {
           </div>
 
           {
-            this.state.loaded ? 
+            this.state.loaded && this.props.isVisible ? 
               ( 
                 detailSelected ?
                 <FontPreviewTyper {...this.props} size={sizeScale(screenWidth)} fontWeightSelected={this.state.fontWeightSelected} />

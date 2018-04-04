@@ -89,7 +89,7 @@ class FontViewer extends Component {
     let detailSelected = currentDetailSelected == this.props.id;
     let { hovered } = this.state;
     let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
-
+    console.log(this.props.nameKo, this.props.isVisible);
 
     return (
       <div className={`font-viewer${ selected ? " font-viewer--selected" : "" }`} data-id={this.props.id}>
@@ -154,7 +154,7 @@ class FontViewer extends Component {
           </div>
 
           {
-            this.state.loaded ? 
+            this.state.loaded && this.props.isVisible ? 
               ( 
                 detailSelected ?
                 <FontPreviewTyper {...this.props}  size={sizeScale(screenWidth)} containerHeight={heightScale(screenWidth)} fontWeightSelected={this.state.fontWeightSelected} />
@@ -182,6 +182,8 @@ class FontViewer extends Component {
           </div> : null
         }
       </div>
+      
+      
     )
   }
 }
