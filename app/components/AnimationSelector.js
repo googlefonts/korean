@@ -7,7 +7,6 @@ class AnimationSelector extends Component {
     
     e.stopPropagation();
     this.props.dispatch(changeAnimationIdx(idx));
-    // document.getElementById('favicon').setAttribute('href','./public/assets/favicon_' + idx + '.png');
   }
 
   render() {
