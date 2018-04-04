@@ -31,13 +31,13 @@ export const bezierShowScript = {
       _.each(glyph.children, (child, j) => {
         _.each(child.segments, (seg, k) => {
           
-          // let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(config.pointSize / 2, config.pointSize / 2)), config.pointSize);
+          let p = new paper.Path.Rectangle(seg.point.subtract(new paper.Point(config.pointSize / 2, config.pointSize / 2)), config.pointSize);
           // let p = new paper.Path.Circle(seg.point.subtract(new paper.Point(config.pointSize / 2, config.pointSize / 2)), config.pointSize);
 
-          // p.fillColor = convertBgMode(backgroundMode, 'b');
-          // p.strokeColor = convertBgMode(backgroundMode, 'f');
-          // p.strokeWidth = 0.5;
-          // _this.bezierShowScript.points.push(p);
+          p.fillColor = convertBgMode(backgroundMode, 'b');
+          p.strokeColor = convertBgMode(backgroundMode, 'f');
+          p.strokeWidth = 0.5;
+          _this.bezierShowScript.points.push(p);
         });
       });
 

@@ -34,6 +34,13 @@ class App extends Component {
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('scroll', this.handleScroll);
     this.handleResize();
+    if (this.props.currentCategory.id === 3) {
+      document.getElementById('favicon').setAttribute('href','./public/assets/favicon-script_' + this.props.animationScriptIdx + '.png');
+    } else {
+      document.getElementById('favicon').setAttribute('href','./public/assets/favicon_' + this.props.animationIdx + '.png');
+    }
+    
+
     // document.getElementById("root").addEventListener('click', this.handleBodyClick.bind(this), false);
   }
 
@@ -45,12 +52,10 @@ class App extends Component {
       if (isOnScript) {
 
         this.props.dispatch(changeAnimationScriptIdx(++animationScriptIdx % 3));  
-        // document.getElementById('favicon').setAttribute('href','./public/assets/favicon-script_'+ ++animationScriptIdx % 3 +'.png');
       
       } else {
 
         this.props.dispatch(changeAnimationIdx(++animationIdx % 5));
-        // document.getElementById('favicon').setAttribute('href','./public/assets/favicon_'+ ++animationIdx % 5 +'.png');
 
       }
 
@@ -60,10 +65,28 @@ class App extends Component {
   }
 
   componentWillReceiveProps(newProps){
-    if (newProps.currentCategory != this.props.currentCategory && 
-        newProps.currentCategory.type === "click") {
-      this.moveScroll(newProps.currentCategory.id);  
+    if (newProps.currentCategory.id != this.props.currentCategory.id) {
+
+      if (newProps.currentCategory.id === 3) {
+        document.getElementById('favicon').setAttribute('href','./public/assets/favicon-script_' + newProps.animationScriptIdx + '.png');
+      } else {
+        document.getElementById('favicon').setAttribute('href','./public/assets/favicon_' + newProps.animationIdx + '.png');
+      }
+      
+      if (newProps.currentCategory.type === "click") {
+        this.moveScroll(newProps.currentCategory.id);    
+      }
+    } 
+
+    if (newProps.animationIdx != this.props.animationIdx) {
+      
+      document.getElementById('favicon').setAttribute('href','./public/assets/favicon_' + newProps.animationIdx + '.png');
+
+    } else if (newProps.animationScriptIdx != this.props.animationScriptIdx) {
+
+      document.getElementById('favicon').setAttribute('href','./public/assets/favicon-script_' + newProps.animationScriptIdx + '.png');
     }
+
   }
 
   moveScroll(currentCategory){
