@@ -28,6 +28,11 @@ class Footer extends Component {
                 <p>
                   <span className="inline_en">Google Fonts</span>는 전 세계의 디자이너와 함께 웹에서 손쉽게 사용할 수 있는 폰트를 개발합니다. <span className="inline_en">Google Fonts</span>와 이곳에 여러분이 제작한 한글 폰트를 제공하고 싶다면 언제든지 <a href="https://twitter.com/googlefonts" target="_blank"><span className="inline_en">@googlefonts</span></a> 앞으로 멘션을 보내주세요.
                 </p>
+                <div className="l-apple-box"></div>
+                <p className="en-regular">
+                  This website is also open source. 
+                  To report any issues, please visit <a href="https://github.com/googlefonts/korean">github.com/googlefonts/korean</a>
+                </p>
               </div> :
 
               <div className="footer__short-desc-column">
@@ -35,14 +40,15 @@ class Footer extends Component {
                 <p className="en-regular">
                   We are working with designers around the world to produce best-in-class typeface designs that are made for the web. If you want to offer your own Korean font through Google Fonts, please contact <a href="https://twitter.com/googlefonts" target="_blank">@googlefonts</a>. 
                 </p>
+                <div className="l-apple-box"></div>
+                <p className="en-regular">
+                  This website is also open source. 
+                  To report any issues, please visit <a href="https://github.com/googlefonts/korean">github.com/googlefonts/korean</a>
+                </p>
               </div> 
             }
 
-            <div className="l-apple-box"></div>
-            <p className="en-regular">
-              This website is also open source. 
-              To report any issues, please visit <a href="https://github.com/googlefonts/korean">github.com/googlefonts/korean</a>
-            </p>
+          
           </div>
           
           <div className="footer__team">
