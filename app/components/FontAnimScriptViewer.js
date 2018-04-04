@@ -143,10 +143,10 @@ class FontAnimScriptViewer extends Component {
 
     if (screenWidth > BODY_480) {
       x = 24 + leftWidthScale(screenWidth) + 49;
-      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.88;
+      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.88 * baseline;
     } else { 
       x = 24 + 49;
-      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.88 + 45;
+      y = 400;//(screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + (size * 0.88 * baseline) + 70;
     }
 
     var fontScale = 1 / font.unitsPerEm * fontSize;
