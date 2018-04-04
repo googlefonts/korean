@@ -50,7 +50,7 @@ class FontAnimScriptViewer extends Component {
       this.resetMessage(newProps);
     } else if (newProps.screenWidth != this.props.screenWidth || 
                newProps.screenHeight != this.props.screenHeight) {
-      this.updatePosition(newProps);
+      this.resetMessage(newProps);
     } else if (newProps.animationScriptIdx != this.props.animationScriptIdx) {
       this.detachAnimation(this.props);
       this.attachAnimation(newProps);
@@ -77,62 +77,10 @@ class FontAnimScriptViewer extends Component {
     this.animations[animationScriptIdx].attach.bind(this, this)(backgroundMode);
   }
 
-  updatePosition(props){
-
-    // let { screenHeight, screenWidth, font, animationScriptIdx } = props;
-    // let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
-
-
-    // var fontSize = 300;
-    // var kerningValue = 0;
-    // var fontScale = 1 / font.unitsPerEm * fontSize;
-    // var x, y;
-
-    // if (screenWidth > 480) {
-    //   x = 24 + 160 + leftWidthScale(screenWidth);
-    //   y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
-    // } else {
-    //   x = 24 + 160;
-    //   y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150 + 46;
-    // }
-    
-
-    // this.project.activate();    
-
-    // _.each(this.glyphs, (glyph, i) => {
-    //   glyph.x = x;
-    //   glyph.y = y;
-    //   glyph.updatePosition();
-
-    //   if (glyph.fontGlyph.advanceWidth) {
-    //     x += glyph.fontGlyph.advanceWidth * fontScale;
-    //   }
-    //   if (i < this.glyphs.length - 1) {
-    //     kerningValue = font.getKerningValue(glyph.fontGlyph, this.glyphs[i + 1].fontGlyph);
-    //     x += kerningValue * fontScale;
-    //   }
-    // });
-
-
-    // if (screenWidth > 480) {
-    //   x = 24 + 160 + leftWidthScale(screenWidth);
-    //   y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150;
-    // } else {
-    //   x = 24 + 160;
-    //   y = (screenHeight * 0.5 - this.containerHeight * 0.5) + 150 + 46;
-    // }
-    
-
-    // this.animations[animationScriptIdx].updatePosition.bind(this, this)(x, y, fontScale, font);
-
-    // this.view.draw();
-
-  }
 
   createGlyphPath(font, message, size, screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing, baseline){
 
     var fontGlyphs = font.stringToGlyphs(message);
-    var kerning = true;
 
     var kerningValue = 0;
     let leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
@@ -216,14 +164,7 @@ class FontAnimScriptViewer extends Component {
 
     // let height;
 
-    if (screenWidth > BODY_600){
-    
-      leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-      width = (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth);
-      height = containerHeight;
-
-    
-    } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
+    if (screenWidth > BODY_480) {
       
       leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
       width = (screenWidth - 24 * 2) - leftWidthScale(screenWidth);

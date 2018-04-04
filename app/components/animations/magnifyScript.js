@@ -147,23 +147,5 @@ export const magnifyScript = {
     _this.view.onFrame = null;
     _this.view.onMouseMove = null;
     _this.view.draw();
-  }, 
-
-
-  updatePosition: (_this, x, y, fontScale, font) => {
-    var kerningValue = 0;
-
-    _.each(_this.magnifyScript.maskedGlyphs, (glyph, i) => {
-      glyph.position = new paper.Point(x, y);
-
-      if (_this.glyphs[i].fontGlyph.advanceWidth) {
-        x += _this.glyphs[i].fontGlyph.advanceWidth * fontScale;
-      }
-      if (i < _this.glyphs.length - 1) {
-        kerningValue = font.getKerningValue(_this.glyphs[i].fontGlyph, _this.glyphs[i + 1].fontGlyph);
-        x += kerningValue * fontScale;
-      }
-    });
-
   }
 };

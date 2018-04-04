@@ -5,11 +5,8 @@ class Glyph extends paper.CompoundPath{
   constructor(params){
     super();
     this.fontGlyph = params.glyph;
-    // this.position = {x: params.x};
-    // this.advanceWidth = params.advanceWidth;
     this.strokeColor = params.strokeColor || 'black';
     this.fillColor = params.fillColor || "white";
-    // debugger;
     this.x = params.x;
     this.y = params.y || 150;
     this.glyphFontSize = params.fontSize;
@@ -25,10 +22,7 @@ class Glyph extends paper.CompoundPath{
     var y = 0;
 
     var scale = 1 / this.unitsPerEm * this.glyphFontSize;
-    // debugger;
     _.each(this.fontGlyph.path.commands, (cmd, i) => { 
-      // debugger;
-      // console.log(cmd);
 
       if (cmd.type === 'M') {
         if (!_.isNull(this.currentPath)){
@@ -77,22 +71,13 @@ class Glyph extends paper.CompoundPath{
         this.currentPath.closed = true;
       }
       
-      // paper.view.draw();  
 
 
     });
 
-    // this.updatePosition();
-    
-    // this.position = new paper.Point(this.x, this.y);
-    // this.fullySelected = true;
   
   }
 
-  updatePosition(){
-
-    this.position = new paper.Point(this.x, this.y);
-  }
 }
 
 export default Glyph;

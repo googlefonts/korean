@@ -6,7 +6,6 @@ import Description from './Description';
 import Footer from './Footer';
 import FontViewer from './FontViewer';
 import FontViewerScript from './FontViewerScript';
-import NewsfeedLoader from './NewsfeedLoader';
 import FontCSSLoader from './FontCSSLoader';
 import AnimationSelector from './AnimationSelector';
 import DescriptionFontSelector from './DescriptionFontSelector';
@@ -33,7 +32,6 @@ export {
   Description,
   FontViewer,
   Footer,
-  NewsfeedLoader,
   FontCSSLoader,
   AnimationSelector,
   DescriptionFontSelector,

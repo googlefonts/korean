@@ -101,11 +101,5 @@ export const riseAndBlur = {
     _this.view.onFrame = null;
     _this.view.onMouseMove = null;
     _this.view.draw();
-  }, 
-
-
-  updatePosition: (_this, x, y, fontScale, font) => {
-   
-
   }
 };
