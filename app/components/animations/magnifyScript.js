@@ -9,15 +9,14 @@ export const magnifyScript = {
     var sizeScale;
 
     if (_this.props.screenWidth <= BODY_480) {
-      sizeScale = scaleLinear().domain([0, 300]).clamp(true).range([140, 0]);
+      sizeScale = scaleLinear().domain([0, 300]).clamp(true).range([125, 0]);
     } else {
-      sizeScale = scaleLinear().domain([0, 170]).clamp(true).range([150, 0]);
-
+      sizeScale = scaleLinear().domain([0, 170]).clamp(true).range([125, 0]);
     }
     
     _this.magnifyScript = {
-      point: new paper.Point(400, 200),
-      tPoint: new paper.Point(400, 200),
+      point: new paper.Point(300, 200),
+      tPoint: new paper.Point(300, 200),
       size: 100,
       tSize: 100
     };
@@ -50,7 +49,7 @@ export const magnifyScript = {
     if (_this.props.screenWidth <= BODY_480) {
       _this.magnifyScript.scaleGroup.scale(1.4);
     } else {
-      _this.magnifyScript.scaleGroup.scale(1.8);
+      _this.magnifyScript.scaleGroup.scale(1.4);
 
     }
 

@@ -7,9 +7,9 @@ const sizeScale = scaleLinear().domain([0, 300]).clamp(true).range([180, 1]);
 export const bezierBubble = {
   attach: (_this, backgroundMode) => {
     _this.bezierBubble = {
-      prevPoint: new paper.Point(400, 200),
-      point: new paper.Point(400, 200),
-      tPoint: new paper.Point(400, 200),
+      prevPoint: new paper.Point(400, 400),
+      point: new paper.Point(400, 400),
+      tPoint: new paper.Point(400, 400),
       points: new paper.Group(),
       size: 10,
       tSize: 10,
@@ -114,6 +114,7 @@ export const bezierBubble = {
       _this.bezierBubble.circle.scale(_this.bezierBubble.size / radius);
       
       _this.bezierBubble.prevPoint = _this.bezierBubble.point.clone();
+
 
 
 

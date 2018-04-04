@@ -119,23 +119,32 @@ export const wavyBaseline = {
 
 
     var theta = 0;
-    var radiusScale = scalePow().domain([0, 350]).clamp(true).range([50, 160]); //MAX height
-    var waveScale;
+    var radiusScale;
+    var waveScale, waveSpeed;
+
+    if (_this.props.screenWidth <= BODY_480) {
+      radiusScale = scalePow().domain([0, 350]).clamp(true).range([50, 80]); //MAX height
+    } else {
+      radiusScale = scalePow().domain([0, 350]).clamp(true).range([50, 160]); //MAX height
+    }
 
     if (_this.props.screenWidth <= BODY_480) {
 
-      waveScale = scalePow().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.7]);
-    
+      waveScale = scalePow().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.2, Math.PI * 0.6]);
+      // waveSpeed = scalePow().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([0.02, 0.1]);
+
     } else {
 
       waveScale = scalePow().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([Math.PI * 0.5, Math.PI * 4]); //# of waves
+      // waveSpeed = scalePow().domain([0, _this.view.viewSize.width - centerX]).clamp(true).range([0.02, 0.1]);
       
     }
 
     var amplitudeScale = scaleLinear().domain([0, _this.props.screenWidth]).clamp(true).range([0, waveScale(_this.props.screenWidth)]);
 
     _this.view.onFrame = (e) => {
-      theta += 0.02;
+      // theta += waveSpeed;
+      theta += 0.05;
 
       _this.wavyBaseline.point = _this.wavyBaseline.point.add(_this.wavyBaseline.tPoint.subtract(_this.wavyBaseline.point).multiply(0.2));
 

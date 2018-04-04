@@ -188,7 +188,7 @@ class FontViewerScript extends Component {
                   <FontOutlineViewer  fontSize={this.props.fontSize} letterSpacing={this.props.letterSpacing} baseline={this.props.baseline} onMouseEnter={this.handleMouseEnter.bind(this)}  containerHeight={heightScale(screenWidth)} size={sizeScale(screenWidth)} category={this.props.category} id={ this.props.fontName } message={this.props.message} font={ this.state.font } />
                 )
               ) :
-              <div style={{width: '50%', height: heightScale(screenWidth), display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <div style={{width: '100%', maxWidth: '400px', height: heightScale(screenWidth), display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <div className="linear-activity">
                   <div className="indeterminate"></div>
                 </div>
