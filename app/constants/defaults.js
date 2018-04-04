@@ -273,7 +273,7 @@ export const FONTS = [
     category: 3
   },
   {
-    id: 30,
+    id: 31,
     nameKo: "개구쟁이",
     nameEn: "Gaegu",
     fontName: 'Gaegu',
