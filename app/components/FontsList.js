@@ -6,6 +6,7 @@ import { MESSAGES } from '../constants/messages';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3';
 import { cutString, cutStringScript } from '../utils';
+import TrackVisibility from 'react-on-screen';
 
 const Fragment = React.Fragment;
 const msgScale = cutString;
@@ -144,7 +145,9 @@ class FontsList extends Component {
                       {
                         _.map(categoryFont.fonts, (fontData, i) => {
                           return (
-                            <FontViewerScript key={fontData.id} message={this.script[i % this.script.length][0]} {...fontData} />
+                            <TrackVisibility className="font-script-list__cont" partialVisibility={true}  once key={fontData.id}>
+                              <FontViewerScript  message={this.script[i % this.script.length][0]} {...fontData} />
+                            </TrackVisibility>
                           )
                         })
                       }
@@ -163,7 +166,9 @@ class FontsList extends Component {
                       _.map(categoryFont.fonts, (fontData, i) => {
                         totalIdx++;
                         return (
-                          <FontViewer key={fontData.id} message={this.big[totalIdx % this.big.length][0]} {...fontData} />
+                          <TrackVisibility partialVisibility={true}  once key={fontData.id}>
+                            <FontViewer message={this.big[totalIdx % this.big.length][0]} {...fontData} />
+                          </TrackVisibility>
                         )
                       })
                     }

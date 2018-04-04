@@ -60,7 +60,7 @@ class FontOutlineViewer extends Component {
     var x;
 
     if (category === 3) {
-      x = 48;
+      x = 24;
     } else {
       x = screenWidth > BODY_480 ? 24 : 0;
     }
@@ -118,25 +118,31 @@ class FontOutlineViewer extends Component {
   componentDidUpdate(){
 
     let { screenWidth, category, containerHeight } = this.props;
-    let leftWidthScale;
+    let leftWidthScale, width, height;
     
     if (category === 3) {
-      
-      if (screenWidth > BODY_600){
+       if (screenWidth > BODY_600){
       
         leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-        this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth), containerHeight);
+        width = ((screenWidth * 0.5)- 24 * 2) - leftWidthScale(screenWidth);
+        height = containerHeight;
+
       
       } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
-
+        
         leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-        this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) - leftWidthScale(screenWidth), containerHeight);
+        width = (screenWidth - 24 * 2) - leftWidthScale(screenWidth);
+        height = containerHeight;
+
       
       } else {
 
-        this.view.viewSize = new paper.Size(screenWidth - 24 * 2, containerHeight);
+        width = screenWidth - 24 * 2;
+        height = containerHeight;
 
       }
+      
+      this.view.viewSize = new paper.Size(width, height);
 
     } else {
 
@@ -156,7 +162,7 @@ class FontOutlineViewer extends Component {
       if (screenWidth > BODY_600){
       
         leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-        width = (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth);
+        width = ((screenWidth * 0.5)- 24 * 2) - leftWidthScale(screenWidth);
         height = containerHeight;
 
       
@@ -191,7 +197,7 @@ class FontOutlineViewer extends Component {
     }
 
     return (
-        <canvas onMouseEnter={this.props.onMouseEnter} id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2} height={ height } style={{ width: width, height: height}}>
+        <canvas onMouseEnter={this.props.onMouseEnter} id={ id.toLowerCase().replace(/ /g, "-") } ref={ ref => { this.refCanvas = ref;} } width={width * 2 } height={ height } style={{ width: width, height: height}}>
         </canvas>
     );
   }
