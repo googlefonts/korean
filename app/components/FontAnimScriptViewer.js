@@ -90,11 +90,11 @@ class FontAnimScriptViewer extends Component {
     var x, y;
 
     if (screenWidth > BODY_480) {
-      x = 24 + leftWidthScale(screenWidth) + 48;
-      y = (screenHeight * 0.5 - containerHeight * 0.5) + size * 0.88 * baseline + 1;
+      x = 24 + leftWidthScale(screenWidth) + 24;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + size * 0.89 * baseline - 1;
     } else { 
-      x = 24 + 49;
-      y = (screenHeight * 0.5 - containerHeight * 0.5) + (size * 0.89 * baseline) + 66;
+      x = 50;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + (size * 0.89 * baseline) + 64;
     }
 
     var fontScale = 1 / font.unitsPerEm * fontSize;
@@ -160,22 +160,27 @@ class FontAnimScriptViewer extends Component {
 
   render() {
     let { screenWidth, id, category, screenHeight, containerHeight, animationScriptIdx } = this.props;
-    let width, height, leftWidthScale;
+    let width, height, leftWidthScale, offset;
 
-    // let height;
-
-    if (screenWidth > BODY_480) {
+    if (screenWidth > BODY_600){
+    
+      leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
+      width = (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth);
+      height = containerHeight;
+      offset = 0;
+    
+    } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
       
       leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
       width = (screenWidth - 24 * 2) - leftWidthScale(screenWidth);
       height = containerHeight;
-
-    
+      offset = 0;
+      
     } else {
 
       width = screenWidth - 24 * 2;
       height = containerHeight;
-
+      offset = 6;
     }
 
     return (
@@ -184,7 +189,7 @@ class FontAnimScriptViewer extends Component {
           <canvas id={ id.toLowerCase().replace(/ /g, "-") } className={ "efs-" + animationScriptIdx } ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
           </canvas>
         </div>
-        <div style={{ width: width, height: height }}>
+        <div style={{ width: width, height: Math.floor(height) + offset }}>
         </div>
       </Fragment>
     );

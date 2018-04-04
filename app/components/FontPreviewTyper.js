@@ -125,7 +125,7 @@ class FontPreviewTyper extends Component {
     };
 
     return (
-      <div className="preview-typer" style={{ overflow: 'hidden'}}>
+      <div className="preview-typer" style={{ overflow: 'hidden'}} style={this.props.style}>
         <input value={this.state.msg} type="text" onChange={this.handleChange.bind(this)} style={style} />
       </div>
     );

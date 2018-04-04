@@ -29,25 +29,31 @@ class FontViewerScript extends Component {
 
   componentDidMount(){
     
-    opentype.load(this.props.fontUrl, (err, font) => {
-      
-      if (err) {
-
-        console.log(err);
-
-      } else {
-
-        this.setState({
-          loaded: true,
-          font: font,
-          fontWeightSelected: !_.isNull(_.last(this.props.weights).fontWeight) ? _.last(this.props.weights).fontWeight : 400
-        });
-      
-      }
-
-    });
 
 
+  }
+
+  componentWillReceiveProps(newProps){
+
+    if (newProps.isVisible && !this.props.isVisible) {
+      opentype.load(this.props.fontUrl, (err, font) => {
+        
+        if (err) {
+
+          console.log(err);
+
+        } else {
+          this.setState({
+            loaded: true,
+            font: font,
+            fontWeightSelected: !_.isNull(_.last(this.props.weights).fontWeight) ? _.last(this.props.weights).fontWeight : 400
+          });
+        
+        }
+
+      });
+    }
+    
   }
 
   handleDetailSelectedClick(e){
@@ -117,7 +123,7 @@ class FontViewerScript extends Component {
     return (
       <div onMouseLeave={this.handleMouseLeave.bind(this)} className={`font-viewer${ selected ? "--script-selected" : "--script" }`} data-id={this.props.id}>
         <div className="font-viewer__flex-wrapper--top">
-          <div className="font-viewer__left--script" style={{ minWidth: screenWidth > BODY_480 ? leftWidthScale(screenWidth) : '100%' }}>
+          <div className="font-viewer__left--script" style={{ width: screenWidth > BODY_480 ? leftWidthScale(screenWidth) : '100%' }}>
             {
               locale == "ko" ? 
               <h3 style={{ opacity: hovered ? 0.5 : 1 }} onMouseEnter={this.handleDetailMouseEnter.bind(this)} onMouseLeave={this.handleDetailMouseLeave.bind(this)} onClick={this.handleDetailSelectedClick.bind(this)}>
@@ -180,7 +186,7 @@ class FontViewerScript extends Component {
             this.state.loaded ? 
               ( 
                 detailSelected ?
-                <FontPreviewTyper {...this.props} size={sizeScale(screenWidth)} fontWeightSelected={this.state.fontWeightSelected} />
+                <FontPreviewTyper {...this.props} style={{width: `calc(100% - ${leftWidthScale(screenWidth)}px`}} size={sizeScale(screenWidth)} fontWeightSelected={this.state.fontWeightSelected} />
                 : 
                 (
                   selected ? 

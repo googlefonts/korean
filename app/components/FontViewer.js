@@ -25,24 +25,31 @@ class FontViewer extends Component {
 
   componentDidMount(){
     
-    opentype.load(this.props.fontUrl, (err, font) => {
-      
-      if (err) {
-
-        console.log(err);
-
-      } else {
-        this.setState({
-          loaded: true,
-          font: font,
-          fontWeightSelected: !_.isNull(_.last(this.props.weights).fontWeight) ? _.last(this.props.weights).fontWeight : 400
-        });
-      
-      }
-
-    });
 
 
+  }
+
+  componentWillReceiveProps(newProps){
+
+    if (newProps.isVisible && !this.props.isVisible) {
+      opentype.load(this.props.fontUrl, (err, font) => {
+        
+        if (err) {
+
+          console.log(err);
+
+        } else {
+          this.setState({
+            loaded: true,
+            font: font,
+            fontWeightSelected: !_.isNull(_.last(this.props.weights).fontWeight) ? _.last(this.props.weights).fontWeight : 400
+          });
+        
+        }
+
+      });
+    }
+    
   }
 
   handleWeightSelectedClick(weightData, e){
@@ -89,8 +96,6 @@ class FontViewer extends Component {
     let detailSelected = currentDetailSelected == this.props.id;
     let { hovered } = this.state;
     let leftWidthScale = scaleLinear().domain([600, 1440]).clamp(true).range([105, 210]);
-
-
     return (
       <div className={`font-viewer${ selected ? " font-viewer--selected" : "" }`} data-id={this.props.id}>
         <div className="font-viewer__flex-wrapper--top">
@@ -154,7 +159,7 @@ class FontViewer extends Component {
           </div>
 
           {
-            this.state.loaded ? 
+            this.state.loaded && this.props.isVisible ? 
               ( 
                 detailSelected ?
                 <FontPreviewTyper {...this.props}  size={sizeScale(screenWidth)} containerHeight={heightScale(screenWidth)} fontWeightSelected={this.state.fontWeightSelected} />
@@ -182,6 +187,8 @@ class FontViewer extends Component {
           </div> : null
         }
       </div>
+      
+      
     )
   }
 }
