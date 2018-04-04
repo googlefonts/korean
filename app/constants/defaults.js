@@ -250,6 +250,55 @@ export const FONTS = [
     descriptionKo: "부리와 맺음 등의 마감을 직선적으로 표현해 기존의 한글 명조체보다 현대적인 인상을 주는 서체입니다.",
     descriptionEn: "Nanum Myungjo is a serif font that achieves a contemporary feel with its straight beaks and terminals.",
     category: 2
+  },{
+    id: 27,
+    nameKo: "감자꽃마을",
+    nameEn: "Gamja Flower",
+    fontName: 'Gamja Flower',
+    weights: [
+      {
+        fontWeight: 400,
+        weightName: "Regular"
+      }
+    ],
+    letterSpacing: -30,
+    fontSize: 1,
+    baseline:0.85,
+    fontUrl : "https://fonts.gstatic.com/s/gamjaflower/v2/6NUR8FiKJg-Pa0rM6uN40Z4UxPVC.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Gamja+Flower:400",
+    foundries: ["yoondesign"],
+    descriptionKo: "펜글씨의 형태와 질감, 리듬감 있는 글줄 흐름을 통해 감자꽃의 우아한 인상을 반영한 서체입니다.",
+    descriptionEn: "Gamja Flower reflects the graceful impression of the potato flower through the form and texture of pen writing with a rhythmic baseline.",
+    category: 3
+  },
+  {
+    id: 30,
+    nameKo: "개구쟁이",
+    nameEn: "Gaegu",
+    fontName: 'Gaegu',
+    weights: [
+      {
+        fontWeight: 300,
+        weightName: "Light"
+      },
+      {
+        fontWeight: 400,
+        weightName: "Regular"
+      },
+      {
+        fontWeight: 700,
+        weightName: "Bold"
+      }
+    ],
+    letterSpacing: -30,
+    fontSize: 1,
+    baseline: 0.875,
+    fontUrl : "https://fonts.gstatic.com/s/gaegu/v2/TuGSUVB6Up9NU573jsw26MA.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Gaegu:300,400,700",
+    foundries: ["jikji"],
+    descriptionKo: "펜글씨의 자유로운 형태와 구조를 반영해 다양한 표정과 동화적 이미지를 반영한 서체입니다.",
+    descriptionEn: "Gaegu features various facial expressions and fairytale-like images using freeform pen writing.",
+    category: 3
   },
   {
     id: 8,
@@ -285,7 +334,7 @@ export const FONTS = [
     ],
     letterSpacing: 0,
     fontSize: 1.1,
-    baseline: 0.65,
+    baseline: 0.7,
     fontUrl : "https://fonts.gstatic.com/s/cutefont/v1/Noaw6Uny2oWPbSHMrY6flZlS.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Cute+Font",
     foundries: ["typodesign"],
@@ -310,56 +359,6 @@ export const FONTS = [
     fontUrl : "https://fonts.gstatic.com/s/kiranghaerang/v1/E21-_dn_gvvIjhYON1lpIU4-bfqiUvE.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Kirang+Haerang",
     foundries: ["woowa"],
-    descriptionKo: "삐뚤어진 글자 테두리 모양 원형을 채워 만든 서체입니다. 동그라미가 커진 것이 특징입니다.",
-    descriptionEn: "Kirang Haerang features irregular outer shapes and mostly filled in circles of various sizes, creating an off-kilter, charming effect.",
-    category: 3
-  },
-  {
-    id: 27,
-    nameKo: "감자꽃",
-    nameEn: "Gamja Flower",
-    fontName: 'Gamja Flower',
-    weights: [
-      {
-        fontWeight: 400,
-        weightName: "Regular"
-      }
-    ],
-    letterSpacing: 0,
-    fontSize: 1,
-    baseline:1,
-    fontUrl : "https://fonts.gstatic.com/s/gamjaflower/v2/6NUR8FiKJg-Pa0rM6uN40Z4UxPVC.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Gamja+Flower:400",
-    foundries: ["yoondesign"],
-    descriptionKo: "삐뚤어진 글자 테두리 모양 원형을 채워 만든 서체입니다. 동그라미가 커진 것이 특징입니다.",
-    descriptionEn: "Kirang Haerang features irregular outer shapes and mostly filled in circles of various sizes, creating an off-kilter, charming effect.",
-    category: 3
-  },
-  {
-    id: 30,
-    nameKo: "개구",
-    nameEn: "Gaegu",
-    fontName: 'Gaegu',
-    weights: [
-      {
-        fontWeight: 300,
-        weightName: "Light"
-      },
-      {
-        fontWeight: 400,
-        weightName: "Regular"
-      },
-      {
-        fontWeight: 700,
-        weightName: "Bold"
-      }
-    ],
-    letterSpacing: 0,
-    fontSize: 1,
-    baseline: 1,
-    fontUrl : "https://fonts.gstatic.com/s/gaegu/v2/TuGSUVB6Up9NU573jsw26MA.woff",
-    cssUrl : "https://fonts.googleapis.com/css?family=Gaegu:300,400,700",
-    foundries: ["jikji"],
     descriptionKo: "삐뚤어진 글자 테두리 모양 원형을 채워 만든 서체입니다. 동그라미가 커진 것이 특징입니다.",
     descriptionEn: "Kirang Haerang features irregular outer shapes and mostly filled in circles of various sizes, creating an off-kilter, charming effect.",
     category: 3
