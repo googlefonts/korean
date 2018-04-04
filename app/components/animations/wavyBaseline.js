@@ -42,7 +42,8 @@ export const wavyBaseline = {
       metrics: new paper.Group(),
       point: new paper.Point(765, 200),
       tPoint: new paper.Point(765, 200),
-      prevPoint: new paper.Point(400, 200)
+      prevPoint: new paper.Point(400, 200),
+      wavyBaseline: 600
     };
 
    
@@ -50,8 +51,10 @@ export const wavyBaseline = {
 
     
     _.each(_this.glyphs, (glyph, i) => {
+      if (i == 0) {
+        _this.wavyBaseline.centerY = glyph.bounds.center.y;
+      }
 
-      // var _g = glyph.clone();
       var _g = interpolateCompoundPath(glyph);
       
       var scale = 1 / glyph.unitsPerEm * glyph.glyphFontSize;
@@ -59,12 +62,18 @@ export const wavyBaseline = {
         new paper.Point(glyph.x, size * 0.6), new paper.Point(glyph.x, size * 1.8)
       );
 
+      metric.strokeColor = convertBgMode(backgroundMode, "f");
+      metric.dashArray = [1, 3];
+      metric.strokeWidth = 1;
 
       _this.wavyBaseline.metrics.addChild(metric);
 
       if (i + 1 >= _this.glyphs.length) {
-        var metric = new paper.Path.Line(new paper.Point(glyph.x + glyph.fontGlyph.advanceWidth * scale, size * 0.6), new paper.Point(glyph.x + glyph.fontGlyph.advanceWidth * scale, size * 1.8));
-        
+        var metric = new paper.Path.Line(new paper.Point(glyph.x + glyph.fontGlyph.advanceWidth * scale, _this.wavyBaseline.centerY - size * 0.6), new paper.Point(glyph.x + glyph.fontGlyph.advanceWidth * scale, _this.wavyBaseline.centerY + size * 0.6));
+        metric.strokeColor = convertBgMode(backgroundMode, "f");
+        metric.dashArray = [1, 3];
+        metric.strokeWidth = 1;
+
         _this.wavyBaseline.metrics.addChild(metric);
       }
 
@@ -162,7 +171,7 @@ export const wavyBaseline = {
         _.each(child.segments, (seg, j) => {
 
           let x = theta + amplitudeScale(seg.point.x);
-          seg.point.y = (j % 2 == 0 ? size * 0.6 : size * 1.8) + Math.sin(x) * radiusScale(dist);
+          seg.point.y = (j % 2 == 0 ? (_this.wavyBaseline.centerY - (size * 0.6)) : (_this.wavyBaseline.centerY + (size * 0.6)) ) + Math.sin(x) * radiusScale(dist);
 
         });
       

@@ -14,6 +14,15 @@ class GoogleFontBadge extends Component {
     }
   }
 
+  componentWillReceiveProps(newProps){
+    if (newProps.screenWidth != this.props.screenHeight ||
+        newProps.screenHeight != this.props.screenHeight) {
+
+      this.scroller.resize();
+      this.footerScroller.resize();
+    }
+  }
+
   componentDidMount(){
     let { screenHeight } = this.props;
     
@@ -57,10 +66,10 @@ class GoogleFontBadge extends Component {
 
   handleStepExit(e){
 
-    
-      this.setState({
-        conversed: false
-      });
+  
+    this.setState({
+      conversed: false
+    });
   }
 
   render() {

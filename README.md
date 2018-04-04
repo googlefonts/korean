@@ -1,12 +1,10 @@
 # Google Fonts + 한국어 • Google Fonts + Korean
  
-As Google makes progress on supporting Korean web typography, we invite designers and developers to experiment with these Korean web fonts now available from Google Fonts Early Access.
+Great typography makes the web more beautiful, fast, and open. Using machine learning and the latest web standards, Google Fonts now offers the open source Korean fonts showcased in this website.
 
 This repository contains the type specimen site built to showcase the collection.
 
 ## Getting started
-
-More detailed instructions to come.
 
 First, clone the project and `cd` into the directory. Then run:
 
