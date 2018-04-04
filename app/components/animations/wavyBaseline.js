@@ -5,7 +5,6 @@ import { BODY_480 } from '../../constants/defaults';
 
 const amountScale = scaleLinear().domain([150, 2000]).clamp(true).range([50, 300]);
 
-var yMax = Number.MIN_VALUE;
 const interpolateCompoundPath = (path) => {
   // console.log(_this.xDist);
   var interpolatedPath = new paper.CompoundPath();
@@ -20,9 +19,6 @@ const interpolateCompoundPath = (path) => {
           var offset = j / amount * length;
           var point = child.getPointAt(offset);
           
-          if (yMax < point.y) {
-            yMax = point.y;
-          }
 
           childIntPath.add(point);
       }
@@ -43,7 +39,8 @@ export const wavyBaseline = {
       point: new paper.Point(765, 200),
       tPoint: new paper.Point(765, 200),
       prevPoint: new paper.Point(400, 200),
-      wavyBaseline: 600
+      centerY: 600,
+      bottomY: 800
     };
 
    
@@ -53,7 +50,10 @@ export const wavyBaseline = {
     _.each(_this.glyphs, (glyph, i) => {
       if (i == 0) {
         _this.wavyBaseline.centerY = glyph.bounds.center.y;
+        _this.wavyBaseline.bottomY = glyph.bounds.bottom;
+
       }
+
 
       var _g = interpolateCompoundPath(glyph);
       
@@ -95,7 +95,7 @@ export const wavyBaseline = {
     _this.wavyBaseline.metrics.strokeWidth = 1;
 
     var baseline = new paper.Path.Line(
-      new paper.Point(0, yMax + 10), new paper.Point(_this.props.screenWidth, yMax + 10)
+      new paper.Point(0, _this.wavyBaseline.bottomY + 10), new paper.Point(_this.props.screenWidth, _this.wavyBaseline.bottomY + 10)
     );
 
     let amount = 500;
@@ -163,7 +163,7 @@ export const wavyBaseline = {
 
       _.each(_this.wavyBaseline.realBaseLine.segments, (seg, i) => {
         let x = theta + amplitudeScale(seg.point.x);
-        seg.point.y = (yMax + 10) + Math.sin(x) * radiusScale(dist);
+        seg.point.y = (_this.wavyBaseline.bottomY + 10) + Math.sin(x) * radiusScale(dist);
       });
 
       _.each(_this.wavyBaseline.metrics.children, (child, i) => {
