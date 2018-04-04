@@ -45,10 +45,12 @@ class App extends Component {
       if (isOnScript) {
 
         this.props.dispatch(changeAnimationScriptIdx(++animationScriptIdx % 3));  
+        // document.getElementById('favicon').setAttribute('href','./public/assets/favicon-script_'+ ++animationScriptIdx % 3 +'.png');
       
       } else {
 
         this.props.dispatch(changeAnimationIdx(++animationIdx % 5));
+        // document.getElementById('favicon').setAttribute('href','./public/assets/favicon_'+ ++animationIdx % 5 +'.png');
 
       }
 
