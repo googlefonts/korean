@@ -16,8 +16,8 @@ export const magnifyScript = {
     }
     
     _this.magnifyScript = {
-      point: new paper.Point(400, 200),
-      tPoint: new paper.Point(400, 200),
+      point: new paper.Point(300, 200),
+      tPoint: new paper.Point(300, 200),
       size: 100,
       tSize: 100
     };
