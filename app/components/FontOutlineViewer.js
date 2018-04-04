@@ -21,7 +21,7 @@ class FontOutlineViewer extends Component {
 
     var { font, message, category, screenWidth, backgroundMode, size, fontSize, letterSpacing, baseline } = this.props;
     // console.log (fontSize + "," + baseline);
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode, fontSize, letterSpacing, baseline, screenWidth, category);
+    this.createGlyphPath(font, message, size, backgroundMode, fontSize, letterSpacing, baseline, screenWidth, category);
     this.project.activate();
     this.view.draw();
   }
@@ -98,27 +98,6 @@ class FontOutlineViewer extends Component {
 
   }
 
-  getSize(category, screenWidth, size) {
-    // if (category === 3) {
-
-    //   if (screenWidth > BODY_600){
-        
-    //     return size;
-      
-    //   } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
-
-    //     return 250;
-      
-    //   } else {
-
-    //     return 300;
-
-    //   }
-
-    // } else {
-      return size;
-    // }
-  }
 
   resetMessage(props){
     let { message, font, category, screenWidth, backgroundMode, size, fontSize, letterSpacing, baseline } = props;
@@ -130,7 +109,7 @@ class FontOutlineViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(category, screenWidth, size), backgroundMode, fontSize, letterSpacing, baseline, screenWidth, category);
+    this.createGlyphPath(font, message, size, backgroundMode, fontSize, letterSpacing, baseline, screenWidth, category);
     this.view.draw();
 
   }
@@ -151,11 +130,11 @@ class FontOutlineViewer extends Component {
       } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
 
         leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-        this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) - leftWidthScale(screenWidth), 300);
+        this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) - leftWidthScale(screenWidth), containerHeight);
       
       } else {
 
-        this.view.viewSize = new paper.Size(screenWidth - 24 * 2, 400);
+        this.view.viewSize = new paper.Size(screenWidth - 24 * 2, containerHeight);
 
       }
 
@@ -185,13 +164,13 @@ class FontOutlineViewer extends Component {
         
         leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
         width = (screenWidth - 24 * 2) - leftWidthScale(screenWidth);
-        height = 300;
+        height = containerHeight;
 
       
       } else {
 
         width = screenWidth - 24 * 2;
-        height = 400;
+        height = containerHeight;
 
       }
 

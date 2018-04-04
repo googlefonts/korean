@@ -31,7 +31,7 @@ class FontAnimScriptViewer extends Component {
 
     var { letterSpacing, baseline, fontSize, font, message, screenHeight, screenWidth, animationScriptIdx, backgroundMode, size, containerHeight } = this.props;
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing, baseline);
+    this.createGlyphPath(font, message, size, screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing, baseline);
 
     this.attachAnimation(this.props);
     this.project.activate();
@@ -143,10 +143,10 @@ class FontAnimScriptViewer extends Component {
 
     if (screenWidth > BODY_480) {
       x = 24 + leftWidthScale(screenWidth) + 48;
-      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + size * 0.88 * baseline + 1;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + size * 0.88 * baseline + 1;
     } else { 
       x = 24 + 49;
-      y = (screenHeight * 0.5 - this.getHeight(screenWidth, containerHeight) * 0.5) + (size * 0.89 * baseline) + 64;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + (size * 0.89 * baseline) + 66;
     }
 
     var fontScale = 1 / font.unitsPerEm * fontSize;
@@ -193,7 +193,7 @@ class FontAnimScriptViewer extends Component {
 
     this.glyphs = [];
 
-    this.createGlyphPath(font, message, this.getSize(screenWidth, size), screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing, baseline);
+    this.createGlyphPath(font, message, size, screenWidth, screenHeight, backgroundMode, containerHeight, fontSize, letterSpacing, baseline);
 
     
     this.detachAnimation(props);
@@ -203,68 +203,8 @@ class FontAnimScriptViewer extends Component {
 
   }
 
-  getHeight(screenWidth, containerHeight) {
-  
-    if (screenWidth > BODY_600){
-    
-      return containerHeight;
-
-    
-    } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
-      
-      return 300;
-
-    
-    } else {
-
-      return 400;
-
-    }    
-  }
-
-
-  getSize(screenWidth, size) {
-
-    // if (screenWidth > BODY_600){
-      
-      return size;
-    
-    // } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
-
-    //   return 250;
-    
-    // } else {
-
-    //   return 300;
-
-    // }
-  }
-
-
 
   componentDidUpdate(){
-
-   
-    // let { screenWidth, category } = this.props;
-    // let leftWidthScale;
-    
-      
-    // if (screenWidth > BODY_600){
-    
-    //   leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-    //   this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) * 0.5 - leftWidthScale(screenWidth), 200);
-    
-    // } else if (screenWidth <= BODY_600 && screenWidth > BODY_480) {
-
-    //   leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
-    //   this.view.viewSize = new paper.Size( (screenWidth - 24 * 2) - leftWidthScale(screenWidth), 300);
-    
-    // } else {
-
-    //   this.view.viewSize = new paper.Size(screenWidth - 24 * 2, 400);
-
-    // }
-
     let { screenWidth, screenHeight } = this.props;
     this.view.viewSize = new paper.Size( screenWidth, screenHeight );
 
@@ -287,13 +227,13 @@ class FontAnimScriptViewer extends Component {
       
       leftWidthScale = scaleLinear().domain([480, 1440]).clamp(true).range([65, 105]);
       width = (screenWidth - 24 * 2) - leftWidthScale(screenWidth);
-      height = 300;
+      height = containerHeight;
 
     
     } else {
 
       width = screenWidth - 24 * 2;
-      height = 400;
+      height = containerHeight;
 
     }
 
@@ -303,7 +243,7 @@ class FontAnimScriptViewer extends Component {
           <canvas id={ id.toLowerCase().replace(/ /g, "-") } className={ "efs-" + animationScriptIdx } ref={ ref => { this.refCanvas = ref;} } width={screenWidth} height={screenHeight} style={{ width: screenWidth, height: screenHeight}}>
           </canvas>
         </div>
-        <div style={{ width: width, height: height}}>
+        <div style={{ width: width, height: height }}>
         </div>
       </Fragment>
     );
