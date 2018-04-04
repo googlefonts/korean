@@ -141,10 +141,10 @@ class FontAnimViewer extends Component {
 
     if (screenWidth > 480) {
       x = 24 + leftWidthScale(screenWidth) + 20;
-      y = (screenHeight * 0.5 - containerHeight * 0.5) + size * 0.88;//size * 0.5;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + size * 0.89;//size * 0.5;
     } else {
       x = 24;// + 25;
-      y = (screenHeight * 0.5 - containerHeight * 0.5) + size * 0.88+ 40;//size * 0.5 + 46;
+      y = (screenHeight * 0.5 - containerHeight * 0.5) + size * 0.89 + 64;//size * 0.5 + 46;
     }
 
     var fontScale = 1 / font.unitsPerEm * size;

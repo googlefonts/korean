@@ -334,7 +334,7 @@ export const FONTS = [
       }
     ],
     letterSpacing: 0,
-    fontSize: 1.1,
+    fontSize: 1.05,
     baseline: 0.7,
     fontUrl : "https://fonts.gstatic.com/s/cutefont/v2/Noaw6Uny2oWPbSHMrY6flZlS.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Cute+Font",
