@@ -4,8 +4,8 @@ export const BODY_820 = 819;
 export const BODY_600 = 599;
 export const BODY_480 = 479;
 
-// curl -A "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" "https://fonts.googleapis.com/css?family=Sunflower:700&subset=korean"
-
+// curl -A "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" "https://fonts.googleapis.com/css?family=Gaegu:700&subset=korean"
+//https://fonts.googleapis.com/css?family=Gaegu:700
 export const FOUNDRIES = {
   "google": {
     titleKo: "구글",
@@ -310,6 +310,56 @@ export const FONTS = [
     fontUrl : "https://fonts.gstatic.com/s/kiranghaerang/v1/E21-_dn_gvvIjhYON1lpIU4-bfqiUvE.woff",
     cssUrl : "https://fonts.googleapis.com/css?family=Kirang+Haerang",
     foundries: ["woowa"],
+    descriptionKo: "삐뚤어진 글자 테두리 모양 원형을 채워 만든 서체입니다. 동그라미가 커진 것이 특징입니다.",
+    descriptionEn: "Kirang Haerang features irregular outer shapes and mostly filled in circles of various sizes, creating an off-kilter, charming effect.",
+    category: 3
+  },
+  {
+    id: 27,
+    nameKo: "감자꽃",
+    nameEn: "Gamja Flower",
+    fontName: 'Gamja Flower',
+    weights: [
+      {
+        fontWeight: 400,
+        weightName: "Regular"
+      }
+    ],
+    letterSpacing: 0,
+    fontSize: 1,
+    baseline:1,
+    fontUrl : "https://fonts.gstatic.com/s/gamjaflower/v2/6NUR8FiKJg-Pa0rM6uN40Z4UxPVC.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Gamja+Flower:400",
+    foundries: ["yoondesign"],
+    descriptionKo: "삐뚤어진 글자 테두리 모양 원형을 채워 만든 서체입니다. 동그라미가 커진 것이 특징입니다.",
+    descriptionEn: "Kirang Haerang features irregular outer shapes and mostly filled in circles of various sizes, creating an off-kilter, charming effect.",
+    category: 3
+  },
+  {
+    id: 30,
+    nameKo: "개구",
+    nameEn: "Gaegu",
+    fontName: 'Gaegu',
+    weights: [
+      {
+        fontWeight: 300,
+        weightName: "Light"
+      },
+      {
+        fontWeight: 400,
+        weightName: "Regular"
+      },
+      {
+        fontWeight: 700,
+        weightName: "Bold"
+      }
+    ],
+    letterSpacing: 0,
+    fontSize: 1,
+    baseline: 1,
+    fontUrl : "https://fonts.gstatic.com/s/gaegu/v2/TuGSUVB6Up9NU573jsw26MA.woff",
+    cssUrl : "https://fonts.googleapis.com/css?family=Gaegu:300,400,700",
+    foundries: ["jikji"],
     descriptionKo: "삐뚤어진 글자 테두리 모양 원형을 채워 만든 서체입니다. 동그라미가 커진 것이 특징입니다.",
     descriptionEn: "Kirang Haerang features irregular outer shapes and mostly filled in circles of various sizes, creating an off-kilter, charming effect.",
     category: 3
