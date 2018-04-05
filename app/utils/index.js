@@ -29,13 +29,13 @@ export const getCurrentDescFont = (currentDescFont, mode) => {
       var resultFont = _.find(FONTS, fontData => { return currentDescFont["title"] == fontData.id });
       return _.isUndefined(resultFont) ? {
         id: -1,
-        nameKo: "폰트선택",
+        nameKo: "폰트 선택",
         nameEn: "Select Font"
       } : resultFont;
     } else {
       return {
         id: -1,
-        nameKo: "폰트선택",
+        nameKo: "폰트 선택",
         nameEn: "Select Font"
       };
     }
@@ -45,7 +45,7 @@ export const getCurrentDescFont = (currentDescFont, mode) => {
     var resultFont = _.find(FONTS, fontData => { return currentDescFont[mode] == fontData.id });
     return _.isUndefined(resultFont) ? {
         id: -1,
-        nameKo: "폰트선택",
+        nameKo: "폰트 선택",
         nameEn: "Select Font"
       } : resultFont;
 
