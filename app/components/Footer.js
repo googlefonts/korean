@@ -26,11 +26,11 @@ class Footer extends Component {
               <div className="footer__short-desc-column">
                 <h4><span className="inline_en_bold">Google Fonts</span>에 참여하세요.</h4>
                 <p>
-                  <span className="inline_en">Google Fonts</span>는 전 세계의 디자이너와 함께 웹에서 손쉽게 사용할 수 있는 폰트를 개발합니다. <span className="inline_en">Google Fonts</span>와 이곳에 여러분이 제작한 한글 폰트를 제공하고 싶다면 언제든지 <a href="https://twitter.com/googlefonts" target="_blank"><span className="inline_en">@googlefonts</span></a> 앞으로 멘션을 보내주세요.
+                  <span className="inline_en">Google Fonts</span>는 전 세계의 디자이너와 함께 웹에서 손쉽게 사용할 수 있는 폰트를 개발합니다. <span className="inline_en">Google Fonts</span>와 이곳에 여러분이 제작한 한글 폰트를 제공하고 싶다면 언제든지 <a href="https://twitter.com/googlefonts" target="_blank"><span className="inline_en">@googlefonts</span></a> 앞으로 알려주세요.
                 </p>
                 <div className="l-apple-box"></div>
                 <p>
-                  이 웹사이트의 소스는 <a href="https://github.com/googlefonts/korean"><span className="inline_en">github.com/googlefonts/korean</span></a> 을 통해 공개하고 있습니다. 관련 문의는 이곳에 리포트를 남겨주세요.
+                  이 사이트의 소스는 <a href="https://github.com/googlefonts/korean"><span className="inline_en">github.com/googlefonts/korean</span></a>에 공개되어 있습니다. 관련 문의는 이곳에 리포트를 남겨주세요.
                 </p>
               </div> :
 

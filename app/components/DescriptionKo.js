@@ -103,7 +103,7 @@ class DescriptionKo extends Component {
 
         
         <h3 style={fontNames.title}>
-          좋은 타이포그래피를 통해 웹은 더욱 아름답고, 빠르며, 누구나 참여할 수 있는 공간이 될 수 있습니다. <span className="inline_en" style={fontNames.title}>Google Fonts</span>는 이 사이트에 수록된 오픈 소스 한글 폰트를 머신 러닝에 기반한 최적화 기술을 통해 시범적으로 제공합니다. 
+          좋은 타이포그래피를 통해 웹은 더욱 아름답고, 빠르며, 누구나 참여할 수 있는 공간이 될 수 있습니다. <span className="inline_en" style={fontNames.title}>Google Fonts</span>는 이 사이트에 수록된 오픈 소스 한글 폰트를 머신 러닝에 기반을 둔 최적화 기술을 통해 시범적으로 제공합니다. 
         </h3>
 
         <h4 style={fontNames.title}>
@@ -184,7 +184,7 @@ class DescriptionKo extends Component {
 
 
             <p style={fontNames.paragraph}>
-              웹상의 방대한 한국어 문서를 분석한 결과, Google은 주제에 따라 사용되는 글자의 패턴을 발견하고, 패턴에 따라 한글 폰트에 포함된 <span className="inline_en" style={fontNames.title}>17,388</span>개의 글리프를 <span className="inline_en" style={fontNames.title}>100</span>여 가지 그룹으로 나누었습니다. 그리고 <span className="inline_en" style={fontNames.title}>Google Fonts</span>에서는 사용자가 웹 페이지를 불러올 때, 폰트 전체를 다운로드 하는 대신 내용을 표시하는 데 꼭 필요한 몇 가지 그룹만을 선택적으로 다운로드 하는 방식으로 폰트를 제공합니다. 이 기술을 적용한 <span className="inline_en" style={fontNames.title}>Google Font</span>를 사용하면 폰트 전체를 다운로드한 것과 다름없는 페이지를 보다 빠르게 제공할 수 있습니다. 
+              웹상의 방대한 한국어 문서를 분석한 결과, Google은 주제에 따라 사용되는 글자의 패턴을 발견하고, 패턴에 따라 한글 폰트에 포함된 <span className="inline_en" style={fontNames.title}>17,388</span>개의 글리프를 <span className="inline_en" style={fontNames.title}>100</span>여 가지 그룹으로 나누었습니다. 여기에 <span className="inline_en" style={fontNames.title}>Google Fonts</span>는 사용자가 웹 페이지를 불러올 때, 폰트 전체를 다운로드 하는 대신 내용을 표시하는 데 꼭 필요한 몇 가지 그룹만을 선택적으로 다운로드 하는 방식으로 폰트를 제공합니다. 이 기술을 적용한 <span className="inline_en" style={fontNames.title}>Google Font</span>를 사용하면  보다 빠르게 폰트 전체를 다운로드한 것과 다름없는 페이지를 제공할 수 있습니다. 
             </p>
 
 
