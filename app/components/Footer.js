@@ -52,7 +52,7 @@ class Footer extends Component {
           <div className="footer__team">
             <h4><span className="inline_en_bold">Made by Friends of Google Fonts</span></h4>
             <p className="en-regular">
-              <a href="http://yang-jang.com/" target="_blank">Suyoung Jang</a><br/>
+              <a href="http://yang-jang.com" target="_blank">Yang Jang</a><br/>
               <a href="http://eroonkang.com" target="_blank">E Roon Kang</a><br/>
               <a href="http://wonyoung.so" target="_blank">Wonyoung So</a><br/>
               <a href="http://minguhongmfg.com/" target="_blank">Guhong Min</a><br/>
