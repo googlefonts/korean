@@ -55,7 +55,7 @@ class Footer extends Component {
               <a href="http://yang-jang.com" target="_blank">Yang Jang</a><br/>
               <a href="http://eroonkang.com" target="_blank">E Roon Kang</a><br/>
               <a href="http://wonyoung.so" target="_blank">Wonyoung So</a><br/>
-              <a href="http://minguhongmfg.com/" target="_blank">Guhong Min</a><br/>
+              <a href="http://minguhongmfg.com/" target="_blank">Min Guhong Mfg.</a><br/>
               Hannah Son
             </p>
           </div>
