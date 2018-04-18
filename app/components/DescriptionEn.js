@@ -162,7 +162,7 @@ class DescriptionEn extends Component {
 
 
         <p style={fontNames.paragraph}>
-          In Hangul, the visual balance of a jamo changes in relation to its surrounding jamo, similar to Chinese letters or Japanese kana. For this reason, a Korean font usually includes every possible combination of jamo, resulting in 11,172 glyphs. Developing a font with this many glyphs requires not only significant time and expense, but also results in a much larger file size. For example, Google is developing the Noto fonts to support all languages, and while the Noto Latin font is 445KB, the Noto Simplified Chinese (SC) font is 15.7MB, containing a total of 44,683 glyphs. The large file sizes have been the biggest hurdle to using Korean fonts effectively on the web.
+          In Hangul, the visual balance of a jamo changes in relation to its surrounding jamo, similar to Chinese letters or Japanese kana. For this reason, a Korean font usually includes every possible combination of jamo, resulting in 17,388 glyphs. Developing a font with this many glyphs requires not only significant time and expense, but also results in a much larger file size. For example, Google is developing the Noto fonts to support all languages, and while the Noto Latin font is 445KB, the Noto Simplified Chinese (SC) font is 15.7MB, containing a total of 44,683 glyphs. The large file sizes have been the biggest hurdle to using Korean fonts effectively on the web.
         </p>
 
         <div className="desc-column-area">
