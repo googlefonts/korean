@@ -36,7 +36,8 @@
     "react-redux": "^5.0.6",
     "react-retina-image": "^2.0.5",
     "redux": "^3.7.2",
-    "scrollama": "^1.0.0"
+    "scrollama": "^1.0.0",
+    "fstream": "~>1.0.12"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.36",
