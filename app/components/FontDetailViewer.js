@@ -184,7 +184,7 @@ class FontDetailViewer extends Component {
               <div className="font-viewer__detail-label--ko">
                 {
                   locale == "ko" ?
-                  "굵기선택" : <span className='en-black'>Weights</span>
+                  "굵기 선택" : <span className='en-black'>Weights</span>
                 }
               </div>
               <div className="font-viewer__detail-content">

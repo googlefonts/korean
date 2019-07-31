@@ -103,7 +103,7 @@ class DescriptionKo extends Component {
 
         
         <h3 style={fontNames.title}>
-          좋은 타이포그래피를 통해 웹은 더욱 아름답고, 빠르며, 누구나 참여할 수 있는 공간이 될 수 있습니다. <span className="inline_en" style={fontNames.title}>Google Fonts</span>는 이 사이트에 수록된 오픈 소스 한글 폰트를 머신 러닝에 기반한 최적화 기술을 통해 시범적으로 제공합니다. 
+          좋은 타이포그래피를 통해 웹은 더욱 아름답고, 빠르며, 누구나 참여할 수 있는 공간이 될 수 있습니다. <span className="inline_en" style={fontNames.title}>Google Fonts</span>는 이 사이트에 수록된 오픈 소스 한글 폰트를 머신 러닝에 기반을 둔 최적화 기술을 통해 시범적으로 제공합니다. 
         </h3>
 
         <h4 style={fontNames.title}>
@@ -149,7 +149,7 @@ class DescriptionKo extends Component {
         </div>
 
         <p style={fontNames.paragraph}>
-          한글의 각 글자에서 낱자는 주변 낱자와의 관계에 따라 모양이 조금씩 달라지고, 이런 현상은 한자와 가나에서도 나타납니다. 따라서 한글을 바르게 표시하기 위해서는 기본적으로 낱자를 모두 조합한 <span className="inline_en" style={fontNames.title}>11,172</span>가지 글리프를 폰트에 포함해야 합니다. 이는 폰트를 제작하는 기간과 비용뿐 아니라 파일의 용량에도 큰 영향을 미칩니다. 예컨대 Google이 전 세계의 모든 문자를 표시하기 위해 개발하고 있는 노토 산스(<span className="inline_en" style={fontNames.title}>Noto Sans</span>) 로마자 버전의 용량은 <span className="inline_en" style={fontNames.title}>445KB</span>에 불과하지만, <span className="inline_en" style={fontNames.title}>44,683</span>가지 글자를 포함한 <span className="inline_en" style={fontNames.title}>CJK</span> 버전은 <span className="inline_en" style={fontNames.title}>15.7MB</span>에 달하며, 폰트를 완전히 다운로드하기 전까지는 페이지가 바르게 표시되지 않습니다. 이는 지금까지 웹에서 다양한 한글 폰트를 제대로 이용하는 데 큰 제약이었습니다.
+          한글의 각 글자에서 낱자는 주변 낱자와의 관계에 따라 모양이 조금씩 달라지고, 이런 현상은 한자와 가나에서도 나타납니다. 따라서 한글을 바르게 표시하기 위해서는 기본적으로 낱자를 모두 조합한 <span className="inline_en" style={fontNames.title}>17,388</span>가지 글리프를 폰트에 포함해야 합니다. 이는 폰트를 제작하는 기간과 비용뿐 아니라 파일의 용량에도 큰 영향을 미칩니다. 예컨대 Google이 전 세계의 모든 문자를 표시하기 위해 개발하고 있는 노토 산스(<span className="inline_en" style={fontNames.title}>Noto Sans</span>) 로마자 버전의 용량은 <span className="inline_en" style={fontNames.title}>445KB</span>에 불과하지만, <span className="inline_en" style={fontNames.title}>44,683</span>가지 글자를 포함한 <span className="inline_en" style={fontNames.title}>CJK</span> 버전은 <span className="inline_en" style={fontNames.title}>15.7MB</span>에 달하며, 폰트를 완전히 다운로드하기 전까지는 페이지가 바르게 표시되지 않습니다. 이는 지금까지 웹에서 다양한 한글 폰트를 제대로 이용하는 데 큰 제약이었습니다.
         </p>
 
         <div className="desc-column-area">
@@ -184,7 +184,7 @@ class DescriptionKo extends Component {
 
 
             <p style={fontNames.paragraph}>
-              웹상의 방대한 한국어 문서를 분석한 결과, Google은 주제에 따라 사용되는 글자의 패턴을 발견하고, 패턴에 따라 한글 폰트에 포함된 <span className="inline_en" style={fontNames.title}>17,388</span>개의 글리프를 <span className="inline_en" style={fontNames.title}>100</span>여 가지 그룹으로 나누었습니다. 그리고 <span className="inline_en" style={fontNames.title}>Google Fonts</span>에서는 사용자가 웹 페이지를 불러올 때, 폰트 전체를 다운로드 하는 대신 내용을 표시하는 데 꼭 필요한 몇 가지 그룹만을 선택적으로 다운로드 하는 방식으로 폰트를 제공합니다. 이 기술을 적용한 <span className="inline_en" style={fontNames.title}>Google Font</span>를 사용하면 폰트 전체를 다운로드한 것과 다름없는 페이지를 보다 빠르게 제공할 수 있습니다. 
+              웹상의 방대한 한국어 문서를 분석한 결과, <span className="inline_en" style={fontNames.title}>Google</span>은 주제에 따라 사용되는 글자의 패턴을 발견하고, 패턴에 따라 한글 폰트에 포함된 <span className="inline_en" style={fontNames.title}>17,388</span>개의 글리프를 <span className="inline_en" style={fontNames.title}>100</span>여 가지 그룹으로 나누었습니다. 여기에 <span className="inline_en" style={fontNames.title}>Google Fonts</span>는 사용자가 웹 페이지를 불러올 때, 폰트 전체를 다운로드 하는 대신 내용을 표시하는 데 꼭 필요한 몇 가지 그룹만을 선택적으로 다운로드 하는 방식으로 폰트를 제공합니다. 이 기술을 적용한 <span className="inline_en" style={fontNames.title}>Google Font</span>를 사용하면  보다 빠르게 폰트 전체를 다운로드한 것과 다름없는 페이지를 제공할 수 있습니다. 
             </p>
 
 
