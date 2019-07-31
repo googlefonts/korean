@@ -33,8 +33,8 @@ class Footer extends Component {
                   이 사이트의 소스는 <a href="https://github.com/googlefonts/korean"><span className="inline_en">github.com/googlefonts/korean</span></a>에 공개되어 있습니다. 관련 문의는 이곳에 리포트를 남겨주세요.
                 </p>
                 <div className="l-apple-box"></div>
-                <p>
-                  <a href="https://google.qualtrics.com/jfe/form/SV_3NMIMtX0F2zkakR?reserved=1&utm_source=Online&Q_Language=en&utm_medium=own_othr&utm_campaign=Gf-KDS&utm_term=0&utm_content=0&productTag=0&campaignDate=jul19&pType=gprod&referral_code=RL12665">구글폰트 유저 리서치 프로그램 →</a>
+                <p >
+                  <a href="https://google.qualtrics.com/jfe/form/SV_3NMIMtX0F2zkakR?reserved=1&utm_source=Online&Q_Language=en&utm_medium=own_othr&utm_campaign=Gf-KDS&utm_term=0&utm_content=0&productTag=0&campaignDate=jul19&pType=gprod&referral_code=RL12665"><span style={{fontWeight: 900}}>구글폰트 유저 리서치 프로그램 →</span></a>
                 </p>
               </div> :
 
@@ -50,7 +50,7 @@ class Footer extends Component {
 
                 <div className="l-apple-box"></div>
                 <p className="en-regular">
-                  <a href="https://google.qualtrics.com/jfe/form/SV_3NMIMtX0F2zkakR?reserved=1&utm_source=Online&Q_Language=en&utm_medium=own_othr&utm_campaign=Gf-KDS&utm_term=0&utm_content=0&productTag=0&campaignDate=jul19&pType=gprod&referral_code=RL12665">Google Fonts user research program →</a>
+                  <a href="https://google.qualtrics.com/jfe/form/SV_3NMIMtX0F2zkakR?reserved=1&utm_source=Online&Q_Language=en&utm_medium=own_othr&utm_campaign=Gf-KDS&utm_term=0&utm_content=0&productTag=0&campaignDate=jul19&pType=gprod&referral_code=RL12665"><span className="inline_en_bold">Google Fonts user research program →</span></a>
                 </p>
               </div> 
             }
