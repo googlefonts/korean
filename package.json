@@ -53,7 +53,7 @@
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^4.0.0",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.1.11"
+    "webpack-dev-server": "^5.2.5"
   },
   "resolutions": {
     "**/**/fsevents": "^1.2.9"
